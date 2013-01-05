@@ -1,0 +1,63 @@
+[alias]
+
+    # Shorter commands
+    br = branch
+    c  = commit
+    ca = !git add -A && git commit
+    co = checkout
+    g  = log --graph --pretty=custom
+    l  = log --pretty=custom
+    st = status
+
+    # Credit an author on the latest commit
+    credit = "!f() { \
+                if [ $1 ] && [ $2 ]; then \
+                    git commit --amend --author \"$1 <$2>\" -C HEAD; \
+                fi \
+              }; f"
+
+    # Create an unattached branch with no history
+    emptybranch = "!f() { \
+                     if [ $1 ]; then \
+                         git symbolic-ref HEAD refs/heads/$1 && \
+                         rm .git/index && \
+                         git clean -fdx;  \
+                     fi \
+                   }; f"
+
+[color]
+    ui = true
+
+[color "branch"]
+    current = green bold
+    local = green
+    remote = yellow
+
+[color "diff"]
+    frag = magenta
+    meta = yellow
+    new = green
+    old = red
+
+[color "status"]
+    added = green reverse
+    changed = yellow reverse
+    untracked = red reverse
+
+#[commit]
+#	template = ~/.gitmessage
+
+[core]
+    attributesfile = ~/.gitattributes
+	autocrlf = input
+	editor = vim
+    excludesfile = ~/.gitignore
+
+[pretty]
+    # Custom log output
+    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+    #                     │        │            │            │  author name ┘
+    #                     │        │            │            └─ message
+    #                     │        │            └─ date (relative)
+    #                     │        └─ decorations (branch, heads or tags)
+    #                     └─ hash (abbreviated)

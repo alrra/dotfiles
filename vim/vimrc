@@ -1,0 +1,210 @@
+" ******************************************************************************
+" * GENERAL SETTINGS                                                           *
+" ******************************************************************************
+
+set nocompatible              " Don't make vim, vi-compatibile
+
+" Use the Pathogen plugin to install plugins and
+" runtime files in their own private directories
+runtime plugins/pathogen/autoload/pathogen.vim
+call pathogen#infect('plugins')
+call pathogen#helptags()
+
+syntax on                     " Enable syntax highlighting
+
+if has("autocmd")
+    filetype plugin indent on
+    "           │     │    └─── Enable file type detection
+    "           │     └──────── Enable loading of indent file
+    "           └────────────── Enable loading of plugin files
+endif
+
+set t_Co=256                  " Enable full-color support
+colorscheme xoria256          " Use custom color scheme
+                              " (Online color scheme editor:
+                              "  http://bytefluent.com/vivify/)
+
+set autoindent                " Copy the indent from the current line when
+                              " starting a new line
+set background=dark           " Try to use colors that look good on a dark bg
+set backupdir=~/.vim/backups  " Directory for backup files
+set cpoptions+=$              " When making a change, don't redisplay the line
+                              " and instead put a '$' sign at the end of the
+                              " changed text
+set colorcolumn=81            " Highlight certain columns
+set cursorline                " Highlight the current line
+set directory=~/.vim/swaps    " Directory for swap files
+set encoding=utf-8 nobomb     " Use UTF-8 without BOM
+set history=5000              " Increase command line history
+set hlsearch                  " Enable search highlighting
+set ignorecase                " Ignore case in search patterns
+set incsearch                 " Highlight dynamically as a search pattern is
+                              " being typed
+set laststatus=2              " Always show the status line
+set listchars=tab:▸\          " ┐
+set listchars+=trail:·        " │ Use custom symbols to
+set listchars+=eol:↴          " │ represent invisible characters
+set listchars+=nbsp:_         " ┘
+set magic                     " Enable extended regexp
+set mousehide                 " Hide the mouse pointer while typing
+set noerrorbells              " Disable error bells
+set nojoinspaces              " Only insert a single space after a '.', '?' and
+                              " '!' with join command
+set nostartofline             " When moving around kept the cursor on the same
+                              " column if possible
+set number                    " Show the line number
+set numberwidth=5             " Increase the minimal number of columns used for
+                              " the 'line number'
+set report=0                  " Always report the number of lines changed
+set ruler                     " Show the line and column number of the cursor
+                              " position
+set scrolloff=5               " When the page starts to scroll, keep the cursor
+                              " 5 lines below the top and 5 lines above the
+                              " bottom of the screen
+set shortmess=aAItW           " Avoid all the hit-enter prompts
+set showcmd                   " Show the (partial) command being typed
+set showmode                  " Show the current mode
+set spelllang=en_us           " Use en_us as the spellchecking language
+set smartcase                 " Override the 'ignorecase' option if the search
+                              " pattern contains uppercase characters
+set ts=4 sts=4 sw=4 expandtab " Global <TAB> settings
+set ttyfast                   " Enable fast terminal connection (more characters
+                              " will be send to the screen for redrawing)
+set undodir=~/.vim/undos      " Directory for undo files
+set undofile                  " Automatically save undo history
+set virtualedit=all           " Allow the cursor to be positioned where there
+                              " are no actual characters
+set wildmenu                  " Enable command-line completion in an enhanced
+                              " mode (by hitting <TAB> in command mode, it will
+                              " show the possible matches just above the command
+                              " line with the first match highlighted)
+set winminheight=0            " Allow windows to be 'squashed' to zero lines
+
+" ------------------------------------------------------------------------------
+" | Automatic Commands                                                         |
+" ------------------------------------------------------------------------------
+
+" Only do the following if compiled with support for autocommands
+if has("autocmd")
+
+    " Automatically switch to absolute line numbers when vim loses focus
+    autocmd FocusLost * :set number
+    " Automatically switch to relative line numbers when vim gains focus
+    autocmd FocusGained * :set relativenumber
+    " Automatically switch to absolute line numbers when vim is in insert mode
+    autocmd InsertEnter * :set number
+    " Automatically switch to relative line numbers when vim is in normal mode
+    autocmd InsertLeave * :set relativenumber
+
+    " Custom syntax for different languages
+    autocmd FileType javascript setlocal ts=4 sts=4 sw=4 expandtab
+
+    " Treat .json files as JavaScript
+    autocmd BufNewFile, BufRead *.json setfiletype json syntax=javascript
+
+    " Strip trailing whitespace automatically when the file is saved
+    autocmd BufWritePre * :call StripWhitespaces()
+
+endif
+
+" ------------------------------------------------------------------------------
+" | Highlighting                                                               |
+" ------------------------------------------------------------------------------
+
+" Terminal types:
+"
+"   1) term (normal terminals, e.g.: vt100, xterm)
+"   2) cterm (color terminals, e.g.: MS-DOS console, color-xterm)
+"   3) gui (GUIs)
+
+highlight ColorColumn                              ctermbg=239
+highlight LineNr      cterm=NONE  ctermfg=DarkGrey ctermbg=NONE
+highlight User1       cterm=bold  ctermfg=Grey     ctermbg=237
+
+set statusline=%1*\ [%n]\ [%f]%m%r%h%w%y[%{&ff}:%{strlen(&fenc)?&fenc:'none'}]%=%(\ %c,%l/%L\ %)%P
+"               │     │     │  │ │ │ │ │    │                │                 │     │ │   │    │
+"               │     │     │  │ │ │ │ │    │                │                 │     │ │   │    └─ percent through file
+"               │     │     │  │ │ │ │ │    │                │                 │     │ │   └─ total number of lines
+"               │     │     │  │ │ │ │ │    │                │                 │     │ └─ current line number
+"               │     │     │  │ │ │ │ │    │                │                 │     └─ current column number
+"               │     │     │  │ │ │ │ │    │                │                 └─ left/right separator
+"               │     │     │  │ │ │ │ │    │                └─ file encoding
+"               │     │     │  │ │ │ │ │    └─ file format
+"               │     │     │  │ │ │ │ └─ file type
+"               │     │     │  │ │ │ └─ preview window flag
+"               │     │     │  │ │ └─ help file flag
+"               │     │     │  │ └─ readonly flag
+"               │     │     │  └─ modified flag
+"               │     │     └─ path to the file
+"               │     └─ buffer number
+"               └─ User1 highlight
+
+" ------------------------------------------------------------------------------
+" | Key Mappings                                                               |
+" ------------------------------------------------------------------------------
+
+" Use a different mapleader (default is '\')
+let mapleader = ","
+
+" [ ,*] Search and replace the word under the cursor
+:nnoremap <leader>* :%s/\<<C-r><C-w>\>//<Left>
+
+" [ ,l] Toggle 'set list'
+nmap <leader>l :set list!<CR>
+
+" [,cs] Clear search
+map <leader>cs <Esc>:noh<CR>
+
+" [ ,n] Toggle 'set relativenumber'
+" (http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/)
+function! ToggleRelativeLineNumbers()
+
+    if ( &relativenumber == 1 )
+        set number
+    else
+        set relativenumber
+    endif
+
+endfunction
+
+nnoremap <leader>n :call ToggleRelativeLineNumbers()<CR>
+
+" [,nt] Toggle NerdTree
+map <leader>nt :NERDTreeToggle<CR>
+
+" [,ss] Strip whitespace
+function! StripWhitespaces()
+
+    " save last search and cursor position
+    let searchHistory = @/
+    let cursorLine = line(".")
+    let cursorColumn = col(".")
+
+    " strip trailing whitespaces
+    %s/\s\+$//e
+
+    " merge consecutive empty lines
+    "g/^\s*$/,/\S/-j
+
+    " restore previous search history and cursor position
+    let @/ = searchHistory
+    call cursor(cursorLine, cursorColumn)
+
+endfunction
+
+nnoremap <leader>ss :call StripWhitespaces()<CR>
+
+" [ ,v] Make the opening of the '.vimrc' file easier
+nmap <leader>v :vsp $MYVIMRC<CR>
+
+" [ ,W] Sudo write
+noremap <leader>W :w !sudo tee %<CR>
+
+" ******************************************************************************
+" * LOCAL SETTINGS                                                             *
+" ******************************************************************************
+
+" Load local settings if they exist
+if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc_local
+endif

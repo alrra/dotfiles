@@ -1,0 +1,290 @@
+# ------------------------------------------------------------------------------
+# | File System                                                                |
+# ------------------------------------------------------------------------------
+
+# Create a data URI from a file
+datauri() {
+
+    local mimeType=""
+
+    if [ -f "$1" ]; then
+        mimeType=$(file -b --mime-type "$1")
+        #                └─ do not prepend the filename to the output
+
+        if [[ $mimeType == text/* ]]; then
+            mimeType="$mimeType;charset=utf-8"
+        fi
+
+        printf "data:$mimeType;base64,$(openssl base64 -in "$1" | tr -d "\n")"
+    else
+        print_error "'$1' is not a file."
+    fi
+
+}
+
+# Delete all files that match a certain pattern from the current directory
+deletefiles() {
+    local q="${1:-*.DS_Store}"
+    find . -type f -name "$q" -ls -delete
+}
+
+# Get gzip information (gzipped file size + reduction size)
+gz() {
+
+    declare -i gzippedSize=0
+    declare -i originalSize=0
+
+    if [ -f "$1" ]; then
+        if [ -s "$1" ]; then
+
+            originalSize=$( wc -c < "$1")
+            #                  └─ very slow for large files, but `stat -c%s`
+            #                     or `du -b` don't work on Mac OS X :(
+            printf "\n original size:   %12s\n" "$(hrfs $originalSize)"
+
+            gzippedSize=$( gzip -c "$1" | wc -c )
+            printf " gzipped size:    %12s\n" "$(hrfs $gzippedSize)"
+
+            printf " ─────────────────────────────\n"
+            printf " reduction:       %12s [%s%%]\n\n" \
+                        "$( hrfs $(($originalSize-$gzippedSize)) )" \
+                        "$( printf $originalSize $gzippedSize | \
+                            awk '{ printf "%.1f", 100 - $2 * 100 / $1 }' | \
+                            sed -e 's/0*$//;s/\.$//' )"
+                            #              └─ remove tailing zeros
+
+        else
+            print_error "'$1' is empty."
+        fi
+    else
+        print_error "'$1' is not a file."
+    fi
+
+}
+
+# Create new directories and enter the first one
+mkd() {
+    if [ -n "$*" ]; then
+        mkdir -p "$@" && cd "$@"
+        #      └─ make parent directories if needed
+    fi
+}
+
+# ------------------------------------------------------------------------------
+# | Miscellaneous                                                              |
+# ------------------------------------------------------------------------------
+
+# Simple Calculator
+? () {
+
+    local result=""
+
+    #                       ┌─ default (when --mathlib is used) is 20
+    result="$( printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n' )"
+    #                         remove the tailing "\" and "\n" ─┘
+    #                         (large numbers are printed on multiple lines)
+
+    if [[ "$result" == *.* ]]; then
+        # improve the output for decimal numbers
+        printf "$result" |
+        sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
+            -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
+            -e 's/0*$//;s/\.$//'   # remove tailing zeros
+    else
+        printf "$result"
+    fi
+
+    printf "\n"
+
+}
+
+# ------------------------------------------------------------------------------
+# | Network                                                                    |
+# ------------------------------------------------------------------------------
+
+# HTTP Compression Information
+httpcompression() {
+
+    declare -r hUA="User-Agent: Mozilla/5.0 Gecko"
+    declare -r hAE="Accept-Encoding: gzip, deflate, sdch"
+    declare -r maxConTime=15
+    declare -r maxTime=30
+
+    local availDicts="" dict="" dictClientID="" dicts="" headers="" \
+          i="" indent="" url="" encoding="" urlHeaders=""
+
+    headers="$( curl --connect-timeout $maxConTime \
+                     -A "$hUA"    `# Send a fake UA string for sites
+                                   # that sniff it instead of using
+                                   # the Accept-Encoding header` \
+                     -D -         `# Get response headers` \
+                     -H "$hAE"     \
+                     -L           `# If the page was moved to a different
+                                   # location, redo the request` \
+                     -m $maxTime   \
+                     -s           `# Don\'t show the progress meter` \
+                     -S           `# Show error messages` \
+                     -o /dev/null `# Ignore content` \
+                     "$1" )" \
+    && ( \
+
+        url="$1"
+
+        # Iterate over the headers of all redirects
+        while [ -n "$headers" ]; do
+
+            # Get headers for the "current" URL
+            urlHeaders="$( printf "%s" "$headers" |
+                           sed -n '1,/^HTTP/p' )"
+
+            # Remove the headers for the "current" URL
+            headers="${headers/"$urlHeaders"/}"
+
+            # ------------------------------------------------------------------
+            # | SDCH                                                           |
+            # ------------------------------------------------------------------
+
+            # SDCH Specification:
+            # - www.blogs.zeenor.com/wp-content/uploads/2011/01/Shared_Dictionary_Compression_over_HTTP.pdf
+
+            # Check if the server advertised any dictionaries
+            dicts="$( printf "%s" "$urlHeaders" |
+                      grep -i 'Get-Dictionary:' |
+                      cut -d':' -f2 |
+                      sed s/,/\ /g )"
+
+            if [ -n "$dicts" ]; then
+
+                availDicts=""
+                dict=""
+
+                for i in $dicts; do
+
+                    # Check If the dictionary location is specified as a path,
+                    # and if so, construct it's URL from the host name of the
+                    # referrer URL
+                    [[ "$i" != http* ]] \
+                        && dict="$(printf "$url" |
+                                   sed -En 's/([^/]*\/\/)?([^/]*)\/?.*/\1\2/p')"
+
+                    dict="$dict$i"
+
+                    # Request the dictionaries from the server and
+                    # construct the `Avail-Dictionary` header value
+                    #
+                    # [ The user agent identifier for a dictionary is defined
+                    #   as the URL-safe base64 encoding (as described in RFC
+                    #   3548, section 4 [RFC3548]) of the first 48 bits (bits
+                    #   0..47) of the dictionary's SHA-256 digest ]
+                    #
+                    dictClientID="$( curl --connect-timeout $maxConTime \
+                                          -A "$hUA" -LsS -m $maxTime "$dict" |
+                                     openssl dgst -sha256 -binary |
+                                     openssl base64 |
+                                     cut -c 1-8 |
+                                     sed -e 's/\+/-/' -e 's/\//_/' )"
+
+                    [ -n $availDicts ] && availDicts="$adics,$dictClientID" \
+                                       || availDicts="$dictClientID"
+                done
+
+                # Redo the request (advertising the available dictionaries)
+                # and replace the old resulted headers with the new ones
+                urlHeaders="$( curl --connect-timeout $maxConTime \
+                                    -A "$hUA" -D - -H "$hAE" \
+                                    -H "Avail-Dictionary: $availDicts" \
+                                    -m $maxTime -o /dev/null -sS "$1" )"
+            fi
+
+            # ------------------------------------------------------------------
+
+            # Get the content encoding header values
+            encoding="$( printf "%s" "$urlHeaders" |
+                         grep -i 'Content-Encoding:' |
+                         cut -d' ' -f2 |
+                         tr "\r" "," |
+                         tr -d "\n" |
+                         sed 's/,$//' )"
+
+            [ -n "$encoding" ] && encoding="[$encoding]"
+
+            # Print the output for the "current" URL
+            if [ "$url" != "$1" ]; then
+                printf "%s\n" "$indent$url $encoding"
+                indent="  "$indent
+            else
+                printf "\n%s\n" " $1 $encoding"
+                indent=" ↳"
+            fi
+
+            # Get the next URL value
+            url="$( printf "%s" "$urlHeaders" |
+                    grep -i 'Location' |
+                    sed -e 's/Location://' |
+                    tr -d '\r' )"
+
+        done
+        printf "\n"
+
+    ) || printf ""
+
+}
+
+# ------------------------------------------------------------------------------
+# | Search                                                                     |
+# ------------------------------------------------------------------------------
+
+# Search History
+qh() {
+    #                                 ┌─ enable colors for pipe
+    #                                 │  ("--color=auto" enables colors only if
+    #                                 │  the output is in the terminal)
+    cat ~/.bash_history | grep --color=always "$*" | less -RX
+    # display the ANSI color escape sequences in raw form ─┘│
+    #           don't clear the screen after quitting less ─┘
+}
+
+# Search for text within the current directory
+qt() {
+    grep -ir --color=always "$*" . | less -RX
+    #     │└─ search all files under each directory, recursively
+    #     └─ ignore case
+}
+
+# ------------------------------------------------------------------------------
+# | Text Processing                                                            |
+# ------------------------------------------------------------------------------
+
+# Human redable file size
+# (because `du -h` doesn't cut it for me)
+hrfs() {
+    printf "$1" |
+    awk '{
+            i = 1;
+            split("B KB MB GB TB PB EB ZB YB WTFB", v);
+            value = $1;
+
+            # confirm that the input is a number
+            if ( value + .0 == value ) {
+
+                while ( value >= 1024 ) {
+                    value/=1024;
+                    i++;
+                }
+
+                if ( value == int(value) ) {
+                    printf "%d %s", value, v[i]
+                } else {
+                    printf "%.1f %s", value, v[i]
+                }
+
+            }
+        }' |
+    sed -e ':l; s/\([0-9]\)\([0-9]\{3\}\)/\1,\2/; t l'
+    #                          └─ add commas to the numbers
+    #                             (changes "1023.2 KB" to "1,023.2 KB")
+}
+
+print_error() {
+    printf "\e[1;31m[error] $1\e[0m\n"
+}

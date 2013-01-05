@@ -1,0 +1,60 @@
+check_linux_release() {
+    [ -e "/etc/$1" ] && printf "$2"
+}
+
+load_dotfiles() {
+
+    local distro="" i="" tmp="" os=""
+    local osname="$(uname -s)"
+
+    declare -a files=(
+        "bash_aliases"
+        "bash_exports"
+        "bash_functions"
+        "bash_options"
+        "bash_prompt"
+        "bash_local"    # for local settings that are not under
+                        # version control (e.g. git credentials)
+    )
+
+    # Some things are OS specific, deal with it
+    if [ "$osname" == "Darwin" ]; then
+        os="mac"
+    elif [ "$osname" == "Linux" ]; then
+        os="linux"
+
+        # Get Linux distribution
+        # (list of release: http://linuxmafia.com/faq/Admin/release-files.html)
+        distro=$(check_linux_release "lsb-release" "ubuntu") ||
+               $(check_linux_release "debian_version" "debian") ||
+               $(check_linux_release "debian_release" "debian")
+    else
+        os="other"
+    fi
+
+    for i in ${!files[*]}; do
+        tmp="$HOME/.${files[$i]}"
+        [ -r "$tmp" ] && source "$tmp"
+    done
+
+}
+
+# ******************************************************************************
+# * MAIN                                                                       *
+# ******************************************************************************
+
+# Enable programmable completion features
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+if [[ $COLORTERM == gnome-* && $TERM == xterm ]] \
+   && infocmp gnome-256color >/dev/null 2>&1; then
+    export TERM=gnome-256color
+elif infocmp xterm-256color >/dev/null 2>&1; then
+    export TERM=xterm-256color
+fi
+
+load_dotfiles
+unset load_dotfiles
+unset check_linux_release
