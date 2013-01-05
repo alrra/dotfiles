@@ -1,0 +1,3 @@
+# Ensure that all files that git considers to
+# be text-based have normalized (LF) line endings
+* text=auto
