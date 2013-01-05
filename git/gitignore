@@ -1,0 +1,35 @@
+# Useful `.gitignore` templates:
+#   - https://github.com/github/gitignore
+
+# Django
+*.log
+*.pot
+*.pyc
+local_settings.py
+
+# Linux
+*~
+
+# Mac OS X
+._*
+.AppleDouble
+.DS_Store
+.localized
+.LSOverride
+.Spotlight-V100
+.Trashes
+Icon
+
+# Sass
+*.sass-cache
+
+# Vim
+.*.sw[a-z]
+.netrwhist
+*.un~
+Session.vim
+
+# Windows
+Desktop.ini
+ehthumbs.db
+Thumbs.db

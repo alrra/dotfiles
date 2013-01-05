@@ -1,0 +1,5 @@
+# Use case-insensitive TAB autocompletion
+set completion-ignore-case on
+
+# Make TAB cycle through possible completions
+"\t": menu-complete
