@@ -1,0 +1,8 @@
+[submodule "vim/vim/plugins/pathogen"]
+    path = vim/vim/plugins/pathogen
+    url = https://github.com/tpope/vim-pathogen.git
+    ignore = dirty
+[submodule "vim/vim/plugins/snipmate"]
+    path = vim/vim/plugins/snipmate
+    url = https://github.com/msanders/snipmate.vim.git
+    ignore = dirty
