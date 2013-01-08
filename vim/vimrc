@@ -206,5 +206,5 @@ noremap <leader>W :w !sudo tee %<CR>
 
 " Load local settings if they exist
 if filereadable(glob("~/.vimrc.local"))
-    source ~/.vimrc_local
+    source ~/.vimrc.local
 endif
