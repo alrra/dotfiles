@@ -13,7 +13,7 @@ load_dotfiles() {
         "bash_functions"
         "bash_options"
         "bash_prompt"
-        "bash_local"    # for local settings that are not under
+        "bash.local"    # for local settings that are not under
                         # version control (e.g. git credentials)
     )
 
