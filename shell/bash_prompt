@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # ******************************************************************************
 # * LS COLORS                                                                  *
 # ******************************************************************************
@@ -83,41 +85,56 @@ set_ls_colors() {
 # * PROMPTS                                                                    *
 # ******************************************************************************
 
-is_git_repo() {
-    [ $(git rev-parse --is-inside-work-tree &>/dev/null; printf $?) == 0 ] \
-        && printf 1 \
-        || printf 0
-}
-
-get_git_branch_name() {
-    printf "$( git rev-parse --abbrev-ref HEAD 2> /dev/null \
-               || git rev-parse --short HEAD 2> /dev/null \
-               || printf "(unknown)" )"
-}
-
+# Note: Don't break this function into smaller, more specialized ones, as you
+# will only pollute the global space even more (the functions cannot be unset
+# due to the fact that they are called every time the prompt string is shown)
 prompt_git() {
 
-    local r=""
+    local s="" branchName=""
 
-    [ $(is_git_repo) == 0 ] && return
+    # Check if the current directory is in a git repository
+    if [ $(git rev-parse --is-inside-work-tree &>/dev/null; printf $?) == 0 ];
+    then
 
-    #
-    if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == "false" ]; then
+        # Check if the current directory is in .git
+        # ( some of the following checks don't make
+        #   sense / don't work in the .git directory )
+        if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == "false" ];
+        then
 
-        # Check for uncommitted changes in the index
-        if ! $(git diff --quiet --ignore-submodules --cached); then r="$r+"; fi
-        # Check for unstaged changes
-        if ! $(git diff-files --quiet --ignore-submodules --); then r="$r!"; fi
-        # Check for untracked files
-        if [ -n "$(git ls-files --others --exclude-standard)" ]; then r="$r?";fi
-        # Check for stashed files
-        if $(git rev-parse --verify refs/stash &>/dev/null); then r="$r$"; fi
+            # Check for uncommitted changes in the index
+            if ! $(git diff --quiet --ignore-submodules --cached); then
+                s="$s+";
+            fi
 
+            # Check for unstaged changes
+            if ! $(git diff-files --quiet --ignore-submodules --); then
+                s="$s!";
+            fi
+
+            # Check for untracked files
+            if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+                s="$s?";
+            fi
+
+            # Check for stashed files
+            if $(git rev-parse --verify refs/stash &>/dev/null); then
+                s="$s$";
+            fi
+
+        fi
+
+        branchName="$( git rev-parse --abbrev-ref HEAD 2> /dev/null \
+                       || git rev-parse --short HEAD 2> /dev/null \
+                       || printf "(unknown)" )"
+
+        [ -n "$s" ] && s=" [$s]"
+
+        printf "$1$branchName$s"
+
+    else
+        return
     fi
-
-    [ -n "$r" ] && r=" [$r]"
-
-    printf "$1$(get_git_branch_name)$r"
 
 }
 
@@ -168,7 +185,7 @@ set_prompts() {
     # | Prompt string                                                          |
     # --------------------------------------------------------------------------
 
-    PS1="\[\033]0;\w\007\]"                    # terminal title (set to the
+    PS1="\[\033]0;\w\007\]"                     # terminal title (set to the
                                                 # current working directory)
     PS1+="\[$bold\]"
     PS1+="\[$orange\]\u"                        # username
@@ -176,7 +193,7 @@ set_prompts() {
     PS1+="\[$yellow\]\h"                        # host
     PS1+="\[$white\]: "
     PS1+="\[$green\]\w"                         # working directory
-    #PS1+="\$(prompt_git \"$white on $cyan\")"  # git repository details
+    PS1+="\$(prompt_git \"$white on $cyan\")"   # git repository details
     PS1+="\n"
     PS1+="\[$reset$white\]\$ \[$reset\]"
 
