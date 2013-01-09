@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # ------------------------------------------------------------------------------
 # | File System                                                                |
 # ------------------------------------------------------------------------------
@@ -48,7 +50,7 @@ gz() {
             printf " ─────────────────────────────\n"
             printf " reduction:       %12s [%s%%]\n\n" \
                         "$( hrfs $(($originalSize-$gzippedSize)) )" \
-                        "$( printf $originalSize $gzippedSize | \
+                        "$( printf "$originalSize $gzippedSize" | \
                             awk '{ printf "%.1f", 100 - $2 * 100 / $1 }' | \
                             sed -e 's/0*$//;s/\.$//' )"
                             #              └─ remove tailing zeros
@@ -105,7 +107,7 @@ mkd() {
 # HTTP Compression Information
 httpcompression() {
 
-    declare -r hUA="User-Agent: Mozilla/5.0 Gecko"
+    declare -r hUA="Mozilla/5.0 Gecko"
     declare -r hAE="Accept-Encoding: gzip, deflate, sdch"
     declare -r maxConTime=15
     declare -r maxTime=30
