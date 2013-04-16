@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# ******************************************************************************
-# * LS COLORS                                                                  *
-# ******************************************************************************
+# ##############################################################################
+# # LS COLORS                                                                  #
+# ##############################################################################
 
 set_ls_colors() {
 
@@ -11,11 +11,10 @@ set_ls_colors() {
     # --------------------------------------------------------------------------
     # | GNU                                                                    |
     # --------------------------------------------------------------------------
-    #
+
     #  - ls displays colors if the `--color` option is passed
     #  - the actual colors are configured through the LS_COLORS environment
     #    variable (built-in defaults are used if this variable is not set)
-    #
 
     if [[ "$os" == "linux" && "$distro" == "ubuntu" ]]; then
 
@@ -51,7 +50,7 @@ set_ls_colors() {
     # --------------------------------------------------------------------------
     # | FreeBSD / Mac OS X                                                     |
     # --------------------------------------------------------------------------
-    #
+
     #  - ls displays colors if the `-G` option is passed or if the CLICOLOR
     #    environment variable is set
     #  - the actual colors are configured through the LSCOLORS environment
@@ -81,9 +80,9 @@ set_ls_colors() {
     fi
 }
 
-# ******************************************************************************
-# * PROMPTS                                                                    *
-# ******************************************************************************
+# ##############################################################################
+# # PROMPTS                                                                    #
+# ##############################################################################
 
 # Note: Don't break this function into smaller, more specialized ones, as you
 # will only pollute the global space even more (the functions cannot be unset
@@ -93,14 +92,12 @@ prompt_git() {
     local s="" branchName=""
 
     # Check if the current directory is in a git repository
-    if [ $(git rev-parse --is-inside-work-tree &>/dev/null; printf $?) == 0 ];
-    then
+    if [ $(git rev-parse --is-inside-work-tree &>/dev/null; printf "%s" $?) == 0 ]; then
 
         # Check if the current directory is in .git
         # ( some of the following checks don't make
         #   sense / don't work in the .git directory )
-        if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == "false" ];
-        then
+        if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == "false" ]; then
 
             # Check for uncommitted changes in the index
             if ! $(git diff --quiet --ignore-submodules --cached); then
@@ -130,10 +127,11 @@ prompt_git() {
 
         [ -n "$s" ] && s=" [$s]"
 
-        printf "$1$branchName$s"
+        printf "%s" "$1$branchName$s"
 
     else
         return
+
     fi
 
 }
@@ -211,15 +209,21 @@ set_prompts() {
     # | Debug prompt string                                                    |
     # --------------------------------------------------------------------------
 
+    # e.g:
+    #
     # The GNU `date` command has the `%N` interpreted sequence while other
     # implementations don't (on MAC OS X `gdate` can be used instead of the
     # native `date` if the `coreutils` package was installed)
-    if [ "$(date +%N)" != "N" ] || [ ! -x "$(command -v 'gdate')" ]; then
-        dateCmd="date +%s.%N"
-    else
-        dateCmd="gdate +%s.%N"
-    fi
-
+    #
+    # if [ "$(date +%N)" != "N" ] || [ ! -x "$(command -v 'gdate')" ]; then
+    #    dateCmd="date +%s.%N"
+    # else
+    #    dateCmd="gdate +%s.%N"
+    # fi
+    #
+    # PS4="+$( tput cr && tput cuf 6 &&
+    #          printf "$yellow %s $green%6s $reset" "$($dateCmd)" "[$LINENO]" )"
+    #
     # PS4 output:
     #
     #   ++    1357074705.875970000  [123] '[' 1 == 0 ']'
@@ -231,16 +235,15 @@ set_prompts() {
     #      │       └─ seconds since 1970-01-01 00:00:00 UTC
     #      └─ depth-level of the subshell
 
-    PS4="+$( tput cr && tput cuf 6 &&
-             printf "$yellow %s $green%6s $reset" "$($dateCmd)" "[$LINENO]" )"
+    PS4="+$( tput cr && tput cuf 6 && printf "%s $reset" )"
 
     export PS4
 
 }
 
-# ******************************************************************************
-# * MAIN                                                                       *
-# ******************************************************************************
+# ##############################################################################
+# # MAIN                                                                       #
+# ##############################################################################
 
 set_ls_colors
 unset set_ls_colors
