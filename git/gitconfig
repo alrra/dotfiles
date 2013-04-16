@@ -3,22 +3,22 @@
     # Shorter commands
     br = branch
     c  = commit
-    ca = !git add -A && git commit
+    ca = !git add -A && git commit          # commit all changes
     co = checkout
-    g  = log --graph --pretty=custom
-    l  = log --pretty=custom
+    g  = log --graph --pretty=custom        # show custom graph
+    l  = log --pretty=custom                # show custom log
     st = status
 
     # Credit an author on the latest commit
     credit = "!f() { \
-                if [ $1 ] && [ $2 ]; then \
+                if [[ -n "$1" && -n "$2" ]]; then \
                     git commit --amend --author \"$1 <$2>\" -C HEAD; \
                 fi \
               }; f"
 
     # Create an unattached branch with no history
     emptybranch = "!f() { \
-                     if [ $1 ]; then \
+                     if [ -n "$1" ]; then \
                          git symbolic-ref HEAD refs/heads/$1 && \
                          rm .git/index && \
                          git clean -fdx;  \
@@ -45,12 +45,12 @@
     untracked = red reverse
 
 #[commit]
-#	template = ~/.gitmessage
+#   template = ~/.gitmessage
 
 [core]
     attributesfile = ~/.gitattributes
-	autocrlf = input
-	editor = vim
+    autocrlf = input
+    editor = vim
     excludesfile = ~/.gitignore
 
 [pretty]
