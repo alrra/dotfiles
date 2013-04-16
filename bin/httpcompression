@@ -1,10 +1,17 @@
 #!/bin/bash
 
-# HTTP Compression Information
+# ##############################################################################
+# # HTTP Compression Information                                               #
+# ##############################################################################
 
 # Useful Links:
-# - HTTP/1.1 (RFC 2616) - Content Codings: http://goo.gl/BDNve
-# - SDCH Specification: http://goo.gl/1ciMV
+#
+# - HTTP/1.1 (RFC 2616) - Content Codings:
+#   http://tools.ietf.org/html/rfc2616#section-3.5
+# - SDCH Specification:
+#   http://www.blogs.zeenor.com/wp-content/uploads/2011/01/Shared_Dictionary_Compression_over_HTTP.pdf
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 declare -r hUA="Mozilla/5.0 Gecko"
 declare -r hAE="Accept-Encoding: gzip, deflate, sdch"
@@ -41,9 +48,9 @@ headers="$( curl --connect-timeout $maxConTime \
         # Remove the headers for the "current" URL
         headers="${headers/"$urlHeaders"/}"
 
-        # ----------------------------------------------------------------------
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # | SDCH                                                               |
-        # ----------------------------------------------------------------------
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         # Check if the server advertised any dictionaries
         dicts="$( printf "%s" "$urlHeaders" |
@@ -94,7 +101,7 @@ headers="$( curl --connect-timeout $maxConTime \
                                 -m $maxTime -o /dev/null -sS "$1" )"
         fi
 
-        # ----------------------------------------------------------------------
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         # Get the content encoding header values
         encoding="$( printf "%s" "$urlHeaders" |

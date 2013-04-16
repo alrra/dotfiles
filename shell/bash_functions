@@ -17,7 +17,9 @@ datauri() {
             mimeType="$mimeType;charset=utf-8"
         fi
 
-        printf "data:$mimeType;base64,$(openssl base64 -in "$1" | tr -d "\n")"
+        printf "data:%s;base64,%s" \
+                    "$mimeType" \
+                    "$(openssl base64 -in "$1" | tr -d "\n")"
     else
         print_error "'$1' is not a file."
     fi
@@ -50,7 +52,7 @@ gz() {
             printf " ─────────────────────────────\n"
             printf " reduction:       %12s [%s%%]\n\n" \
                         "$( hrfs $(($originalSize-$gzippedSize)) )" \
-                        "$( printf "$originalSize $gzippedSize" | \
+                        "$( printf "%s %s" "$originalSize $gzippedSize" | \
                             awk '{ printf "%.1f", 100 - $2 * 100 / $1 }' | \
                             sed -e 's/0*$//;s/\.$//' )"
                             #              └─ remove tailing zeros
@@ -82,18 +84,18 @@ mkd() {
     local result=""
 
     #                       ┌─ default (when --mathlib is used) is 20
-    result="$( printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n' )"
+    result="$( printf "scale=10;%s\n" "$*" | bc --mathlib | tr -d '\\\n' )"
     #                         remove the tailing "\" and "\n" ─┘
     #                         (large numbers are printed on multiple lines)
 
     if [[ "$result" == *.* ]]; then
         # improve the output for decimal numbers
-        printf "$result" |
+        printf "%s" "$result" |
         sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
             -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
             -e 's/0*$//;s/\.$//'   # remove tailing zeros
     else
-        printf "$result"
+        printf "%s" "$result"
     fi
 
     printf "\n"
@@ -128,7 +130,8 @@ qt() {
 # Human redable file size
 # (because `du -h` doesn't cut it for me)
 hrfs() {
-    printf "$1" |
+
+    printf "%s" "$1" |
     awk '{
             i = 1;
             split("B KB MB GB TB PB EB ZB YB WTFB", v);
@@ -156,5 +159,5 @@ hrfs() {
 }
 
 print_error() {
-    printf "\e[1;31m[error] $1\e[0m\n"
+    printf "\e[1;31m[error] %s\e[0m\n" "$1"
 }
