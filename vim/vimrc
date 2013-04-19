@@ -172,6 +172,25 @@ nnoremap <leader>n :call ToggleRelativeLineNumbers()<CR>
 " [,nt] Toggle NerdTree
 map <leader>nt :NERDTreeToggle<CR>
 
+" [,sl] Toggle limits
+function! ToggleLimits()
+
+    " [51,73]
+    "   - git commit message
+    "     http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+    " [81]
+    "   - general use
+
+    if ( &colorcolumn == "81" )
+        set colorcolumn+=51,73
+    else
+        set colorcolumn-=51,73
+    endif
+
+endfunction
+
+nnoremap <leader>sl :call ToggleLimits()<CR>
+
 " [,ss] Strip whitespace
 function! StripWhitespaces()
 
