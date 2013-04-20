@@ -6,3 +6,7 @@
     path = vim/vim/plugins/snipmate
     url = https://github.com/msanders/snipmate.vim.git
     ignore = dirty
+[submodule "vim/vim/plugins/vim-colors-solarized"]
+    path = vim/vim/plugins/vim-colors-solarized
+    url = https://github.com/altercation/vim-colors-solarized
+    ignore = dirty
