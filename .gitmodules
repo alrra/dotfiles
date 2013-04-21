@@ -10,3 +10,6 @@
     path = vim/vim/plugins/vim-colors-solarized
     url = https://github.com/altercation/vim-colors-solarized
     ignore = dirty
+[submodule "vim/vim/plugins/vim-colors-xoria256"]
+    path = vim/vim/plugins/vim-colors-xoria256
+    url = https://github.com/vim-scripts/xoria256.vim
