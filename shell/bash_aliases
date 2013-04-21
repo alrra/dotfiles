@@ -51,6 +51,7 @@ if [[ "$os" == "linux" && "$distro" == "ubuntu" ]]; then
 elif [ "$os" == "mac" ]; then
 
     # Homebrew
+    alias brewd="brew doctor"
     alias brewi="brew install"
     alias brewr="brew uninstall"
     alias brews="brew search"
