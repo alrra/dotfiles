@@ -67,6 +67,8 @@ set showmode                  " Show the current mode
 set spelllang=en_us           " Use en_us as the spellchecking language
 set smartcase                 " Override the 'ignorecase' option if the search
                               " pattern contains uppercase characters
+set synmaxcol=200             " Limit syntax highlighting (avoids the very slow
+                              " redrawing when files contain long lines)
 set ts=4 sts=4 sw=4 expandtab " Global <TAB> settings
 set ttyfast                   " Enable fast terminal connection (more characters
                               " will be send to the screen for redrawing)
