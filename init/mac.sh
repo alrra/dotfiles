@@ -69,7 +69,7 @@ set_app_store_preferences() {
 # | Desktop & Screen Saver                                                     |
 # ------------------------------------------------------------------------------
 
-set_desktop_and_screen_saver_preferences() {
+set_desktop_preferences() {
 
     # Enable HiDPI display modes
     sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
@@ -79,6 +79,9 @@ set_desktop_and_screen_saver_preferences() {
 
     # Disable shadow in screenshots
     defaults write com.apple.screencapture disable-shadow -bool true
+
+    # Don't automatically rearrange spaces based on most recent use
+    defaults write com.apple.dock mru-spaces -bool false
 
     # Require password immediately after the
     # computer went into sleep or screen saver mode
@@ -555,17 +558,19 @@ main() {
         brew upgrade > /dev/null
     fi
 
-    # Homebrew formulae
     if [ $(cmd_exists "brew") -eq 1 ]; then
+
+        # Homebrew formulae
         for i in ${!brewFormulae[*]}; do
             tmp="${brewFormulae[$i]}"
             [ $(brew list "$tmp" > /dev/null; printf $?) -eq 0 ] \
                 && print_success "$tmp" \
                 || execute "brew install $tmp" "$tmp"
         done
-    fi
 
-    # TODO: install more apps
+        # TODO: install more apps (see: https://github.com/phinze/homebrew-cask)
+
+    fi
 
     # --------------------------------------------------------------------------
     # | Preferences                                                            |
@@ -574,7 +579,7 @@ main() {
     print_info "Preferences"
 
     execute "set_app_store_preferences" "App Store"
-    execute "set_desktop_and_screen_saver_preferences" "Desktop & Screen Saver"
+    execute "set_desktop_preferences" "Desktop"
     execute "set_dock_preferences" "Dock"
     execute "set_finder_preferences" "Finder"
     execute "set_keyboard_preferences" "Keyboard"
