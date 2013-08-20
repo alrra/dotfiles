@@ -301,6 +301,9 @@ set_safari_preferences() {
 
 set_terminal_preferences() {
 
+    # Make the focus automatically follow the mouse
+    defaults write com.apple.terminal FocusFollowsMouse -string true
+
     # Only use UTF-8
     defaults write com.apple.terminal StringEncodings -array 4
 
