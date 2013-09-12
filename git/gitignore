@@ -1,11 +1,5 @@
 # Useful `.gitignore` templates:
-#   - https://github.com/github/gitignore
-
-# Django
-*.log
-*.pot
-*.pyc
-local_settings.py
+# https://github.com/github/gitignore
 
 # Linux
 *~
@@ -20,13 +14,11 @@ local_settings.py
 .Trashes
 Icon
 
-# Sass
-*.sass-cache
-
 # Vim
-.*.sw[a-z]
-.netrwhist
+%*
+*.s[a-w][a-z]
 *.un~
+.netrwhist
 Session.vim
 
 # Windows
