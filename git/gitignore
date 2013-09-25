@@ -16,7 +16,7 @@ Icon
 
 # Vim
 %*
-*.s[a-w][a-z]
+*.sw[a-z]
 *.un~
 .netrwhist
 Session.vim
