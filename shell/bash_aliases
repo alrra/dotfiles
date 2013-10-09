@@ -87,6 +87,9 @@ if [[ "$os" == "linux" && "$distro" == "ubuntu" ]]; then
     alias hidedesktopicons="gsettings set org.gnome.desktop.background show-desktop-icons false"
     alias showdesktopicons="gsettings set org.gnome.desktop.background show-desktop-icons true"
 
+    # Open
+    alias o="xdg-open"
+
     # Restart Apache
     alias ra="sudo /etc/init.d/apache2 restart"
 
@@ -105,6 +108,9 @@ elif [ "$os" == "mac" ]; then
     # Hide/Show hidden files in Finder
     alias hidehiddenfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias showhiddenfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+
+    # Open
+    alias o="open"
 
     # Restart Apache
     alias ra="sudo apachectl restart"
