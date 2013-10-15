@@ -30,7 +30,7 @@
                    }; f"
 
 [color]
-    ui = true
+    ui = true                               # only required in Git ≤ 1.8.4
 
 [color "branch"]
     current = green bold

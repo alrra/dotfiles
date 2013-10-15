@@ -1,3 +1,19 @@
+[submodule "vim/vim/plugins/colors-solarized"]
+    path = vim/vim/plugins/colors-solarized
+    url = https://github.com/altercation/vim-colors-solarized
+    ignore = dirty
+[submodule "vim/vim/plugins/colors-xoria256"]
+    path = vim/vim/plugins/colors-xoria256
+    url = https://github.com/vim-scripts/xoria256.vim
+    ignore = dirty
+[submodule "vim/vim/plugins/emmet"]
+    path = vim/vim/plugins/emmet
+    url = https://github.com/mattn/emmet-vim
+    ignore = dirty
+[submodule "vim/vim/plugins/jshint2"]
+    path = vim/vim/plugins/jshint2
+    url = https://github.com/Shutnik/jshint2.vim
+    ignore = dirty
 [submodule "vim/vim/plugins/pathogen"]
     path = vim/vim/plugins/pathogen
     url = https://github.com/tpope/vim-pathogen.git
@@ -6,10 +22,11 @@
     path = vim/vim/plugins/snipmate
     url = https://github.com/msanders/snipmate.vim.git
     ignore = dirty
-[submodule "vim/vim/plugins/vim-colors-solarized"]
-    path = vim/vim/plugins/vim-colors-solarized
-    url = https://github.com/altercation/vim-colors-solarized
+[submodule "vim/vim/plugins/surround"]
+    path = vim/vim/plugins/surround
+    url = https://github.com/tpope/vim-surround
     ignore = dirty
-[submodule "vim/vim/plugins/vim-colors-xoria256"]
-    path = vim/vim/plugins/vim-colors-xoria256
-    url = https://github.com/vim-scripts/xoria256.vim
+[submodule "vim/vim/plugins/tcomment"]
+    path = vim/vim/plugins/tcomment
+    url = https://github.com/tomtom/tcomment_vim.git
+    ignore = dirty
