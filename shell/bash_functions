@@ -41,9 +41,7 @@ gz() {
     if [ -f "$1" ]; then
         if [ -s "$1" ]; then
 
-            originalSize=$( wc -c < "$1")
-            #                  └─ very slow for large files, but `stat -c%s`
-            #                     or `du -b` don't work on Mac OS X :(
+            originalSize=$( wc -c < "$1" )
             printf "\n original size:   %12s\n" "$(hrfs $originalSize)"
 
             gzippedSize=$( gzip -c "$1" | wc -c )
