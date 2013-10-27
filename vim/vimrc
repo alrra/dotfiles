@@ -149,7 +149,11 @@ set statusline=%1*\ [%n]\ [%f]%m%r%h%w%y[%{&ff}:%{strlen(&fenc)?&fenc:'none'}]%=
 let mapleader = ","
 
 " [,* ] Search and replace the word under the cursor
-:nnoremap <leader>* :%s/\<<C-r><C-w>\>//<Left>
+nnoremap <leader>* :%s/\<<C-r><C-w>\>//<Left>
+
+" [,cr] Calculate result
+" http://vimcasts.org/episodes/simple-calculations-with-vims-expression-register/
+nnoremap <leader>cr 0yt=A<C-r>=<C-r>"<CR><Esc>
 
 " [,cs] Clear search
 map <leader>cs <Esc>:noh<CR>
