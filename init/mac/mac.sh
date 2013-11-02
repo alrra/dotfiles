@@ -66,6 +66,17 @@ set_app_store_preferences() {
 }
 
 # ------------------------------------------------------------------------------
+# | Dashboard                                                                  |
+# ------------------------------------------------------------------------------
+
+set_dashboard_preferences() {
+
+    # Disable Dashboard
+    defaults write com.apple.dashboard mcx-disabled -bool true
+
+}
+
+# ------------------------------------------------------------------------------
 # | Desktop & Screen Saver                                                     |
 # ------------------------------------------------------------------------------
 
@@ -583,6 +594,7 @@ main() {
     print_info "Preferences"
 
     execute "set_app_store_preferences" "App Store"
+    execute "set_dashboard_preferences" "Dashboard"
     execute "set_desktop_preferences" "Desktop"
     execute "set_dock_preferences" "Dock"
     execute "set_finder_preferences" "Finder"
@@ -605,7 +617,7 @@ main() {
 
     brew cleanup > /dev/null
 
-    for i in "App Store" "Dashboard" "Dock" "Finder" "Mail" "Safari" \
+    for i in "App Store" "Dock" "Finder" "Mail" "Safari" \
 	         "SystemUIServer" "TextEdit" "Transmission"; do
 	    killall "$i" > /dev/null 2>&1
     done
