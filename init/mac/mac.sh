@@ -99,8 +99,8 @@ set_desktop_preferences() {
     defaults write com.apple.screensaver askForPassword -int 1
     defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-    # Save screenshots to the desktop
-    defaults write com.apple.screencapture location -string "$HOME/desktop"
+    # Save screenshots to the ~/Desktop
+    defaults write com.apple.screencapture location -string "$HOME/Desktop"
 
     # Save screenshots as PNG
     # (other options: BMP, GIF, JPG, PDF, TIFF)
@@ -500,7 +500,7 @@ main() {
 
     local -a newDirs=(
         "$HOME/archive"
-        "$HOME/downloads/torrents"
+        "$HOME/Downloads/torrents"
         "$HOME/projects"
         "$HOME/server"
     )
@@ -521,17 +521,6 @@ main() {
     # --------------------------------------------------------------------------
 
     print_info "Directory setup"
-
-    while read i; do
-
-        src="$HOME/$i"
-        dest="$HOME/$(printf "$i" |  tr "[:upper:]" "[:lower:]")"
-
-        if [ "$src" != "$dest" ]; then
-            execute_str "mv \"$src\" \"$dest\"" "$src → $dest"
-        fi
-
-    done < <(ls -l $HOME | grep '^d' | cut -d":" -f2 | cut -d' ' -f2-)
 
     # Create additional directories
     for i in ${newDirs[@]}; do
