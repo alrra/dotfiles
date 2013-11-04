@@ -135,6 +135,9 @@ set_dock_preferences() {
     # Wipe all app icons from the Dock
     defaults write com.apple.dock persistent-apps -array
 
+    # Reduce Dock clutter by minimizing windows into their app icons
+    defaults write com.apple.dock minimize-to-application -bool true
+
 }
 
 # ------------------------------------------------------------------------------
