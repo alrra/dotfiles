@@ -261,9 +261,6 @@ set_language_and_text_preferences() {
 
 set_mail_preferences() {
 
-    # Copy email addresses as `foo@bar.com` instead of `foo <foo@bar.com>`
-    defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-
     # Disable send and reply animations
     defaults write com.apple.mail DisableReplyAnimations -bool true
     defaults write com.apple.mail DisableSendAnimations -bool true
