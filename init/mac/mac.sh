@@ -268,6 +268,21 @@ set_mail_preferences() {
 }
 
 # ------------------------------------------------------------------------------
+# | Maps                                                                       |
+# ------------------------------------------------------------------------------
+
+set_maps_preferences() {
+
+    # Set view options
+    defaults write com.apple.Maps LastClosedWindowViewOptions "{
+        localizeLabels = 1;   // show labels in English
+        mapType = 11;         // show hybrid map
+        trafficEnabled = 0;   // do not show traffic
+    }"
+
+}
+
+# ------------------------------------------------------------------------------
 # | Safari                                                                     |
 # ------------------------------------------------------------------------------
 
@@ -590,6 +605,7 @@ main() {
     execute "set_keyboard_preferences" "Keyboard"
     execute "set_language_and_text_preferences" "Language & Text"
     execute "set_mail_preferences" "Mail"
+    execute "set_maps_preferences" "Maps"
     execute "set_safari_preferences" "Safari"
     execute "set_terminal_preferences" "Terminal"
     execute "set_textedit_preferences" "TextEdit"
