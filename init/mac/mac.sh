@@ -123,6 +123,9 @@ set_dock_preferences() {
     # Enable spring loading
     defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 
+    # Make Dock more transparent (OS X 10.9)
+    defaults write com.apple.dock hide-mirror -bool true
+
     # Set the icon size
     defaults write com.apple.dock tilesize -int 36
 
