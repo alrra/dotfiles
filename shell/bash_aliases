@@ -31,11 +31,14 @@ fi
 # | Package Managers                                                           |
 # ------------------------------------------------------------------------------
 
-# Node Package Manager
-alias npmi="npm install"
-alias npmr="npm uninstall"
-alias npms="npm search"
-alias npmu="npm update"
+# Node Packaged Modules
+if [ -x "$(command -v npm)" ]; then
+    alias npme="npm --registry http://registry.npmjs.eu"
+    alias npmi="npm install"
+    alias npmr="npm uninstall"
+    alias npms="npm search"
+    alias npmu="npm update"
+fi
 
 if [[ "$os" == "linux" && "$distro" == "ubuntu" ]]; then
 
@@ -46,22 +49,23 @@ if [[ "$os" == "linux" && "$distro" == "ubuntu" ]]; then
     alias aptu="sudo apt-get update && \
                 sudo apt-get upgrade"
 
-    alias update="aptu && npmu"
+    alias update="aptu"
 
 elif [ "$os" == "mac" ]; then
 
     # Homebrew
-    alias brewd="brew doctor"
-    alias brewi="brew install"
-    alias brewr="brew uninstall"
-    alias brews="brew search"
-    alias brewu="brew update &&  \
-                 brew upgrade && \
-                 brew cleanup"
+    if [ -x "$(command -v brew)" ]; then
+        alias brewd="brew doctor"
+        alias brewi="brew install"
+        alias brewr="brew uninstall"
+        alias brews="brew search"
+        alias brewu="brew update &&  \
+                     brew upgrade && \
+                     brew cleanup"
+    fi
 
     alias update="sudo softwareupdate --install --all && \
-                  brewu && \
-                  npmu"
+                  brewu"
 
 fi
 
