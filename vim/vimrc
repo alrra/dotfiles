@@ -76,6 +76,9 @@ set undodir=~/.vim/undos      " Directory for undo files
 set undofile                  " Automatically save undo history
 set virtualedit=all           " Allow the cursor to be positioned where there
                               " are no actual characters
+set visualbell                " ┐
+set noerrorbells              " │ Disable beeping and window flashing
+set t_vb=                     " ┘ http://vim.wikia.com/wiki/Disable_beeping
 set wildmenu                  " Enable command-line completion in an enhanced
                               " mode (by hitting <TAB> in command mode, it will
                               " show the possible matches just above the command
