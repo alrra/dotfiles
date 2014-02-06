@@ -33,7 +33,6 @@ fi
 
 # Node Packaged Modules
 if [ -x "$(command -v npm)" ]; then
-    alias npme="npm --registry http://registry.npmjs.eu"
     alias npmi="npm install"
     alias npmr="npm uninstall"
     alias npms="npm search"
