@@ -29,9 +29,6 @@
                      fi \
                    }; f"
 
-[color]
-    ui = true                               # only required in Git ≤ 1.8.4
-
 [color "branch"]
     current = green bold
     local = green
