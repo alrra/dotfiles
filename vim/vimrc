@@ -28,6 +28,10 @@ set autoindent                " Copy the indent from the current line when
                               " starting a new line
 set background=dark           " Try to use colors that look good on a dark bg
 set backupdir=~/.vim/backups  " Directory for backup files
+set clipboard=unnamed         " Use the system clipboard as the default register
+if has('unnamedplus')
+    set clipboard=unnamed,unnamedplus
+endif
 set cpoptions+=$              " When making a change, don't redisplay the line
                               " and instead put a '$' sign at the end of the
                               " changed text
