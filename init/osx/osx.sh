@@ -27,6 +27,8 @@ mkd() {
         if [ -e "$1" ]; then
             if [ ! -d "$1" ]; then
                 print_error "$1 [a file with the same name already exists]"
+            else
+                print_success "$1"
             fi
         else
             execute "mkdir -p $1" "$1"
@@ -500,8 +502,14 @@ main() {
 
     # Ensure the OS is Mac OS X
     if [ "$(uname -s)" != "Darwin" ]; then
-        print_error "Sorry, this script is for Mac OS X only!"
+        print_error "Sorry, this script is for Mac OS X only."
         exit
+    else
+        # Ensure that the Mac OS version is 10.9.0+
+        if [ "10.9" = "$(printf '%s\n%s' '10.9' '$(sw_vers -productVersion)' | sort | head -n1)" ]; then
+            print_error "Sorry, this script is intended only for Mac OS X v10.9.0+."
+            exit
+        fi
     fi
 
     # --------------------------------------------------------------------------
@@ -559,22 +567,16 @@ main() {
     print_info "Installation (this may take a while)"
 
     # XCode Command Line Tools
-    if [ $(cmd_exists "clang") -eq 0 ]; then
+    if [ $(xcode-select -p &> /dev/null; echo $?) -ne 0 ]; then
+        xcode-select --install >/dev/null 2>&1
 
-         # TODO: find better solution
-         open "http://itunes.apple.com/us/app/xcode/id497799835?ls=1"
-         printf "   please install XCode Command Line Tools"
-
-         # Wait until the XCode Command Line Tools are installed
-         while [ $(cmd_exists "clang") -eq 0 ]; do
-             sleep 5
-         done
-
-         print_success "XCode Command Line Tools"
-
-    else
-        print_success "XCode Command Line Tools"
+        # Wait until the XCode Command Line Tools are installed
+        while [ $(xcode-select -p &> /dev/null; echo $?) -ne 0 ]; do
+            sleep 5
+        done
     fi
+
+    print_success "XCode Command Line Tools"
 
     # Homebrew
     if [ $(cmd_exists "brew") -eq 0 ]; then
