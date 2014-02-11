@@ -13,12 +13,12 @@ cmd_exists() {
 }
 
 execute_str() {
-    sudo sh -c "$1" > /dev/null
+    sudo sh -c "$1" &> /dev/null
     print_result $? "$2"
 }
 
 execute() {
-    $1 > /dev/null
+    $1 &> /dev/null
     print_result $? "$2"
 }
 
@@ -521,14 +521,43 @@ main() {
     declare tmp=""
     declare src=""
 
-    local -a brewFormulae=(
-        "coreutils" # GNU core utilities
-                    # (those that come with OS X are outdated)
-        "bash-completion"
+    # Homebrew Formulae
+    # https://github.com/Homebrew/homebrew
+    local -a homebrewFormulae=(
         "git"
-        "macvim --override-system-vim"
+        "imagemagick --with-webp"
         "node"
+        "phinze/cask/brew-cask"
+        "vim --override-system-vi"
+        "zopfli"
+    )
+
+    # Homebrew Casks
+    # https://github.com/phinze/homebrew-cask
+    local -a homebrewCasks=(
+        "android-file-transfer"
+        "chromium"
+        "dropbox"
+        "flash"
+        "google-chrome"
+        "imagealpha"
+        "imageoptim"
+        "macvim"
+        "opera"
+        "opera-next"
+        "the-unarchiver"
         "transmission"
+        "virtualbox"
+        "vlc"
+    )
+
+    # Homebrew Alternate Casks
+    # https://github.com/caskroom/homebrew-versions
+    local -a homebrewAlternateCasks=(
+        "google-chrome-canary"
+        "firefox-nightly"
+        "opera-developer"
+        "webkit-nightly"
     )
 
     local -a newDirs=(
@@ -564,11 +593,11 @@ main() {
     # | Installation                                                           |
     # --------------------------------------------------------------------------
 
-    print_info "Installation (this may take a while)"
+    print_info "Installation (this may take a while!)"
 
     # XCode Command Line Tools
     if [ $(xcode-select -p &> /dev/null; echo $?) -ne 0 ]; then
-        xcode-select --install >/dev/null 2>&1
+        xcode-select --install &> /dev/null
 
         # Wait until the XCode Command Line Tools are installed
         while [ $(xcode-select -p &> /dev/null; echo $?) -ne 0 ]; do
@@ -577,29 +606,57 @@ main() {
     fi
 
     print_success "XCode Command Line Tools"
+    printf "\n"
 
     # Homebrew
     if [ $(cmd_exists "brew") -eq 0 ]; then
-	    ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-	    print_result $? "homebrew"
-        sleep 10
+        printf '\n' | ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+        #  └─ simulate ENTER keypress
+        print_result $? "brew"
     else
-        print_success "homebrew"
-        brew update > /dev/null
-        brew upgrade > /dev/null
+        print_success "brew"
+        execute "brew update" "brew [update]"
+        execute "brew upgrade" "brew [upgrade]"
+        execute "brew cleanup" "brew [cleanup]"
+        printf "\n"
     fi
 
     if [ $(cmd_exists "brew") -eq 1 ]; then
 
         # Homebrew formulae
-        for i in ${!brewFormulae[*]}; do
-            tmp="${brewFormulae[$i]}"
-            [ $(brew list "$tmp" > /dev/null; printf $?) -eq 0 ] \
+        for i in ${!homebrewFormulae[*]}; do
+            tmp="${homebrewFormulae[$i]}"
+            [ $(brew list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
                 && print_success "$tmp" \
                 || execute "brew install $tmp" "$tmp"
         done
 
-        # TODO: install more apps (see: https://github.com/phinze/homebrew-cask)
+        printf "\n"
+
+        # Homebrew casks
+        if [ $(brew list brew-cask &> /dev/null; printf $?) -eq 0 ]; then
+
+            for i in ${!homebrewCasks[*]}; do
+                tmp="${homebrewCasks[$i]}"
+                [ $(brew cask list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
+                    && print_success "$tmp" \
+                    || execute "brew cask install $tmp" "$tmp"
+            done
+
+            printf "\n"
+
+            # Homebrew alternate casks
+            brew tap caskroom/versions &> /dev/null
+
+            if [ $(brew tap | grep "caskroom/versions" &> /dev/null; printf $?) -eq 0 ]; then
+                for i in ${!homebrewAlternateCasks[*]}; do
+                    tmp="${homebrewAlternateCasks[$i]}"
+                    [ $(brew cask list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
+                        && print_success "$tmp" \
+                        || execute "brew cask install $tmp" "$tmp"
+                done
+            fi
+        fi
 
     fi
 
@@ -632,11 +689,13 @@ main() {
 
     print_info "Clean up"
 
-    brew cleanup > /dev/null
+    if [ $(cmd_exists "brew") -eq 1 ]; then
+        execute "brew cleanup" "brew [cleanup]"
+    fi
 
     for i in "App Store" "Dock" "Finder" "Mail" "Safari" \
 	         "SystemUIServer" "TextEdit" "Transmission"; do
-	    killall "$i" > /dev/null 2>&1
+	    killall "$i" &> /dev/null
     done
 
     print_info "All done. Restarting ..."
