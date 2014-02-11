@@ -98,6 +98,9 @@ if [[ "$os" == "linux" && "$distro" == "ubuntu" ]]; then
 
 elif [ "$os" == "mac" ]; then
 
+    # Lock screen
+    alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
     # Empty the trash, the main HDD and on all mounted volumes
     # and clear Apple’s system logs to improve shell startup speed
     alias emptytrash="sudo rm -frv /Volumes/*/.Trashes && \
