@@ -2,15 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>BackgroundBlur</key>
-    <real>0.0</real>
+	<key>BackgroundBlur</key>
+	<real>0.0</real>
 	<key>BackgroundColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoKMHCA9VJG51bGzTCQoLDA0OViRjbGFzc1xOU0NvbG9yU3BhY2VVTlNSR0KAAhAB
-	TxAtMC4wMTU5MjQ0MDUzMSAwLjEyNjUyMDkxNjggMC4xNTk2OTYwMTI3IDAuOTYA0hAR
+	AAGGoKMHCA9VJG51bGzTCQoLDA0OVU5TUkdCXE5TQ29sb3JTcGFjZVYkY2xhc3NPEC0w
+	LjAxNTkyNDQwNTMxIDAuMTI2NTIwOTE2OCAwLjE1OTY5NjAxMjcgMC45NgAQAYAC0hAR
 	EhNaJGNsYXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohIUWE5TT2JqZWN0XxAPTlNLZXll
-	ZEFyY2hpdmVy0RcYVHJvb3SAAQgRGiMtMjc7QUhPXGJkZpabpq+3usPV2N0AAAAAAAAB
+	ZEFyY2hpdmVy0RcYVHJvb3SAAQgRGiMtMjc7QUhOW2KSlJabpq+3usPV2N0AAAAAAAAB
 	AQAAAAAAAAAZAAAAAAAAAAAAAAAAAAAA3w==
 	</data>
 	<key>BlinkText</key>
@@ -18,66 +18,66 @@
 	<key>CursorColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoKMHCA9VJG51bGzTCQoLDA0OViRjbGFzc1xOU0NvbG9yU3BhY2VVTlNSR0KAAhAB
-	TxAnMC40NDA1ODAyNDg4IDAuNTA5NjI5MzA5MiAwLjUxNjg1Nzk4MTcA0hAREhNaJGNs
+	AAGGoKMHCA9VJG51bGzTCQoLDA0OVU5TUkdCXE5TQ29sb3JTcGFjZVYkY2xhc3NPECcw
+	LjQ0MDU4MDI0ODggMC41MDk2MjkzMDkyIDAuNTE2ODU3OTgxNwAQAYAC0hAREhNaJGNs
 	YXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohIUWE5TT2JqZWN0XxAPTlNLZXllZEFyY2hp
-	dmVy0RcYVHJvb3SAAQgRGiMtMjc7QUhPXGJkZpCVoKmxtL3P0tcAAAAAAAABAQAAAAAA
+	dmVy0RcYVHJvb3SAAQgRGiMtMjc7QUhOW2KMjpCVoKmxtL3P0tcAAAAAAAABAQAAAAAA
 	AAAZAAAAAAAAAAAAAAAAAAAA2Q==
 	</data>
 	<key>Font</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGGBlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QViRjbGFzc1ZOU05hbWVWTlNTaXplWE5TZkZs
-	YWdzgAOAAiNAJgAAAAAAABAQXU1lbmxvLVJlZ3VsYXLSExQVFlokY2xhc3NuYW1lWCRj
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU2l6ZVhOU2ZGbGFnc1ZOU05hbWVWJGNs
+	YXNzI0AqAAAAAAAAEBCAAoADXU1lbmxvLVJlZ3VsYXLSExQVFlokY2xhc3NuYW1lWCRj
 	bGFzc2VzVk5TRm9udKIVF1hOU09iamVjdF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290
-	gAEIERojLTI3PEJLUllgaWttdniGi5afpqmyxMfMAAAAAAAAAQEAAAAAAAAAHAAAAAAA
+	gAEIERojLTI3PEJLUltiaXJ0dniGi5afpqmyxMfMAAAAAAAAAQEAAAAAAAAAHAAAAAAA
 	AAAAAAAAAAAAAM4=
-    </data>
+	</data>
 	<key>FontAntialias</key>
-    <true/>
+	<true/>
 	<key>FontWidthSpacing</key>
 	<real>1.004032258064516</real>
 	<key>ProfileCurrentVersion</key>
-	<real>2.0099999999999998</real>
+	<real>2.02</real>
 	<key>SelectionColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoKMHCA9VJG51bGzTCQoLDA0OViRjbGFzc1xOU0NvbG9yU3BhY2VVTlNSR0KAAhAB
-	TxAoMC4wMzkzODA3MzY2NSAwLjE2MDExNjQ2MzkgMC4xOTgzMzI3NTY4ANIQERITWiRj
+	AAGGoKMHCA9VJG51bGzTCQoLDA0OVU5TUkdCXE5TQ29sb3JTcGFjZVYkY2xhc3NPECgw
+	LjAzOTM4MDczNjY1IDAuMTYwMTE2NDYzOSAwLjE5ODMzMjc1NjgAEAGAAtIQERITWiRj
 	bGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqISFFhOU09iamVjdF8QD05TS2V5ZWRBcmNo
-	aXZlctEXGFRyb290gAEIERojLTI3O0FIT1xiZGaRlqGqsrW+0NPYAAAAAAAAAQEAAAAA
+	aXZlctEXGFRyb290gAEIERojLTI3O0FITltijY+RlqGqsrW+0NPYAAAAAAAAAQEAAAAA
 	AAAAGQAAAAAAAAAAAAAAAAAAANo=
 	</data>
-    <key>ShowActiveProcessInTitle</key>
-    <true/>
-    <key>ShowCommandKeyInTitle</key>
-    <false/>
-    <key>ShowDimensionsInTitle</key>
-    <false/>
-    <key>ShowShellCommandInTitle</key>
-    <false/>
-    <key>ShowTTYNameInTitle</key>
-    <false/>
-    <key>ShowWindowSettingsNameInTitle</key>
-    <false/>
+	<key>ShowActiveProcessInTitle</key>
+	<true/>
+	<key>ShowCommandKeyInTitle</key>
+	<false/>
+	<key>ShowDimensionsInTitle</key>
+	<false/>
+	<key>ShowShellCommandInTitle</key>
+	<false/>
+	<key>ShowTTYNameInTitle</key>
+	<false/>
+	<key>ShowWindowSettingsNameInTitle</key>
+	<false/>
 	<key>TerminalType</key>
 	<string>xterm-256color</string>
 	<key>TextBoldColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoKMHCA9VJG51bGzTCQoLDA0OViRjbGFzc1xOU0NvbG9yU3BhY2VVTlNSR0KAAhAB
-	TxAmMC41MDU5OTE5MzU3IDAuNTY0ODU4Mzc3IDAuNTYzNjM2NTQxNADSEBESE1okY2xh
+	AAGGoKMHCA9VJG51bGzTCQoLDA0OVU5TUkdCXE5TQ29sb3JTcGFjZVYkY2xhc3NPECYw
+	LjUwNTk5MTkzNTcgMC41NjQ4NTgzNzcgMC41NjM2MzY1NDE0ABABgALSEBESE1okY2xh
 	c3NuYW1lWCRjbGFzc2VzV05TQ29sb3KiEhRYTlNPYmplY3RfEA9OU0tleWVkQXJjaGl2
-	ZXLRFxhUcm9vdIABCBEaIy0yNztBSE9cYmRmj5SfqLCzvM7R1gAAAAAAAAEBAAAAAAAA
+	ZXLRFxhUcm9vdIABCBEaIy0yNztBSE5bYouNj5SfqLCzvM7R1gAAAAAAAAEBAAAAAAAA
 	ABkAAAAAAAAAAAAAAAAAAADY
 	</data>
 	<key>TextColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoKMHCA9VJG51bGzTCQoLDA0OViRjbGFzc1xOU0NvbG9yU3BhY2VVTlNSR0KAAhAB
-	TxAnMC40NDA1ODAyNDg4IDAuNTA5NjI5MzA5MiAwLjUxNjg1Nzk4MTcA0hAREhNaJGNs
+	AAGGoKMHCA9VJG51bGzTCQoLDA0OVU5TUkdCXE5TQ29sb3JTcGFjZVYkY2xhc3NPECcw
+	LjQ0MDU4MDI0ODggMC41MDk2MjkzMDkyIDAuNTE2ODU3OTgxNwAQAYAC0hAREhNaJGNs
 	YXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohIUWE5TT2JqZWN0XxAPTlNLZXllZEFyY2hp
-	dmVy0RcYVHJvb3SAAQgRGiMtMjc7QUhPXGJkZpCVoKmxtL3P0tcAAAAAAAABAQAAAAAA
+	dmVy0RcYVHJvb3SAAQgRGiMtMjc7QUhOW2KMjpCVoKmxtL3P0tcAAAAAAAABAQAAAAAA
 	AAAZAAAAAAAAAAAAAAAAAAAA2Q==
 	</data>
 	<key>UseBrightBold</key>
@@ -141,32 +141,32 @@
 	<data>
 	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
 	ZmZmg9lI5j6DIYkKP4PVjKU8AYY=
-    </data>
+	</data>
 	<key>magentaColour</key>
 	<data>
 	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
 	ZmZmg/4CRz+DBTzdPYMgzt4+AYY=
-    </data>
+	</data>
 	<key>name</key>
-    <string>Solarized Dark</string>
-    <key>shellExitAction</key>
-    <integer>1</integer>
+	<string>Solarized Dark 2</string>
 	<key>redColour</key>
 	<data>
 	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
 	ZmZmg6i7UT+DUATePYMl2hA+AYY=
-    </data>
+	</data>
+	<key>shellExitAction</key>
+	<integer>1</integer>
 	<key>type</key>
-    <string>Window Settings</string>
+	<string>Window Settings</string>
 	<key>whiteColour</key>
 	<data>
 	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
 	ZmZmgzqGaj+D2tdjP4NYPUw/AYY=
-    </data>
+	</data>
 	<key>yellowColour</key>
 	<data>
 	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
 	ZmZmg0DAJT+DB17vPoM4Y8A8AYY=
-    </data>
+	</data>
 </dict>
 </plist>
