@@ -214,6 +214,10 @@ set_finder_preferences() {
     # (see: Security of Data on Disk: http://www.youtube.com/watch?v=4SSSMi4X_mA)
     #defaults write com.apple.finder EmptyTrashSecurely -bool true
 
+    # Set Desktop as the default location for new Finder windows
+    defaults write com.apple.finder NewWindowTarget -string "PfDe"
+    defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"
+
 }
 
 # ------------------------------------------------------------------------------
