@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_PATH="${BASH_SOURCE%/*}"   # http://mywiki.wooledge.org/BashFAQ/028
+
 # ##############################################################################
 # # HELPER FUNCTIONS                                                           #
 # ##############################################################################
@@ -342,10 +344,11 @@ set_terminal_preferences() {
     defaults write com.apple.terminal StringEncodings -array 4
 
     # Use a custom theme
-    open "Solarized Dark.terminal"
-    sleep 1 # Wait a bit to make sure the theme is loaded
-    defaults write com.apple.terminal "Default Window Settings" -string "Solarized Dark"
-    defaults write com.apple.terminal "Startup Window Settings" -string "Solarized Dark"
+    open "$SCRIPT_PATH/Solarized Dark.terminal"
+    defaults write com.apple.Terminal "Default Window Settings" -string "Solarized Dark"
+    defaults write com.apple.Terminal "Startup Window Settings" -string "Solarized Dark"
+    defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
+
 }
 
 # ------------------------------------------------------------------------------
