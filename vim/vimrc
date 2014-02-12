@@ -21,12 +21,17 @@ set t_Co=256                      " Enable full-color support
 colorscheme xoria256              " Use custom color scheme
 set autoindent                    " Copy indent to the new line
 set background=dark               " Use colors that look good on a dark bg
+
+set backspace=indent              " ┐
+set backspace+=eol                " │ Allow `backspace` in insert mode
+set backspace+=start              " ┘
+
 set backupdir=~/.vim/backups      " Set directory for backup files
 
 set clipboard=unnamed             " ┐
                                   " │ Use the system clipboard
 if has("unnamedplus")             " │ as the default register
-    set clipboard=unnamed,unnamedplus
+    set clipboard+=unnamedplus    " │
 endif                             " ┘
 
 set cpoptions+=$                  " When making a change, don't redisplay the
