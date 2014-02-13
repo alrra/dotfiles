@@ -693,7 +693,7 @@ main() {
         execute "brew cleanup" "brew [cleanup]"
     fi
 
-    for i in "App Store" "Dock" "Finder" "Mail" "Safari" \
+    for i in "App Store" "cfprefsd" "Dock" "Finder" "Mail" "Safari" \
 	         "SystemUIServer" "TextEdit" "Transmission"; do
 	    killall "$i" &> /dev/null
     done
