@@ -501,6 +501,7 @@ main() {
         "chromium"
         "dropbox"
         "flash"
+        "gimp-lisanet"
         "google-chrome"
         "imagealpha"
         "imageoptim"
