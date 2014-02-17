@@ -12,13 +12,13 @@ cmd_exists() {
         || printf 0
 }
 
-execute_str() {
-    sudo sh -c "$1" &> /dev/null
+execute() {
+    $1 &> /dev/null
     print_result $? "$2"
 }
 
-execute() {
-    $1 &> /dev/null
+execute_str() {
+    sudo sh -c "$1" &> /dev/null
     print_result $? "$2"
 }
 
@@ -238,7 +238,7 @@ set_language_and_region_preferences() {
 
     # Set the timezone
     # (see `systemsetup -listtimezones` for other values)
-    systemsetup -settimezone "Europe/Bucharest" > /dev/null
+    systemsetup -settimezone "Europe/Bucharest" &> /dev/null
 
 }
 
@@ -304,9 +304,9 @@ set_terminal_preferences() {
     defaults write com.apple.terminal StringEncodings -array 4
 
     # Use a custom theme
-    open "$SCRIPT_PATH/Solarized Dark.terminal"
-    defaults write com.apple.Terminal "Default Window Settings" -string "Solarized Dark"
-    defaults write com.apple.Terminal "Startup Window Settings" -string "Solarized Dark"
+    open "$SCRIPT_PATH/solarized_dark.terminal"
+    defaults write com.apple.Terminal "Default Window Settings" -string "solarized_dark"
+    defaults write com.apple.Terminal "Startup Window Settings" -string "solarized_dark"
     defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
 
 }
@@ -576,15 +576,15 @@ main() {
         printf '\n' | ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
         #  └─ simulate ENTER keypress
         print_result $? "brew"
-    else
-        print_success "brew"
+    fi
+
+    printf "\n"
+
+    if [ $(cmd_exists "brew") -eq 1 ]; then
+
         execute "brew update" "brew [update]"
         execute "brew upgrade" "brew [upgrade]"
         execute "brew cleanup" "brew [cleanup]"
-        printf "\n"
-    fi
-
-    if [ $(cmd_exists "brew") -eq 1 ]; then
 
         # Homebrew formulae
         for i in ${!homebrewFormulae[*]}; do
