@@ -1,6 +1,6 @@
-# alrra’s dotfiles
+# Cătălin’s dotfiles
 
-work in progress ...
+Work in progress ...
 
 ## Acknowledgements
 
