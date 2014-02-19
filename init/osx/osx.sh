@@ -90,6 +90,9 @@ set_dock_preferences() {
     # Make Dock more transparent
     defaults write com.apple.dock hide-mirror -bool true
 
+    # Change minimize/maximize window effect
+    defaults write com.apple.dock mineffect -string "scale"
+
     # Reduce Dock clutter by minimizing windows into their application icons
     defaults write com.apple.dock minimize-to-application -bool true
 
