@@ -1,63 +1,5 @@
 #!/bin/bash
 
-SCRIPT_PATH="${BASH_SOURCE%/*}"   # http://mywiki.wooledge.org/BashFAQ/028
-
-# ##############################################################################
-# # HELPER FUNCTIONS                                                           #
-# ##############################################################################
-
-cmd_exists() {
-    [ -x "$(command -v "$1")" ] \
-        && printf 1 \
-        || printf 0
-}
-
-execute() {
-    $1 &> /dev/null
-    print_result $? "$2"
-}
-
-execute_str() {
-    sudo sh -c "$1" &> /dev/null
-    print_result $? "$2"
-}
-
-mkd() {
-    if [ -n "$1" ]; then
-        if [ -e "$1" ]; then
-            if [ ! -d "$1" ]; then
-                print_error "$1 [a file with the same name already exists]"
-            else
-                print_success "$1"
-            fi
-        else
-            execute "mkdir -p $1" "$1"
-        fi
-    fi
-}
-
-print_error() {
-    printf "\e[0;31m  ✖ $1 $2\e[0m\n"
-}
-
-print_info() {
-    printf "\n\e[0;33m $1\e[0m\n\n"
-}
-
-print_result() {
-    [ $1 -eq 0 ] \
-        && print_success "$2" \
-        || print_error "$2"
-}
-
-print_success() {
-    printf "\e[0;32m  ✔ $1\e[0m\n"
-}
-
-# ##############################################################################
-# # PREFERENCES FUNCTIONS                                                      #
-# ##############################################################################
-
 # ------------------------------------------------------------------------------
 # | Dashboard                                                                  |
 # ------------------------------------------------------------------------------
@@ -460,177 +402,10 @@ set_ui_and_ux_preferences() {
 }
 
 # ##############################################################################
-# # MAIN                                                                       #
-# ##############################################################################
 
-main() {
+set_preferences() {
 
-    # Ensure the OS is Mac OS X
-    if [ "$(uname -s)" != "Darwin" ]; then
-        print_error "Sorry, this script is for Mac OS X only."
-        exit
-    else
-        # Ensure that the Mac OS version is 10.9.0+
-        if [ "10.9" = "$(printf '%s\n%s' '10.9' '$(sw_vers -productVersion)' | sort | head -n1)" ]; then
-            print_error "Sorry, this script is intended only for Mac OS X v10.9.0+."
-            exit
-        fi
-    fi
-
-    # --------------------------------------------------------------------------
-    # | Init                                                                   |
-    # --------------------------------------------------------------------------
-
-    declare i=""
-    declare dest=""
-    declare tmp=""
-    declare src=""
-
-    # Homebrew Formulae
-    # https://github.com/Homebrew/homebrew
-    local -a homebrewFormulae=(
-        "git"
-        "imagemagick --with-webp"
-        "node"
-        "phinze/cask/brew-cask"
-        "vim --override-system-vi"
-        "zopfli"
-    )
-
-    # Homebrew Casks
-    # https://github.com/phinze/homebrew-cask
-    local -a homebrewCasks=(
-        "android-file-transfer"
-        "chromium"
-        "dropbox"
-        "flash"
-        "gimp-lisanet"
-        "google-chrome"
-        "imagealpha"
-        "imageoptim"
-        "macvim"
-        "opera"
-        "opera-next"
-        "the-unarchiver"
-        "transmission"
-        "virtualbox"
-        "vlc"
-    )
-
-    # Homebrew Alternate Casks
-    # https://github.com/caskroom/homebrew-versions
-    local -a homebrewAlternateCasks=(
-        "google-chrome-canary"
-        "firefox-nightly"
-        "opera-developer"
-        "webkit-nightly"
-    )
-
-    local -a newDirs=(
-        "$HOME/archive"
-        "$HOME/Downloads/torrents"
-        "$HOME/projects"
-        "$HOME/server"
-    )
-
-    # Ask for the administrator password upfront
-    sudo -v
-
-    # Update existing `sudo` time stamp until this script has finished
-    # (https://gist.github.com/3118588)
-    while true; do
-        sudo -n true
-        sleep 60
-        kill -0 "$$" || exit
-    done 2>/dev/null &
-
-    # --------------------------------------------------------------------------
-    # | Directory Setup                                                        |
-    # --------------------------------------------------------------------------
-
-    print_info "Directory setup"
-
-    # Create additional directories
-    for i in ${newDirs[@]}; do
-        mkd "$i"
-    done
-
-    # --------------------------------------------------------------------------
-    # | Installation                                                           |
-    # --------------------------------------------------------------------------
-
-    print_info "Installation (this may take a while!)"
-
-    # XCode Command Line Tools
-    if [ $(xcode-select -p &> /dev/null; echo $?) -ne 0 ]; then
-        xcode-select --install &> /dev/null
-
-        # Wait until the XCode Command Line Tools are installed
-        while [ $(xcode-select -p &> /dev/null; echo $?) -ne 0 ]; do
-            sleep 5
-        done
-    fi
-
-    print_success "XCode Command Line Tools"
-    printf "\n"
-
-    # Homebrew
-    if [ $(cmd_exists "brew") -eq 0 ]; then
-        printf '\n' | ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-        #  └─ simulate ENTER keypress
-        print_result $? "brew"
-    fi
-
-    printf "\n"
-
-    if [ $(cmd_exists "brew") -eq 1 ]; then
-
-        execute "brew update" "brew [update]"
-        execute "brew upgrade" "brew [upgrade]"
-        execute "brew cleanup" "brew [cleanup]"
-
-        # Homebrew formulae
-        for i in ${!homebrewFormulae[*]}; do
-            tmp="${homebrewFormulae[$i]}"
-            [ $(brew list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
-                && print_success "$tmp" \
-                || execute "brew install $tmp" "$tmp"
-        done
-
-        printf "\n"
-
-        # Homebrew casks
-        if [ $(brew list brew-cask &> /dev/null; printf $?) -eq 0 ]; then
-
-            for i in ${!homebrewCasks[*]}; do
-                tmp="${homebrewCasks[$i]}"
-                [ $(brew cask list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
-                    && print_success "$tmp" \
-                    || execute "brew cask install $tmp" "$tmp"
-            done
-
-            printf "\n"
-
-            # Homebrew alternate casks
-            brew tap caskroom/versions &> /dev/null
-
-            if [ $(brew tap | grep "caskroom/versions" &> /dev/null; printf $?) -eq 0 ]; then
-                for i in ${!homebrewAlternateCasks[*]}; do
-                    tmp="${homebrewAlternateCasks[$i]}"
-                    [ $(brew cask list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
-                        && print_success "$tmp" \
-                        || execute "brew cask install $tmp" "$tmp"
-                done
-            fi
-        fi
-
-    fi
-
-    # --------------------------------------------------------------------------
-    # | Preferences                                                            |
-    # --------------------------------------------------------------------------
-
-    print_info "Preferences"
+    log_info "Setting preferences..."
 
     execute "set_dashboard_preferences" "Dashboard"
     execute "set_dock_preferences" "Dock"
@@ -645,11 +420,9 @@ main() {
     execute "set_transmission_preferences" "Transmission"
     execute "set_ui_and_ux_preferences" "UI & UX"
 
-    # --------------------------------------------------------------------------
-    # | Clean Up & Restart                                                     |
-    # --------------------------------------------------------------------------
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Clean up"
+    log_info "Cleaning up..."
 
     if [ $(cmd_exists "brew") -eq 1 ]; then
         execute "brew cleanup" "brew [cleanup]"
@@ -660,11 +433,4 @@ main() {
 	    killall "$i" &> /dev/null
     done
 
-    print_info "All done. Restarting ..."
-
-    sleep 10
-    sudo shutdown -r now
-
 }
-
-main
