@@ -1,6 +1,8 @@
 # Cătălin’s dotfiles
 
-Work in progress ...
+(!) Work in progress...
+
+`bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/lib/dotfiles.sh)"`
 
 ## Acknowledgements
 
