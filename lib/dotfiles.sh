@@ -319,12 +319,11 @@ set_custom_preferences_and_install_apps() {
 
     elif [ "$os" != "ubuntu" ]; then
 
-        #source "$dotfiles_directory/lib/ubuntu/install_applications.sh"
-        #install_applications
+        source "$dotfiles_directory/lib/ubuntu/install_applications.sh"
+        install_applications
 
-        #source "$dotfiles_directory/lib/ubuntu/set_preferences.sh"
-        #set_preferences
-        printf "TODO\n"
+        source "$dotfiles_directory/lib/ubuntu/set_preferences.sh"
+        set_preferences
 
     fi
 

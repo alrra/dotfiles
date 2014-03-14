@@ -46,7 +46,7 @@ declare -a HOMEBREW_ALTERNATE_CASKS=(
 
 install_applications() {
 
-    local dest="", i="", src="", tmp=""
+    local i="", tmp=""
 
     log_info "Installing applications..."
 
