@@ -12,6 +12,7 @@ declare -a APT_PACKAGES=(
     # in Ubuntu due to legal or copyright reasons
     #"ubuntu-restricted-extras"
 
+    # Other
     "chromium-browser"
     "curl"
     "nautilus-dropbox"
@@ -28,12 +29,12 @@ declare -a APT_PACKAGES=(
     "vlc"
 )
 
-# ##############################################################################
-# # HELPER FUNCTIONS                                                           #
-# ##############################################################################
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 add_key() {
     wget -qO - "$1" | sudo apt-key add - > /dev/null
+    #     │└─ write output to file
+    #     └─ don't show output
 }
 
 add_ppa() {
@@ -44,32 +45,43 @@ add_source_list() {
     sudo sh -c "printf 'deb $1' >> '/etc/apt/sources.list.d/$2'"
 }
 
-install_pkg() {
+install_package() {
     local q="${2:-$1}"
 
-    [ $(cmd_exists "$q") -eq 1 ] \
-      && execute_str "sudo apt-get install --allow-unauthenticated -qqy $1" "$1"
-    #                                                  suppress output ─┘│
-    #                        assume "yes" as the answer to all prompts ──┘
+    if [ $(cmd_exists "$q") -eq 1 ]; then
+        execute "sudo apt-get install --allow-unauthenticated -qqy $1" "$1"
+        #                                      suppress output ─┘│
+        #            assume "yes" as the answer to all prompts ──┘
+    fi
 }
 
-remove_unneeded_pkgs() {
-    execute_str "sudo apt-get autoremove -qqy" "autoremove"
-    #                             └─ remove packages that were automatically
-    #                                installed to satisfy dependencies for other
-    #                                other packages and are no longer needed
+remove_unneeded_packages() {
+
+    # Remove packages that were automatically installed to satisfy
+    # dependencies for other other packages and are no longer needed
+    execute "sudo apt-get autoremove -qqy" "autoremove"
+
 }
 
 update_and_upgrade() {
-    sudo apt-get update -qqy
-    #              └─ resynchronize the package index files from their sources
-    sudo apt-get upgrade -qqy
-    #              └─ install the newest versions of all packages installed
+
+    # Resynchronize the package index files from their sources
+    execute "sudo apt-get update -qqy" "update"
+
+    # Unstall the newest versions of all packages installed
+    execute "sudo apt-get upgrade -qqy" "upgrade"
+
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 install_applications() {
 
-    local dest="", i="", src="", tmp=""
+    local i="", tmp=""
+
+    log_info "Installing applications..."
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Add software sources
 
@@ -102,45 +114,22 @@ install_applications() {
                 "http://deb.opera.com/opera/ stable non-free" \
                 "opera.list"
 
-    execute "update_and_upgrade" "update & upgrade"
+    update_and_upgrade
+
+    printf "\n"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    for i in ${!APT_PACKAGES[*]}; do
+        install_package "${APT_PACKAGES[$i]}"
+    done
 
-    # Tools for compiling / building software from source
-    install_pkg "build-essential"
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # GnuPG archive keys of the Debian archive
-    install_pkg "debian-archive-keyring"
+    log_info "Cleaning up..."
 
-    # Software which is not included by default
-    # in Ubuntu due to legal or copyright reasons
-    #install_pkg "ubuntu-restricted-extras"
-
-    install_pkg "chromium-browser"
-    install_pkg "curl"
-    install_pkg "nautilus-dropbox" "dropbox"
-    install_pkg "firefox-trunk"
-    install_pkg "gimp"
-    install_pkg "git"
-    install_pkg "google-chrome-unstable" "google-chrome"
-    install_pkg "google-talkplugin" "/opt/google/talkplugin/GoogleTalkPlugin"
-    install_pkg "nodejs" "node"
-    install_pkg "npm"
-    install_pkg "opera"
-    install_pkg "opera-next"
-    install_pkg "vim-gnome" "vim"
-    install_pkg "vlc"
+    update_and_upgrade
+    remove_unneeded_packages
 
 }
-
-
-log_info "Installing applications..."
-install_applications
-
-
-    log_info "Clean up"
-
-    execute "update_and_upgrade" "update & upgrade"
-    execute "remove_unneeded_pkgs" "autoremove"
 
