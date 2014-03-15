@@ -1,6 +1,48 @@
 #!/bin/bash
 
 # ------------------------------------------------------------------------------
+# | Privacy                                                                    |
+# ------------------------------------------------------------------------------
+
+set_privacy_settings() {
+
+    local os_version="$(/usr/bin/lsb_release -rs)"
+
+    # The privacy "issues" are present only in Ubuntu 12.10+
+    # https://fixubuntu.com/
+    if [ "12.04" != "$(printf "12.04\n%s" "$os_version" | sort -r | head -n1)" ]; then
+
+        # Turn off "Remote Search", so that the search terms
+        # introduced in `Dash` don't get sent over to third parties
+        gsettings set "com.canonical.Unity.lenses" remote-content-search none
+
+        # If the Ubuntu version is < 13.10, uninstall `unity-lens-shopping`
+        if [ "13.10" != "$(printf "13.10\n%s" "$os_version" | sort | head -n1)" ]; then
+            sudo apt-get remove -y unity-lens-shopping
+
+        # If a later version is used, disable remote scopes
+        else
+            gsettings set "com.canonical.Unity.lenses" disabled-scopes \
+                "[
+                    'more_suggestions-amazon.scope',
+                    'more_suggestions-ebay.scope',
+                    'more_suggestions-populartracks.scope',
+                    'music-musicstore.scope',
+                    'more_suggestions-skimlinks.scope',
+                    'more_suggestions-u1ms.scope',
+                    'more_suggestions-ubuntushop.scope'
+                ]"
+        fi
+
+        # Block connections to Ubuntu's ad server
+        if ! grep -q "127.0.0.1 productsearch.ubuntu.com" /etc/hosts; then
+             printf "\n127.0.0.1 productsearch.ubuntu.com" | sudo tee -a /etc/hosts >/dev/null
+        fi
+    fi
+
+}
+
+# ------------------------------------------------------------------------------
 # | UI/UX                                                                      |
 # ------------------------------------------------------------------------------
 
@@ -45,6 +87,7 @@ set_ui_and_ux_settings() {
 set_preferences() {
 
     log_info "Setting preferences..."
+    execute "set_privacy_settings" "Privacy"
     execute "set_ui_and_ux_settings" "UI & UX"
 
 }
