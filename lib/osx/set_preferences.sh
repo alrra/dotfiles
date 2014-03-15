@@ -386,14 +386,19 @@ set_ui_and_ux_preferences() {
     # Restart automatically if the computer freezes
     sudo systemsetup -setrestartfreeze on
 
+    # Turn Bluetooth off
+    sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0
+    sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist
+    sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
+
     # Hide the Time Machine and Volume icons from the menu bar
     for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
-        defaults write "${domain}" dontAutoLoad -array \
+        sudo defaults write "${domain}" dontAutoLoad -array \
             "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
             "/System/Library/CoreServices/Menu Extras/Volume.menu"
     done
 
-    defaults write com.apple.systemuiserver menuExtras -array \
+    sudo defaults write com.apple.systemuiserver menuExtras -array \
         "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
         "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
         "/System/Library/CoreServices/Menu Extras/Battery.menu" \
