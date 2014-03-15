@@ -67,7 +67,7 @@ check_os() {
             return 0
         fi
     else
-        if [ "10.9" = "$(printf '%s\n%s' '10.9' '$(sw_vers -productVersion)' | sort | head -n1)" ]; then
+        if [ "10.9" = "$(printf "10.9\n%s" "$(sw_vers -productVersion)" | sort | head -n1)" ]; then
             log_error "Sorry, this script is intended only for OS X 10.9.0+."
             return 1
         else
@@ -317,7 +317,7 @@ set_custom_preferences_and_install_apps() {
         source "$dotfiles_directory/lib/osx/set_preferences.sh"
         set_preferences
 
-    elif [ "$os" != "ubuntu" ]; then
+    elif [ "$os" == "ubuntu" ]; then
 
         source "$dotfiles_directory/lib/ubuntu/install_applications.sh"
         install_applications
@@ -328,7 +328,6 @@ set_custom_preferences_and_install_apps() {
     fi
 
 }
-
 
 # ##############################################################################
 # # MAIN                                                                       #
