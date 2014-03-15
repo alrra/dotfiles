@@ -2,7 +2,8 @@
 
 (!) Work in progress...
 
-`bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/lib/dotfiles.sh)"`
+* __OS X:__ `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/lib/dotfiles.sh)"`
+* __Ubuntu:__ `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/lib/dotfiles.sh)"`
 
 ## Acknowledgements
 

@@ -132,4 +132,3 @@ install_applications() {
     remove_unneeded_packages
 
 }
-
