@@ -67,7 +67,7 @@ check_os() {
             return 0
         fi
     else
-        if [ "10.9" = "$(printf "10.9\n%s" "$(sw_vers -productVersion)" | sort | head -n1)" ]; then
+        if [ $(compare_versions "$(sw_vers -productVersion)" "10.9") = '<' ]; then
             log_error "Sorry, this script is intended only for OS X 10.9.0+."
             return 1
         else
@@ -81,6 +81,38 @@ cmd_exists() {
     [ -x "$(command -v "$1")" ] \
         && printf 0 \
         || printf 1
+}
+
+compare_versions() {
+
+    declare -a v1=(${1//./ })
+    declare -a v2=(${2//./ })
+    local i=""
+
+    # Fill empty positions in v1 with zeros
+    for ((i=${#v1[@]}; i<${#v2[@]}; i++)); do
+        v1[i]=0
+    done
+
+    for ((i = 0; i < ${#v1[@]}; i++)); do
+        # Fill empty positions in v2 with zeros
+        if [[ -z ${v2[i]} ]]; then
+            v2[i]=0
+        fi
+
+        if ((10#${v1[i]} > 10#${v2[i]})); then
+            printf ">"
+            return 0;
+        fi
+
+        if ((10#${v1[i]} < 10#${v2[i]})); then
+            printf "<"
+            return 0;
+        fi
+    done
+
+    printf "="
+
 }
 
 copy_files() {

@@ -10,14 +10,14 @@ set_privacy_settings() {
 
     # The privacy "issues" are present only in Ubuntu 12.10+
     # https://fixubuntu.com/
-    if [ "12.04" != "$(printf "12.04\n%s" "$os_version" | sort -r | head -n1)" ]; then
+    if [ "$(compare_versions "$os_version" "12.04")" = ">" ]; then
 
         # Turn off "Remote Search", so that the search terms
         # introduced in `Dash` don't get sent over to third parties
         gsettings set "com.canonical.Unity.lenses" remote-content-search none
 
         # If the Ubuntu version is < 13.10, uninstall `unity-lens-shopping`
-        if [ "13.10" != "$(printf "13.10\n%s" "$os_version" | sort | head -n1)" ]; then
+        if [ "$(compare_versions "$os_version" "13.10")" = "<" ]; then
             sudo apt-get remove -y unity-lens-shopping
 
         # If a later version is used, disable remote scopes
