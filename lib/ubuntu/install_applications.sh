@@ -17,28 +17,32 @@ declare -a APT_PACKAGES=(
     "curl"
     "nautilus-dropbox"
     "firefox-trunk"
+    "flashplugin-installer"
     "gimp"
     "git"
     "google-chrome-unstable"
-    "google-talkplugin"
+    "imagemagick"
     "nodejs"
     "npm"
     "opera"
     "opera-next"
+    "transmission"
     "vim-gnome"
+    "virtualbox"
     "vlc"
+    "zopfli"
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 add_key() {
-    wget -qO - "$1" | sudo apt-key add - > /dev/null
+    wget -qO - "$1" | sudo apt-key add - &> /dev/null
     #     │└─ write output to file
     #     └─ don't show output
 }
 
 add_ppa() {
-    sudo add-apt-repository -y ppa:"$1" > /dev/null
+    sudo add-apt-repository -y ppa:"$1" &> /dev/null
 }
 
 add_source_list() {
@@ -79,8 +83,6 @@ install_applications() {
 
     local i="", tmp=""
 
-    log_info "Installing applications..."
-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Add software sources
@@ -95,13 +97,6 @@ install_applications() {
         && add_source_list \
                 "http://dl.google.com/linux/deb/ stable main" \
                 "google-chrome.list"
-
-    # Google Talk Plugin
-    [ $(cmd_exists "/opt/google/talkplugin/GoogleTalkPlugin") -eq 1 ] \
-        && add_key "https://dl-ssl.google.com/linux/linux_signing_key.pub" \
-        && add_source_list \
-                "http://dl.google.com/linux/talkplugin/deb/ stable main" \
-                "google-talkplugin.list"
 
     # NodeJS
     [ $(cmd_exists "node") -eq 1 ] \
@@ -126,7 +121,7 @@ install_applications() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    log_info "Cleaning up..."
+    printf "\n"
 
     update_and_upgrade
     remove_unneeded_packages

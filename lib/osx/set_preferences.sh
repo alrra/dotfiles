@@ -410,8 +410,6 @@ set_ui_and_ux_preferences() {
 
 set_preferences() {
 
-    log_info "Setting preferences..."
-
     execute "set_dashboard_preferences" "Dashboard"
     execute "set_dock_preferences" "Dock"
     execute "set_finder_preferences" "Finder"
@@ -427,7 +425,7 @@ set_preferences() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    log_info "Cleaning up..."
+    printf "\n"
 
     if [ $(cmd_exists "brew") -eq 1 ]; then
         execute "brew cleanup" "brew [cleanup]"

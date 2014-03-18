@@ -18,6 +18,7 @@ declare -a HOMEBREW_CASKS=(
     "chromium"
     "dropbox"
     "flash"
+    "firefox"
     "gimp-lisanet"
     "google-chrome"
     "imagealpha"
@@ -47,8 +48,6 @@ declare -a HOMEBREW_ALTERNATE_CASKS=(
 install_applications() {
 
     local i="", tmp=""
-
-    log_info "Installing applications..."
 
     # XCode Command Line Tools
     if [ $(xcode-select -p &> /dev/null; echo $?) -ne 0 ]; then
