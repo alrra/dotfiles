@@ -85,9 +85,6 @@ set_ui_and_ux_settings() {
 # ------------------------------------------------------------------------------
 
 set_preferences() {
-
-    log_info "Setting preferences..."
     execute "set_privacy_settings" "Privacy"
     execute "set_ui_and_ux_settings" "UI & UX"
-
 }

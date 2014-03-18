@@ -34,6 +34,7 @@ declare -a NEW_DIRECTORIES=(
 )
 
 declare dotfiles_directory="$HOME/projects/dotfiles"
+declare force=1 # false by default
 declare os=""
 
 # ##############################################################################
@@ -49,12 +50,27 @@ answer_is_yes() {
 }
 
 ask() {
-    read -p "  [?] $1 "
+    log_question "$1"
+    read
 }
 
 ask_for_confirmation() {
-    read -p "  [?] $1 " -n 1
+    log_question "$1 (y/n) "
+    read -n 1
     printf "\n"
+}
+
+ask_for_confirmation_if_needed() {
+    if [ $force -eq 1 ]; then
+        ask_for_confirmation "$1"
+    fi
+
+    if [ $force -eq 0 ] || \
+       [ $(answer_is_yes; printf $?) -eq 0 ]; then
+        return 0
+    fi
+
+    return 1
 }
 
 check_os() {
@@ -116,19 +132,19 @@ compare_versions() {
 }
 
 copy_files() {
-    log_info "Copying files..."
     place_files "cp -f" "${FILES_TO_COPY[@]}"
 }
 
 create_directories() {
-    log_info "Creating directories..."
-    for i in ${NEW_DIRECTORIES[@]}; do
-        mkd "$i"
-    done
+    ask_for_confirmation_if_needed "Do you want the additional directories to be created?"
+    if [ $? -eq 0 ]; then
+        for i in ${NEW_DIRECTORIES[@]}; do
+            mkd "$i"
+        done
+    fi
 }
 
 create_symbolic_links() {
-    log_info "Creating symbolic links..."
     place_files "ln -fs" "${FILES_TO_SYMLINK[@]}"
 }
 
@@ -139,8 +155,6 @@ get_answer() {
 download_and_extract_archive() {
 
     local tmpFile="$(mktemp -u XXXXX)"
-
-    log_info "Downloading and extracting archive..."
 
     cd '/tmp'
 
@@ -165,25 +179,29 @@ download_and_extract_archive() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    ask_for_confirmation "Do you want to store the dotfiles in '$dotfiles_directory'?"
+    if ! answer_is_yes; then
+        ask "Please specify another location for the dotfiles (path):"
+        dotfiles_directory="$(get_answer)"
+    fi
+
     # Ensure the `dotfiles` directory is available
     if [ -e "$dotfiles_directory" ]; then
         while [ -e "$dotfiles_directory" ]; do
 
-            log_warning "'$dotfiles_directory' already exists!"
-            ask_for_confirmation "Do you want to overwrite it? (y/n)"
+            ask_for_confirmation "'$dotfiles_directory' already exists! Do you want to overwrite it?"
 
             if answer_is_yes; then
                 rm -rf "$dotfiles_directory"
-                mkd "$dotfiles_directory"
                 break
             else
-                ask "Please specify another location for the dotfiles (path):"
+                ask "Please specify another location for the dotfiles (path)"
                 dotfiles_directory="$(get_answer)"
             fi
         done
-    else
-        mkd "$dotfiles_directory"
     fi
+
+    mkd "$dotfiles_directory"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -210,7 +228,7 @@ execute_str() {
 }
 
 is_git_repository() {
-    if [ $(git rev-parse --is-inside-work-tree &>/dev/null; printf "%s" $?) == 0 ]; then
+    if [ $(git rev-parse --is-inside-work-tree &> /dev/null; printf "%s" $?) == 0 ]; then
         return 0;
     else
         return 1;
@@ -218,36 +236,41 @@ is_git_repository() {
 }
 
 git_initialize_repository() {
-
     cd "$dotfiles_directory"
-
     if ! is_git_repository; then
-
-        log_info "Initializing the git repository..."
-
         git init &> /dev/null \
             && git remote add origin "$DOTFILES_GIT_REMOTE" &> /dev/null
-        log_result $? "Initialize git repository"
-
+        log_result $? "Initialize the 'dotfiles' git repository"
     fi
 }
 
 git_update_content() {
-
     cd "$dotfiles_directory"
-
     if is_git_repository; then
+        ask_for_confirmation_if_needed "Do you want to update the content from the 'dotfiles' directory?"
+        if [ $? -eq 0 ]; then
+            # Update content, remove untracked files and fetch submodules
+            git fetch --all &> /dev/null \
+                && git reset --hard origin/master &> /dev/null \
+                && git clean -fd  &> /dev/null \
+                && git submodule update --recursive --init --quiet &> /dev/null \
 
-        log_info "Updating content..."
-
-        # Update content, remove untracked files and fetch submodules
-        git fetch --all &> /dev/null \
-            && git reset --hard origin/master &> /dev/null \
-            && git clean -fd  &> /dev/null \
-            && git submodule update --recursive --init --quiet &> /dev/null \
-
-        log_result $? "Update content"
+            log_result $? "Update content"
+        fi
     fi
+}
+
+install_apps() {
+
+    if [ "$os" == "osx" ]; then
+        source "$dotfiles_directory/lib/osx/install_applications.sh"
+    elif [ "$os" == "ubuntu" ]; then
+        source "$dotfiles_directory/lib/ubuntu/install_applications.sh"
+    fi
+
+    ask_for_confirmation_if_needed "Do you want to install the applications/command line tools?"
+    [ $? -eq 0 ] && install_applications
+
 }
 
 log_error() {
@@ -274,9 +297,9 @@ log_success() {
     printf "\e[0;32m  [✔] $1\e[0m\n"
 }
 
-log_warning() {
+log_question() {
     # Print output in yellow
-    printf "\e[0;33m  [!] $1\e[0m\n"
+    printf "\e[0;33m  [?] $1\e[0m"
 }
 
 mkd() {
@@ -295,18 +318,13 @@ mkd() {
 
 place_file() {
     if [ -e "$3" ]; then
-
-        log_warning "'$3' already exists!"
-        ask_for_confirmation "do you want to overwrite it? (y/n)"
-
-        if answer_is_yes; then
+        ask_for_confirmation_if_needed "'$3' already exists! Do you want to overwrite it?"
+        if [ $? -eq 0 ]; then
             rm -rf "$3"
             execute "$1 $2 $3" "$3 → $2"
         else
             log_error "$3 → $2"
         fi
-
-        printf "\n"
     else
         execute "$1 $2 $3" "$3 → $2"
     fi
@@ -321,6 +339,7 @@ place_files() {
     declare -a files=("$@")
 
     for i in ${files[@]}; do
+        [ $force -eq 1 ] && [ "$i" != "${files[0]}" ] && printf "\n"
         sourceFile="$dotfiles_directory/$i"
         targetFile=$(printf "%s" "$HOME/.$i" | sed "s/.*\/\(.*\)/\1/g")
         place_file "$cmd" "$sourceFile" "$HOME/.$targetFile"
@@ -328,37 +347,16 @@ place_files() {
 
 }
 
-set_custom_preferences_and_install_apps() {
-
-    # Ask for the administrator password upfront
-    sudo -v
-
-    # Update existing `sudo` time stamp until this script has finished
-    # (https://gist.github.com/3118588)
-    while true; do
-        sudo -n true
-        sleep 60
-        kill -0 "$$" || exit
-    done 2>/dev/null &
+set_custom_preferences() {
 
     if [ "$os" == "osx" ]; then
-
-        source "$dotfiles_directory/lib/osx/install_applications.sh"
-        install_applications
-
         source "$dotfiles_directory/lib/osx/set_preferences.sh"
-        set_preferences
-
     elif [ "$os" == "ubuntu" ]; then
-
-        source "$dotfiles_directory/lib/ubuntu/install_applications.sh"
-        install_applications
-
         source "$dotfiles_directory/lib/ubuntu/set_preferences.sh"
-        set_preferences
-
     fi
 
+    ask_for_confirmation_if_needed "Do you want to set the custom preferences?"
+    [ $? -eq 0 ] && set_preferences
 }
 
 # ##############################################################################
@@ -372,33 +370,74 @@ main() {
     # Ensure the OS is OS X 10.9.0+ or Ubuntu
     check_os || exit;
 
+    # Parse commandline arguments
+    # http://wiki.bash-hackers.org/howto/getopts_tutorial
+    while getopts ":f" option; do
+        case "$option" in
+             f) declare force=0 ;;
+            \?) printf "Invalid option: -%s" "$OPTARG" &> /dev/null; exit 1 ;;
+        esac
+    done
+
     cd "${BASH_SOURCE%/*}"
     #     └─ see: http://mywiki.wooledge.org/BashFAQ/028
 
     # Determine if the `dotfiles` need to be set up or updated
     if [ $(cmd_exists "git") -eq 0 ] && \
        [ "$(git config --get remote.origin.url)" = "$DOTFILES_GIT_REMOTE" ]; then
+
         process="update"
         dotfiles_directory="$(cd .. && pwd)"
+
+        log_info "Update content"
         git_update_content
+
     else
+
         process="setup"
+
+        log_info "Download and extract archive"
         download_and_extract_archive
+
     fi
 
+    log_info "Create directories"
     create_directories
+
+    log_info "Copy files"
     copy_files
+
+    log_info "Create symbolic links"
     create_symbolic_links
-    set_custom_preferences_and_install_apps
+
+    # Ask for the administrator password upfront
+    sudo -v
+
+    # Update existing `sudo` time stamp until this script has finished
+    # (https://gist.github.com/3118588)
+    while true; do
+        sudo -n true
+        sleep 60
+        kill -0 "$$" || exit
+    done 2>/dev/null &
+
+    log_info "Install applications"
+    install_apps
+
+    log_info "Set preferences"
+    set_custom_preferences
 
     if [ "$process" = "setup" ]; then
+        log_info "Initialize git repository"
         git_initialize_repository
+
+        log_info "Update content"
         git_update_content
     fi
 
     log_info "All done."
 
-    ask_for_confirmation "Do you want to restart? (y/n)"
+    ask_for_confirmation "Do you want to restart?"
 
     if answer_is_yes; then
         log_info "Restarting..."
@@ -409,4 +448,4 @@ main() {
 
 }
 
-main
+main $@
