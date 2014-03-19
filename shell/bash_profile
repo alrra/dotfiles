@@ -21,7 +21,7 @@ load_dotfiles() {
 
     # Some things are OS specific, deal with it
     if [ "$osname" == "Darwin" ]; then
-        os="mac"
+        os="osx"
     elif [ "$osname" == "Linux" ]; then
         os="linux"
 
