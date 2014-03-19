@@ -33,6 +33,10 @@ declare -a NEW_DIRECTORIES=(
     "$HOME/server"
 )
 
+declare -a NODE_PACKAGES=(
+    "jshint"
+)
+
 declare dotfiles_directory="$HOME/projects/dotfiles"
 declare force=1    # values: `0` (true) or `1` (false)
 declare os=""
@@ -62,9 +66,7 @@ ask_for_confirmation() {
 }
 
 ask_for_confirmation_if_needed() {
-    if [ $force -eq 1 ]; then
-        ask_for_confirmation "$1"
-    fi
+    [ $force -eq 1 ] && ask_for_confirmation "$1"
 
     if [ $force -eq 0 ] || \
        [ $(answer_is_yes; printf $?) -eq 0 ]; then
@@ -187,7 +189,7 @@ copy_files() {
 create_directories() {
     ask_for_confirmation_if_needed "Do you want the additional directories to be created?"
     if [ $? -eq 0 ]; then
-        printf "\n"
+        [ $force -eq 1 ] && printf "\n"
         for i in ${NEW_DIRECTORIES[@]}; do
             mkd "$i"
         done
@@ -293,8 +295,9 @@ git_update_content() {
 
         if [ $? -eq 0 ]; then
             check_github_ssh_key
+
             cd "$dotfiles_directory"
-            printf "\n"
+            [ $force -eq 1 ] && printf "\n"
 
             # Update content, remove untracked files and fetch submodules
             git fetch --all &> /dev/null \
@@ -315,7 +318,21 @@ install_apps() {
     fi
 
     ask_for_confirmation_if_needed "Do you want to install the applications/command line tools?"
-    [ $? -eq 0 ] && printf "\n" && install_applications
+
+    if [ $? -eq 0 ]; then
+        [ $force -eq 1 ] && printf "\n"
+        install_applications
+    fi
+}
+
+install_node_packages() {
+    ask_for_confirmation_if_needed "Do you want to install the node packages?"
+    if [ $? -eq 0 ]; then
+        [ $force -eq 1 ] && printf "\n"
+        for i in ${NODE_PACKAGES[@]}; do
+            execute "npm install -g $i" "$i"
+        done
+    fi
 }
 
 is_git_repository() {
@@ -406,7 +423,11 @@ set_custom_preferences() {
     fi
 
     ask_for_confirmation_if_needed "Do you want to set the custom preferences?"
-    [ $? -eq 0 ] && printf "\n" && set_preferences
+
+    if [ $? -eq 0 ]; then
+        [ $force -eq 1 ] && printf "\n"
+        set_preferences
+    fi
 }
 
 # ##############################################################################
@@ -467,6 +488,8 @@ main() {
 
     print_info "Install applications"
     install_apps
+    printf "\n"
+    install_node_packages
 
     print_info "Set preferences"
     set_custom_preferences
