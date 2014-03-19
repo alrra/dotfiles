@@ -86,6 +86,9 @@ alias rm="rm -rf"
 # OS / OS distribution specific commands
 if [[ "$os" == "linux" && "$distro" == "ubuntu" ]]; then
 
+    # Copy to clipboard
+    alias cc="xclip -selection clip"
+
     # Hide/Show desktop icons
     alias hidedesktopicons="gsettings set org.gnome.desktop.background show-desktop-icons false"
     alias showdesktopicons="gsettings set org.gnome.desktop.background show-desktop-icons true"
@@ -100,6 +103,9 @@ elif [ "$os" == "mac" ]; then
 
     # Lock screen
     alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+    # Copy to clipboard
+    alias cc="pbcopy"
 
     # Empty the trash, the main HDD and on all mounted volumes
     # and clear Apple’s system logs to improve shell startup speed
