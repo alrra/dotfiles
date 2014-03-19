@@ -73,6 +73,56 @@ ask_for_confirmation_if_needed() {
     return 1
 }
 
+check_github_ssh_key() {
+
+    local github_ssh_url="https://github.com/settings/ssh"
+    local ssh_key_file="id_rsa.pub"
+
+    if [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; then
+
+        cd "$HOME/.ssh"
+
+        # Setup GitHub SSH Key
+        # https://help.github.com/articles/generating-ssh-keys
+
+        log_info "Set up the SSH key"
+
+        if [ ! -r "$ssh_key_file" ]; then
+            rm -rf "$ssh_key_file"
+            ask "Please provide an email address (email): " && printf "\n"
+            ssh-keygen -t rsa -C "$(get_answer)"
+        fi
+
+        if [ "$os" == "osx" ]; then
+
+            # Copy SSH key to clipboard
+            cat "$ssh_key_file" | pbcopy
+            log_result $? "Copy SSH key to clipboard"
+
+            # Open the GitHub web page where the SSH key can be added
+            open "$github_ssh_url"
+
+        elif [ "$os" == "ubuntu" ]; then
+
+            # Copy SSH key to clipboard
+            cat "$ssh_key_file" | xclip -selection clip
+            log_result $? "Copy SSH key to clipboard"
+
+            # Open the GitHub web page where the SSH key can be added
+            xdg-open "$github_ssh_url"
+
+        fi
+
+        # Before proceeding, wait for everything to be ok
+        while [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; do
+            sleep 5;
+        done
+
+        log_success "Set up the SSH key"
+    fi
+
+}
+
 check_os() {
     if [ "$(uname -s)" != "Darwin" ]; then
         if [ "$(uname -s)" != "Linux" ] || [ ! -e "/etc/lsb-release" ]; then
@@ -83,7 +133,7 @@ check_os() {
             return 0
         fi
     else
-        if [ $(compare_versions "$(sw_vers -productVersion)" "10.9") = '<' ]; then
+        if [ $(compare_versions "$(sw_vers -productVersion)" "10.9") == '<' ]; then
             log_error "Sorry, this script is intended only for OS X 10.9.0+."
             return 1
         else
@@ -106,22 +156,22 @@ compare_versions() {
     local i=""
 
     # Fill empty positions in v1 with zeros
-    for ((i=${#v1[@]}; i<${#v2[@]}; i++)); do
+    for (( i=${#v1[@]}; i<${#v2[@]}; i++ )); do
         v1[i]=0
     done
 
-    for ((i = 0; i < ${#v1[@]}; i++)); do
+    for (( i=0; i<${#v1[@]}; i++ )); do
         # Fill empty positions in v2 with zeros
         if [[ -z ${v2[i]} ]]; then
             v2[i]=0
         fi
 
-        if ((10#${v1[i]} > 10#${v2[i]})); then
+        if (( 10#${v1[i]} > 10#${v2[i]} )); then
             printf ">"
             return 0;
         fi
 
-        if ((10#${v1[i]} < 10#${v2[i]})); then
+        if (( 10#${v1[i]} < 10#${v2[i]} )); then
             printf "<"
             return 0;
         fi
@@ -148,10 +198,6 @@ create_symbolic_links() {
     place_files "ln -fs" "${FILES_TO_SYMLINK[@]}"
 }
 
-get_answer() {
-    printf "$REPLY"
-}
-
 download_and_extract_archive() {
 
     local tmpFile="$(mktemp -u XXXXX)"
@@ -159,7 +205,7 @@ download_and_extract_archive() {
     cd '/tmp'
 
     # Download archive
-    if [ "$os" = "osx" ]; then
+    if [ "$os" == "osx" ]; then
 
         curl -LsSo "$tmpFile" "$DOTFILES_ARCHIVE_URL"
         #     │││└─ write output to file
@@ -167,7 +213,7 @@ download_and_extract_archive() {
         #     │└─ don't show the progress meter
         #     └─ follow redirects
 
-    elif [ "$os" = "ubuntu" ]; then
+    elif [ "$os" == "ubuntu" ]; then
 
         wget -qO "$tmpFile" "$DOTFILES_ARCHIVE_URL"
         #     │└─ write output to file
@@ -227,12 +273,8 @@ execute_str() {
     log_result $? "${2:-$1}"
 }
 
-is_git_repository() {
-    if [ $(git rev-parse --is-inside-work-tree &> /dev/null; printf "%s" $?) == 0 ]; then
-        return 0;
-    else
-        return 1;
-    fi
+get_answer() {
+    printf "$REPLY"
 }
 
 git_initialize_repository() {
@@ -247,8 +289,13 @@ git_initialize_repository() {
 git_update_content() {
     cd "$dotfiles_directory"
     if is_git_repository; then
+
         ask_for_confirmation_if_needed "Do you want to update the content from the 'dotfiles' directory?"
+
         if [ $? -eq 0 ]; then
+            check_github_ssh_key
+            cd "$dotfiles_directory"
+
             # Update content, remove untracked files and fetch submodules
             git fetch --all &> /dev/null \
                 && git reset --hard origin/master &> /dev/null \
@@ -257,6 +304,7 @@ git_update_content() {
 
             log_result $? "Update content"
         fi
+
     fi
 }
 
@@ -271,6 +319,14 @@ install_apps() {
     ask_for_confirmation_if_needed "Do you want to install the applications/command line tools?"
     [ $? -eq 0 ] && install_applications
 
+}
+
+is_git_repository() {
+    if [ $(git rev-parse --is-inside-work-tree &> /dev/null; printf "%s" $?) == 0 ]; then
+        return 0;
+    else
+        return 1;
+    fi
 }
 
 log_error() {
@@ -288,7 +344,7 @@ log_result() {
         && log_success "$2" \
         || log_error "$2"
 
-    [ "$3" = "true" ] && [ $1 -ne 0 ] \
+    [ "$3" == "true" ] && [ $1 -ne 0 ] \
         && exit
 }
 
@@ -384,7 +440,7 @@ main() {
 
     # Determine if the `dotfiles` need to be set up or updated
     if [ $(cmd_exists "git") -eq 0 ] && \
-       [ "$(git config --get remote.origin.url)" = "$DOTFILES_GIT_REMOTE" ]; then
+       [ "$(git config --get remote.origin.url)" == "$DOTFILES_GIT_REMOTE" ]; then
 
         process="update"
         dotfiles_directory="$(cd .. && pwd)"
@@ -427,7 +483,7 @@ main() {
     log_info "Set preferences"
     set_custom_preferences
 
-    if [ "$process" = "setup" ]; then
+    if [ "$process" == "setup" ]; then
         log_info "Initialize git repository"
         git_initialize_repository
 
