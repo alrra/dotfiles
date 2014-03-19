@@ -30,6 +30,7 @@ declare -a APT_PACKAGES=(
     "vim-gnome"
     "virtualbox"
     "vlc"
+    "xclip"
     "zopfli"
 )
 
