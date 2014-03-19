@@ -6,6 +6,10 @@
     ignore = dirty
     path = vim/vim/plugins/colors-xoria256
     url = https://github.com/vim-scripts/xoria256.vim
+[submodule "vim/vim/plugins/css-color"]
+    ignore = dirty
+    path = vim/vim/plugins/css-color
+    url = https://github.com/ap/vim-css-color
 [submodule "vim/vim/plugins/editorconfig"]
     ignore = dirty
     path = vim/vim/plugins/editorconfig
