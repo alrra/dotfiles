@@ -32,6 +32,7 @@ declare -a APT_PACKAGES=(
     "vlc"
     "xclip"
     "zopfli"
+
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -61,21 +62,16 @@ install_package() {
 }
 
 remove_unneeded_packages() {
-
     # Remove packages that were automatically installed to satisfy
     # dependencies for other other packages and are no longer needed
     execute "sudo apt-get autoremove -qqy" "autoremove"
-
 }
 
 update_and_upgrade() {
-
     # Resynchronize the package index files from their sources
     execute "sudo apt-get update -qqy" "update"
-
     # Unstall the newest versions of all packages installed
     execute "sudo apt-get upgrade -qqy" "upgrade"
-
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
