@@ -56,7 +56,7 @@ set_ls_colors() {
     #  - the actual colors are configured through the LSCOLORS environment
     #    variable (built-in defaults are used if this variable is not set)
 
-    elif [ "$os" == "mac" ]; then
+    elif [ "$os" == "osx" ]; then
 
         # Enable color support
         alias ls="ls -G" # or CLICOLOR=1
