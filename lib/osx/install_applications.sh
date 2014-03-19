@@ -59,14 +59,14 @@ install_applications() {
         done
     fi
 
-    log_success "XCode Command Line Tools"
+    print_success "XCode Command Line Tools"
     printf "\n"
 
     # Homebrew
     if [ $(cmd_exists "brew") -eq 1 ]; then
         printf '\n' | ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
         #  └─ simulate ENTER keypress
-        log_result $? "brew"
+        print_result $? "brew"
     fi
 
     if [ $(cmd_exists "brew") -eq 0 ]; then
@@ -79,7 +79,7 @@ install_applications() {
         for i in ${!HOMEBREW_FORMULAE[*]}; do
             tmp="${HOMEBREW_FORMULAE[$i]}"
             [ $(brew list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
-                && log_success "$tmp" \
+                && print_success "$tmp" \
                 || execute "brew install $tmp" "$tmp"
         done
 
@@ -91,7 +91,7 @@ install_applications() {
             for i in ${!HOMEBREW_CASKS[*]}; do
                 tmp="${HOMEBREW_CASKS[$i]}"
                 [ $(brew cask list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
-                    && log_success "$tmp" \
+                    && print_success "$tmp" \
                     || execute "brew cask install $tmp" "$tmp"
             done
 
@@ -104,7 +104,7 @@ install_applications() {
                 for i in ${!HOMEBREW_ALTERNATE_CASKS[*]}; do
                     tmp="${HOMEBREW_ALTERNATE_CASKS[$i]}"
                     [ $(brew cask list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
-                        && log_success "$tmp" \
+                        && print_success "$tmp" \
                         || execute "brew cask install $tmp" "$tmp"
                 done
             fi
