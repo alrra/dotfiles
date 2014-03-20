@@ -18,6 +18,10 @@
     ignore = dirty
     path = vim/vim/plugins/emmet
     url = https://github.com/mattn/emmet-vim
+[submodule "vim/vim/plugins/fugitive"]
+    ignore = dirty
+    path = vim/vim/plugins/fugitive
+    url = https://github.com/tpope/vim-fugitive
 [submodule "vim/vim/plugins/jshint2"]
     ignore = dirty
     path = vim/vim/plugins/jshint2
@@ -38,3 +42,4 @@
     ignore = dirty
     path = vim/vim/plugins/tcomment
     url = https://github.com/tomtom/tcomment_vim.git
+
