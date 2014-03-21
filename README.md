@@ -1,7 +1,5 @@
 # Cătălin’s dotfiles
 
-(!) Work in progress...
-
 ## Setup
 
 To setup the dotfiles, run the following snippet in the terminal.
