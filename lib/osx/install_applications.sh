@@ -5,7 +5,6 @@
 declare -a HOMEBREW_FORMULAE=(
     "git"
     "imagemagick --with-webp"
-    "node"
     "phinze/cask/brew-cask"
     "vim --override-system-vi"
     "zopfli"
@@ -50,17 +49,43 @@ install_applications() {
     local i="", tmp=""
 
     # XCode Command Line Tools
-    if [ $(xcode-select -p &> /dev/null; echo $?) -ne 0 ]; then
+    if [ $(xcode-select -p &> /dev/null; printf $?) -ne 0 ]; then
         xcode-select --install &> /dev/null
 
         # Wait until the XCode Command Line Tools are installed
-        while [ $(xcode-select -p &> /dev/null; echo $?) -ne 0 ]; do
+        while [ $(xcode-select -p &> /dev/null; printf $?) -ne 0 ]; do
             sleep 5
         done
     fi
 
     print_success "XCode Command Line Tools"
     printf "\n"
+
+    # Install Node.js (and npm)
+    if [ $(cmd_exists "node") -eq 1 ]; then
+
+        # Get the name of the `.pkg` file containing the latest Node.js version
+        tmp="$(curl -sSL http://nodejs.org/dist/latest | sed -n 's/.*href="\(.*pkg\)".*/\1/p')"
+
+        # Download `.pkg` file
+        $(curl -sSL "http://nodejs.org/dist/latest/$tmp" -o /tmp/$tmp)
+
+        if [ $? -eq 0 ]; then
+            print_success "Download '$tmp'"
+
+            # Open the `.pkg` file
+            open "/tmp/$tmp"
+
+            # Wait for Node.js to be installed
+            while [ $(cmd_exists "node") -eq 1 ]; do
+                sleep 5;
+            done
+
+            print_success "Node.js and npm"
+        else
+            print_error "Download '$tmp'"
+        fi
+    fi
 
     # Homebrew
     if [ $(cmd_exists "brew") -eq 1 ]; then
