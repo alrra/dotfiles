@@ -269,11 +269,6 @@ execute() {
     print_result $? "${2:-$1}"
 }
 
-execute_str() {
-    sudo sh -c "$1" &> /dev/null
-    print_result $? "${2:-$1}"
-}
-
 get_answer() {
     printf "$REPLY"
 }
@@ -474,17 +469,6 @@ main() {
 
     print_info "Create symbolic links"
     create_symbolic_links
-
-    # Ask for the administrator password upfront
-    sudo -v
-
-    # Update existing `sudo` time stamp until this script has finished
-    # (https://gist.github.com/3118588)
-    while true; do
-        sudo -n true
-        sleep 60
-        kill -0 "$$" || exit
-    done 2>/dev/null &
 
     print_info "Install applications"
     install_apps
