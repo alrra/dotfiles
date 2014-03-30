@@ -100,6 +100,25 @@ mkd() {
 
 }
 
+# Clean up and beautify photos of whiteboards
+# https://gist.github.com/lelandbatey/8677901
+clean_whiteboard_photos() {
+    if [ -n "$1" ]; then
+        find . -type f \
+               -name "$1" \
+               -exec printf "\n  %s" {} \; \
+               -exec convert {} -morphology Convolve DoG:15,100,0 \
+                                -negate \
+                                -normalize \
+                                -blur 0x1 \
+                                -channel RBG \
+                                -level 60%,91%,0.1 \
+                                {} \;
+    else
+        print_error "Please specify an image or a pattern (e.g. \"*.png\")"
+    fi
+}
+
 # ------------------------------------------------------------------------------
 # | Search                                                                     |
 # ------------------------------------------------------------------------------
