@@ -174,6 +174,10 @@ let mapleader = ","
 " [,* ] Search and replace the word under the cursor
 nnoremap <leader>* :%s/\<<C-r><C-w>\>//<Left>
 
+" [,cc] Toggle code comments
+" https://github.com/tomtom/tcomment_vim
+noremap <leader>cc :TComment<CR>
+
 " [,cr] Calculate result
 " http://vimcasts.org/e/56
 nnoremap <leader>cr 0yt=A<C-r>=<C-r>"<CR><Esc>
