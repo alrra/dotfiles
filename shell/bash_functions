@@ -114,6 +114,7 @@ clean_whiteboard_photos() {
                                 -channel RBG \
                                 -level 60%,91%,0.1 \
                                 {} \;
+        printf "\n\n"
     else
         print_error "Please specify an image or a pattern (e.g. \"*.png\")"
     fi
