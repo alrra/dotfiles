@@ -171,6 +171,10 @@ set statusline=%1*\ [%n]\ [%f]%m%r%h%w%y[%{&ff}:%{strlen(&fenc)?&fenc:'none'}]%=
 " Use a different mapleader (default is "\")
 let mapleader = ","
 
+" Redefine trigger key for Emmet
+" https://github.com/mattn/emmet-vim
+let g:user_emmet_leader_key='<C-E>'
+
 " [,* ] Search and replace the word under the cursor
 nnoremap <leader>* :%s/\<<C-r><C-w>\>//<Left>
 
