@@ -30,6 +30,10 @@
     ignore = dirty
     path = vim/vim/plugins/pathogen
     url = https://github.com/tpope/vim-pathogen.git
+[submodule "vim/vim/plugins/repeat"]
+    ignore = dirty
+    path = vim/vim/plugins/repeat
+    url = https://github.com/tpope/vim-repeat
 [submodule "vim/vim/plugins/snipmate"]
     ignore = dirty
     path = vim/vim/plugins/snipmate
@@ -42,4 +46,3 @@
     ignore = dirty
     path = vim/vim/plugins/tcomment
     url = https://github.com/tomtom/tcomment_vim.git
-
