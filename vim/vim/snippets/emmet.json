@@ -1,0 +1,10 @@
+{
+    "html": {
+        "snippets": {
+            "html5": "<!doctype html>\n<html lang=\"${lang}\">\n<head>\n\t<meta charset=\"utf-8\">\n\t<title></title>\n\n</head>\n<body>\n\t${child}\n</body>\n</html>"
+        },
+        "variables": {
+            "lang": "en"
+        }
+    }
+}
