@@ -34,10 +34,6 @@
     ignore = dirty
     path = vim/vim/plugins/repeat
     url = https://github.com/tpope/vim-repeat
-[submodule "vim/vim/plugins/snipmate"]
-    ignore = dirty
-    path = vim/vim/plugins/snipmate
-    url = https://github.com/msanders/snipmate.vim.git
 [submodule "vim/vim/plugins/surround"]
     ignore = dirty
     path = vim/vim/plugins/surround
@@ -46,3 +42,7 @@
     ignore = dirty
     path = vim/vim/plugins/tcomment
     url = https://github.com/tomtom/tcomment_vim.git
+[submodule "vim/vim/plugins/webapi"]
+    ignore = dirty
+    path = vim/vim/plugins/webapi
+    url = https://github.com/mattn/webapi-vim
