@@ -172,7 +172,7 @@ set statusline=%1*\ [%n]\ [%f]%m%r%h%w%y[%{&ff}:%{strlen(&fenc)?&fenc:'none'}]%=
 let mapleader = ","
 
 " Redefine trigger key for Emmet
-" https://github.com/mattn/emmet-vim
+" http://docs.emmet.io/cheat-sheet/
 let g:user_emmet_leader_key='<C-E>'
 
 " [,* ] Search and replace the word under the cursor
@@ -256,6 +256,20 @@ nmap <leader>v :vsp $MYVIMRC<CR>
 
 " [,W ] Sudo write
 noremap <leader>W :w !sudo tee %<CR>
+
+
+" ##############################################################################
+" # PLUGIN RELATED SETTINGS                                                    #
+" ##############################################################################
+
+" ------------------------------------------------------------------------------
+" | Emmet                                                                      |
+" ------------------------------------------------------------------------------
+
+" Custom Emmet snippets
+" http://docs.emmet.io/customization/snippets/
+let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
+
 
 " ##############################################################################
 " # LOCAL SETTINGS                                                             #
