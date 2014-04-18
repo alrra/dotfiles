@@ -15,7 +15,6 @@ declare -a FILES_TO_SYMLINK=(
     "shell/bash_profile"
     "shell/bash_logout"
     "shell/bashrc"
-    "shell/hushlogin"
     "shell/inputrc"
 
     "git/gitattributes"

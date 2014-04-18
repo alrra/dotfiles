@@ -70,3 +70,7 @@ load_dotfiles() {
 load_dotfiles
 unset load_dotfiles
 unset check_linux_release
+
+# Clear system messages (e.g.: system copyright notice, the
+# date and time of the last login, the message of the day, etc.)
+clear
