@@ -6,7 +6,7 @@ check_linux_release() {
 
 load_dotfiles() {
 
-    local distro="" i="" tmp="" os=""
+    local distro="" i="" os="" tmp=""
     local osname="$(uname -s)"
 
     declare -a files=(
@@ -15,8 +15,8 @@ load_dotfiles() {
         "bash_functions"
         "bash_options"
         "bash_prompt"
-        "bash.local"    # for local settings that are not under
-                        # version control (e.g. git credentials)
+        "bash.local"    # for local settings that should
+                        # not be under version control
     )
 
     # Some things are OS specific, deal with it
@@ -39,23 +39,33 @@ load_dotfiles() {
         [ -r "$tmp" ] && source "$tmp"
     done
 
+    # Enable programmable completion features
+    if [ "$os" == "osx" ]; then
+        if [ -f $(brew --prefix)/etc/bash_completion ]; then
+
+            . $(brew --prefix)/etc/bash_completion
+
+            # Make bash complete the `g` alias, just like it does `git`
+            complete -o default -o nospace -F _git g
+        fi
+    else
+        if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+            . /etc/bash_completion
+        fi
+    fi
+
+    if [[ $COLORTERM == gnome-* && $TERM == xterm ]] \
+       && infocmp gnome-256color >/dev/null 2>&1; then
+        export TERM=gnome-256color
+    elif infocmp xterm-256color >/dev/null 2>&1; then
+        export TERM=xterm-256color
+    fi
+
 }
 
 # ##############################################################################
 # # MAIN                                                                       #
 # ##############################################################################
-
-# Enable programmable completion features
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-if [[ $COLORTERM == gnome-* && $TERM == xterm ]] \
-   && infocmp gnome-256color >/dev/null 2>&1; then
-    export TERM=gnome-256color
-elif infocmp xterm-256color >/dev/null 2>&1; then
-    export TERM=xterm-256color
-fi
 
 load_dotfiles
 unset load_dotfiles

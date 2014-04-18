@@ -3,6 +3,7 @@
 # Homebrew Formulae
 # https://github.com/Homebrew/homebrew
 declare -a HOMEBREW_FORMULAE=(
+    "bash-completion"
     "git"
     "imagemagick --with-webp"
     "phinze/cask/brew-cask"
