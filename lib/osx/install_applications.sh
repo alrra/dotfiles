@@ -21,7 +21,6 @@ declare -a HOMEBREW_CASKS=(
     "firefox"
     "gimp-lisanet"
     "google-chrome"
-    "imagealpha"
     "imageoptim"
     "licecap"
     "libreoffice"
