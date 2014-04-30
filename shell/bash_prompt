@@ -121,9 +121,10 @@ prompt_git() {
 
         fi
 
-        branchName="$( git rev-parse --abbrev-ref HEAD 2> /dev/null \
-                       || git rev-parse --short HEAD 2> /dev/null \
-                       || printf "(unknown)" )"
+        branchName="$( printf "$( git rev-parse --abbrev-ref HEAD 2> /dev/null \
+                                    || git rev-parse --short HEAD 2> /dev/null \
+                                    || printf ' (unknown)' )" | \
+                       tr -d '\n' )"
 
         [ -n "$s" ] && s=" [$s]"
 
