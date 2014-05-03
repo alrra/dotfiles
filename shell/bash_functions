@@ -138,7 +138,7 @@ server() {
             o "http://localhost:${port}/"
             break;
         fi
-        i=$(( i + 1))
+        i=$(( i + 1 ))
         sleep 1
     done &
 
