@@ -6,13 +6,13 @@ declare -a HOMEBREW_FORMULAE=(
     "bash-completion"
     "git"
     "imagemagick --with-webp"
-    "phinze/cask/brew-cask"
+    "caskroom/cask/brew-cask"
     "vim --override-system-vi"
     "zopfli"
 )
 
 # Homebrew Casks
-# https://github.com/phinze/homebrew-cask
+# https://github.com/caskroom/homebrew-cask
 declare -a HOMEBREW_CASKS=(
     "android-file-transfer"
     "chromium"
