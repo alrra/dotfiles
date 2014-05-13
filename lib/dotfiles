@@ -314,19 +314,25 @@ install_apps() {
     ask_for_confirmation_if_needed "Do you want to install the applications/command line tools?"
 
     if [ $? -eq 0 ]; then
+
         [ $force -eq 1 ] && printf "\n"
         install_applications
+
+        printf "\n"
+        install_node_packages
+
     fi
 }
 
 install_node_packages() {
-    ask_for_confirmation_if_needed "Do you want to install the node packages?"
-    if [ $? -eq 0 ]; then
-        [ $force -eq 1 ] && printf "\n"
-        for i in ${NODE_PACKAGES[@]}; do
-            execute "npm install -g $i" "$i"
-        done
-    fi
+
+    # Make sure the most recent version of npm is installed
+    sudo npm install -q -g npm &> /dev/null
+    print_result $? "npm [update]"
+
+    for i in ${NODE_PACKAGES[@]}; do
+        execute "npm install -g $i" "$i"
+    done
 }
 
 is_git_repository() {
@@ -471,8 +477,6 @@ main() {
 
     print_info "Install applications"
     install_apps
-    printf "\n"
-    install_node_packages
 
     print_info "Set preferences"
     set_custom_preferences
