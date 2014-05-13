@@ -194,12 +194,12 @@ httpd.serve_forever()
 
 # Search History
 qh() {
-    #                                 ┌─ enable colors for pipe
-    #                                 │  ("--color=auto" enables colors only if
-    #                                 │  the output is in the terminal)
-    cat ~/.bash_history | grep --color=always "$*" | less -RX
-    # display the ANSI color escape sequences in raw form ─┘│
-    #           don't clear the screen after quitting less ─┘
+    #           ┌─ enable colors for pipe
+    #           │  ("--color=auto" enables colors only if
+    #           │  the output is in the terminal)
+    grep --color=always "$*" "$HISTFILE" |       less -RX
+    # display ANSI color escape sequences in raw form ─┘│
+    #       don't clear the screen after quitting less ─┘
 }
 
 # Search for text within the current directory
