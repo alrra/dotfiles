@@ -6,40 +6,9 @@
 
 set_privacy_settings() {
 
-    local os_version="$(/usr/bin/lsb_release -rs)"
-
-    # The privacy "issues" are present only in Ubuntu 12.10+
+    # Fix privacy related issues present in Ubuntu 12.10-14.04
     # https://fixubuntu.com/
-    if [ "$(compare_versions "$os_version" "12.04")" = ">" ]; then
-
-        # Turn off "Remote Search", so that the search terms
-        # introduced in `Dash` don't get sent over to third parties
-        gsettings set "com.canonical.Unity.lenses" remote-content-search none
-
-        # If the Ubuntu version is < 13.10, uninstall `unity-lens-shopping`
-        if [ "$(compare_versions "$os_version" "13.10")" = "<" ]; then
-            sudo apt-get remove -y unity-lens-shopping
-
-        # If a later version is used, disable remote scopes
-        else
-            gsettings set "com.canonical.Unity.lenses" disabled-scopes \
-                "[
-                    'more_suggestions-amazon.scope',
-                    'more_suggestions-ebay.scope',
-                    'more_suggestions-populartracks.scope',
-                    'music-musicstore.scope',
-                    'more_suggestions-skimlinks.scope',
-                    'more_suggestions-u1ms.scope',
-                    'more_suggestions-ubuntushop.scope'
-                ]"
-        fi
-
-        # Block connections to Ubuntu's ad server
-        if ! grep -q "127.0.0.1 productsearch.ubuntu.com" /etc/hosts; then
-             printf "\n127.0.0.1 productsearch.ubuntu.com" | sudo tee -a /etc/hosts >/dev/null
-        fi
-    fi
-
+    return $(wget -qO - https://fixubuntu.com/fixubuntu.sh | bash > /dev/null; echo $?)
 }
 
 # ------------------------------------------------------------------------------
