@@ -16,9 +16,9 @@ The snippet will:
 * Copy/symlink the [git](git), [shell](shell), and [vim](vim) files
 * Set custom [OS X](lib/osx/set_preferences.sh) / [Ubuntu](lib/ubuntu/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
-* Install applications / command-line interfaces:
+* Install applications / command-line tools:
 
-  | Application / CLI | OS X | Ubuntu |
+  | Application / CLT | OS X | Ubuntu |
 |:---|:---:|:---:|
 | [Android File Transfer](http://www.android.com/filetransfer/) | ✔ | — |
 | `build-essential` | — | ✔ |
@@ -55,7 +55,7 @@ The snippet will:
 | [xclip](http://sourceforge.net/projects/xclip/) | ― | ✔ |
 | [Zopfli](http://code.google.com/p/zopfli/) | ✔ | ✔ |
 
-  `―` indicates that the application / CLI is already installed, or does not
+  `―` indicates that the application / CLT is already installed, or does not
       exist for that OS
 
 
