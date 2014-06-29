@@ -7,6 +7,7 @@ declare -a HOMEBREW_FORMULAE=(
     "git"
     "imagemagick --with-webp"
     "caskroom/cask/brew-cask"
+    "node"
     "vim --override-system-vi"
     "zopfli"
 )
@@ -60,32 +61,6 @@ install_applications() {
 
     print_success "XCode Command Line Tools"
     printf "\n"
-
-    # Install Node.js (and npm)
-    if [ $(cmd_exists "node") -eq 1 ]; then
-
-        # Get the name of the `.pkg` file containing the latest Node.js version
-        tmp="$(curl -sSL http://nodejs.org/dist/latest | sed -n 's/.*href="\(.*pkg\)".*/\1/p')"
-
-        # Download `.pkg` file
-        $(curl -sSL "http://nodejs.org/dist/latest/$tmp" -o /tmp/$tmp)
-
-        if [ $? -eq 0 ]; then
-            print_success "Download '$tmp'"
-
-            # Open the `.pkg` file
-            open "/tmp/$tmp"
-
-            # Wait for Node.js to be installed
-            while [ $(cmd_exists "node") -eq 1 ]; do
-                sleep 5;
-            done
-
-            print_success "Node.js and npm"
-        else
-            print_error "Download '$tmp'"
-        fi
-    fi
 
     # Homebrew
     if [ $(cmd_exists "brew") -eq 1 ]; then
