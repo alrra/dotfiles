@@ -32,7 +32,7 @@ declare -a NEW_DIRECTORIES=(
     "$HOME/server"
 )
 
-declare -a NODE_PACKAGES=(
+declare -a NPM_PACKAGES=(
     "jshint"
 )
 
@@ -319,18 +319,18 @@ install_apps() {
         install_applications
 
         printf "\n"
-        install_node_packages
+        install_npm_packages
 
     fi
 }
 
-install_node_packages() {
+install_npm_packages() {
 
     # Make sure the most recent version of npm is installed
-    sudo npm install -q -g npm &> /dev/null
+    npm install -q -g npm &> /dev/null
     print_result $? "npm [update]"
 
-    for i in ${NODE_PACKAGES[@]}; do
+    for i in ${NPM_PACKAGES[@]}; do
         execute "npm install -g $i" "$i"
     done
 }
