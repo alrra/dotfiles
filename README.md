@@ -21,6 +21,7 @@ The snippet will:
   | Application / CLT | OS X | Ubuntu |
 |:---|:---:|:---:|
 | [Android File Transfer](http://www.android.com/filetransfer/) | ✔ | — |
+| [Atom](https://atom.io/) | ✔ | ✔ |
 | `build-essential` | — | ✔ |
 | [Chrome](https://www.google.com/chrome) | ✔ | ✖ |
 | [Chrome Canary](https://www.google.com/intl/en/chrome/browser/canary.html) | ✔ | — |
