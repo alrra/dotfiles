@@ -13,6 +13,7 @@ declare -a APT_PACKAGES=(
     #"ubuntu-restricted-extras"
 
     # Other
+    "atom"
     "chromium-browser"
     "curl"
     "nautilus-dropbox"
@@ -83,6 +84,10 @@ install_applications() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Add software sources
+
+    # Atom
+    [ $(cmd_exists "atom") -eq 1 ] \
+        && add_ppa "webupd8team/atom"
 
     # Firefox Nightly
     [ $(cmd_exists "firefox-trunk") -eq 1 ] \
