@@ -16,6 +16,7 @@ declare -a HOMEBREW_FORMULAE=(
 # https://github.com/caskroom/homebrew-cask
 declare -a HOMEBREW_CASKS=(
     "android-file-transfer"
+    "atom"
     "chromium"
     "dropbox"
     "flash"
