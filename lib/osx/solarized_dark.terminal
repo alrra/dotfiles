@@ -14,7 +14,7 @@
 	AQAAAAAAAAAZAAAAAAAAAAAAAAAAAAAA3w==
 	</data>
 	<key>BlinkText</key>
-	<false/>
+	<true/>
 	<key>CursorColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
@@ -28,15 +28,17 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGGBlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
 	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU2l6ZVhOU2ZGbGFnc1ZOU05hbWVWJGNs
-	YXNzI0AqAAAAAAAAEBCAAoADXU1lbmxvLVJlZ3VsYXLSExQVFlokY2xhc3NuYW1lWCRj
+	YXNzI0AuAAAAAAAAEBCAAoADXU1lbmxvLVJlZ3VsYXLSExQVFlokY2xhc3NuYW1lWCRj
 	bGFzc2VzVk5TRm9udKIVF1hOU09iamVjdF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290
 	gAEIERojLTI3PEJLUltiaXJ0dniGi5afpqmyxMfMAAAAAAAAAQEAAAAAAAAAHAAAAAAA
 	AAAAAAAAAAAAAM4=
 	</data>
 	<key>FontAntialias</key>
 	<true/>
+	<key>FontHeightSpacing</key>
+	<integer>1</integer>
 	<key>FontWidthSpacing</key>
-	<real>1.004032258064516</real>
+	<integer>1</integer>
 	<key>ProfileCurrentVersion</key>
 	<real>2.02</real>
 	<key>SelectionColor</key>
@@ -148,7 +150,7 @@
 	ZmZmg/4CRz+DBTzdPYMgzt4+AYY=
 	</data>
 	<key>name</key>
-	<string>Solarized Dark 2</string>
+	<string>solarized_dark</string>
 	<key>redColour</key>
 	<data>
 	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
