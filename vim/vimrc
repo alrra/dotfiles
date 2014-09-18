@@ -28,6 +28,9 @@ set backspace+=start              " ┘
 
 set backupdir=~/.vim/backups      " Set directory for backup files
 
+set backupskip=/tmp/*             " ┐ Don't create backups when editing
+set backupskip+=/private/tmp/*    " ┘ files in certain directories
+
 set clipboard=unnamed             " ┐
                                   " │ Use the system clipboard
 if has("unnamedplus")             " │ as the default register
