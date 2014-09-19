@@ -1,6 +1,18 @@
 #!/bin/bash
 
 # ------------------------------------------------------------------------------
+# | Chrome & Chrome Canary                                                     |
+# ------------------------------------------------------------------------------
+
+set_chrome_and_chrome_canary_preferences() {
+
+    # Disable the all too sensitive backswipe
+    defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+    defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
+
+}
+
+# ------------------------------------------------------------------------------
 # | Dashboard                                                                  |
 # ------------------------------------------------------------------------------
 
@@ -410,6 +422,7 @@ set_ui_and_ux_preferences() {
 
 set_preferences() {
 
+    execute "set_chrome_and_chrome_canary_preferences" "Chrome & Chrome Canary"
     execute "set_dashboard_preferences" "Dashboard"
     execute "set_dock_preferences" "Dock"
     execute "set_finder_preferences" "Finder"
