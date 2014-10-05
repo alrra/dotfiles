@@ -66,7 +66,7 @@ install_applications() {
 
     # Homebrew
     if [ $(cmd_exists "brew") -eq 1 ]; then
-        printf '\n' | ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+        printf '\n' | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         #  └─ simulate ENTER keypress
         print_result $? "brew"
     fi
