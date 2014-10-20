@@ -41,9 +41,6 @@ set_dock_preferences() {
     # Don’t group windows by application in Mission Control
     defaults write com.apple.dock expose-group-by-app -bool false
 
-    # Make Dock more transparent
-    defaults write com.apple.dock hide-mirror -bool true
-
     # Change minimize/maximize window effect
     defaults write com.apple.dock mineffect -string "scale"
 
@@ -365,9 +362,6 @@ set_ui_and_ux_preferences() {
     defaults write com.apple.screensaver askForPassword -int 1
     defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-    # Disable menu bar transparency
-    defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
-
     # Enable subpixel font rendering on non-Apple LCDs
     defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
@@ -384,7 +378,7 @@ set_ui_and_ux_preferences() {
     defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
     # Disable resume system-wide
-    defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+    defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 
     # Expand print panel by default
     defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
