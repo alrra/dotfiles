@@ -50,7 +50,9 @@ if [ "$os" == "linux" ] && \
     alias aptu="sudo apt-get update && \
                 sudo apt-get upgrade"
 
-    alias update="aptu"
+    alias update="aptu; \
+                  npmi -g npm; \
+                  npmu -g"
 
 elif [ "$os" == "osx" ]; then
 
@@ -65,8 +67,10 @@ elif [ "$os" == "osx" ]; then
                      brew cleanup"
     fi
 
-    alias update="sudo softwareupdate --install --all && \
-                  brewu"
+    alias update="sudo softwareupdate --install --all; \
+                  brewu; \
+                  npmi -g npm; \
+                  npmu -g"
 
 fi
 
