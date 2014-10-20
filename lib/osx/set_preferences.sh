@@ -244,6 +244,9 @@ set_safari_preferences() {
     # Hide bookmarks bar by default
     defaults write com.apple.Safari ShowFavoritesBar -bool false
 
+    # Show the full URL in the address bar (note: this will still hide the scheme)
+    defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+
     # Don’t send search queries to Apple
     defaults write com.apple.Safari UniversalSearchEnabled -bool false
 
