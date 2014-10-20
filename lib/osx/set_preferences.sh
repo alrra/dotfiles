@@ -244,6 +244,9 @@ set_safari_preferences() {
     # Hide bookmarks bar by default
     defaults write com.apple.Safari ShowFavoritesBar -bool false
 
+    # Don’t send search queries to Apple
+    defaults write com.apple.Safari UniversalSearchEnabled -bool false
+
     # Add a context menu item for showing the `Web Inspector` in web views
     defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
