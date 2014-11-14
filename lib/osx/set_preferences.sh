@@ -248,6 +248,7 @@ set_safari_preferences() {
     defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
     # Don’t send search queries to Apple
+    defaults write com.apple.Safari SuppressSearchSuggestions -bool true
     defaults write com.apple.Safari UniversalSearchEnabled -bool false
 
     # Add a context menu item for showing the `Web Inspector` in web views
