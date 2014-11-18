@@ -1,23 +1,23 @@
-" ##############################################################################
-" # GENERAL SETTINGS                                                           #
-" ##############################################################################
+" ######################################################################
+" # GENERAL SETTINGS                                                   #
+" ######################################################################
 
 " MacVim only
 if has('gui_macvim')
 
-    colorscheme solarized         " Use custom color scheme
+    colorscheme solarized     " Use custom color scheme
 
-    set guicursor=n:blinkon0      " Turn off the blinking cursor in normal mode
-    set guifont=Menlo:h15         " Use custom font settings
+    set guicursor=n:blinkon0  " Turn off blinking cursor in normal mode
+    set guifont=Menlo:h15     " Use custom font settings
 
-    set visualbell                " ┐ Disable beeping and window flashing
-    set t_vb=                     " ┘ http://vim.wikia.com/wiki/Disable_beeping
+    set visualbell            " ┐ Disable beeping and window flashing
+    set t_vb=                 " ┘ http://vim.wikia.com/wiki/Disable_beeping
 
 endif
 
-" ##############################################################################
-" # LOCAL SETTINGS                                                             #
-" ##############################################################################
+" ######################################################################
+" # LOCAL SETTINGS                                                     #
+" ######################################################################
 
 " Load local settings if they exist
 if filereadable(glob("~/.gvimrc.local"))

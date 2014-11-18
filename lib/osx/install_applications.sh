@@ -44,7 +44,7 @@ declare -a HOMEBREW_ALTERNATE_CASKS=(
     "webkit-nightly"
 )
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 install_applications() {
 
