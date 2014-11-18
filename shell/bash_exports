@@ -6,30 +6,30 @@ export EDITOR="vim"
 # Ignore commands that start with spaces and duplicates
 export HISTCONTROL=ignoreboth
 
-# Increase the maximum number of lines contained in the history file
-# (default value is 500)
-export HISTFILESIZE=5000
+# Increase the maximum number of lines contained in the
+# history file (default value is 500)
+export HISTFILESIZE=10000
 
 # Don't add certain commands to the history file
 export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:qh:ll:ls -l:pwd:* --help"
 
-# Increase the maximum number of commands to remember in the command history
-# (default value is 500)
-export HISTSIZE=5000
+# Increase the maximum number of commands recorded in the
+# command history (default value is 500)
+export HISTSIZE=10000
 
 # Prefer US English and use UTF-8 encoding
 export LANG="en_US"
 export LC_ALL="en_US.UTF-8"
 
-# Don't clear the screen after quitting a man page
-export MANPAGER="less -X"
-
-# Use custom less colors for man pages
-# (http://www.gnu.org/software/termutils/manual/termutils-2.0/html_chapter/tput_1.html)
+# Use custom `less` colors for man pages
+# http://www.gnu.org/software/termutils/manual/termutils-2.0/html_chapter/tput_1.html
 export LESS_TERMCAP_md=$'\E[1;32m'   # begin bold mode
 export LESS_TERMCAP_me=$'\E[0m'      # end bold mode
 #export LESS_TERMCAP_us=$'\E[4;32m'   # begin underscore mode
 #export LESS_TERMCAP_ue=$'\E[0m'      # end underscore mode
+
+# Don't clear the screen after quitting a man page
+export MANPAGER="less -X"
 
 # Make new shells get the history lines from all previous
 # shells instead of the default "last window closed" history

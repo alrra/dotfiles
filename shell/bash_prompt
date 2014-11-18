@@ -1,22 +1,56 @@
 #!/bin/bash
 
-# ##############################################################################
-# # LS COLORS                                                                  #
-# ##############################################################################
+# ######################################################################
+# # LS COLORS                                                          #
+# ######################################################################
 
 set_ls_colors() {
 
     # There are several different implementations of color for ls:
 
-    # --------------------------------------------------------------------------
-    # | GNU                                                                    |
-    # --------------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # | FreeBSD / Mac OS X                                             |
+    # ------------------------------------------------------------------
 
-    #  - ls displays colors if the `--color` option is passed
-    #  - the actual colors are configured through the LS_COLORS environment
-    #    variable (built-in defaults are used if this variable is not set)
+    #  - `ls` displays colors if the `-G` option is passed or if
+    #    the `CLICOLOR` environment variable is set
+    #
+    #  - the actual colors are configured through the `LSCOLORS`
+    #    environment variable (built-in defaults are used if this
+    #    variable is not set)
 
-    if [[ "$os" == "linux" && "$distro" == "ubuntu" ]]; then
+    if [ "$os" == "osx" ]; then
+
+        # Enable color support
+        alias ls="ls -G" # or CLICOLOR=1
+
+        LSCOLORS=""
+
+        LSCOLORS+="gx" # directory
+        LSCOLORS+="fx" # symbolic link
+        LSCOLORS+="cx" # socket
+        LSCOLORS+="dx" # pipe
+        LSCOLORS+="cx" # executable
+        LSCOLORS+="eg" # block special
+        LSCOLORS+="ed" # character special
+        LSCOLORS+="ab" # executable with setuid bit set
+        LSCOLORS+="ag" # executable with setgid bit set
+        LSCOLORS+="cc" # directory writable to others, with sticky bit
+        LSCOLORS+="bd" # directory writable to others, without sticky bit
+
+        export LSCOLORS
+
+    # ------------------------------------------------------------------
+    # | GNU                                                            |
+    # ------------------------------------------------------------------
+
+    #  - `ls` displays colors if the `--color` option is passed
+    #
+    #  - the actual colors are configured through the `LS_COLORS`
+    #    environment variable (built-in defaults are used if this
+    #    variable is not set)
+
+    elif [ "$os" == "linux" ] && [ "$distro" == "ubuntu" ]; then
 
         # Enable color support
         if [ -x /usr/bin/dircolors ]; then
@@ -47,46 +81,18 @@ set_ls_colors() {
 
         export LS_COLORS
 
-    # --------------------------------------------------------------------------
-    # | FreeBSD / Mac OS X                                                     |
-    # --------------------------------------------------------------------------
-
-    #  - ls displays colors if the `-G` option is passed or if the CLICOLOR
-    #    environment variable is set
-    #  - the actual colors are configured through the LSCOLORS environment
-    #    variable (built-in defaults are used if this variable is not set)
-
-    elif [ "$os" == "osx" ]; then
-
-        # Enable color support
-        alias ls="ls -G" # or CLICOLOR=1
-
-        LSCOLORS=""
-
-        LSCOLORS+="gx"  # directory
-        LSCOLORS+="fx"  # symbolic link
-        LSCOLORS+="cx"  # socket
-        LSCOLORS+="dx"  # pipe
-        LSCOLORS+="cx"  # executable
-        LSCOLORS+="eg"  # block special
-        LSCOLORS+="ed"  # character special
-        LSCOLORS+="ab"  # executable with setuid bit set
-        LSCOLORS+="ag"  # executable with setgid bit set
-        LSCOLORS+="cc"  # directory writable to others, with sticky bit
-        LSCOLORS+="bd"  # directory writable to others, without sticky bit
-
-        export LSCOLORS
-
     fi
 }
 
-# ##############################################################################
-# # PROMPTS                                                                    #
-# ##############################################################################
+# ######################################################################
+# # PROMPTS                                                            #
+# ######################################################################
 
-# Note: Don't break this function into smaller, more specialized ones, as you
-# will only pollute the global space even more (the functions cannot be unset
-# due to the fact that they are called every time the prompt string is shown)
+# Note: Don't break this function into smaller, more specialized ones
+# as you will only pollute the global space even more (the functions
+# cannot be unset due to the fact that they are called every time the
+# prompt string is shown)
+
 prompt_git() {
 
     local s="" branchName=""
@@ -94,9 +100,9 @@ prompt_git() {
     # Check if the current directory is in a git repository
     if [ $(git rev-parse --is-inside-work-tree &>/dev/null; printf "%s" $?) == 0 ]; then
 
-        # Check if the current directory is in .git
-        # ( some of the following checks don't make
-        #   sense / don't work in the .git directory )
+        # Check if the current directory is in `.git/`
+        # (some of the following checks don't make
+        #  sense / won't work in the `.git` directory)
         if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == "false" ]; then
 
             # Check for uncommitted changes in the index
@@ -132,7 +138,6 @@ prompt_git() {
 
     else
         return
-
     fi
 
 }
@@ -144,7 +149,7 @@ set_prompts() {
 
     local dateCmd=""
 
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 &> /dev/null; then
 
         tput sgr0 # Reset colors
 
@@ -180,43 +185,45 @@ set_prompts() {
 
     fi
 
-    # --------------------------------------------------------------------------
-    # | Prompt string                                                          |
-    # --------------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # | Prompt string                                                  |
+    # ------------------------------------------------------------------
 
-    PS1="\[\033]0;\w\007\]"                     # terminal title (set to the
-                                                # current working directory)
+    PS1="\[\033]0;\w\007\]"                   # terminal title (set
+                                              # to the current working
+                                              # directory)
     PS1+="\[$bold\]"
-    PS1+="\[$orange\]\u"                        # username
+    PS1+="\[$orange\]\u"                      # username
     PS1+="\[$white\]@"
-    PS1+="\[$yellow\]\h"                        # host
+    PS1+="\[$yellow\]\h"                      # host
     PS1+="\[$white\]: "
-    PS1+="\[$green\]\w"                         # working directory
-    PS1+="\$(prompt_git \"$white on $cyan\")"   # git repository details
+    PS1+="\[$green\]\w"                       # working directory
+    PS1+="\$(prompt_git \"$white on $cyan\")" # git repository details
     PS1+="\n"
     PS1+="\[$reset$white\]\$ \[$reset\]"
 
     export PS1
 
-    # --------------------------------------------------------------------------
-    # | Subshell prompt string                                                 |
-    # --------------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # | Subshell prompt string                                         |
+    # ------------------------------------------------------------------
 
     PS2="⚡ "
 
     export PS2
 
-    # --------------------------------------------------------------------------
-    # | Debug prompt string                                                    |
-    # --------------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # | Debug prompt string                                            |
+    # ------------------------------------------------------------------
 
     # e.g:
     #
-    # The GNU `date` command has the `%N` interpreted sequence while other
-    # implementations don't (on MAC OS X `gdate` can be used instead of the
-    # native `date` if the `coreutils` package was installed)
+    # The GNU `date` command has the `%N` interpreted sequence while
+    # other implementations don't (on OS X `gdate` can be used instead
+    # of the native `date` if the `coreutils` package was installed)
     #
-    # if [ "$(date +%N)" != "N" ] || [ ! -x "$(command -v 'gdate')" ]; then
+    # if [ "$(date +%N)" != "N" ] || \
+    #    [ ! -x "$(command -v 'gdate')" ]; then
     #    dateCmd="date +%s.%N"
     # else
     #    dateCmd="gdate +%s.%N"
@@ -242,9 +249,7 @@ set_prompts() {
 
 }
 
-# ##############################################################################
-# # MAIN                                                                       #
-# ##############################################################################
+# ######################################################################
 
 set_ls_colors
 unset set_ls_colors
