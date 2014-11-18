@@ -6,15 +6,15 @@ To setup the dotfiles, run the following snippet in the terminal.
 
 | OS | Snippet |
 |:---:|:---|
-| OS X | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/lib/dotfiles)"` |
-| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/lib/dotfiles)"` |
+| OS X | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/dotfiles)"` |
+| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/dotfiles)"` |
 
 The snippet will:
 
 * Download the dotfiles on your computer (by default it will suggest `~/projects/dotfiles`)
 * Create additional [directories](https://github.com/alrra/dotfiles/blob/29bdcbc72260321013d89654283000666052be83/lib/dotfiles.sh#L29-L34)
 * Copy/symlink the [git](git), [shell](shell), and [vim](vim) files
-* Set custom [OS X](lib/osx/set_preferences.sh) / [Ubuntu](lib/ubuntu/set_preferences.sh) preferences
+* Set custom [OS X](os/osx/set_preferences.sh) / [Ubuntu](os/ubuntu/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
 * Install applications / command-line tools:
 
@@ -62,7 +62,7 @@ The snippet will:
 
 ## Update
 
-To update the dotfiles, run the [`dotfiles`](lib/dotfiles) script.
+To update the dotfiles, run the [`dotfiles`](dotfiles.sh) script.
 
 ```bash
 $ ./dotfiles

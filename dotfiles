@@ -306,9 +306,9 @@ git_update_content() {
 
 install_apps() {
     if [ "$os" == "osx" ]; then
-        source "$dotfiles_directory/lib/osx/install_applications.sh"
+        source "$dotfiles_directory/os/osx/install_applications.sh"
     elif [ "$os" == "ubuntu" ]; then
-        source "$dotfiles_directory/lib/ubuntu/install_applications.sh"
+        source "$dotfiles_directory/os/ubuntu/install_applications.sh"
     fi
 
     ask_for_confirmation_if_needed "Do you want to install the applications/command line tools?"
@@ -417,9 +417,9 @@ print_question() {
 
 set_custom_preferences() {
     if [ "$os" == "osx" ]; then
-        source "$dotfiles_directory/lib/osx/set_preferences.sh"
+        source "$dotfiles_directory/os/osx/set_preferences.sh"
     elif [ "$os" == "ubuntu" ]; then
-        source "$dotfiles_directory/lib/ubuntu/set_preferences.sh"
+        source "$dotfiles_directory/os/ubuntu/set_preferences.sh"
     fi
 
     ask_for_confirmation_if_needed "Do you want to set the custom preferences?"
@@ -455,7 +455,7 @@ main() {
     if [ $(cmd_exists "git") -eq 0 ] && \
        [ "$(git config --get remote.origin.url)" == "$DOTFILES_GIT_REMOTE" ]; then
         process="update"
-        dotfiles_directory="$(cd .. && pwd)"
+        dotfiles_directory="$(pwd)"
 
         print_info "Update content"
         git_update_content
