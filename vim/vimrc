@@ -5,7 +5,7 @@
 " Use the Pathogen plugin to install plugins and
 " runtime files in their own private directories
 runtime plugins/pathogen/autoload/pathogen.vim
-call pathogen#infect("plugins")
+call pathogen#infect('plugins/{}')
 call pathogen#helptags()
 
 syntax on                      " Enable syntax highlighting
