@@ -306,7 +306,7 @@ git_update_content() {
 
 install_apps() {
     if [ "$os" == "osx" ]; then
-        source "$dotfiles_directory/os/osx/install_applications.sh"
+        source "$dotfiles_directory/os/os_x/install_applications.sh"
     elif [ "$os" == "ubuntu" ]; then
         source "$dotfiles_directory/os/ubuntu/install_applications.sh"
     fi
@@ -417,7 +417,7 @@ print_question() {
 
 set_custom_preferences() {
     if [ "$os" == "osx" ]; then
-        source "$dotfiles_directory/os/osx/set_preferences.sh"
+        source "$dotfiles_directory/os/os_x/set_preferences.sh"
     elif [ "$os" == "ubuntu" ]; then
         source "$dotfiles_directory/os/ubuntu/set_preferences.sh"
     fi
