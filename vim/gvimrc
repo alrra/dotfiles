@@ -8,7 +8,7 @@ if has('gui_macvim')
     colorscheme solarized         " Use custom color scheme
 
     set guicursor=n:blinkon0      " Turn off the blinking cursor in normal mode
-    set guifont=Menlo:h13         " Use custom font settings
+    set guifont=Menlo:h15         " Use custom font settings
 
     set visualbell                " ┐ Disable beeping and window flashing
     set t_vb=                     " ┘ http://vim.wikia.com/wiki/Disable_beeping
