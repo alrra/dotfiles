@@ -11,7 +11,7 @@ if has('gui_macvim')
     set guifont=Menlo:h15     " Use custom font settings
 
     set visualbell            " ┐ Disable beeping and window flashing
-    set t_vb=                 " ┘ http://vim.wikia.com/wiki/Disable_beeping
+    set t_vb=                 " ┘ https://vim.wikia.com/wiki/Disable_beeping
 
 endif
 
