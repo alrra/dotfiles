@@ -297,7 +297,7 @@ endfunction
 nnoremap <leader>ss :call StripWhitespaces()<CR>
 
 " [,ts] Toggle Syntastic
-nmap <leader>rs :SyntasticToggleMode<CR>
+nmap <leader>ts :SyntasticToggleMode<CR>
 
 " [,v ] Make the opening of the `.vimrc` file easier
 nmap <leader>v :vsp $MYVIMRC<CR>
