@@ -1,6 +1,6 @@
-" ##############################################################################
-" # GENERAL SETTINGS                                                           #
-" ##############################################################################
+" ######################################################################
+" # GENERAL SETTINGS                                                   #
+" ######################################################################
 
 " Use the Pathogen plugin to install plugins and
 " runtime files in their own private directories
@@ -8,111 +8,121 @@ runtime plugins/pathogen/autoload/pathogen.vim
 call pathogen#infect("plugins")
 call pathogen#helptags()
 
-syntax on                         " Enable syntax highlighting
+syntax on                      " Enable syntax highlighting
 
 if has("autocmd")
     filetype plugin indent on
-    "           │     │    └─────── Enable file type detection
-    "           │     └──────────── Enable loading of indent file
-    "           └────────────────── Enable loading of plugin files
+    "           │     │    └──── Enable file type detection
+    "           │     └───────── Enable loading of indent file
+    "           └─────────────── Enable loading of plugin files
 endif
 
-set t_Co=256                      " Enable full-color support
-colorscheme xoria256              " Use custom color scheme
-set autoindent                    " Copy indent to the new line
-set background=dark               " Use colors that look good on a dark bg
+set t_Co=256                   " Enable full-color support
+colorscheme xoria256           " Use custom color scheme
+set autoindent                 " Copy indent to the new line
 
-set backspace=indent              " ┐
-set backspace+=eol                " │ Allow `backspace` in insert mode
-set backspace+=start              " ┘
+set background=dark            " Use colors that look good
+                               " on a dark background
 
-set backupdir=~/.vim/backups      " Set directory for backup files
+set backspace=indent           " ┐
+set backspace+=eol             " │ Allow `backspace` in insert mode
+set backspace+=start           " ┘
 
-set backupskip=/tmp/*             " ┐ Don't create backups when editing
-set backupskip+=/private/tmp/*    " ┘ files in certain directories
+set backupdir=~/.vim/backups   " Set directory for backup files
 
-set clipboard=unnamed             " ┐
-                                  " │ Use the system clipboard
-if has("unnamedplus")             " │ as the default register
-    set clipboard+=unnamedplus    " │
-endif                             " ┘
+set backupskip=/tmp/*          " ┐ Don't create backups when editing
+set backupskip+=/private/tmp/* " ┘ files in certain directories
 
-set cpoptions+=$                  " When making a change, don't redisplay the
-                                  " line, and instead, put a `$` sign at the
-                                  " end of the changed text
+set clipboard=unnamed          " ┐
+                               " │ Use the system clipboard
+if has("unnamedplus")          " │ as the default register
+    set clipboard+=unnamedplus " │
+endif                          " ┘
 
-set colorcolumn=81                " Highlight certain columns
-set cursorline                    " Highlight the current line
-set directory=~/.vim/swaps        " Set directory for swap files
-set encoding=utf-8 nobomb         " Use UTF-8 without BOM
-set history=5000                  " Increase command line history
-set hlsearch                      " Enable search highlighting
-set ignorecase                    " Ignore case in search patterns
-set incsearch                     " Highlight search pattern as it's being typed
-set laststatus=2                  " Always show the status line
+set cpoptions+=$               " When making a change, don't redisplay
+                               " the line, and instead, put a `$` sign
+                               " at the end of the changed text
 
-set listchars=tab:▸\              " ┐
-set listchars+=trail:·            " │ Use custom symbols to
-set listchars+=eol:↴              " │ represent invisible characters
-set listchars+=nbsp:_             " ┘
+set colorcolumn=81             " Highlight certain columns
+set cursorline                 " Highlight the current line
+set directory=~/.vim/swaps     " Set directory for swap files
+set encoding=utf-8 nobomb      " Use UTF-8 without BOM
+set history=5000               " Increase command line history
+set hlsearch                   " Enable search highlighting
+set ignorecase                 " Ignore case in search patterns
 
-set magic                         " Enable extended regexp
-set mousehide                     " Hide mouse pointer while typing
-set nocompatible                  " Don't make vim, vi-compatibile
-set noerrorbells                  " Disable error bells
+set incsearch                  " Highlight search pattern as
+                               " it is being typed
 
-set nojoinspaces                  " When using the join command, only insert a
-                                  " single space after a `.`, `?` or `!`
+set laststatus=2               " Always show the status line
 
-set nostartofline                 " Kept the cursor on the same column
-set number                        " Show line number
+set listchars=tab:▸\           " ┐
+set listchars+=trail:·         " │ Use custom symbols to
+set listchars+=eol:↴           " │ represent invisible characters
+set listchars+=nbsp:_          " ┘
 
-set numberwidth=5                 " Increase the minimal number of columns used
-                                  " for the `line number`
+set magic                      " Enable extended regexp
+set mousehide                  " Hide mouse pointer while typing
+set nocompatible               " Don't make vim, vi-compatibile
+set noerrorbells               " Disable error bells
 
-set report=0                      " Report the number of lines changed
-set ruler                         " Show cursor position
+set nojoinspaces               " When using the join command, only
+                               " insert a single space after a `.`,
+                               " `?` or `!`
 
-set scrolloff=5                   " When scrolling, keep the cursor 5 lines
-                                  " below the top and 5 lines above the bottom
-                                  " of the screen
+set nostartofline              " Kept the cursor on the same column
+set number                     " Show line number
 
-set shortmess=aAItW               " Avoid all the hit-enter prompts
-set showcmd                       " Show the (partial) command being typed
-set showmode                      " Show current mode
-set spelllang=en_us               " Use `en_us` as the spellchecking language
+set numberwidth=5              " Increase the minimal number of
+                               " columns used for the `line number`
 
-set smartcase                     " Override `ignorecase` option if the search
-                                  " pattern contains uppercase characters
+set report=0                   " Report the number of lines changed
+set ruler                      " Show cursor position
 
-set synmaxcol=2500                " Limit syntax highlighting (this avoids the
-                                  " very slow redrawing when files contain long
-                                  " lines)
+set scrolloff=5                " When scrolling, keep the cursor 5
+                               " lines below the top and 5 lines above
+                               " the bottom of the screen
 
-set tabstop=4                     " ┐
-set softtabstop=4                 " │ Set global <TAB> settings
-set shiftwidth=4                  " │ http://vimcasts.org/e/2
-set expandtab                     " ┘
+set shortmess=aAItW            " Avoid all the hit-enter prompts
+set showcmd                    " Show the (partial) command being typed
+set showmode                   " Show current mode
 
-set ttyfast                       " Enable fast terminal connection
-set undodir=~/.vim/undos          " Set directory for undo files
-set undofile                      " Automatically save undo history
-set virtualedit=all               " Allow cursor to be positioned anywhere
+set spelllang=en_us            " Use `en_us` as the spellchecking
+                               " language
 
-set visualbell                    " ┐
-set noerrorbells                  " │ Disable beeping and window flashing
-set t_vb=                         " ┘ http://vim.wikia.com/wiki/Disable_beeping
+set smartcase                  " Override `ignorecase` option if
+                               " the search pattern contains uppercase
+                               " characters
 
-set wildmenu                      " Enable enhanced command-line completion (by
-                                  " hitting <TAB> in command mode, vim will show
-                                  " the possible matches just above the command
-                                  " line with the first match highlighted)
+set synmaxcol=2500             " Limit syntax highlighting (this
+                               " avoids the very slow redrawing
+                               " when files contain long lines)
 
-set winminheight=0                " Allow windows to be squashed to 0 lines
+set tabstop=4                  " ┐
+set softtabstop=4              " │ Set global <TAB> settings
+set shiftwidth=4               " │ http://vimcasts.org/e/2
+set expandtab                  " ┘
 
-" ------------------------------------------------------------------------------
-" | Automatic Commands                                                         |
-" ------------------------------------------------------------------------------
+set ttyfast                    " Enable fast terminal connection
+set undodir=~/.vim/undos       " Set directory for undo files
+set undofile                   " Automatically save undo history
+set virtualedit=all            " Allow cursor to be positioned anywhere
+
+set visualbell                 " ┐
+set noerrorbells               " │ Disable beeping and window flashing
+set t_vb=                      " ┘ http://vim.wikia.com/wiki/Disable_beeping
+
+set wildmenu                   " Enable enhanced command-line completion
+                               " (by hitting <TAB> in command mode, vim
+                               " will show the possible matches just
+                               " above the command line with the first
+                               " match highlighted)
+
+set winminheight=0             " Allow windows to be squashed to 0 lines
+
+" ----------------------------------------------------------------------
+" | Automatic Commands                                                 |
+" ----------------------------------------------------------------------
 
 if has("autocmd")
 
@@ -138,9 +148,9 @@ if has("autocmd")
 
 endif
 
-" ------------------------------------------------------------------------------
-" | Highlighting                                                               |
-" ------------------------------------------------------------------------------
+" ----------------------------------------------------------------------
+" | Highlighting                                                       |
+" ----------------------------------------------------------------------
 
 " Terminal types:
 "
@@ -169,9 +179,9 @@ set statusline=%1*\ [%n]\ [%f]%m%r%h%w%y[%{&ff}:%{strlen(&fenc)?&fenc:'none'}]%=
 "               │     └─ buffer number
 "               └─ User1 highlight
 
-" ------------------------------------------------------------------------------
-" | Key Mappings                                                               |
-" ------------------------------------------------------------------------------
+" ----------------------------------------------------------------------
+" | Key Mappings                                                       |
+" ----------------------------------------------------------------------
 
 " Use a different mapleader (default is "\")
 let mapleader = ","
@@ -263,22 +273,22 @@ nmap <leader>v :vsp $MYVIMRC<CR>
 noremap <leader>W :w !sudo tee %<CR>
 
 
-" ##############################################################################
-" # PLUGIN RELATED SETTINGS                                                    #
-" ##############################################################################
+" ######################################################################
+" # PLUGIN RELATED SETTINGS                                            #
+" ######################################################################
 
-" ------------------------------------------------------------------------------
-" | Emmet                                                                      |
-" ------------------------------------------------------------------------------
+" ----------------------------------------------------------------------
+" | Emmet                                                              |
+" ----------------------------------------------------------------------
 
 " Custom Emmet snippets
 " http://docs.emmet.io/customization/snippets/
 let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
 
 
-" ##############################################################################
-" # LOCAL SETTINGS                                                             #
-" ##############################################################################
+" ######################################################################
+" # LOCAL SETTINGS                                                     #
+" ######################################################################
 
 " Load local settings if they exist
 if filereadable(glob("~/.vimrc.local"))

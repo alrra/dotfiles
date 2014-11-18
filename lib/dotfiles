@@ -41,9 +41,9 @@ declare force=1    # values: `0` (true) or `1` (false)
 declare os=""
 declare process="" # values: `setup` or `update`
 
-# ##############################################################################
-# # HELPER FUNCTIONS                                                           #
-# ##############################################################################
+# ######################################################################
+# # HELPER FUNCTIONS                                                   #
+# ######################################################################
 
 answer_is_yes() {
     if [[ "$REPLY" =~ ^[Yy]$ ]]; then
@@ -224,7 +224,7 @@ download_and_extract_archive() {
 
     print_result $? "Download archive" "true"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ask_for_confirmation "Do you want to store the dotfiles in '$dotfiles_directory'?"
     if ! answer_is_yes; then
@@ -250,13 +250,13 @@ download_and_extract_archive() {
 
     mkd "$dotfiles_directory"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Extract archive to the `dotfiles` directory
     tar -zxf "$tmpFile" --strip-components 1 -C "$dotfiles_directory"
     print_result $? "Extract archive" "true"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Remove the archive
     rm -rf "$tmpFile"
@@ -430,9 +430,9 @@ set_custom_preferences() {
     fi
 }
 
-# ##############################################################################
-# # MAIN                                                                       #
-# ##############################################################################
+# ######################################################################
+# # MAIN                                                               #
+# ######################################################################
 
 main() {
 
