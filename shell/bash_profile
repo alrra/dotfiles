@@ -33,7 +33,7 @@ load_dotfiles() {
         os="linux"
 
         # Get Linux distribution
-        # (list of release: http://linuxmafia.com/faq/Admin/release-files.html)
+        # (list of release: https://web.archive.org/web/20130929034731/http://linuxmafia.com/faq/Admin/release-files.html)
         distro=$(check_linux_release "lsb-release" "ubuntu") ||
                $(check_linux_release "debian_version" "debian") ||
                $(check_linux_release "debian_release" "debian")

@@ -62,7 +62,7 @@ The snippet will:
 
 ## Update
 
-To update the dotfiles, run the [`dotfiles`](dotfiles.sh) script.
+To update the dotfiles, run the [`dotfiles`](dotfiles) script.
 
 ```bash
 $ ./dotfiles

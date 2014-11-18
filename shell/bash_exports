@@ -22,7 +22,7 @@ export LANG="en_US"
 export LC_ALL="en_US.UTF-8"
 
 # Use custom `less` colors for man pages
-# http://www.gnu.org/software/termutils/manual/termutils-2.0/html_chapter/tput_1.html
+# https://www.gnu.org/software/termutils/manual/termutils-2.0/html_chapter/tput_1.html
 export LESS_TERMCAP_md=$'\E[1;32m'   # begin bold mode
 export LESS_TERMCAP_me=$'\E[0m'      # end bold mode
 #export LESS_TERMCAP_us=$'\E[4;32m'   # begin underscore mode
