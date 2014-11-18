@@ -2,11 +2,38 @@
 " # GENERAL SETTINGS                                                   #
 " ######################################################################
 
-" Use the Pathogen plugin to install plugins and
-" runtime files in their own private directories
-runtime plugins/pathogen/autoload/pathogen.vim
-call pathogen#infect('plugins/{}')
-call pathogen#helptags()
+" Use Vundle to manage the vim plugins
+" https://github.com/gmarik/Vundle.vim
+
+set nocompatible               " Don't make vim vi-compatibile
+filetype off                   " Disable file type detection
+                               " (required by Vundle)
+
+" Set the runtime path to include Vundle
+set rtp+=~/.vim/plugins/Vundle.vim
+
+" Initialize Vundle and specify the path
+" where the plugins should be installed
+call vundle#begin('~/.vim/plugins')
+
+    " Let Vundle manage Vundle (this is important!)
+    Plugin 'gmarik/Vundle.vim'
+
+    Plugin 'altercation/vim-colors-solarized'
+    Plugin 'ap/vim-css-color'
+    Plugin 'editorconfig/editorconfig-vim'
+    Plugin 'mattn/emmet-vim'
+    Plugin 'mattn/webapi-vim'
+    Plugin 'shutnik/jshint2.vim'
+    Plugin 'tomtom/tcomment_vim'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-repeat'
+    Plugin 'tpope/vim-surround'
+    Plugin 'vim-scripts/xoria256.vim'
+
+call vundle#end()
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 syntax on                      " Enable syntax highlighting
 
@@ -63,7 +90,6 @@ set listchars+=nbsp:_          " ┘
 
 set magic                      " Enable extended regexp
 set mousehide                  " Hide mouse pointer while typing
-set nocompatible               " Don't make vim, vi-compatibile
 set noerrorbells               " Disable error bells
 
 set nojoinspaces               " When using the join command, only
