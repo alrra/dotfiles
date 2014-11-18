@@ -14,7 +14,7 @@ The snippet will:
 * Download the dotfiles on your computer (by default it will suggest `~/projects/dotfiles`)
 * Create additional [directories](https://github.com/alrra/dotfiles/blob/29bdcbc72260321013d89654283000666052be83/lib/dotfiles.sh#L29-L34)
 * Copy/symlink the [git](git), [shell](shell), and [vim](vim) files
-* Set custom [OS X](os/osx/set_preferences.sh) / [Ubuntu](os/ubuntu/set_preferences.sh) preferences
+* Set custom [OS X](os/os_x/set_preferences.sh) / [Ubuntu](os/ubuntu/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
 * Install applications / command-line tools:
 
