@@ -323,9 +323,16 @@ let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snip
 " ----------------------------------------------------------------------
 
 " Inform Syntastic which checkers to use based on file types
-" https://github.com/scrooloose/syntastic#faq
+" https://github.com/scrooloose/syntastic#3-faq
 let g:syntastic_html_checkers = [ 'jshint', 'validator' ]
 let g:syntastic_javascript_checkers = [ 'jscs', 'jshint' ]
+
+" Disable syntax checking by default
+let g:syntastic_mode_map = {
+    \ 'active_filetypes': [],
+    \ 'mode': 'passive',
+    \ 'passive_filetypes': []
+\}
 
 
 " ######################################################################
