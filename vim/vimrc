@@ -221,22 +221,22 @@ let mapleader = ","
 let g:user_emmet_leader_key='<C-E>'
 
 " [,* ] Search and replace the word under the cursor
-nnoremap <leader>* :%s/\<<C-r><C-w>\>//<Left>
+nmap <leader>* :%s/\<<C-r><C-w>\>//<Left>
 
 " [,cc] Toggle code comments
 " https://github.com/tomtom/tcomment_vim
-noremap <leader>cc :TComment<CR>
+map <leader>cc :TComment<CR>
 
 " [,cr] Calculate result
 " http://vimcasts.org/e/56
-nnoremap <leader>cr 0yt=A<C-r>=<C-r>"<CR><Esc>
+nmap <leader>cr 0yt=A<C-r>=<C-r>"<CR><Esc>
 
 " [,cs] Clear search
 map <leader>cs <Esc>:noh<CR>
 
 " [,h ] JSHint the code
 " https://github.com/Shutnik/jshint2.vim
-nnoremap <leader>h :JSHint<CR>
+nmap <leader>h :JSHint<CR>
 
 " [,l ] Toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -253,7 +253,7 @@ function! ToggleRelativeLineNumbers()
 
 endfunction
 
-nnoremap <leader>n :call ToggleRelativeLineNumbers()<CR>
+nmap <leader>n :call ToggleRelativeLineNumbers()<CR>
 
 " [,sl] Toggle show limits
 function! ToggleLimits()
@@ -272,7 +272,7 @@ function! ToggleLimits()
 
 endfunction
 
-nnoremap <leader>sl :call ToggleLimits()<CR>
+nmap <leader>sl :call ToggleLimits()<CR>
 
 " [,ss] Strip whitespace
 function! StripWhitespaces()
@@ -294,7 +294,7 @@ function! StripWhitespaces()
 
 endfunction
 
-nnoremap <leader>ss :call StripWhitespaces()<CR>
+nmap <leader>ss :call StripWhitespaces()<CR>
 
 " [,ts] Toggle Syntastic
 nmap <leader>ts :SyntasticToggleMode<CR>
@@ -303,7 +303,7 @@ nmap <leader>ts :SyntasticToggleMode<CR>
 nmap <leader>v :vsp $MYVIMRC<CR>
 
 " [,W ] Sudo write
-noremap <leader>W :w !sudo tee %<CR>
+map <leader>W :w !sudo tee %<CR>
 
 
 " ######################################################################
