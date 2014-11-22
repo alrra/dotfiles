@@ -55,7 +55,7 @@ set_dock_preferences() {
     defaults write com.apple.dock mru-spaces -bool false
 
     # Wipe all app icons from the Dock
-    defaults write com.apple.dock persistent-apps -array ""
+    defaults write com.apple.dock persistent-apps -array
 
     # Show indicator lights for open applications
     defaults write com.apple.dock show-process-indicators -bool true
