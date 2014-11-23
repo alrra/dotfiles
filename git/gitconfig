@@ -9,6 +9,7 @@
     dc = diff --cached
     g  = log --graph --pretty=custom    # Show custom graph
     l  = log --pretty=custom            # Show custom log
+    rlc = !git reset --hard HEAD~1      # Remove last commit
     st = status
     uc = reset --soft HEAD~1            # Undo last commit
 
