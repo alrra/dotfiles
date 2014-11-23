@@ -1,17 +1,16 @@
 [alias]
 
-    # Shorter commands
     a  = commit --amend
     br = branch
     c  = commit
+    ca = !git add -A && git commit      # Commit all changes
+    co = checkout
     d  = diff
     dc = diff --cached
-    ca = !git add -A && git commit          # commit all changes
-    co = checkout
-    g  = log --graph --pretty=custom        # show custom graph
-    l  = log --pretty=custom                # show custom log
+    g  = log --graph --pretty=custom    # Show custom graph
+    l  = log --pretty=custom            # Show custom log
     st = status
-    uc = reset --soft HEAD~1                # undo commit
+    uc = reset --soft HEAD~1            # Undo last commit
 
     # Credit an author on the latest commit
     credit = "!f() { \
