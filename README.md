@@ -47,6 +47,7 @@ The snippet will:
 | [Opera](http://www.opera.com/) | ✔ | ✔ |
 | [Opera Developer](http://www.opera.com/developer) | ✔ | ― |
 | [Opera Next](http://www.opera.com/next) | ✔ | ✔ |
+| [Spectacle](http://spectacleapp.com/) | ✔ | ― |
 | [Transmission](http://www.transmissionbt.com/) | ✔ | ✔ |
 | vim-gnome | ― | ✔ |
 | [Virtualbox](https://www.virtualbox.org/) | ✔ | ✔ |
