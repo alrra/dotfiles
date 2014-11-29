@@ -23,11 +23,11 @@ The snippet will:
 | [Android File Transfer](http://www.android.com/filetransfer/) | ✔ | — |
 | [Atom](https://atom.io/) | ✔ | ✔ |
 | `build-essential` | — | ✔ |
+| [cURL](http://curl.haxx.se/) | ― | ✔ |
 | [Chrome](https://www.google.com/chrome) | ✔ | ✖ |
 | [Chrome Canary](https://www.google.com/intl/en/chrome/browser/canary.html) | ✔ | — |
 | [Chrome Dev](http://www.chromium.org/getting-involved/dev-channel) | ✖ |  ✔ |
 | [Chromium](http://www.chromium.org/) | ✔ | ✔ |
-| [cURL](http://curl.haxx.se/) | ― | ✔ |
 | `debian-archive-keyring` | ― | ✔ |
 | [Dropbox](https://www.dropbox.com/) | ✔ | ✔ |
 | [Firefox](http://www.mozilla.org/firefox/) | ✔ | ✔ |
@@ -40,19 +40,19 @@ The snippet will:
 | [Homebrew Casks](http://caskroom.io/) | ✔ | ― |
 | [ImageMagick](http://www.imagemagick.org/) | ✔ | ✔ |
 | [ImageOptim](http://imageoptim.com/) | ✔ | ― |
-| [Libre Office](https://www.libreoffice.org/) | ✔ | ― |
 | [LICEcap](http://www.cockos.com/licecap/) | ✔ | ― |
+| [Libre Office](https://www.libreoffice.org/) | ✔ | ― |
 | [MacVim](https://code.google.com/p/macvim/) | ✔ | ― |
 | [Node.js](http://nodejs.org/) + [npm](https://www.npmjs.org/) | ✔ | ✔ |
 | [Opera](http://www.opera.com/) | ✔ | ✔ |
 | [Opera Developer](http://www.opera.com/developer) | ✔ | ― |
 | [Opera Next](http://www.opera.com/next) | ✔ | ✔ |
 | [Spectacle](http://spectacleapp.com/) | ✔ | ― |
+| [The Unarchiver](http://wakaba.c3.cx/s/apps/unarchiver) | ✔ | ― |
 | [Transmission](http://www.transmissionbt.com/) | ✔ | ✔ |
+| [VLC](http://www.videolan.org/vlc/index.html) | ✔ | ✔ |
 | vim-gnome | ― | ✔ |
 | [Virtualbox](https://www.virtualbox.org/) | ✔ | ✔ |
-| [VLC](http://www.videolan.org/vlc/index.html) | ✔ | ✔ |
-| [The Unarchiver](http://wakaba.c3.cx/s/apps/unarchiver) | ✔ | ― |
 | [Webkit Nightly](http://nightly.webkit.org/) | ✔ | ― |
 | [xclip](http://sourceforge.net/projects/xclip/) | ― | ✔ |
 | [Zopfli](http://code.google.com/p/zopfli/) | ✔ | ✔ |
