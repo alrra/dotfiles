@@ -4,9 +4,9 @@
 # https://github.com/Homebrew/homebrew
 declare -a HOMEBREW_FORMULAE=(
     "bash-completion"
+    "caskroom/cask/brew-cask"
     "git"
     "imagemagick --with-webp"
-    "caskroom/cask/brew-cask"
     "node"
     "vim --override-system-vi"
     "zopfli"
@@ -19,14 +19,14 @@ declare -a HOMEBREW_CASKS=(
     "atom"
     "chromium"
     "dropbox"
-    "flash"
     "firefox"
+    "flash"
     "gimp-lisanet"
     "google-chrome"
     "imagealpha"
     "imageoptim"
-    "licecap"
     "libreoffice"
+    "licecap"
     "macvim"
     "opera"
     "opera-next"
@@ -40,8 +40,8 @@ declare -a HOMEBREW_CASKS=(
 # Homebrew Alternate Casks
 # https://github.com/caskroom/homebrew-versions
 declare -a HOMEBREW_ALTERNATE_CASKS=(
-    "google-chrome-canary"
     "firefox-nightly"
+    "google-chrome-canary"
     "opera-developer"
     "webkit-nightly"
 )
