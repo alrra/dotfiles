@@ -125,7 +125,19 @@ check_github_ssh_key() {
 }
 
 check_os() {
-    if [ "$(uname -s)" != "Darwin" ]; then
+
+    # Check if OS is OS X and is above a certain version
+    if [ "$(uname -s)" = "Darwin" ]; then
+        if [ $(compare_versions "$(sw_vers -productVersion)" "10.10") == '<' ]; then
+            print_error "Sorry, this script is intended only for OS X 10.10.0+."
+            return 1
+        else
+            os="osx"
+            return 0
+        fi
+
+    # Check if OS is Ubuntu
+    else
         if [ "$(uname -s)" != "Linux" ] || [ ! -e "/etc/lsb-release" ]; then
             print_error "Sorry, this script is intended only for OS X and Ubuntu!"
             return 1
@@ -133,15 +145,8 @@ check_os() {
             os="ubuntu"
             return 0
         fi
-    else
-        if [ $(compare_versions "$(sw_vers -productVersion)" "10.9") == '<' ]; then
-            print_error "Sorry, this script is intended only for OS X 10.9.0+."
-            return 1
-        else
-            os="osx"
-            return 0
-        fi
     fi
+
 }
 
 cmd_exists() {
