@@ -1,8 +1,5 @@
 #!/bin/bash
 
-declare -r DOTFILES_ARCHIVE_URL="https://github.com/alrra/dotfiles/tarball/master"
-declare -r DOTFILES_GIT_REMOTE="git@github.com:alrra/dotfiles.git"
-
 declare -a FILES_TO_COPY=(
     "git/gitconfig"
 )
@@ -25,6 +22,8 @@ declare -a FILES_TO_SYMLINK=(
     "vim/gvimrc"
 )
 
+declare -r GITHUB_REPOSITORY="alrra/dotfiles"
+
 declare -a NEW_DIRECTORIES=(
     "$HOME/archive"
     "$HOME/Downloads/torrents"
@@ -37,9 +36,8 @@ declare -a NPM_PACKAGES=(
 )
 
 declare dotfiles_directory="$HOME/projects/dotfiles"
-declare force=1    # values: `0` (true) or `1` (false)
+declare force=1 # values: `0` (true) or `1` (false)
 declare os=""
-declare process="" # values: `setup` or `update`
 
 # ######################################################################
 # # HELPER FUNCTIONS                                                   #
@@ -126,7 +124,7 @@ check_github_ssh_key() {
 
 check_os() {
 
-    # Check if OS is OS X and is above a certain version
+    # Check if the OS is OS X and it is above a certain version
     if [ "$(uname -s)" = "Darwin" ]; then
         if [ $(compare_versions "$(sw_vers -productVersion)" "10.10") == '<' ]; then
             print_error "Sorry, this script is intended only for OS X 10.10.0+."
@@ -136,7 +134,7 @@ check_os() {
             return 0
         fi
 
-    # Check if OS is Ubuntu
+    # Check if the OS is Ubuntu
     else
         if [ "$(uname -s)" != "Linux" ] || [ ! -e "/etc/lsb-release" ]; then
             print_error "Sorry, this script is intended only for OS X and Ubuntu!"
@@ -213,7 +211,7 @@ download_and_extract_archive() {
     # Download archive
     if [ "$os" == "osx" ]; then
 
-        curl -LsSo "$tmpFile" "$DOTFILES_ARCHIVE_URL"
+        curl -LsSo "$tmpFile" "$1"
         #     │││└─ write output to file
         #     ││└─ show error messages
         #     │└─ don't show the progress meter
@@ -221,7 +219,7 @@ download_and_extract_archive() {
 
     elif [ "$os" == "ubuntu" ]; then
 
-        wget -qO "$tmpFile" "$DOTFILES_ARCHIVE_URL"
+        wget -qO "$tmpFile" "$1"
         #     │└─ write output to file
         #     └─ don't show output
 
@@ -281,7 +279,7 @@ git_initialize_repository() {
     cd "$dotfiles_directory"
     if ! is_git_repository; then
         git init &> /dev/null \
-            && git remote add origin "$DOTFILES_GIT_REMOTE" &> /dev/null
+            && git remote add origin "$1" &> /dev/null
         print_result $? "Initialize the 'dotfiles' git repository"
     fi
 }
@@ -396,6 +394,17 @@ print_error() {
     printf "\e[0;31m  [✖] $1 $2\e[0m\n"
 }
 
+print_help_message() {
+    printf "\n"
+    printf "OPTIONS:"
+    printf "\n"
+    printf "\n"
+    printf " -f, --force\n"
+    printf "\n"
+    printf "     Makes the update/setup process avoid the confirmation prompt\n"
+    printf "\n"
+}
+
 print_info() {
     # Print output in purple
     printf "\n\e[0;35m $1\e[0m\n\n"
@@ -441,16 +450,32 @@ set_custom_preferences() {
 
 main() {
 
-    # Ensure the OS is OS X 10.9.0+ or Ubuntu
+    # Ensure the OS is OS X or Ubuntu
     check_os || exit;
 
-    # Parse commandline arguments
-    # http://wiki.bash-hackers.org/howto/getopts_tutorial
-    while getopts ":f" option; do
-        case "$option" in
-             f) declare force=0 ;;
-            \?) printf "Invalid option: -%s" "$OPTARG" &> /dev/null; exit 1 ;;
+    # Handle command-line arguments (options)
+    # http://mywiki.wooledge.org/BashFAQ/035
+    while :; do
+        case $1 in
+
+            -h|-\?|--help)
+                print_help_message
+                exit
+            ;;
+
+            -f|--force)
+                force=0
+                if [ "$2" ]; then
+                    shift 2
+                    continue
+                fi
+            ;;
+
+            -?*) printf 'WARNING: Unknown option (ignored): %s\n' "$1" >&2;;
+              *) break;;
         esac
+
+        shift
     done
 
     cd "${BASH_SOURCE%/*}"
@@ -458,17 +483,21 @@ main() {
 
     # Determine if the `dotfiles` need to be set up or updated
     if [ $(cmd_exists "git") -eq 0 ] && \
-       [ "$(git config --get remote.origin.url)" == "$DOTFILES_GIT_REMOTE" ]; then
-        process="update"
+       [[ "$(git config --get remote.origin.url)" =~ $GITHUB_REPOSITORY ]]; then
+
         dotfiles_directory="$(pwd)"
 
         print_info "Update content"
         git_update_content
+
     else
-        process="setup"
 
         print_info "Download and extract archive"
-        download_and_extract_archive
+        download_and_extract_archive "http://github.com/$GITHUB_REPOSITORY/tarball/master"
+
+        print_info "Initialize git repository"
+        git_initialize_repository "git@github.com:$GITHUB_REPOSITORY.git"
+
     fi
 
     print_info "Create directories"
@@ -486,14 +515,6 @@ main() {
     print_info "Set preferences"
     set_custom_preferences
 
-    if [ "$process" == "setup" ]; then
-        print_info "Initialize git repository"
-        git_initialize_repository
-
-        print_info "Update content"
-        git_update_content
-    fi
-
     print_info "All done."
 
     ask_for_confirmation "Do you want to restart?"
@@ -506,4 +527,4 @@ main() {
     printf "\n"
 }
 
-main $@
+main "$@"
