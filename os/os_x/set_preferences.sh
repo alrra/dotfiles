@@ -196,7 +196,7 @@ set_language_and_region_preferences() {
 
     # Set the timezone
     # (see `systemsetup -listtimezones` for other values)
-    systemsetup -settimezone "Europe/Bucharest" &> /dev/null
+    sudo systemsetup -settimezone "Europe/Bucharest" &> /dev/null
 
 }
 
