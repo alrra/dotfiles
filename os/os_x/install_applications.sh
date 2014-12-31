@@ -28,7 +28,6 @@ declare -a HOMEBREW_CASKS=(
     "licecap"
     "macvim"
     "opera"
-    "opera-beta"
     "spectacle"
     "the-unarchiver"
     "transmission"
@@ -41,6 +40,7 @@ declare -a HOMEBREW_CASKS=(
 declare -a HOMEBREW_ALTERNATE_CASKS=(
     "firefox-nightly"
     "google-chrome-canary"
+    "opera-beta"
     "opera-developer"
     "webkit-nightly"
 )
