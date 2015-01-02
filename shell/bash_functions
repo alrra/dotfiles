@@ -5,6 +5,7 @@
 # ----------------------------------------------------------------------
 
 # Create a data URI from a file
+
 datauri() {
 
     local mimeType=""
@@ -26,13 +27,19 @@ datauri() {
 
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Delete files that match a certain pattern from the current directory
+
 deletefiles() {
     local q="${1:-*.DS_Store}"
     find . -type f -name "$q" -ls -delete
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Get gzip information (gzipped file size + reduction size)
+
 gz() {
 
     declare -i gzippedSize=0
@@ -64,7 +71,10 @@ gz() {
 
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Create new directories and enter the first one
+
 mkd() {
     if [ -n "$*" ]; then
         mkdir -p "$@" && cd "$@"
@@ -77,6 +87,7 @@ mkd() {
 # ----------------------------------------------------------------------
 
 # Simple Calculator
+
 ? () {
 
     local result=""
@@ -100,8 +111,11 @@ mkd() {
 
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Clean up and beautify photos of whiteboards
 # https://gist.github.com/lelandbatey/8677901
+
 clean_whiteboard_photos() {
 
     # Check if ImageMagick's convert command-line tool is installed
@@ -132,6 +146,7 @@ clean_whiteboard_photos() {
 # ----------------------------------------------------------------------
 
 # Start an HTTP server from a directory, optionally specifying the port
+
 server() {
 
     local i=0
@@ -199,7 +214,8 @@ httpd.serve_forever()
 # | Search                                                             |
 # ----------------------------------------------------------------------
 
-# Search History
+# Search history
+
 qh() {
     #           ┌─ enable colors for pipe
     #           │  ("--color=auto" enables colors only if
@@ -209,7 +225,10 @@ qh() {
     #       don't clear the screen after quitting less ─┘
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Search for text within the current directory
+
 qt() {
     grep -ir --color=always "$*" . | less -RX
     #     │└─ search all files under each directory, recursively
@@ -250,6 +269,8 @@ hrfs() {
     #                          └─ add commas to the numbers
     #                             (changes "1023.2 KB" to "1,023.2 KB")
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 print_error() {
     printf "\e[1;31m[error] %s\e[0m\n" "$1"
