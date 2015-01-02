@@ -1,7 +1,7 @@
 # Screen settings
 # https://www.gnu.org/software/screen/manual/screen.html#Command-Summary
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Set the default character encoding to UTF-8
 defutf8 on
@@ -9,6 +9,6 @@ defutf8 on
 # Disable the startup message
 startup_message off
 
-# Increase the maximum number of lines contained in the scrollback buffer
-# (defaults to 100)
+# Increase the maximum number of lines contained
+# in the scrollback buffer (defaults to 100)
 defscrollback 10000
