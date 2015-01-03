@@ -347,6 +347,16 @@ install_apps() {
     fi
 }
 
+install_vim_plugins() {
+
+    print_info "Install vim plugins"
+
+    # Launch vim, run `:PluginInstall` and then close vim
+    vim +PluginInstall +qall
+    print_result $? "Install vim plugins"
+
+}
+
 install_npm_packages() {
 
     # Make sure the most recent version of npm is installed
@@ -527,8 +537,10 @@ main() {
         git_update_content
 
     else
+
         download_and_extract_archive "http://github.com/$GITHUB_REPOSITORY/tarball/master"
         git_initialize_repository "git@github.com:$GITHUB_REPOSITORY.git"
+        install_vim_plugins
 
     fi
 
