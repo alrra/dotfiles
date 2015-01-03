@@ -44,11 +44,7 @@ declare os=""
 # ######################################################################
 
 answer_is_yes() {
-    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-        return 0
-    else
-        return 1
-    fi
+    [[ "$REPLY" =~ ^[Yy]$ ]] && return 0 || return 1
 }
 
 ask() {
@@ -73,9 +69,23 @@ ask_for_confirmation_if_needed() {
     return 1
 }
 
+ask_for_sudo() {
+
+    # Ask for the administrator password upfront
+    sudo -v
+
+    # Update existing `sudo` time stamp until this script has finished
+    # https://gist.github.com/cowboy/3118588
+    while true; do
+        sudo -n true
+        sleep 60
+        kill -0 "$$" || exit
+    done &> /dev/null &
+}
+
 check_github_ssh_key() {
 
-    local github_ssh_url="https://github.com/settings/ssh"
+    declare -r GITHUB_SSH_URL="https://github.com/settings/ssh"
     local ssh_key_file="id_rsa.pub"
 
     if [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; then
@@ -100,7 +110,7 @@ check_github_ssh_key() {
             print_result $? "Copy SSH key to clipboard"
 
             # Open the GitHub web page where the SSH key can be added
-            open "$github_ssh_url"
+            open "$GITHUB_SSH_URL"
 
         elif [ "$os" == "ubuntu" ]; then
 
@@ -109,7 +119,7 @@ check_github_ssh_key() {
             print_result $? "Copy SSH key to clipboard"
 
             # Open the GitHub web page where the SSH key can be added
-            xdg-open "$github_ssh_url"
+            xdg-open "$GITHUB_SSH_URL"
 
         fi
 
@@ -185,10 +195,12 @@ compare_versions() {
 }
 
 copy_files() {
+    print_info "Copy files"
     place_files "cp -f" "${FILES_TO_COPY[@]}"
 }
 
 create_directories() {
+    print_info "Create directories"
     ask_for_confirmation_if_needed "Do you want the additional directories to be created?"
     if [ $? -eq 0 ]; then
         [ $force -eq 1 ] && printf "\n"
@@ -199,12 +211,15 @@ create_directories() {
 }
 
 create_symbolic_links() {
+    print_info "Create symbolic links"
     place_files "ln -fs" "${FILES_TO_SYMLINK[@]}"
 }
 
 download_and_extract_archive() {
 
     local tmpFile="$(mktemp -u XXXXX)"
+
+    print_info "Download and extract archive"
 
     cd '/tmp'
 
@@ -276,6 +291,7 @@ get_answer() {
 }
 
 git_initialize_repository() {
+    print_info "Initialize git repository"
     cd "$dotfiles_directory"
     if ! is_git_repository; then
         git init &> /dev/null \
@@ -285,6 +301,7 @@ git_initialize_repository() {
 }
 
 git_update_content() {
+    print_info "Update content"
     cd "$dotfiles_directory"
     if is_git_repository; then
 
@@ -308,6 +325,9 @@ git_update_content() {
 }
 
 install_apps() {
+
+    print_info "Install applications"
+
     if [ "$os" == "osx" ]; then
         source "$dotfiles_directory/os/os_x/install_applications.sh"
     elif [ "$os" == "ubuntu" ]; then
@@ -429,7 +449,21 @@ print_question() {
     printf "\e[0;33m  [?] $1\e[0m"
 }
 
+restart_computer() {
+
+    print_info "Restart"
+    ask_for_confirmation "Do you want to restart?"
+
+    if answer_is_yes; then
+        print_info "Restarting..."
+        sudo shutdown -r now
+    fi
+}
+
 set_custom_preferences() {
+
+    print_info "Set preferences"
+
     if [ "$os" == "osx" ]; then
         source "$dotfiles_directory/os/os_x/set_preferences.sh"
     elif [ "$os" == "ubuntu" ]; then
@@ -478,63 +512,32 @@ main() {
         shift
     done
 
+    # Ensure that the following actions are made
+    # relative to the dotfiles directory root
+    # http://mywiki.wooledge.org/BashFAQ/028
     cd "${BASH_SOURCE%/*}"
-    #     └─ see: http://mywiki.wooledge.org/BashFAQ/028
 
-    # Ask for the administrator password upfront
-    sudo -v
-
-    # Update existing `sudo` time stamp until this script has finished
-    # https://gist.github.com/cowboy/3118588
-    while true; do
-        sudo -n true
-        sleep 60
-        kill -0 "$$" || exit
-    done &> /dev/null &
+    ask_for_sudo
 
     # Determine if the `dotfiles` need to be set up or updated
     if [ $(cmd_exists "git") -eq 0 ] && \
        [[ "$(git config --get remote.origin.url)" =~ $GITHUB_REPOSITORY ]]; then
 
         dotfiles_directory="$(pwd)"
-
-        print_info "Update content"
         git_update_content
 
     else
-
-        print_info "Download and extract archive"
         download_and_extract_archive "http://github.com/$GITHUB_REPOSITORY/tarball/master"
-
-        print_info "Initialize git repository"
         git_initialize_repository "git@github.com:$GITHUB_REPOSITORY.git"
 
     fi
 
-    print_info "Create directories"
     create_directories
-
-    print_info "Copy files"
     copy_files
-
-    print_info "Create symbolic links"
     create_symbolic_links
-
-    print_info "Install applications"
     install_apps
-
-    print_info "Set preferences"
     set_custom_preferences
-
-    print_info "All done."
-
-    ask_for_confirmation "Do you want to restart?"
-
-    if answer_is_yes; then
-        print_info "Restarting..."
-        sudo shutdown -r now
-    fi
-
+    restart_computer
     printf "\n"
 }
 
