@@ -11,55 +11,21 @@ To setup the dotfiles, run the following snippet in the terminal.
 
 The snippet will:
 
-* Download the dotfiles on your computer (by default it will suggest `~/projects/dotfiles`)
-* Create additional [directories](https://github.com/alrra/dotfiles/blob/29bdcbc72260321013d89654283000666052be83/lib/dotfiles.sh#L29-L34)
-* Copy/symlink the [git](git), [shell](shell), and [vim](vim) files
-* Set custom [OS X](os/os_x/set_preferences.sh) / [Ubuntu](os/ubuntu/set_preferences.sh) preferences
+* Download the dotfiles on your computer (by default it will
+  suggest `~/projects/dotfiles`)
+* Create additional
+  [directories](https://github.com/alrra/dotfiles/blob/29bdcbc72260321013d89654283000666052be83/lib/dotfiles.sh#L29-L34)
+* Copy/symlink the
+  [git](git),
+  [shell](shell), and
+  [vim](vim) files
+* Install applications / command-line tools for
+  [OS X](os/os_x/install_applications.sh) /
+  [Ubuntu](os/ubuntu/install_applications.sh)
+* Set custom
+  [OS X](os/os_x/set_preferences.sh) /
+  [Ubuntu](os/ubuntu/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
-* Install applications / command-line tools:
-
-  | Application / CLT | OS X | Ubuntu |
-|:---|:---:|:---:|
-| [Android File Transfer](http://www.android.com/filetransfer/) | ✔ | — |
-| [Atom](https://atom.io/) | ✔ | ✔ |
-| `build-essential` | — | ✔ |
-| [cURL](http://curl.haxx.se/) | ― | ✔ |
-| [Chrome](https://www.google.com/chrome) | ✔ | ✖ |
-| [Chrome Canary](https://www.google.com/intl/en/chrome/browser/canary.html) | ✔ | — |
-| [Chrome Dev](http://www.chromium.org/getting-involved/dev-channel) | ✖ |  ✔ |
-| [Chromium](http://www.chromium.org/) | ✔ | ✔ |
-| `debian-archive-keyring` | ― | ✔ |
-| [Dropbox](https://www.dropbox.com/) | ✔ | ✔ |
-| [Firefox](http://www.mozilla.org/firefox/) | ✔ | ✔ |
-| [Firefox Nightly](http://nightly.mozilla.org/) | ✔ | ✔ |
-| [Flash](http://get.adobe.com/flashplayer/) | ✔ | ✔ |
-| [Gimp](http://www.gimp.org/) | ✔ | ✔ |
-| [Git](http://git-scm.com/) | ✔ | ✔ |
-| [Homebrew](http://brew.sh/) | ✔ | ― |
-| [Homebrew Alternate Casks](https://github.com/caskroom/homebrew-versions) | ✔ | ― |
-| [Homebrew Casks](http://caskroom.io/) | ✔ | ― |
-| [ImageMagick](http://www.imagemagick.org/) | ✔ | ✔ |
-| [ImageOptim](http://imageoptim.com/) | ✔ | ― |
-| [LICEcap](http://www.cockos.com/licecap/) | ✔ | ― |
-| [Libre Office](https://www.libreoffice.org/) | ✔ | ― |
-| [MacVim](https://code.google.com/p/macvim/) | ✔ | ― |
-| [Node.js](http://nodejs.org/) + [npm](https://www.npmjs.org/) | ✔ | ✔ |
-| [Opera](http://www.opera.com/) | ✔ | ✔ |
-| [Opera Developer](http://www.opera.com/developer) | ✔ | ― |
-| [Opera Next](http://www.opera.com/next) | ✔ | ✔ |
-| [Spectacle](http://spectacleapp.com/) | ✔ | ― |
-| [The Unarchiver](http://wakaba.c3.cx/s/apps/unarchiver) | ✔ | ― |
-| [Transmission](http://www.transmissionbt.com/) | ✔ | ✔ |
-| [VLC](http://www.videolan.org/vlc/index.html) | ✔ | ✔ |
-| vim-gnome | ― | ✔ |
-| [Virtualbox](https://www.virtualbox.org/) | ✔ | ✔ |
-| [Webkit Nightly](http://nightly.webkit.org/) | ✔ | ― |
-| [xclip](http://sourceforge.net/projects/xclip/) | ― | ✔ |
-| [Zopfli](http://code.google.com/p/zopfli/) | ✔ | ✔ |
-
-  `―` indicates that the application / CLT is already installed, or does not
-      exist for that OS
-
 
 ## Update
 
