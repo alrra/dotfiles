@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# ######################################################################
-# # HTTP Compression Information                                       #
-# ######################################################################
-
 # Useful Links:
 #
 # - HTTP/1.1 (RFC 2616) - Content Codings:
@@ -14,7 +10,7 @@
 #
 # Usage:
 #
-#   httpcompression URL
+#   get-content-encoding URL
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
