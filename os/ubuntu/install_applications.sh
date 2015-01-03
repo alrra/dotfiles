@@ -109,7 +109,7 @@ update_and_upgrade() {
 
 install_applications() {
 
-    local i="", tmp=""
+    local i=""
 
     add_software_sources
     update_and_upgrade
