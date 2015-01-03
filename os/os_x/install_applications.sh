@@ -2,6 +2,7 @@
 
 # Homebrew Formulae
 # https://github.com/Homebrew/homebrew
+
 declare -a HOMEBREW_FORMULAE=(
     "bash-completion"
     "caskroom/cask/brew-cask"
@@ -14,6 +15,7 @@ declare -a HOMEBREW_FORMULAE=(
 
 # Homebrew Casks
 # https://github.com/caskroom/homebrew-cask
+
 declare -a HOMEBREW_CASKS=(
     "android-file-transfer"
     "atom"
@@ -21,11 +23,11 @@ declare -a HOMEBREW_CASKS=(
     "dropbox"
     "firefox"
     "flash"
-    "lisanet-gimp"
     "google-chrome"
     "imageoptim"
     "libreoffice"
     "licecap"
+    "lisanet-gimp"
     "macvim"
     "opera"
     "spectacle"
@@ -37,6 +39,7 @@ declare -a HOMEBREW_CASKS=(
 
 # Homebrew Alternate Casks
 # https://github.com/caskroom/homebrew-versions
+
 declare -a HOMEBREW_ALTERNATE_CASKS=(
     "firefox-nightly"
     "google-chrome-canary"
@@ -61,8 +64,7 @@ install_applications() {
         done
     fi
 
-    print_success "XCode Command Line Tools"
-    printf "\n"
+    print_success "XCode Command Line Tools\n"
 
     # Homebrew
     if [ $(cmd_exists "brew") -eq 1 ]; then
