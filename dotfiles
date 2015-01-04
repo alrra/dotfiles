@@ -36,7 +36,6 @@ declare -a NPM_PACKAGES=(
 )
 
 declare dotfiles_directory="$HOME/projects/dotfiles"
-declare force=1 # values: `0` (true) or `1` (false)
 declare os=""
 
 # ######################################################################
@@ -56,17 +55,6 @@ ask_for_confirmation() {
     print_question "$1 (y/n) "
     read -n 1
     printf "\n"
-}
-
-ask_for_confirmation_if_needed() {
-    [ $force -eq 1 ] && ask_for_confirmation "$1"
-
-    if [ $force -eq 0 ] || \
-       [ $(answer_is_yes; printf $?) -eq 0 ]; then
-        return 0
-    fi
-
-    return 1
 }
 
 ask_for_sudo() {
@@ -201,9 +189,8 @@ copy_files() {
 
 create_directories() {
     print_info "Create directories"
-    ask_for_confirmation_if_needed "Do you want the additional directories to be created?"
-    if [ $? -eq 0 ]; then
-        [ $force -eq 1 ] && printf "\n"
+    ask_for_confirmation "Do you want the additional directories to be created?"
+    if answer_is_yes; then
         for i in ${NEW_DIRECTORIES[@]}; do
             mkd "$i"
         done
@@ -305,13 +292,12 @@ git_update_content() {
     cd "$dotfiles_directory"
     if is_git_repository; then
 
-        ask_for_confirmation_if_needed "Do you want to update the content from the 'dotfiles' directory?"
+        ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
 
-        if [ $? -eq 0 ]; then
+        if answer_is_yes; then
             check_github_ssh_key
 
             cd "$dotfiles_directory"
-            [ $force -eq 1 ] && printf "\n"
 
             # Update content, remove untracked files and fetch submodules
             git fetch --all &> /dev/null \
@@ -334,11 +320,10 @@ install_apps() {
         source "$dotfiles_directory/os/ubuntu/install_applications.sh"
     fi
 
-    ask_for_confirmation_if_needed "Do you want to install the applications/command line tools?"
+    ask_for_confirmation "Do you want to install the applications/command line tools?"
 
-    if [ $? -eq 0 ]; then
+    if answer_is_yes; then
 
-        [ $force -eq 1 ] && printf "\n"
         install_applications
 
         printf "\n"
@@ -392,8 +377,8 @@ mkd() {
 
 place_file() {
     if [ -e "$3" ]; then
-        ask_for_confirmation_if_needed "'$3' already exists! Do you want to overwrite it?"
-        if [ $? -eq 0 ]; then
+        ask_for_confirmation "'$3' already exists! Do you want to overwrite it?"
+        if answer_is_yes; then
             rm -rf "$3"
             execute "$1 $2 $3" "$3 → $2"
         else
@@ -412,7 +397,7 @@ place_files() {
     declare -a files=("$@")
 
     for i in ${files[@]}; do
-        [ $force -eq 1 ] && [ "$i" != "${files[0]}" ] && printf "\n"
+        [ "$i" != "${files[0]}" ] && printf "\n"
         sourceFile="$dotfiles_directory/$i"
         targetFile=$(printf "%s" "$HOME/.$i" | sed "s/.*\/\(.*\)/\1/g")
         place_file "$cmd" "$sourceFile" "$HOME/.$targetFile"
@@ -422,17 +407,6 @@ place_files() {
 print_error() {
     # Print output in red
     printf "\e[0;31m  [✖] $1 $2\e[0m\n"
-}
-
-print_help_message() {
-    printf "\n"
-    printf "OPTIONS:"
-    printf "\n"
-    printf "\n"
-    printf " -f, --force\n"
-    printf "\n"
-    printf "     Makes the update/setup process avoid the confirmation prompt\n"
-    printf "\n"
 }
 
 print_info() {
@@ -480,10 +454,9 @@ set_custom_preferences() {
         source "$dotfiles_directory/os/ubuntu/set_preferences.sh"
     fi
 
-    ask_for_confirmation_if_needed "Do you want to set the custom preferences?"
+    ask_for_confirmation "Do you want to set the custom preferences?"
 
-    if [ $? -eq 0 ]; then
-        [ $force -eq 1 ] && printf "\n"
+    if answer_is_yes; then
         set_preferences
     fi
 }
@@ -496,31 +469,6 @@ main() {
 
     # Ensure the OS is OS X or Ubuntu
     check_os || exit;
-
-    # Handle command-line arguments (options)
-    # http://mywiki.wooledge.org/BashFAQ/035
-    while :; do
-        case $1 in
-
-            -h|-\?|--help)
-                print_help_message
-                exit
-            ;;
-
-            -f|--force)
-                force=0
-                if [ "$2" ]; then
-                    shift 2
-                    continue
-                fi
-            ;;
-
-            -?*) printf 'WARNING: Unknown option (ignored): %s\n' "$1" >&2;;
-              *) break;;
-        esac
-
-        shift
-    done
 
     # Ensure that the following actions are made
     # relative to the dotfiles directory root

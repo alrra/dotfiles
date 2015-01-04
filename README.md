@@ -35,13 +35,6 @@ To update the dotfiles, run the [`dotfiles`](dotfiles) script.
 $ ./dotfiles
 ```
 
-If you want to avoid the confirmation prompt, use the `-f` option, but be
-careful, it will overwrite everything!
-
-```bash
-$ ./dotfiles -f
-```
-
 The update process will try to do basically the same things as setup, but
 instead of downloading the dotfiles, it will just fetch the latest changes.
 
