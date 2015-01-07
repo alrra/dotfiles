@@ -23,9 +23,11 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'ap/vim-css-color'
     Plugin 'chrisbra/unicode.vim'
     Plugin 'editorconfig/editorconfig-vim'
+    Plugin 'godlygeek/tabular'
     Plugin 'mattn/emmet-vim'
     Plugin 'mattn/webapi-vim'
     Plugin 'othree/html5.vim'
+    Plugin 'plasticboy/vim-markdown'
     Plugin 'scrooloose/syntastic'
     Plugin 'shutnik/jshint2.vim'
     Plugin 'tomtom/tcomment_vim'
@@ -317,6 +319,14 @@ map <leader>W :w !sudo tee %<CR>
 " Load custom Emmet snippets
 " http://docs.emmet.io/customization/snippets/
 let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
+
+" ----------------------------------------------------------------------
+" | Markdown                                                           |
+" ----------------------------------------------------------------------
+
+" Disable Folding
+" https://github.com/plasticboy/vim-markdown#disable-folding
+let g:vim_markdown_folding_disabled=1
 
 " ----------------------------------------------------------------------
 " | Syntastic                                                          |
