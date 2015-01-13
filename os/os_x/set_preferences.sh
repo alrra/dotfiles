@@ -360,6 +360,7 @@ set_ui_and_ux_preferences() {
     defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
     # Disable shadow in screenshots
+    # https://www.youtube.com/watch?v=A0S140mmvzI
     defaults write com.apple.screencapture disable-shadow -bool true
 
     # Save screenshots to the ~/Desktop
