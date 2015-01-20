@@ -194,22 +194,41 @@ highlight ColorColumn                              ctermbg=239
 highlight LineNr      cterm=NONE  ctermfg=DarkGrey ctermbg=NONE
 highlight User1       cterm=bold  ctermfg=Grey     ctermbg=237
 
-set statusline=%1*\ [%n]\ [%f]%m%r%h%w%y[%{&ff}:%{strlen(&fenc)?&fenc:'none'}]%=%(\ %c,%l/%L\ %)%P
-"               │     │     │  │ │ │ │ │    │                │                 │     │ │   │    └─ percent through file
-"               │     │     │  │ │ │ │ │    │                │                 │     │ │   └─ total number of lines
-"               │     │     │  │ │ │ │ │    │                │                 │     │ └─ current line number
-"               │     │     │  │ │ │ │ │    │                │                 │     └─ current column number
-"               │     │     │  │ │ │ │ │    │                │                 └─ left/right separator
-"               │     │     │  │ │ │ │ │    │                └─ file encoding
-"               │     │     │  │ │ │ │ │    └─ file format
-"               │     │     │  │ │ │ │ └─ file type
-"               │     │     │  │ │ │ └─ preview window flag
-"               │     │     │  │ │ └─ help file flag
-"               │     │     │  │ └─ readonly flag
-"               │     │     │  └─ modified flag
-"               │     │     └─ path to the file
-"               │     └─ buffer number
-"               └─ User1 highlight
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+function! GetGitBranchName()
+    let branchName=fugitive#head()
+    return branchName != '' ? '[' . branchName . ']' : ''
+endfunction
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+set statusline=
+set statusline+=%1*                      " User1 highlight
+set statusline+=\ [%n]                   " Buffer number
+set statusline+=\ %{GetGitBranchName()}  " Git branch name
+set statusline+=\ [%f]                   " Path to the file
+set statusline+=%m                       " Modified flag
+set statusline+=%r                       " Readonly flag
+set statusline+=%h                       " Help file flag
+set statusline+=%w                       " Preview window flag
+set statusline+=%y                       " File type
+set statusline+=[
+set statusline+=%{&ff}                   " File format
+set statusline+=:
+set statusline+=%{strlen(&fenc)?&fenc:'none'} " File encoding
+set statusline+=]
+set statusline+=%=                       " Left/Right separator
+set statusline+=%c                       " File encoding
+set statusline+=,
+set statusline+=%l                       " Current line number
+set statusline+=/
+set statusline+=%L                       " Total number of lines
+set statusline+=\ (%P)\                  " Percent through file
+
+" Example result:
+"
+"  [1] [master] [vim/vimrc][vim][unix:utf-8]            17,238/381 (59%)
 
 " ----------------------------------------------------------------------
 " | Key Mappings                                                       |
