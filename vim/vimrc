@@ -29,6 +29,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'othree/html5.vim'
     Plugin 'plasticboy/vim-markdown'
     Plugin 'scrooloose/syntastic'
+    Plugin 'shougo/neocomplcache.vim'
     Plugin 'shutnik/jshint2.vim'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-commentary'
@@ -346,6 +347,14 @@ let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snip
 " Disable Folding
 " https://github.com/plasticboy/vim-markdown#disable-folding
 let g:vim_markdown_folding_disabled=1
+
+" ----------------------------------------------------------------------
+" | NeoComplCache                                                      |
+" ----------------------------------------------------------------------
+
+" Enable `neocomplcache` by default
+" https://github.com/Shougo/neocomplcache.vim#installation
+let g:neocomplcache_enable_at_startup=1
 
 " ----------------------------------------------------------------------
 " | Syntastic                                                          |
