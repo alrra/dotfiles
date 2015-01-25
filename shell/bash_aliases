@@ -21,8 +21,6 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 if [ "$os" == "osx" ]; then
     alias localip="ipconfig getifaddr en1"
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 elif [ "$os" == "linux" ] && [ "$distro" == "ubuntu" ]; then
     alias localip="ifconfig | \
                    grep 'inet addr' | \
@@ -63,8 +61,6 @@ if [ "$os" == "osx" ]; then
                   brewu; \
                   npmi -g npm; \
                   npmu -g"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 elif [ "$os" == "linux" ] && [ "$distro" == "ubuntu" ]; then
 
@@ -125,8 +121,6 @@ if [ "$os" == "osx" ]; then
 
     # Restart Apache
     alias ra="sudo apachectl restart"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 elif [ "$os" == "linux" ] && [ "$distro" == "ubuntu" ]; then
 

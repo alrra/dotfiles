@@ -22,7 +22,7 @@ datauri() {
                     "$mimeType" \
                     "$(openssl base64 -in "$1" | tr -d "\n")"
     else
-        print_error "'$1' is not a file."
+        printf "'%s' is not a file.\n" "$1"
     fi
 
 }
@@ -31,7 +31,7 @@ datauri() {
 
 # Delete files that match a certain pattern from the current directory
 
-deletefiles() {
+delete-files() {
     local q="${1:-*.DS_Store}"
     find . -type f -name "$q" -ls -delete
 }
@@ -63,10 +63,10 @@ gz() {
                             #              └─ remove tailing zeros
 
         else
-            print_error "'$1' is empty."
+            printf "'%s' is empty.\n" "$1"
         fi
     else
-        print_error "'$1' is not a file."
+        printf "'%s' is not a file.\n" "$1"
     fi
 
 }
@@ -238,10 +238,4 @@ hrfs() {
     sed -e ':l; s/\([0-9]\)\([0-9]\{3\}\)/\1,\2/; t l'
     #                          └─ add commas to the numbers
     #                             (changes "1023.2 KB" to "1,023.2 KB")
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-print_error() {
-    printf "\e[1;31m[error] %s\e[0m\n" "$1"
 }
