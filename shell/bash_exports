@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Shell Variables
+# http://linux.die.net/man/1/bash
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Make vim the default editor
 export EDITOR="vim"
 

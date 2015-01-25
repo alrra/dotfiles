@@ -44,7 +44,7 @@ call vundle#end()
 
 syntax on                      " Enable syntax highlighting
 
-if has("autocmd")
+if has('autocmd')
     filetype plugin indent on
     "           │     │    └──── Enable file type detection
     "           │     └───────── Enable loading of indent file
@@ -69,7 +69,7 @@ set backupskip+=/private/tmp/* " ┘ files in certain directories
 
 set clipboard=unnamed          " ┐
                                " │ Use the system clipboard
-if has("unnamedplus")          " │ as the default register
+if has('unnamedplus')          " │ as the default register
     set clipboard+=unnamedplus " │
 endif                          " ┘
 
@@ -157,7 +157,7 @@ set winminheight=0             " Allow windows to be squashed to 0 lines
 " | Automatic Commands                                                 |
 " ----------------------------------------------------------------------
 
-if has("autocmd")
+if has('autocmd')
 
     " Automatically switch to absolute line numbers when vim loses focus
     autocmd FocusLost * :set number
@@ -235,33 +235,49 @@ set statusline+=\ (%P)\                  " Percent through file
 " | Key Mappings                                                       |
 " ----------------------------------------------------------------------
 
-" Use a different mapleader (default is "\")
-let mapleader = ","
+" Use a different mapleader (default is '\')
+let mapleader = ','
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Redefine trigger key for Emmet
 " http://docs.emmet.io/cheat-sheet/
 let g:user_emmet_leader_key='<C-E>'
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,* ] Search and replace the word under the cursor
 nmap <leader>* :%s/\<<C-r><C-w>\>//<Left>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " [,cc] Toggle code comments
 " https://github.com/tomtom/tcomment_vim
 map <leader>cc :TComment<CR>
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,cr] Calculate result
 " http://vimcasts.org/e/56
 nmap <leader>cr 0yt=A<C-r>=<C-r>"<CR><Esc>
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,cs] Clear search
 map <leader>cs <Esc>:noh<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " [,h ] JSHint the code
 " https://github.com/Shutnik/jshint2.vim
 nmap <leader>h :JSHint<CR>
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,l ] Toggle `set list`
 nmap <leader>l :set list!<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " [,n ] Toggle `set relativenumber`
 " http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
@@ -277,6 +293,8 @@ endfunction
 
 nmap <leader>n :call ToggleRelativeLineNumbers()<CR>
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,sl] Toggle show limits
 function! ToggleLimits()
 
@@ -286,7 +304,7 @@ function! ToggleLimits()
     " [81]
     "   - general use
 
-    if ( &colorcolumn == "73" )
+    if ( &colorcolumn == '73' )
         set colorcolumn+=51,81
     else
         set colorcolumn-=51,81
@@ -296,13 +314,15 @@ endfunction
 
 nmap <leader>sl :call ToggleLimits()<CR>
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,ss] Strip whitespace
 function! StripWhitespaces()
 
     " save last search and cursor position
     let searchHistory = @/
-    let cursorLine = line(".")
-    let cursorColumn = col(".")
+    let cursorLine = line('.')
+    let cursorColumn = col('.')
 
     " strip trailing whitespaces
     %s/\s\+$//e
@@ -318,11 +338,17 @@ endfunction
 
 nmap <leader>ss :call StripWhitespaces()<CR>
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,ts] Toggle Syntastic
 nmap <leader>ts :SyntasticToggleMode<CR>
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,v ] Make the opening of the `.vimrc` file easier
 nmap <leader>v :vsp $MYVIMRC<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " [,W ] Sudo write
 map <leader>W :w !sudo tee %<CR>
@@ -378,6 +404,6 @@ let g:syntastic_mode_map = {
 " ######################################################################
 
 " Load local settings if they exist
-if filereadable(glob("~/.vimrc.local"))
+if filereadable(glob('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
