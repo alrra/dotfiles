@@ -1,12 +1,8 @@
 #!/bin/bash
 
-check_linux_release() {
-    [ -e "/etc/$1" ] && printf "%s" "$2"
-}
-
 load_dotfiles() {
 
-    local distro="" i="" os="" tmp=""
+    local i="" os="" tmp=""
     local osname="$(uname -s)"
 
     declare -a files=(
@@ -19,24 +15,25 @@ load_dotfiles() {
                         # not be under version control
     )
 
-    if [[ $COLORTERM == gnome-* && $TERM == xterm ]] \
-       && infocmp gnome-256color >/dev/null 2>&1; then
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [[ $COLORTERM == gnome-* && $TERM == xterm ]] && \
+       infocmp gnome-256color >/dev/null 2>&1; then
         export TERM=gnome-256color
     elif infocmp xterm-256color >/dev/null 2>&1; then
         export TERM=xterm-256color
     fi
 
-    # Some things are OS specific, deal with it
+    # Some things are OS specific, deal with it!
+
     if [ "$osname" == "Darwin" ]; then
         os="osx"
-    elif [ "$osname" == "Linux" ]; then
-        os="linux"
 
-        # Get Linux distribution
-        # (list of release: https://web.archive.org/web/20130929034731/http://linuxmafia.com/faq/Admin/release-files.html)
-        distro=$(check_linux_release "lsb-release" "ubuntu") ||
-               $(check_linux_release "debian_version" "debian") ||
-               $(check_linux_release "debian_release" "debian")
+    # Get Linux distribution
+    # https://web.archive.org/web/20130929034731/http://linuxmafia.com/faq/Admin/release-files.html
+    elif [ "$osname" == "Linux" ] &&
+         [ -e "/etc/lsb-release" ]; then
+        os="ubuntu"
     else
         os="other"
     fi
@@ -67,7 +64,6 @@ load_dotfiles() {
 
 load_dotfiles
 unset load_dotfiles
-unset check_linux_release
 
 # Clear system messages (e.g.: system copyright notice, the
 # date and time of the last login, the message of the day, etc.)

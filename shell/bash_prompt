@@ -50,7 +50,7 @@ set_ls_colors() {
     #    environment variable (built-in defaults are used if this
     #    variable is not set)
 
-    elif [ "$os" == "linux" ] && [ "$distro" == "ubuntu" ]; then
+    elif [ "$os" == "ubuntu" ]; then
 
         # Enable color support
         if [ -x /usr/bin/dircolors ]; then
