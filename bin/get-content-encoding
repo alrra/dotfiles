@@ -63,6 +63,7 @@ check_for_sdch() {
             # Check if the dictionary location is specified as a path,
             # and if it is, construct it's URL from the host name of the
             # referrer URL
+
             [[ "$i" != http* ]] \
                 && dict="$( printf "%s" "$url" |
                             sed -En 's/([^/]*\/\/)?([^/]*)\/?.*/\1\2/p' )"
@@ -76,7 +77,7 @@ check_for_sdch() {
             #   as the URL-safe base64 encoding (as described in RFC
             #   3548, section 4 [RFC3548]) of the first 48 bits (bits
             #   0..47) of the dictionary's SHA-256 digest ]
-            #
+
             dictClientID="$( curl "${CURL_DEFAULT_OPTIONS[@]}" "$dict" |
                              openssl dgst -sha256 -binary |
                              openssl base64 |
@@ -90,6 +91,7 @@ check_for_sdch() {
 
         # Redo the request (advertising the available dictionaries)
         # and replace the old resulted headers with the new ones
+
         printf "$( curl "${CURL_DEFAULT_OPTIONS[@]}" \
                         -H "Avail-Dictionary: $availDicts" \
                         --dump-header - \

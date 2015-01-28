@@ -319,18 +319,18 @@ nmap <leader>sl :call ToggleLimits()<CR>
 " [,ss] Strip whitespace
 function! StripWhitespaces()
 
-    " save last search and cursor position
+    " Save last search and cursor position
     let searchHistory = @/
     let cursorLine = line('.')
     let cursorColumn = col('.')
 
-    " strip trailing whitespaces
+    " Strip trailing whitespaces
     %s/\s\+$//e
 
-    " merge consecutive empty lines
+    " Merge consecutive empty lines
     "g/^\s*$/,/\S/-j
 
-    " restore previous search history and cursor position
+    " Restore previous search history and cursor position
     let @/ = searchHistory
     call cursor(cursorLine, cursorColumn)
 
