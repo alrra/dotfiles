@@ -117,11 +117,14 @@ fi
 # Empty Trash
 
 if [ "$OS" == "osx" ]; then
+
     # Empty the trash, the main HDD and on all mounted volumes
     # and clear Apple’s system logs to improve shell startup speed
+
     alias empty-trash="sudo rm -frv /Volumes/*/.Trashes && \
                       sudo rm -frv ~/.Trash &&
                       sudo rm -frv /private/var/log/asl/*.asl"
+
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
