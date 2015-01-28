@@ -18,9 +18,9 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-if [ "$os" == "osx" ]; then
+if [ "$OS" == "osx" ]; then
     alias localip="ipconfig getifaddr en1"
-elif [ "$os" == "ubuntu" ]; then
+elif [ "$OS" == "ubuntu" ]; then
     alias localip="ifconfig | \
                    grep 'inet addr' | \
                    grep -v '127.0.0.1' | \
@@ -46,7 +46,7 @@ fi
 
 # OS specific package managers
 
-if [ "$os" == "osx" ]; then
+if [ "$OS" == "osx" ]; then
 
     # Homebrew
     # http://brew.sh/
@@ -61,7 +61,7 @@ if [ "$os" == "osx" ]; then
                      brew cleanup"
     fi
 
-elif [ "$os" == "ubuntu" ]; then
+elif [ "$OS" == "ubuntu" ]; then
 
     # Advanced Packaging Tool
 
@@ -76,12 +76,12 @@ fi
 
 # Update
 
-if [ "$os" == "osx" ]; then
+if [ "$OS" == "osx" ]; then
     alias update="sudo softwareupdate --install --all && \
                   brewu && \
                   npmi -g npm && \
                   npmu -g"
-elif [ "$os" == "ubuntu" ]; then
+elif [ "$OS" == "ubuntu" ]; then
     alias update="aptu && \
                   npmi -g npm && \
                   npmu -g"
@@ -106,9 +106,9 @@ alias rm="rm -rf"
 
 # Copy to clipboard
 
-if [ "$os" == "osx" ]; then
+if [ "$OS" == "osx" ]; then
     alias cc="pbcopy"
-elif [ "$os" == "ubuntu" ]; then
+elif [ "$OS" == "ubuntu" ]; then
     alias cc="xclip -selection clip"
 fi
 
@@ -116,7 +116,7 @@ fi
 
 # Empty Trash
 
-if [ "$os" == "osx" ]; then
+if [ "$OS" == "osx" ]; then
     # Empty the trash, the main HDD and on all mounted volumes
     # and clear Apple’s system logs to improve shell startup speed
     alias empty-trash="sudo rm -frv /Volumes/*/.Trashes && \
@@ -128,7 +128,7 @@ fi
 
 # Hide/Show files
 
-if [ "$os" == "osx" ]; then
+if [ "$OS" == "osx" ]; then
 
     # Hide/Show desktop icons
     alias hide-desktop-icons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
@@ -138,7 +138,7 @@ if [ "$os" == "osx" ]; then
     alias hide-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias show-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 
-elif [ "$os" == "ubuntu" ]; then
+elif [ "$OS" == "ubuntu" ]; then
 
     # Hide/Show desktop icons
     alias hide-desktop-icons="gsettings set org.gnome.desktop.background show-desktop-icons false"
@@ -150,7 +150,7 @@ fi
 
 # Lock screen
 
-if [ "$os" == "osx" ]; then
+if [ "$OS" == "osx" ]; then
     alias look-screen="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 fi
 
@@ -158,9 +158,9 @@ fi
 
 # Restart Apache
 
-if [ "$os" == "osx" ]; then
+if [ "$OS" == "osx" ]; then
     alias ra="sudo apachectl restart"
-elif [ "$os" == "ubuntu" ]; then
+elif [ "$OS" == "ubuntu" ]; then
     alias ra="sudo /etc/init.d/apache2 restart"
 fi
 
@@ -168,8 +168,8 @@ fi
 
 # Open
 
-if [ "$os" == "osx" ]; then
+if [ "$OS" == "osx" ]; then
     alias o="open"
-elif [ "$os" == "ubuntu" ]; then
+elif [ "$OS" == "ubuntu" ]; then
     alias o="xdg-open"
 fi

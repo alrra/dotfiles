@@ -1,69 +1,95 @@
 #!/bin/bash
 
-load_dotfiles() {
+# ----------------------------------------------------------------------
+# | Helper Functions                                                   |
+# ----------------------------------------------------------------------
 
-    local i="" os="" tmp=""
-    local osname="$(uname -s)"
-
-    declare -a files=(
-        "bash_aliases"
-        "bash_exports"
-        "bash_functions"
-        "bash_options"
-        "bash_prompt"
-        "bash.local"    # for local settings that should
-                        # not be under version control
-    )
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [[ $COLORTERM == gnome-* && $TERM == xterm ]] && \
-       infocmp gnome-256color >/dev/null 2>&1; then
-        export TERM=gnome-256color
-    elif infocmp xterm-256color >/dev/null 2>&1; then
-        export TERM=xterm-256color
-    fi
-
-    # Some things are OS specific, deal with it!
-
-    if [ "$osname" == "Darwin" ]; then
-        os="osx"
-
-    # Get Linux distribution
-    # https://web.archive.org/web/20130929034731/http://linuxmafia.com/faq/Admin/release-files.html
-    elif [ "$osname" == "Linux" ] &&
-         [ -e "/etc/lsb-release" ]; then
-        os="ubuntu"
-    else
-        os="other"
-    fi
-
-    for i in ${!files[*]}; do
-        tmp="$HOME/.${files[$i]}"
-        [ -r "$tmp" ] && source "$tmp"
-    done
+enable_programmable_completion() {
 
     # Enable programmable completion features
-    if [ "$os" == "osx" ]; then
+    # http://tldp.org/LDP/abs/html/tabexpansion.html
+
+    if [ "$OS" == "osx" ]; then
         if [ -f $(brew --prefix)/etc/bash_completion ]; then
 
-            . $(brew --prefix)/etc/bash_completion
+            source $(brew --prefix)/etc/bash_completion
 
             # Make bash complete the `g` alias, just like it does `git`
             complete -o default -o nospace -F _git g
         fi
-    else
+    elif [ "$OS" == "ubuntu" ]; then
         if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-            . /etc/bash_completion
+            source /etc/bash_completion
         fi
     fi
 
 }
 
+get_os() {
+
+    local os=""
+    local OS_NAME="$(uname -s)"
+
+    if [ "$OS_NAME" == "Darwin" ]; then
+        os="osx"
+
+    # Get Linux distribution
+    # https://web.archive.org/web/20130929034731/http://linuxmafia.com/faq/Admin/release-files.html
+    elif [ "$OS_NAME" == "Linux" ] && \
+         [ -e "/etc/lsb-release" ]; then
+        os="ubuntu"
+    fi
+
+    printf "%s" "$os"
+}
+
+source_bash_files() {
+
+    local file=""
+    local i=""
+
+    declare -r -a files=(
+        "bash_aliases"
+        "bash_exports"
+        "bash_functions"
+        "bash_options"
+        "bash_prompt"
+        "bash.local"  # for local settings that should
+                      # not be under version control
+    )
+
+    for i in ${!files[*]}; do
+        file="$HOME/.${files[$i]}"
+        [ -r "$file" ] && source "$file"
+    done
+
+}
+
+# ----------------------------------------------------------------------
+# | Main                                                               |
+# ----------------------------------------------------------------------
+
+main() {
+
+    # The presence of the OS variable in this scope is important as
+    # the following functions rely on it (e.g. the sourced files use
+    # it to determine what to execute)
+    declare -r OS="$(get_os)"
+
+    source_bash_files
+    enable_programmable_completion
+
+}
+
+main
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-load_dotfiles
-unset load_dotfiles
+# Unset functions in order to not pollute the global space
+unset -f enable_programmable_completion
+unset -f get_os
+unset -f main
+unset -f source_bash_files
 
 # Clear system messages (e.g.: system copyright notice, the
 # date and time of the last login, the message of the day, etc.)
