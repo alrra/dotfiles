@@ -124,7 +124,6 @@ if [ "$OS" == "osx" ]; then
     alias empty-trash="sudo rm -frv /Volumes/*/.Trashes && \
                       sudo rm -frv ~/.Trash &&
                       sudo rm -frv /private/var/log/asl/*.asl"
-
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
