@@ -90,7 +90,3 @@ unset -f enable_programmable_completion
 unset -f get_os
 unset -f main
 unset -f source_bash_files
-
-# Clear system messages (e.g.: system copyright notice, the
-# date and time of the last login, the message of the day, etc.)
-clear
