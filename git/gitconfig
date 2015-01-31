@@ -11,7 +11,7 @@
     l  = log --pretty=custom_log_output            # Show custom log
     rlc = !git reset --hard HEAD~1                 # Remove last commit
     st = status
-    uc = reset --soft HEAD~1                       # Undo last commit
+    ulc = reset --soft HEAD~1                      # Undo last commit
 
     # Credit an author on the latest commit
     credit = "!f() { \
