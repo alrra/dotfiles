@@ -48,7 +48,7 @@ source_bash_files() {
     local file=""
     local i=""
 
-    declare -r -a files=(
+    declare -r -a FILES_TO_SOURCE=(
         "bash_aliases"
         "bash_exports"
         "bash_functions"
@@ -58,8 +58,8 @@ source_bash_files() {
                       # not be under version control
     )
 
-    for i in ${!files[*]}; do
-        file="$HOME/.${files[$i]}"
+    for i in ${!FILES_TO_SOURCE[*]}; do
+        file="$HOME/.${FILES_TO_SOURCE[$i]}"
         [ -r "$file" ] && source "$file"
     done
 
@@ -90,3 +90,7 @@ unset -f enable_programmable_completion
 unset -f get_os
 unset -f main
 unset -f source_bash_files
+
+# Clear system messages (e.g.: system copyright notice, the
+# date and time of the last login, the message of the day, etc.)
+clear
