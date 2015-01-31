@@ -215,35 +215,47 @@ endfunction
 
 if has('autocmd')
 
-    " Automatically switch to absolute line numbers when vim loses focus
-    autocmd FocusLost * :set number
-
-    " Automatically switch to relative line numbers when vim gains focus
-    autocmd FocusGained * :set relativenumber
-
-    " Automatically switch to absolute line numbers when vim is in insert mode
-    autocmd InsertEnter * :set number
-
-    " Automatically switch to relative line numbers when vim is in normal mode
-    autocmd InsertLeave * :set relativenumber
+    " Autocommand Groups
+    " http://learnvimscriptthehardway.stevelosh.com/chapters/14.html
 
     " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    " Custom syntax for different languages
-    autocmd FileType javascript setlocal ts=4 sts=4 sw=4 expandtab
+    " Automatically reload the configurations from the
+    " `~/.vimrc` and `~/.gvimrc` files whenever they are changed
+
+    augroup auto_reload_vim_configs
+        autocmd!
+        autocmd BufWritePost vimrc source $MYVIMRC
+        if has('gui_running')
+            autocmd BufWritePost gvimrc source $MYGVIMRC
+        endif
+    augroup END
 
     " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    " Treat `.json` files as JavaScript
-    autocmd BufNewFile, BufRead *.json setfiletype json syntax=javascript
+    " Use relative line numbers
+    " http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
 
-    " Treat `.md` files as Markdown
-    autocmd BufNewFile, BufRead *.md setlocal filetype=markdown
+    augroup relative_line_numbers
+        autocmd!
+        " Automatically switch to absolute line numbers when vim loses focus
+        autocmd FocusLost * :set number
+        " Automatically switch to relative line numbers when vim gains focus
+        autocmd FocusGained * :set relativenumber
+        " Automatically switch to absolute line numbers when vim is in insert mode
+        autocmd InsertEnter * :set number
+        " Automatically switch to relative line numbers when vim is in normal mode
+        autocmd InsertLeave * :set relativenumber
+    augroup END
 
     " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    " Strip trailing whitespace automatically when the file is saved
-    autocmd BufWritePre * :call StripTrailingWhitespaces()
+    " Automatically strip the trailing whitespaces when files are saved
+
+    augroup strip_trailing_whitespaces
+        autocmd!
+        autocmd BufWritePre * :call StripTrailingWhitespaces()
+    augroup END
 
 endif
 
@@ -297,7 +309,6 @@ nmap <leader>l :set list!<CR>
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " [,n ] Toggle `set relativenumber`
-" http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
 nmap <leader>n :call ToggleRelativeLineNumbers()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
