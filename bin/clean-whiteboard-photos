@@ -2,7 +2,7 @@
 
 # DESCRIPTION:
 #
-#   Script that cleans up and beautifies photos of whiteboards.
+#   Cleans up and beautifies photos of whiteboards.
 #
 # SOURCE:
 #
@@ -32,7 +32,7 @@ clean_whiteboard_photos() {
 
 main() {
 
-    # Check if Imageagick's convert command-line tool is installed
+    # Check if ImageMagick's convert command-line tool is installed
     if [ -x "$(command -v "convert")" ]; then
 
         while [ $# -ne 0 ]; do

@@ -1,6 +1,6 @@
-" ######################################################################
-" # GENERAL SETTINGS                                                   #
-" ######################################################################
+" ----------------------------------------------------------------------
+" | General Settings                                                   |
+" ----------------------------------------------------------------------
 
 " Use Vundle to manage the vim plugins
 " https://github.com/gmarik/Vundle.vim
@@ -10,7 +10,7 @@ filetype off                   " Disable file type detection
                                " (required by Vundle)
 
 " Set the runtime path to include Vundle
-set rtp+=~/.vim/plugins/Vundle.vim
+set runtimepath+=~/.vim/plugins/Vundle.vim
 
 " Initialize Vundle and specify the path
 " where the plugins should be installed
@@ -59,13 +59,13 @@ set background=dark            " Use colors that look good
                                " on a dark background
 
 set backspace=indent           " ┐
-set backspace+=eol             " │ Allow `backspace` in insert mode
-set backspace+=start           " ┘
+set backspace+=eol             " │ Allow `backspace`
+set backspace+=start           " ┘ in insert mode
 
 set backupdir=~/.vim/backups   " Set directory for backup files
 
-set backupskip=/tmp/*          " ┐ Don't create backups when editing
-set backupskip+=/private/tmp/* " ┘ files in certain directories
+set backupskip=/tmp/*          " ┐ Don't create backups
+set backupskip+=/private/tmp/* " ┘ for certain files
 
 set clipboard=unnamed          " ┐
                                " │ Use the system clipboard
@@ -73,9 +73,10 @@ if has('unnamedplus')          " │ as the default register
     set clipboard+=unnamedplus " │
 endif                          " ┘
 
-set cpoptions+=$               " When making a change, don't redisplay
-                               " the line, and instead, put a `$` sign
-                               " at the end of the changed text
+set cpoptions+=$               " When making a change, don't
+                               " redisplay the line, and instead,
+                               " put a `$` sign at the end of
+                               " the changed text
 
 set colorcolumn=73             " Highlight certain column(s)
 set cursorline                 " Highlight the current line
@@ -99,9 +100,9 @@ set magic                      " Enable extended regexp
 set mousehide                  " Hide mouse pointer while typing
 set noerrorbells               " Disable error bells
 
-set nojoinspaces               " When using the join command, only
-                               " insert a single space after a `.`,
-                               " `?` or `!`
+set nojoinspaces               " When using the join command,
+                               " only insert a single space
+                               " after a `.`, `?`, or `!`
 
 set nostartofline              " Kept the cursor on the same column
 set number                     " Show line number
@@ -112,20 +113,18 @@ set numberwidth=5              " Increase the minimal number of
 set report=0                   " Report the number of lines changed
 set ruler                      " Show cursor position
 
-set scrolloff=5                " When scrolling, keep the cursor 5
-                               " lines below the top and 5 lines above
-                               " the bottom of the screen
+set scrolloff=5                " When scrolling, keep the cursor
+                               " 5 lines below the top and 5 lines
+                               " above the bottom of the screen
 
 set shortmess=aAItW            " Avoid all the hit-enter prompts
-set showcmd                    " Show the (partial) command being typed
+set showcmd                    " Show the command being typed
 set showmode                   " Show current mode
+set spelllang=en_us            " Set the spellchecking language
 
-set spelllang=en_us            " Use `en_us` as the spellchecking
-                               " language
-
-set smartcase                  " Override `ignorecase` option if
-                               " the search pattern contains uppercase
-                               " characters
+set smartcase                  " Override `ignorecase` option
+                               " if the search pattern contains
+                               " uppercase characters
 
 set synmaxcol=2500             " Limit syntax highlighting (this
                                " avoids the very slow redrawing
@@ -139,19 +138,76 @@ set expandtab                  " ┘
 set ttyfast                    " Enable fast terminal connection
 set undodir=~/.vim/undos       " Set directory for undo files
 set undofile                   " Automatically save undo history
-set virtualedit=all            " Allow cursor to be positioned anywhere
+set virtualedit=all            " Allow cursor to be anywhere
 
 set visualbell                 " ┐
 set noerrorbells               " │ Disable beeping and window flashing
 set t_vb=                      " ┘ http://vim.wikia.com/wiki/Disable_beeping
 
-set wildmenu                   " Enable enhanced command-line completion
-                               " (by hitting <TAB> in command mode, vim
-                               " will show the possible matches just
-                               " above the command line with the first
+set wildmenu                   " Enable enhanced command-line
+                               " completion (by hitting <TAB> in
+                               " command mode, Vim will show the
+                               " possible matches just above the
+                               " command line with the first
                                " match highlighted)
 
-set winminheight=0             " Allow windows to be squashed to 0 lines
+set winminheight=0             " Allow windows to be squashed
+
+
+" ----------------------------------------------------------------------
+" | Helper Functions                                                   |
+" ----------------------------------------------------------------------
+
+function! GetGitBranchName()
+    let branchName=fugitive#head()
+    return branchName != '' ? '[' . branchName . ']' : ''
+endfunction
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+function! StripTrailingWhitespaces()
+
+    " Save last search and cursor position
+    let searchHistory = @/
+    let cursorLine = line('.')
+    let cursorColumn = col('.')
+
+    " Strip trailing whitespaces
+    %s/\s\+$//e
+
+    " Restore previous search history and cursor position
+    let @/ = searchHistory
+    call cursor(cursorLine, cursorColumn)
+
+endfunction
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+function! ToggleLimits()
+
+    " [51,73]
+    "   - git commit message
+    "     http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+    " [81]
+    "   - general use
+
+    if ( &colorcolumn == '73' )
+        set colorcolumn+=51,81
+    else
+        set colorcolumn-=51,81
+    endif
+
+endfunction
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+function! ToggleRelativeLineNumbers()
+    if ( &relativenumber == 1 )
+        set number
+    else
+        set relativenumber
+    endif
+endfunction
 
 " ----------------------------------------------------------------------
 " | Automatic Commands                                                 |
@@ -161,75 +217,36 @@ if has('autocmd')
 
     " Automatically switch to absolute line numbers when vim loses focus
     autocmd FocusLost * :set number
+
     " Automatically switch to relative line numbers when vim gains focus
     autocmd FocusGained * :set relativenumber
+
     " Automatically switch to absolute line numbers when vim is in insert mode
     autocmd InsertEnter * :set number
+
     " Automatically switch to relative line numbers when vim is in normal mode
     autocmd InsertLeave * :set relativenumber
+
+    " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     " Custom syntax for different languages
     autocmd FileType javascript setlocal ts=4 sts=4 sw=4 expandtab
 
+    " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     " Treat `.json` files as JavaScript
     autocmd BufNewFile, BufRead *.json setfiletype json syntax=javascript
+
     " Treat `.md` files as Markdown
     autocmd BufNewFile, BufRead *.md setlocal filetype=markdown
 
+    " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     " Strip trailing whitespace automatically when the file is saved
-    autocmd BufWritePre * :call StripWhitespaces()
+    autocmd BufWritePre * :call StripTrailingWhitespaces()
 
 endif
 
-" ----------------------------------------------------------------------
-" | Highlighting                                                       |
-" ----------------------------------------------------------------------
-
-" Terminal types:
-"
-"   1) term  (normal terminals, e.g.: vt100, xterm)
-"   2) cterm (color terminals, e.g.: MS-DOS console, color-xterm)
-"   3) gui   (GUIs)
-
-highlight ColorColumn                              ctermbg=239
-highlight LineNr      cterm=NONE  ctermfg=DarkGrey ctermbg=NONE
-highlight User1       cterm=bold  ctermfg=Grey     ctermbg=237
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-function! GetGitBranchName()
-    let branchName=fugitive#head()
-    return branchName != '' ? '[' . branchName . ']' : ''
-endfunction
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-set statusline=
-set statusline+=%1*                      " User1 highlight
-set statusline+=\ [%n]                   " Buffer number
-set statusline+=\ %{GetGitBranchName()}  " Git branch name
-set statusline+=\ [%f]                   " Path to the file
-set statusline+=%m                       " Modified flag
-set statusline+=%r                       " Readonly flag
-set statusline+=%h                       " Help file flag
-set statusline+=%w                       " Preview window flag
-set statusline+=%y                       " File type
-set statusline+=[
-set statusline+=%{&ff}                   " File format
-set statusline+=:
-set statusline+=%{strlen(&fenc)?&fenc:'none'} " File encoding
-set statusline+=]
-set statusline+=%=                       " Left/Right separator
-set statusline+=%c                       " File encoding
-set statusline+=,
-set statusline+=%l                       " Current line number
-set statusline+=/
-set statusline+=%L                       " Total number of lines
-set statusline+=\ (%P)\                  " Percent through file
-
-" Example result:
-"
-"  [1] [master] [vim/vimrc][vim][unix:utf-8]            17,238/381 (59%)
 
 " ----------------------------------------------------------------------
 " | Key Mappings                                                       |
@@ -281,62 +298,17 @@ nmap <leader>l :set list!<CR>
 
 " [,n ] Toggle `set relativenumber`
 " http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
-function! ToggleRelativeLineNumbers()
-
-    if ( &relativenumber == 1 )
-        set number
-    else
-        set relativenumber
-    endif
-
-endfunction
-
 nmap <leader>n :call ToggleRelativeLineNumbers()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " [,sl] Toggle show limits
-function! ToggleLimits()
-
-    " [51,73]
-    "   - git commit message
-    "     http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-    " [81]
-    "   - general use
-
-    if ( &colorcolumn == '73' )
-        set colorcolumn+=51,81
-    else
-        set colorcolumn-=51,81
-    endif
-
-endfunction
-
 nmap <leader>sl :call ToggleLimits()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" [,ss] Strip whitespace
-function! StripWhitespaces()
-
-    " Save last search and cursor position
-    let searchHistory = @/
-    let cursorLine = line('.')
-    let cursorColumn = col('.')
-
-    " Strip trailing whitespaces
-    %s/\s\+$//e
-
-    " Merge consecutive empty lines
-    "g/^\s*$/,/\S/-j
-
-    " Restore previous search history and cursor position
-    let @/ = searchHistory
-    call cursor(cursorLine, cursorColumn)
-
-endfunction
-
-nmap <leader>ss :call StripWhitespaces()<CR>
+" [,ss] Strip trailing whitespace
+nmap <leader>ss :call StripTrailingWhitespaces()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -354,37 +326,35 @@ nmap <leader>v :vsp $MYVIMRC<CR>
 map <leader>W :w !sudo tee %<CR>
 
 
-" ######################################################################
-" # PLUGIN RELATED SETTINGS                                            #
-" ######################################################################
+" ----------------------------------------------------------------------
+" | Plugins                                                            |
+" ----------------------------------------------------------------------
 
-" ----------------------------------------------------------------------
-" | Emmet                                                              |
-" ----------------------------------------------------------------------
+" Emmet
 
 " Load custom Emmet snippets
 " http://docs.emmet.io/customization/snippets/
 let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
 
-" ----------------------------------------------------------------------
-" | Markdown                                                           |
-" ----------------------------------------------------------------------
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" Markdown
 
 " Disable Folding
 " https://github.com/plasticboy/vim-markdown#disable-folding
 let g:vim_markdown_folding_disabled=1
 
-" ----------------------------------------------------------------------
-" | NeoComplCache                                                      |
-" ----------------------------------------------------------------------
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" NeoComplCache
 
 " Enable `neocomplcache` by default
 " https://github.com/Shougo/neocomplcache.vim#installation
 let g:neocomplcache_enable_at_startup=1
 
-" ----------------------------------------------------------------------
-" | Syntastic                                                          |
-" ----------------------------------------------------------------------
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" Syntastic
 
 " Inform Syntastic which checkers to use based on file types
 " https://github.com/scrooloose/syntastic#3-faq
@@ -399,9 +369,53 @@ let g:syntastic_mode_map = {
 \}
 
 
-" ######################################################################
-" # LOCAL SETTINGS                                                     #
-" ######################################################################
+" ----------------------------------------------------------------------
+" | Status Line                                                        |
+" ----------------------------------------------------------------------
+
+" Terminal types:
+"
+"   1) term  (normal terminals, e.g.: vt100, xterm)
+"   2) cterm (color terminals, e.g.: MS-DOS console, color-xterm)
+"   3) gui   (GUIs)
+
+highlight ColorColumn                                ctermbg=239
+highlight LineNr       cterm=NONE  ctermfg=DarkGrey  ctermbg=NONE
+highlight User1        cterm=bold  ctermfg=Grey      ctermbg=237
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+set statusline=
+set statusline+=%1*            " User1 highlight
+set statusline+=\ [%n]         " Buffer number
+set statusline+=\ %{GetGitBranchName()} " Git branch name
+set statusline+=\ [%f]         " Path to the file
+set statusline+=%m             " Modified flag
+set statusline+=%r             " Readonly flag
+set statusline+=%h             " Help file flag
+set statusline+=%w             " Preview window flag
+set statusline+=%y             " File type
+set statusline+=[
+set statusline+=%{&ff}         " File format
+set statusline+=:
+set statusline+=%{strlen(&fenc)?&fenc:'none'} " File encoding
+set statusline+=]
+set statusline+=%=             " Left/Right separator
+set statusline+=%c             " File encoding
+set statusline+=,
+set statusline+=%l             " Current line number
+set statusline+=/
+set statusline+=%L             " Total number of lines
+set statusline+=\ (%P)\        " Percent through file
+
+" Example result:
+"
+"  [1] [master] [vim/vimrc][vim][unix:utf-8]            17,238/381 (59%)
+
+
+" ----------------------------------------------------------------------
+" | Local Settings                                                     |
+" ----------------------------------------------------------------------
 
 " Load local settings if they exist
 if filereadable(glob('~/.vimrc.local'))

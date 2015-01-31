@@ -4,7 +4,7 @@
 # | File System                                                        |
 # ----------------------------------------------------------------------
 
-# Create a data URI from a file
+# Create data URI from a file
 
 datauri() {
 
@@ -211,6 +211,7 @@ qt() {
 
 # Human redable file size
 # (because `du -h` doesn't cut it for me)
+
 hrfs() {
 
     printf "%s" "$1" |

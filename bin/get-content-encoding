@@ -2,8 +2,8 @@
 
 # DESCRIPTION:
 #
-#   Script that provides the content encoding
-#   the specified resources are served with.
+#   Provides the content encoding the specified
+#   resources are served with.
 #
 # USAGE:
 #
