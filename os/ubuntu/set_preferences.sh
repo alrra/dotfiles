@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${BASH_SOURCE%/*}" && source "../utils.sh"
+
 # ----------------------------------------------------------------------
 # | Privacy                                                            |
 # ----------------------------------------------------------------------
@@ -53,7 +55,9 @@ set_ui_and_ux_settings() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_preferences() {
+main() {
     execute "set_privacy_settings" "Privacy"
     execute "set_ui_and_ux_settings" "UI & UX"
 }
+
+main

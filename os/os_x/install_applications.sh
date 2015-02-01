@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${BASH_SOURCE%/*}" && source "../utils.sh"
+
 # Homebrew Formulae
 # https://github.com/Homebrew/homebrew
 
@@ -50,7 +52,7 @@ declare -a HOMEBREW_ALTERNATE_CASKS=(
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-install_applications() {
+main() {
 
     local i="", tmp=""
 
@@ -117,3 +119,5 @@ install_applications() {
     fi
 
 }
+
+main

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${BASH_SOURCE%/*}" && source "../utils.sh"
+
 # ----------------------------------------------------------------------
 # | Chrome & Chrome Canary                                             |
 # ----------------------------------------------------------------------
@@ -426,7 +428,7 @@ set_ui_and_ux_preferences() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_preferences() {
+main() {
 
     execute "set_chrome_and_chrome_canary_preferences" "Chrome & Chrome Canary"
     execute "set_dashboard_preferences" "Dashboard"
@@ -454,3 +456,5 @@ set_preferences() {
     done
 
 }
+
+main
