@@ -27,8 +27,8 @@ enable_programmable_completion() {
 
 get_os() {
 
+    declare -r OS_NAME="$(uname -s)"
     local os=""
-    local OS_NAME="$(uname -s)"
 
     if [ "$OS_NAME" == "Darwin" ]; then
         os="osx"

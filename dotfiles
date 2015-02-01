@@ -1,135 +1,25 @@
 #!/bin/bash
 
-declare -a FILES_TO_COPY=(
-    "git/gitconfig"
-)
-
-
-declare -a FILES_TO_SYMLINK=(
-    "shell/bash_aliases"
-    "shell/bash_exports"
-    "shell/bash_functions"
-    "shell/bash_logout"
-    "shell/bash_options"
-    "shell/bash_profile"
-    "shell/bash_prompt"
-    "shell/bashrc"
-    "shell/curlrc"
-    "shell/inputrc"
-    "shell/screenrc"
-
-    "git/gitattributes"
-    "git/gitignore"
-
-    "vim/vim"
-    "vim/vimrc"
-    "vim/gvimrc"
-)
-
 declare -r GITHUB_REPOSITORY="alrra/dotfiles"
 
-declare -a NEW_DIRECTORIES=(
-    "$HOME/archive"
-    "$HOME/Downloads/torrents"
-    "$HOME/projects"
-    "$HOME/server"
-)
+declare -r DOTFILES_ORIGIN="git@github.com:$GITHUB_REPOSITORY.git"
+declare -r DOTFILES_TARBALL_URL="http://github.com/$GITHUB_REPOSITORY/tarball/master"
+declare -r DOTFILES_UTILS_URL="https://raw.githubusercontent.com/$GITHUB_REPOSITORY/master/os/utils.sh"
 
-declare -a NPM_PACKAGES=(
-    "jshint"
-)
+declare dotfilesDirectory="$HOME/projects/dotfiles"
 
-declare dotfiles_directory="$HOME/projects/dotfiles"
-declare os=""
-
-# ######################################################################
-# # HELPER FUNCTIONS                                                   #
-# ######################################################################
-
-answer_is_yes() {
-    [[ "$REPLY" =~ ^[Yy]$ ]] && return 0 || return 1
-}
-
-ask() {
-    print_question "$1"
-    read
-}
-
-ask_for_confirmation() {
-    print_question "$1 (y/n) "
-    read -n 1
-    printf "\n"
-}
-
-ask_for_sudo() {
-
-    # Ask for the administrator password upfront
-    sudo -v
-
-    # Update existing `sudo` time stamp until this script has finished
-    # https://gist.github.com/cowboy/3118588
-    while true; do
-        sudo -n true
-        sleep 60
-        kill -0 "$$" || exit
-    done &> /dev/null &
-}
-
-check_github_ssh_key() {
-
-    declare -r GITHUB_SSH_URL="https://github.com/settings/ssh"
-    local ssh_key_file="id_rsa.pub"
-
-    if [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; then
-
-        cd "$HOME/.ssh"
-
-        # Setup GitHub SSH Key
-        # https://help.github.com/articles/generating-ssh-keys
-
-        print_info "Set up the SSH key"
-
-        if [ ! -r "$ssh_key_file" ]; then
-            rm -rf "$ssh_key_file"
-            ask "Please provide an email address (email): " && printf "\n"
-            ssh-keygen -t rsa -C "$(get_answer)"
-        fi
-
-        if [ "$os" == "osx" ]; then
-
-            # Copy SSH key to clipboard
-            cat "$ssh_key_file" | pbcopy
-            print_result $? "Copy SSH key to clipboard"
-
-            # Open the GitHub web page where the SSH key can be added
-            open "$GITHUB_SSH_URL"
-
-        elif [ "$os" == "ubuntu" ]; then
-
-            # Copy SSH key to clipboard
-            cat "$ssh_key_file" | xclip -selection clip
-            print_result $? "Copy SSH key to clipboard"
-
-            # Open the GitHub web page where the SSH key can be added
-            xdg-open "$GITHUB_SSH_URL"
-
-        fi
-
-        # Before proceeding, wait for everything to be ok
-        while [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; do
-            sleep 5;
-        done
-
-        print_success "Set up the SSH key"
-    fi
-}
+# ----------------------------------------------------------------------
+# | Helper Functions                                                   |
+# ----------------------------------------------------------------------
 
 check_os() {
 
+    declare -r OS_NAME="$(uname -s)"
+
     # Check if the OS is OS X and it is above a certain version
-    if [ "$(uname -s)" = "Darwin" ]; then
+    if [ "$OS_NAME" == "Darwin" ]; then
         if [ $(compare_versions "$(sw_vers -productVersion)" "10.10") == '<' ]; then
-            print_error "Sorry, this script is intended only for OS X 10.10.0+."
+            printf "Sorry, this script is intended only for OS X 10.10.0+."
             return 1
         else
             os="osx"
@@ -138,8 +28,8 @@ check_os() {
 
     # Check if the OS is Ubuntu
     else
-        if [ "$(uname -s)" != "Linux" ] || [ ! -e "/etc/lsb-release" ]; then
-            print_error "Sorry, this script is intended only for OS X and Ubuntu!"
+        if [ "$OS_NAME" != "Linux" ] || [ ! -e "/etc/lsb-release" ]; then
+            printf "Sorry, this script is intended only for OS X and Ubuntu!"
             return 1
         else
             os="ubuntu"
@@ -147,12 +37,6 @@ check_os() {
         fi
     fi
 
-}
-
-cmd_exists() {
-    [ -x "$(command -v "$1")" ] \
-        && printf 0 \
-        || printf 1
 }
 
 compare_versions() {
@@ -167,6 +51,7 @@ compare_versions() {
     done
 
     for (( i=0; i<${#v1[@]}; i++ )); do
+
         # Fill empty positions in v2 with zeros
         if [[ -z ${v2[i]} ]]; then
             v2[i]=0
@@ -174,39 +59,45 @@ compare_versions() {
 
         if (( 10#${v1[i]} > 10#${v2[i]} )); then
             printf ">"
-            return 0;
         fi
 
         if (( 10#${v1[i]} < 10#${v2[i]} )); then
             printf "<"
-            return 0;
         fi
+
     done
 
     printf "="
 }
 
-copy_files() {
-    print_info "Copy files"
-    place_files "cp -f" "${FILES_TO_COPY[@]}"
-}
+download() {
 
-create_directories() {
-    print_info "Create directories"
-    ask_for_confirmation "Do you want the additional directories to be created?"
-    if answer_is_yes; then
-        for i in ${NEW_DIRECTORIES[@]}; do
-            mkd "$i"
-        done
+    local url="$1"
+    local output="$2"
+
+    if [ -x "$(command -v curl)" ]; then
+
+        curl -LsSo "$output" "$url" &> /dev/null
+        #     │││└─ write output to file
+        #     ││└─ show error messages
+        #     │└─ don't show the progress meter
+        #     └─ follow redirects
+
+    elif [ -x "$(command -v wget)" ]; then
+
+        wget -qO "$output" "$url" &> /dev/null
+        #     │└─ write output to file
+        #     └─ don't show output
+
+    else
+        return 1
     fi
+
+    return $?
+
 }
 
-create_symbolic_links() {
-    print_info "Create symbolic links"
-    place_files "ln -fs" "${FILES_TO_SYMLINK[@]}"
-}
-
-download_and_extract_archive() {
+download_dotfiles() {
 
     local tmpFile="$(mktemp -u XXXXX)"
 
@@ -214,262 +105,84 @@ download_and_extract_archive() {
 
     cd '/tmp'
 
-    # Download archive
-    if [ "$os" == "osx" ]; then
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        curl -LsSo "$tmpFile" "$1"
-        #     │││└─ write output to file
-        #     ││└─ show error messages
-        #     │└─ don't show the progress meter
-        #     └─ follow redirects
-
-    elif [ "$os" == "ubuntu" ]; then
-
-        wget -qO "$tmpFile" "$1"
-        #     │└─ write output to file
-        #     └─ don't show output
-
-    fi
-
+    download "$DOTFILES_TARBALL_URL" "$tmpFile"
     print_result $? "Download archive" "true"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ask_for_confirmation "Do you want to store the dotfiles in '$dotfiles_directory'?"
+    ask_for_confirmation "Do you want to store the dotfiles in '$dotfilesDirectory'?"
     if ! answer_is_yes; then
-        ask "Please specify another location for the dotfiles (path):"
-        dotfiles_directory="$(get_answer)"
-    fi
-
-    # Ensure the `dotfiles` directory is available
-    if [ -e "$dotfiles_directory" ]; then
-        while [ -e "$dotfiles_directory" ]; do
-
-            ask_for_confirmation "'$dotfiles_directory' already exists! Do you want to overwrite it?"
-
-            if answer_is_yes; then
-                rm -rf "$dotfiles_directory"
-                break
-            else
-                ask "Please specify another location for the dotfiles (path)"
-                dotfiles_directory="$(get_answer)"
-            fi
+        dotfilesDirectory=""
+        while [ -z "$dotfilesDirectory" ]; do
+            ask "Please specify another location for the dotfiles (path): "
+            dotfilesDirectory="$(get_answer)"
         done
     fi
 
-    mkd "$dotfiles_directory"
+    # Ensure the `dotfiles` directory is available
+
+    while [ -e "$dotfilesDirectory" ]; do
+        ask_for_confirmation "'$dotfilesDirectory' already exists, do you want to overwrite it?"
+        if answer_is_yes; then
+            rm -rf "$dotfilesDirectory"
+            break
+        else
+            dotfilesDirectory=""
+            while [ -z "$dotfilesDirectory" ]; do
+                ask "Please specify another location for the dotfiles (path): "
+                dotfilesDirectory="$(get_answer)"
+            done
+        fi
+    done
+
+    mkdir -p "$dotfilesDirectory"
+    print_result $? "Create '$dotfilesDirectory'" "true"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Extract archive to the `dotfiles` directory
-    tar -zxf "$tmpFile" --strip-components 1 -C "$dotfiles_directory"
+    # Extract archive in the `dotfiles` directory
+
+    extract "$tmpFile" "$dotfilesDirectory"
     print_result $? "Extract archive" "true"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Remove the archive
+    # Remove archive
+
     rm -rf "$tmpFile"
     print_result $? "Remove archive"
-}
 
-execute() {
-    $1 &> /dev/null
-    print_result $? "${2:-$1}"
-}
-
-get_answer() {
-    printf "$REPLY"
-}
-
-git_initialize_repository() {
-    print_info "Initialize git repository"
-    cd "$dotfiles_directory"
-    if ! is_git_repository; then
-        git init &> /dev/null \
-            && git remote add origin "$1" &> /dev/null
-        print_result $? "Initialize the 'dotfiles' git repository"
-    fi
-}
-
-git_update_content() {
-    print_info "Update content"
-    cd "$dotfiles_directory"
-    if is_git_repository; then
-
-        ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
-
-        if answer_is_yes; then
-            check_github_ssh_key
-
-            cd "$dotfiles_directory"
-
-            # Update content, remove untracked files and fetch submodules
-            git fetch --all &> /dev/null \
-                && git reset --hard origin/master &> /dev/null \
-                && git clean -fd  &> /dev/null \
-                && git submodule update --recursive --init --quiet &> /dev/null \
-
-            print_result $? "Update content"
-        fi
-    fi
-}
-
-install_apps() {
-
-    print_info "Install applications"
-
-    if [ "$os" == "osx" ]; then
-        source "$dotfiles_directory/os/os_x/install_applications.sh"
-    elif [ "$os" == "ubuntu" ]; then
-        source "$dotfiles_directory/os/ubuntu/install_applications.sh"
-    fi
-
-    ask_for_confirmation "Do you want to install the applications/command line tools?"
-
-    if answer_is_yes; then
-
-        printf "\n"
-        install_applications
-
-        printf "\n"
-        install_npm_packages
-
-    fi
-}
-
-install_vim_plugins() {
-
-    print_info "Install vim plugins"
-
-    # Launch vim, run `:PluginInstall` and then close vim
-    vim +PluginInstall +qall
-    print_result $? "Install vim plugins"
+    cd "$dotfilesDirectory"
 
 }
 
-install_npm_packages() {
-
-    # Make sure the most recent version of npm is installed
-    npm install -q -g npm &> /dev/null
-    print_result $? "npm [update]"
-
-    for i in ${NPM_PACKAGES[@]}; do
-        execute "npm install -g $i" "$i"
-    done
+download_utils() {
+    local tmpFile="$(mktemp -u XXXXX)"
+    download "$DOTFILES_UTILS_URL" "/tmp/$tmpFile" \
+        && source "/tmp/$tmpFile" \
+        || exit
 }
 
-is_git_repository() {
-    if [ $(git rev-parse --is-inside-work-tree &> /dev/null; printf "%s" $?) == 0 ]; then
-        return 0;
+extract() {
+
+    local archive="$1"
+    local outputDir="$2"
+
+    if [ -x "$(command -v tar)" ]; then
+        tar -zxf "$archive" --strip-components 1 -C "$outputDir"
     else
-        return 1;
-    fi
-}
-
-mkd() {
-    if [ -n "$1" ]; then
-        if [ -e "$1" ]; then
-            if [ ! -d "$1" ]; then
-                print_error "$1 - a file with the same name already exists!"
-            else
-                print_success "$1"
-            fi
-        else
-            execute "mkdir -p $1" "$1"
-        fi
-    fi
-}
-
-place_file() {
-    if [ -e "$3" ]; then
-        ask_for_confirmation "'$3' already exists! Do you want to overwrite it?"
-        if answer_is_yes; then
-            rm -rf "$3"
-            execute "$1 $2 $3" "$3 → $2"
-        else
-            print_error "$3 → $2"
-        fi
-    else
-        execute "$1 $2 $3" "$3 → $2"
-    fi
-}
-
-place_files() {
-    local cmd=$1
-    local sourceFile="", targetFile=""
-
-    shift 1
-    declare -a files=("$@")
-
-    for i in ${files[@]}; do
-        [ "$i" != "${files[0]}" ] && printf "\n"
-        sourceFile="$dotfiles_directory/$i"
-        targetFile=$(printf "%s" "$HOME/.$i" | sed "s/.*\/\(.*\)/\1/g")
-        place_file "$cmd" "$sourceFile" "$HOME/.$targetFile"
-    done
-}
-
-print_error() {
-    # Print output in red
-    printf "\e[0;31m  [✖] $1 $2\e[0m\n"
-}
-
-print_info() {
-    # Print output in purple
-    printf "\n\e[0;35m $1\e[0m\n\n"
-}
-
-print_result() {
-    [ $1 -eq 0 ] \
-        && print_success "$2" \
-        || print_error "$2"
-
-    [ "$3" == "true" ] && [ $1 -ne 0 ] \
-        && exit
-}
-
-print_success() {
-    # Print output in green
-    printf "\e[0;32m  [✔] $1\e[0m\n"
-}
-
-print_question() {
-    # Print output in yellow
-    printf "\e[0;33m  [?] $1\e[0m"
-}
-
-restart_computer() {
-
-    print_info "Restart"
-    ask_for_confirmation "Do you want to restart?"
-
-    if answer_is_yes; then
-        print_info "Restarting..."
-        sudo shutdown -r now
-    fi
-}
-
-set_custom_preferences() {
-
-    print_info "Set preferences"
-
-    if [ "$os" == "osx" ]; then
-        source "$dotfiles_directory/os/os_x/set_preferences.sh"
-    elif [ "$os" == "ubuntu" ]; then
-        source "$dotfiles_directory/os/ubuntu/set_preferences.sh"
+        return 1
     fi
 
-    ask_for_confirmation "Do you want to set the custom preferences?"
+    return $?
 
-    if answer_is_yes; then
-        printf "\n"
-        set_preferences
-    fi
 }
 
-# ######################################################################
-# # MAIN                                                               #
-# ######################################################################
+# ----------------------------------------------------------------------
+# | Main                                                               |
+# ----------------------------------------------------------------------
 
 main() {
 
@@ -481,30 +194,96 @@ main() {
     # http://mywiki.wooledge.org/BashFAQ/028
     cd "${BASH_SOURCE%/*}"
 
+    download_utils
     ask_for_sudo
 
-    # Determine if the `dotfiles` need to be set up or updated
-    if [ $(cmd_exists "git") -eq 0 ] && \
-       [[ "$(git config --get remote.origin.url)" =~ $GITHUB_REPOSITORY ]]; then
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        dotfiles_directory="$(pwd)"
-        git_update_content
+    # Setup the `dotfiles` if needed
+    if [ $(cmd_exists "git") -ne 0 ] || \
+       [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
 
-    else
+        download_dotfiles
 
-        download_and_extract_archive "http://github.com/$GITHUB_REPOSITORY/tarball/master"
-        git_initialize_repository "git@github.com:$GITHUB_REPOSITORY.git"
-        install_vim_plugins
+        print_info "Initialize Git repository"
+        ./os/initialize_git_repository.sh "$DOTFILES_ORIGIN"
 
     fi
 
-    create_directories
-    copy_files
-    create_symbolic_links
-    install_apps
-    set_custom_preferences
-    restart_computer
+    cd $dotfilesDirectory
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_info "Create directories"
+    ask_for_confirmation "Do you want the additional directories to be created?"
+    if answer_is_yes; then
+        ./os/create_directories.sh
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_info "Copy files"
+    ./os/copy_files.sh
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_info "Create symbolic links"
+    ./os/create_symbolic_links.sh
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_info "Install applications"
+    ask_for_confirmation "Do you want to install the applications/command line tools?"
+    if answer_is_yes; then
+        printf "\n"
+        ./os/install_applications.sh
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_info "Install npm packages"
+    ask_for_confirmation "Do you want to install the npm packages?"
+    if answer_is_yes; then
+        printf "\n"
+        ./os/install_npm_packages.sh
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_info "Set preferences"
+    ask_for_confirmation "Do you want to set the custom preferences?"
+    if answer_is_yes; then
+        printf "\n"
+        ./os/set_preferences.sh
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_info "Update content"
+
+    ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
+    if answer_is_yes; then
+        ./os/update_content.sh
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_info "Install Vim plugins"
+
+    ask_for_confirmation "Do you want to install the Vim plugins?"
+    if answer_is_yes; then
+        ./os/install_vim_plugins.sh
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_info "Restart"
+    ask_for_confirmation "Do you want to restart?"
+    if answer_is_yes; then
+        ./os/restart_computer.sh
+    fi
+
     printf "\n"
 }
 
-main "$@"
+main
