@@ -7,8 +7,8 @@
     co  = checkout
     d   = diff
     dc  = diff --cached
-    g   = log --graph --pretty=custom_log_output    # Show custom graph
-    l   = log --pretty=custom_log_output            # Show custom log
+    g   = log --graph --pretty=customLogOutput      # Show custom graph
+    l   = log --pretty=customOutput                 # Show custom log
     rlc = !git reset --hard HEAD~1                  # Remove last commit
     st  = status
     ulc = reset --soft HEAD~1                       # Undo last commit
@@ -55,9 +55,9 @@
     excludesfile = ~/.gitignore
 
 [pretty]
-    custom_log_output = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
-    #                                │        │            │            │             └─ author name
-    #                                │        │            │            └─ message
-    #                                │        │            └─ date (relative)
-    #                                │        └─ decorations (branch, heads or tags)
-    #                                └─ hash (abbreviated)
+    customLogOutput = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+    #                              │        │            │            │             └─ author name
+    #                              │        │            │            └─ message
+    #                              │        │            └─ date (relative)
+    #                              │        └─ decorations (branch, heads or tags)
+    #                              └─ hash (abbreviated)
