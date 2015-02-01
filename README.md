@@ -1,4 +1,4 @@
-# Cătălin’s dotfiles
+# Cătălin’s dotfiles (WIP)
 
 ## Setup
 
@@ -13,9 +13,8 @@ The snippet will:
 
 * Download the dotfiles on your computer (by default it will suggest
   `~/projects/dotfiles`)
-* Create some additional
-  [directories](https://github.com/alrra/dotfiles/blob/29bdcbc72260321013d89654283000666052be83/lib/dotfiles.sh#L29-L34)
-* Symlink/Copy the
+* Create some additional [directories](os/create_directories.sh)
+* [Symlink](os/create_symbolic_links.sh)/[Copy](os/copy_files.sh) the
   [git](git),
   [shell](shell), and
   [vim](vim) files
@@ -54,16 +53,17 @@ The snippet will:
 The dotfiles can be easily extended to suit additional local
 requirements by using the following files:
 
-* `~/.bash.local`
+#### `~/.bash.local`
 
-  If the `~/.bash.local` file exist, it will be automatically sourced
-after all the other [bash related files](https://github.com/alrra/dotfiles/tree/30319af992bd55a7368ff0fceab97e61e78844e7/shell),
-thus, allowing its content to add to or overwrite the existing aliases,
+If the `~/.bash.local` file exist, it will be automatically sourced
+after all the other [bash related
+files](https://github.com/alrra/dotfiles/tree/master/shell), thus,
+allowing its content to add to or overwrite the existing aliases,
 settings, PATH, etc.
 
-  Here is a very simple example of a `~/.bash.local` file:
+Here is a very simple example of a `~/.bash.local` file:
 
-  ```bash
+```bash
 
 #!/bin/bash
 
@@ -93,21 +93,21 @@ PATH="$PATH:$HOME/projects/dotfiles/bin"
 export PATH
 ```
 
-* `~/.vimrc.local`
+#### `~/.vimrc.local`
 
-  If the `~/.vimrc.local` file exist, it will be automatically sourced
+If the `~/.vimrc.local` file exist, it will be automatically sourced
 after `~/.vimrc`, thus, allowing its content to add or overwrite the
 settings from `~/.vimrc`.
 
-* `~/.gvimrc.local`
+#### `~/.gvimrc.local`
 
-  Same as `~/.vimrc.local` but for `~/.gvimrc`.
+Same as `~/.vimrc.local` but for `~/.gvimrc`.
 
 ### Forks
 
 If you decide to fork this project, don't forget to substitute my
 username with your own in the [setup snippets](#setup) and [in the
-`dotfiles` script](https://github.com/alrra/dotfiles/blob/e180e4a661d2188dca7ce5e7942e583485f7f5fc/dotfiles#L29).
+`dotfiles` script](https://github.com/alrra/dotfiles/blob/8a1e4a2a0d9206026bcd4c0f2e0d158214495b16/dotfiles#L3).
 
 
 ## Update

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${BASH_SOURCE%/*}" && source "../utils.sh"
+
 declare -a APT_PACKAGES=(
 
     # Tools for compiling/building software from source
@@ -107,7 +109,7 @@ update_and_upgrade() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-install_applications() {
+main() {
 
     local i=""
 
@@ -126,3 +128,5 @@ install_applications() {
     remove_unneeded_packages
 
 }
+
+main
