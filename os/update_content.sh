@@ -68,14 +68,12 @@ main() {
         # Update content, remove untracked files and fetch submodules
         git fetch --all &> /dev/null \
             && git reset --hard origin/master &> /dev/null \
-            && git clean -fd  &> /dev/null \
-            && (
-                git submodule init &> /dev/null
-                git submodule update &> /dev/null
-            )
+            && git clean -fd  &> /dev/null
 
-            print_result $? "Update content"
-        fi
+        print_result $? "Update content"
+
+    fi
+
 }
 
 main
