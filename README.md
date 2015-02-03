@@ -14,7 +14,7 @@ The snippet will:
 * Download the dotfiles on your computer (by default it will suggest
   `~/projects/dotfiles`)
 * Create some additional [directories](os/create_directories.sh)
-* [Symlink](os/create_symbolic_links.sh)/[Copy](os/copy_files.sh) the
+* [Copy](os/copy_files.sh) / [Symlink](os/create_symbolic_links.sh) the
   [git](git),
   [shell](shell), and
   [vim](vim) files
@@ -25,6 +25,11 @@ The snippet will:
   [OS X](os/os_x/set_preferences.sh) /
   [Ubuntu](os/ubuntu/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
+
+<p>
+  <img src="https://cloud.githubusercontent.com/assets/1223565/6028893/83c92b82-abf5-11e4-922d-bded287db3d3.gif" alt="Setup process">
+  <p align="center"><i>Setup process</i></p>
+</p>
 
 
 ## Screenshots
@@ -107,7 +112,7 @@ Same as `~/.vimrc.local` but for `~/.gvimrc`.
 
 If you decide to fork this project, don't forget to substitute my
 username with your own in the [setup snippets](#setup) and [in the
-`dotfiles` script](https://github.com/alrra/dotfiles/blob/8a1e4a2a0d9206026bcd4c0f2e0d158214495b16/dotfiles#L3).
+`dotfiles` script](https://github.com/alrra/dotfiles/blob/5b524ba9ca07b66db1955d18a2fb66bf4b48f677/dotfiles#L3).
 
 
 ## Update
