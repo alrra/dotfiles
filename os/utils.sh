@@ -14,7 +14,7 @@ ask() {
 ask_for_confirmation() {
     print_question "$1 (y/n) "
     read -n 1
-    printf "\n"
+    printf "\n\n"
 }
 
 ask_for_sudo() {
@@ -48,20 +48,18 @@ get_answer() {
 }
 
 get_os() {
+
     declare -r OS_NAME="$(uname -s)"
     local os=""
 
     if [ "$OS_NAME" == "Darwin" ]; then
         os="osx"
-
-    # Get Linux distribution
-    # https://web.archive.org/web/20130929034731/http://linuxmafia.com/faq/Admin/release-files.html
-    elif [ "$OS_NAME" == "Linux" ] && \
-         [ -e "/etc/lsb-release" ]; then
+    elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
         os="ubuntu"
     fi
 
     printf "%s" "$os"
+
 }
 
 is_git_repository() {
@@ -94,6 +92,11 @@ print_info() {
     printf "\n\e[0;35m $1\e[0m\n\n"
 }
 
+print_question() {
+    # Print output in yellow
+    printf "\e[0;33m  [?] $1\e[0m"
+}
+
 print_result() {
     [ $1 -eq 0 ] \
         && print_success "$2" \
@@ -106,9 +109,4 @@ print_result() {
 print_success() {
     # Print output in green
     printf "\e[0;32m  [✔] $1\e[0m\n"
-}
-
-print_question() {
-    # Print output in yellow
-    printf "\e[0;33m  [?] $1\e[0m"
 }

@@ -34,7 +34,7 @@ main() {
     for i in ${FILES_TO_SYMLINK[@]}; do
 
         sourceFile="$(cd .. && pwd)/$i"
-        targetFile="$HOME/.$(printf "%s" "$HOME/.$i" | sed "s/.*\/\(.*\)/\1/g")"
+        targetFile="$HOME/.$(printf "%s" "$i" | sed "s/.*\/\(.*\)/\1/g")"
 
         if [ -e "$targetFile" ]; then
             if [ "$(readlink "$targetFile")" != "$sourceFile" ]; then
