@@ -10,7 +10,7 @@ main() {
 
         rm -rf ~/.vim/plugins/Vundle.vim &> /dev/null \
             && git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/plugins/Vundle.vim &> /dev/null \
-            && printf '\n' | vim +PluginInstall +qall 2> /dev/null
+            && printf "\n" | vim +PluginInstall +qall 2> /dev/null
             #     └─ simulate the ENTER keypress for
             #        the case where there are warnings
 

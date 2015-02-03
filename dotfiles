@@ -18,11 +18,10 @@ check_os() {
 
     # Check if the OS is OS X and it is above a certain version
     if [ "$OS_NAME" == "Darwin" ]; then
-        if [ $(compare_versions "$(sw_vers -productVersion)" "10.10") == '<' ]; then
+        if [ $(compare_versions "$(sw_vers -productVersion)" "10.10") == "<" ]; then
             printf "Sorry, this script is intended only for OS X 10.10.0+."
             return 1
         else
-            os="osx"
             return 0
         fi
 
@@ -32,7 +31,6 @@ check_os() {
             printf "Sorry, this script is intended only for OS X and Ubuntu!"
             return 1
         else
-            os="ubuntu"
             return 0
         fi
     fi
@@ -101,9 +99,7 @@ download_dotfiles() {
 
     local tmpFile="$(mktemp -u XXXXX)"
 
-    print_info "Download and extract archive"
-
-    cd '/tmp'
+    cd "/tmp"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -111,6 +107,8 @@ download_dotfiles() {
     print_result $? "Download archive" "true"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    printf "\n"
 
     ask_for_confirmation "Do you want to store the dotfiles in '$dotfilesDirectory'?"
     if ! answer_is_yes; then
@@ -153,6 +151,8 @@ download_dotfiles() {
 
     rm -rf "$tmpFile"
     print_result $? "Remove archive"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     cd "$dotfilesDirectory"
 
@@ -203,14 +203,13 @@ main() {
     if [ $(cmd_exists "git") -ne 0 ] || \
        [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
 
+        print_info "Download and extract archive"
         download_dotfiles
 
         print_info "Initialize Git repository"
         ./os/initialize_git_repository.sh "$DOTFILES_ORIGIN"
 
     fi
-
-    cd $dotfilesDirectory
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -235,7 +234,6 @@ main() {
     print_info "Install applications"
     ask_for_confirmation "Do you want to install the applications/command line tools?"
     if answer_is_yes; then
-        printf "\n"
         ./os/install_applications.sh
     fi
 
@@ -244,7 +242,6 @@ main() {
     print_info "Install npm packages"
     ask_for_confirmation "Do you want to install the npm packages?"
     if answer_is_yes; then
-        printf "\n"
         ./os/install_npm_packages.sh
     fi
 
@@ -253,7 +250,6 @@ main() {
     print_info "Set preferences"
     ask_for_confirmation "Do you want to set the custom preferences?"
     if answer_is_yes; then
-        printf "\n"
         ./os/set_preferences.sh
     fi
 
@@ -278,12 +274,12 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_info "Restart"
+
     ask_for_confirmation "Do you want to restart?"
     if answer_is_yes; then
         ./os/restart_computer.sh
     fi
 
-    printf "\n"
 }
 
 main

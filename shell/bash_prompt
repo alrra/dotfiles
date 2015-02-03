@@ -23,12 +23,12 @@ enable_color_support() {
                 && eval "$(dircolors -b ~/.dircolors)" \
                 || eval "$(dircolors -b)"
 
-            alias dir='dir --color=auto'
-            alias egrep='egrep --color=auto'
-            alias fgrep='fgrep --color=auto'
-            alias grep='grep --color=auto'
-            alias ls='ls --color=auto'
-            alias vdir='vdir --color=auto'
+            alias dir="dir --color=auto"
+            alias egrep="egrep --color=auto"
+            alias fgrep="fgrep --color=auto"
+            alias grep="grep --color=auto"
+            alias ls="ls --color=auto"
+            alias vdir="vdir --color=auto"
 
         fi
     fi
@@ -144,8 +144,8 @@ get_git_repository_details() {
 
     branchName="$( printf "$( git rev-parse --abbrev-ref HEAD 2> /dev/null \
         || git rev-parse --short HEAD 2> /dev/null \
-        || printf ' (unknown)' )" | \
-        tr -d '\n' )"
+        || printf " (unknown)" )" | \
+        tr -d "\n" )"
 
 
     printf "%s" "$1$branchName$tmp"
