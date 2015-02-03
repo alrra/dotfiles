@@ -59,7 +59,7 @@ gz() {
                         "$( hrfs $(($originalSize-$gzippedSize)) )" \
                         "$( printf "%s %s" "$originalSize $gzippedSize" | \
                             awk '{ printf "%.1f", 100 - $2 * 100 / $1 }' | \
-                            sed -e 's/0*$//;s/\.$//' )"
+                            sed -e "s/0*$//;s/\.$//" )"
                             #              └─ remove tailing zeros
 
         else
@@ -93,16 +93,16 @@ mkd() {
     local result=""
 
     #                       ┌─ default (when --mathlib is used) is 20
-    result="$( printf "scale=10;%s\n" "$*" | bc --mathlib | tr -d '\\\n' )"
+    result="$( printf "scale=10;%s\n" "$*" | bc --mathlib | tr -d "\\\n" )"
     #                         remove the tailing "\" and "\n" ─┘
     #                         (large numbers are printed on multiple lines)
 
     if [[ "$result" == *.* ]]; then
         # improve the output for decimal numbers
         printf "%s" "$result" |
-        sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
-            -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
-            -e 's/0*$//;s/\.$//'   # remove tailing zeros
+        sed -e "s/^\./0./"        `# add "0" for cases like ".5"` \
+            -e "s/^-\./-0./"      `# add "0" for cases like "-.5"`\
+            -e "s/0*$//;s/\.$//"   # remove tailing zeros
     else
         printf "%s" "$result"
     fi
@@ -126,7 +126,7 @@ server() {
     # Wait for the server to be available, and once
     # it is, open its address in the default browser
     while [ $i -lt $maxNumberOfTries ]; do
-        if [ "$(lsof -i -nP | grep "$port" | grep -i 'python')" != "" ]; then
+        if [ "$(lsof -i -nP | grep "$port" | grep -i "python")" != "" ]; then
             o "http://localhost:${port}/"
             break;
         fi
@@ -236,7 +236,7 @@ hrfs() {
 
             }
         }' |
-    sed -e ':l; s/\([0-9]\)\([0-9]\{3\}\)/\1,\2/; t l'
+    sed -e ":l; s/\([0-9]\)\([0-9]\{3\}\)/\1,\2/; t l"
     #                          └─ add commas to the numbers
     #                             (changes "1023.2 KB" to "1,023.2 KB")
 }

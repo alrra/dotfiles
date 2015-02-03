@@ -71,8 +71,8 @@ main() {
 
     # Homebrew
     if [ $(cmd_exists "brew") -eq 1 ]; then
-        printf '\n' | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        #  └─ simulate ENTER keypress
+        printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        #  └─ simulate the ENTER keypress
         print_result $? "brew"
     fi
 

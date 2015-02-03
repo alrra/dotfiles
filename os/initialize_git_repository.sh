@@ -8,16 +8,17 @@ main() {
 
     declare -r GIT_ORIGIN="$1"
 
-    if [ -n "$GIT_ORIGIN" ]; then
-        if ! is_git_repository; then
+    if [ -n "$GIT_ORIGIN" ] && ! is_git_repository; then
 
-            cd ..
+        # Run the following Git commands in the root of
+        # the dotfiles directory, not in the `os/` directory
+        cd ..
 
-            git init &> /dev/null \
-                && git remote add origin "$GIT_ORIGIN" &> /dev/null
-            print_result $? "Initialize the 'dotfiles' git repository"
+        git init &> /dev/null \
+            && git remote add origin "$GIT_ORIGIN" &> /dev/null
 
-        fi
+        print_result $? "Initialize the Git repository"
+
     fi
 
 }
