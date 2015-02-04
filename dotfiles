@@ -206,9 +206,6 @@ main() {
         print_info "Download and extract archive"
         download_dotfiles
 
-        print_info "Initialize Git repository"
-        ./os/initialize_git_repository.sh "$DOTFILES_ORIGIN"
-
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -255,20 +252,30 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Update content"
+    if [ $(cmd_exists "git") -eq 0 ]; then
 
-    ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
-    if answer_is_yes; then
-        ./os/update_content.sh
+        print_info "Initialize Git repository"
+        ./os/initialize_git_repository.sh "$DOTFILES_ORIGIN"
+
+        print_info "Update content"
+        ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
+        if answer_is_yes; then
+            ./os/update_content.sh
+        fi
+
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Install Vim plugins"
+    if [ $(cmd_exists "vim") -eq 0 ]; then
 
-    ask_for_confirmation "Do you want to install the Vim plugins?"
-    if answer_is_yes; then
-        ./os/install_vim_plugins.sh
+        print_info "Install Vim plugins"
+
+        ask_for_confirmation "Do you want to install the Vim plugins?"
+        if answer_is_yes; then
+            ./os/install_vim_plugins.sh
+        fi
+
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
