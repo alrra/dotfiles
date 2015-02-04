@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "${BASH_SOURCE%/*}" && source "utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
