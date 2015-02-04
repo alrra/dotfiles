@@ -192,7 +192,7 @@ main() {
     # Ensure that the following actions are made
     # relative to the dotfiles directory root
     # http://mywiki.wooledge.org/BashFAQ/028
-    cd "${BASH_SOURCE%/*}"
+    cd "$(dirname "${BASH_SOURCE}")";
 
     download_utils
     ask_for_sudo

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "${BASH_SOURCE%/*}" && source "utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
 
 declare -a FILES_TO_COPY=(
     "git/gitconfig"
