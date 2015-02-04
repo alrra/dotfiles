@@ -229,16 +229,10 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_info "Install applications"
+
     ask_for_confirmation "Do you want to install the applications/command line tools?"
     if answer_is_yes; then
         ./os/install_applications.sh
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    print_info "Install npm packages"
-    ask_for_confirmation "Do you want to install the npm packages?"
-    if answer_is_yes; then
         ./os/install_npm_packages.sh
     fi
 
