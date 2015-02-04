@@ -270,11 +270,52 @@ set_terminal_preferences() {
     # Only use UTF-8
     defaults write com.apple.terminal StringEncodings -array 4
 
-    # Use a custom theme
-    open "$SCRIPT_PATH/solarized_dark.terminal"
-    defaults write com.apple.Terminal "Default Window Settings" -string "solarized_dark"
-    defaults write com.apple.Terminal "Startup Window Settings" -string "solarized_dark"
-    defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
+    # Use a custom terminal theme
+    osascript <<EOD
+
+    tell application "Terminal"
+
+        local allOpenedWindows
+        local initialOpenedWindows
+        local windowID
+        set themeName to "Solarized Dark"
+
+        (* Store the IDs of all the open terminal windows *)
+        set initialOpenedWindows to id of every window
+
+        (* Open the custom theme so that it gets added to the list
+           of available terminal themes (note: this will open two
+           additional terminal windows) *)
+        do shell script "open '" & themeName & ".terminal'"
+
+        (* Wait a little bit to ensure that the custom theme is added *)
+        delay 1
+
+        (* Set the custom theme as the default terminal theme *)
+        set default settings to settings set themeName
+
+        (* Get the IDs of all the currently opened terminal windows *)
+        set allOpenedWindows to id of every window
+
+        repeat with windowID in allOpenedWindows
+
+            (* Close the additional windows that were opened in order
+               to add the custom theme to the list of terminal themes *)
+            if initialOpenedWindows does not contain windowID then
+                close (every window whose id is windowID)
+
+            (* Change the theme for the initial opened terminal windows
+               to remove the need to close them in order for the custom
+               theme to be applied *)
+            else
+                set current settings of tabs of (every window whose id is windowID) to settings set themeName
+            end if
+
+        end repeat
+
+    end tell
+
+EOD
 
 }
 
@@ -443,12 +484,6 @@ main() {
     execute "set_trackpad_preferences" "Trackpad"
     execute "set_transmission_preferences" "Transmission"
     execute "set_ui_and_ux_preferences" "UI & UX"
-
-    printf "\n"
-
-    if [ $(cmd_exists "brew") -eq 1 ]; then
-        execute "brew cleanup" "brew [cleanup]"
-    fi
 
     for i in "cfprefsd" "Dock" "Finder" "Safari" \
              "SystemUIServer" "TextEdit" "Transmission"; do
