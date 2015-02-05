@@ -26,30 +26,105 @@ The snippet will:
   [Ubuntu](os/ubuntu/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
 
-<p>
-  <img src="https://cloud.githubusercontent.com/assets/1223565/6028893/83c92b82-abf5-11e4-922d-bded287db3d3.gif" alt="Setup process">
-  <p align="center"><i>Setup process</i></p>
-</p>
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6028893/83c92b82-abf5-11e4-922d-bded287db3d3.gif" alt="Setup process" width="100%">
+            </td>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6066251/68211e00-ad74-11e4-88e0-62048ff12fad.gif" alt="Setup process" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td align="center">OS X</td>
+            <td align="center">Ubuntu</td>
+        </tr>
+    </tbody>
+</table>
+<p align="center"><i>Setup process</i></p>
 
 
 ## Screenshots
 
-<p>
-  <img src="https://cloud.githubusercontent.com/assets/1223565/5976910/829e3994-a89b-11e4-9854-eadf6ceb20d9.png" alt="Output for Git status">
-  <p align="center"><i>Output for Git status</i></p>
-</p>
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6067283/1a6c8d90-ad7c-11e4-9861-1178c4868f48.png" alt="Output for Git status on OS X" width="100%">
+            </td>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6066368/4b6a2544-ad75-11e4-8192-a4d4b4e1d9e8.png" alt="Output for Git status on Ubuntu" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td align="center">OS X</td>
+            <td align="center">Ubuntu</td>
+        </tr>
+    </tbody>
+</table>
+<p align="center"><i>Output for Git status</i></p>
 
 <br>
-<p>
-  <img src="https://cloud.githubusercontent.com/assets/1223565/5976900/628bc7a2-a89b-11e4-8c63-d8081dc345b7.png" alt="Output for Git log">
-  <p align="center"><i>Output for Git log</i></p>
-</p>
+
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6067292/2768cac2-ad7c-11e4-9f7a-81c82fe5c993.png" alt="Output for Git status on OS X" width="100%">
+            </td>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6066393/790aa5be-ad75-11e4-90d5-c346ba5981d6.png" alt="Output for Git log on OS X" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td align="center">OS X</td>
+            <td align="center">Ubuntu</td>
+        </tr>
+    </tbody>
+</table>
+<p align="center"><i>Output for Git log</i></p>
 
 <br>
-<p>
-  <img src="https://cloud.githubusercontent.com/assets/1223565/5976899/628b4cfa-a89b-11e4-99a3-2a8970de0b13.png" alt="MacVim">
-  <p align="center"><i>MacVim</i></p>
-</p>
+
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6067912/bfb4fb62-ad80-11e4-8980-2976663bb029.png" alt="MacVim" width="100%">
+            </td>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6066432/a6ea920a-ad75-11e4-8650-14df975d8926.png" alt="Gnome Vim" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td align="center">MacVim</td>
+            <td align="center">Gnome Vim</td>
+        </tr>
+    </tbody>
+</table>
+<p align="center"><i>gVim</i></p>
+
+<br>
+
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6067336/5f804fb6-ad7c-11e4-8ccd-c7aaa83e25b5.png" alt="Vim on OS X" width="100%">
+            </td>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6066455/ccff1c2c-ad75-11e4-8e0f-649b195aee60.png" alt="Vim on Ubuntu" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td align="center">OS X</td>
+            <td align="center">Ubuntu</td>
+        </tr>
+    </tbody>
+</table>
+<p align="center"><i>Vim</i></p>
+
 
 ## Customize
 
