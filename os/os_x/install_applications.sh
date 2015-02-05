@@ -77,9 +77,9 @@ main() {
 
     if [ $(cmd_exists "brew") -eq 0 ]; then
 
-        execute "brew update" "brew [update]"
-        execute "brew upgrade" "brew [upgrade]"
-        execute "brew cleanup" "brew [cleanup]"
+        execute "brew update" "brew (update)"
+        execute "brew upgrade" "brew (upgrade)"
+        execute "brew cleanup" "brew (cleanup)"
 
         # Homebrew formulae
         for i in ${!HOMEBREW_FORMULAE[*]}; do
