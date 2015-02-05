@@ -248,8 +248,10 @@ main() {
 
     if [ $(cmd_exists "git") -eq 0 ]; then
 
-        print_info "Initialize Git repository"
-        ./os/initialize_git_repository.sh "$DOTFILES_ORIGIN"
+        if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
+            print_info "Initialize Git repository"
+            ./os/initialize_git_repository.sh "$DOTFILES_ORIGIN"
+        fi
 
         print_info "Update content"
         ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
