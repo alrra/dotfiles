@@ -14,7 +14,7 @@ ask() {
 ask_for_confirmation() {
     print_question "$1 (y/n) "
     read -n 1
-    printf "\n\n"
+    printf "\n"
 }
 
 ask_for_sudo() {
