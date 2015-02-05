@@ -135,6 +135,8 @@ download_dotfiles() {
         fi
     done
 
+    printf "\n"
+
     mkdir -p "$dotfilesDirectory"
     print_result $? "Create '$dotfilesDirectory'" "true"
 
@@ -211,7 +213,10 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_info "Create directories"
+
     ask_for_confirmation "Do you want the additional directories to be created?"
+    printf "\n"
+
     if answer_is_yes; then
         ./os/create_directories.sh
     fi
@@ -231,15 +236,21 @@ main() {
     print_info "Install applications"
 
     ask_for_confirmation "Do you want to install the applications/command line tools?"
+    printf "\n"
+
     if answer_is_yes; then
         ./os/install_applications.sh
+        printf "\n"
         ./os/install_npm_packages.sh
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_info "Set preferences"
+
     ask_for_confirmation "Do you want to set the custom preferences?"
+    printf "\n"
+
     if answer_is_yes; then
         ./os/set_preferences.sh
     fi
@@ -254,7 +265,10 @@ main() {
         fi
 
         print_info "Update content"
+
         ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
+        printf "\n"
+
         if answer_is_yes; then
             ./os/update_content.sh
         fi
@@ -268,6 +282,8 @@ main() {
         print_info "Install Vim plugins"
 
         ask_for_confirmation "Do you want to install the Vim plugins?"
+        printf "\n"
+
         if answer_is_yes; then
             ./os/install_vim_plugins.sh
         fi
@@ -279,6 +295,8 @@ main() {
     print_info "Restart"
 
     ask_for_confirmation "Do you want to restart?"
+    printf "\n"
+
     if answer_is_yes; then
         ./os/restart_computer.sh
     fi
