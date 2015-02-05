@@ -159,8 +159,15 @@ set winminheight=0             " Allow windows to be squashed
 " ----------------------------------------------------------------------
 
 function! GetGitBranchName()
-    let branchName=fugitive#head()
-    return branchName != '' ? '[' . branchName . ']' : ''
+
+    let branchName = ""
+
+    if exists('g:loaded_fugitive')
+        let branchName = '[' . fugitive#head() . ']'
+    endif
+
+    return branchName
+
 endfunction
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
