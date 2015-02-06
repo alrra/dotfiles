@@ -26,11 +26,11 @@ The snippet will:
   [Ubuntu](os/ubuntu/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
 
-<table>
+  <table>
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6028893/83c92b82-abf5-11e4-922d-bded287db3d3.gif" alt="Setup process" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6079359/df4df582-ae0c-11e4-8643-db7c251284d6.gif" alt="Setup process" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/6066251/68211e00-ad74-11e4-88e0-62048ff12fad.gif" alt="Setup process" width="100%">
@@ -42,12 +42,13 @@ The snippet will:
         </tr>
     </tbody>
 </table>
-<p align="center"><i>Setup process</i></p>
 
 
 ## Screenshots
 
-<table>
+* Output for Git status
+
+  <table>
     <tbody>
         <tr>
             <td>
@@ -63,11 +64,10 @@ The snippet will:
         </tr>
     </tbody>
 </table>
-<p align="center"><i>Output for Git status</i></p>
 
-<br>
+* Output for Git log
 
-<table>
+  <table>
     <tbody>
         <tr>
             <td>
@@ -83,11 +83,10 @@ The snippet will:
         </tr>
     </tbody>
 </table>
-<p align="center"><i>Output for Git log</i></p>
 
-<br>
+* gVim
 
-<table>
+  <table>
     <tbody>
         <tr>
             <td>
@@ -103,11 +102,10 @@ The snippet will:
         </tr>
     </tbody>
 </table>
-<p align="center"><i>gVim</i></p>
 
-<br>
 
-<table>
+* Vim
+  <table>
     <tbody>
         <tr>
             <td>
@@ -123,7 +121,6 @@ The snippet will:
         </tr>
     </tbody>
 </table>
-<p align="center"><i>Vim</i></p>
 
 
 ## Customize
