@@ -158,16 +158,6 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Restart Apache
-
-if [ "$OS" == "osx" ]; then
-    alias ra="sudo apachectl restart"
-elif [ "$OS" == "ubuntu" ]; then
-    alias ra="sudo /etc/init.d/apache2 restart"
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Open
 
 if [ "$OS" == "osx" ]; then
