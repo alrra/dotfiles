@@ -6,7 +6,6 @@ declare -a DIRECTORIES=(
     "$HOME/archive"
     "$HOME/Downloads/torrents"
     "$HOME/projects"
-    "$HOME/server"
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
