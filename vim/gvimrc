@@ -2,7 +2,6 @@
 " | General Settings                                                   |
 " ----------------------------------------------------------------------
 
-colorscheme solarized     " Use custom color scheme
 set guicursor=n:blinkon0  " Turn off blinking cursor in normal mode
 
 set visualbell            " ┐ Disable beeping and window flashing
