@@ -26,6 +26,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'godlygeek/tabular'
     Plugin 'mattn/emmet-vim'
     Plugin 'mattn/webapi-vim'
+    Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'othree/html5.vim'
     Plugin 'plasticboy/vim-markdown'
     Plugin 'scrooloose/syntastic'
@@ -333,13 +334,18 @@ nmap <leader>n :call ToggleRelativeLineNumbers()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" [,sl] Toggle show limits
-nmap <leader>sl :call ToggleLimits()<CR>
+" [,ss] Strip trailing whitespace
+nmap <leader>ss :call StripTrailingWhitespaces()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" [,ss] Strip trailing whitespace
-nmap <leader>ss :call StripTrailingWhitespaces()<CR>
+" [,ti] Toggle indent
+nmap <leader>ti <Plug>IndentGuidesToggle
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" [,tl] Toggle show limits
+nmap <leader>tl :call ToggleLimits()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -366,6 +372,16 @@ map <leader>W :w !sudo tee %<CR>
 " Load custom Emmet snippets
 " http://docs.emmet.io/customization/snippets/
 let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" Indent Guides
+
+" Set custom indent colors
+" https://github.com/nathanaelkane/vim-indent-guides#setting-custom-indent-colors
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=13  guibg=#d33682
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237 guibg=#073642
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
