@@ -54,7 +54,13 @@ if has('autocmd')
 endif
 
 set t_Co=256                   " Enable full-color support
-colorscheme xoria256           " Use custom color scheme
+
+if has('gui_running')          " ┐
+    colorscheme solarized      " │
+else                           " │ Use custom color scheme
+    colorscheme xoria256       " │
+endif                          " ┘
+
 set autoindent                 " Copy indent to the new line
 
 set background=dark            " Use colors that look good
@@ -432,9 +438,25 @@ let g:syntastic_mode_map = {
 "   2) cterm (color terminals, e.g.: MS-DOS console, color-xterm)
 "   3) gui   (GUIs)
 
-highlight ColorColumn                                ctermbg=239
-highlight LineNr       cterm=NONE  ctermfg=DarkGrey  ctermbg=NONE
-highlight User1        cterm=bold  ctermfg=Grey      ctermbg=237
+highlight ColorColumn
+    \ term=NONE
+    \ cterm=NONE  ctermbg=237    ctermfg=NONE
+    \ gui=NONE    guibg=#073642  guifg=NONE
+
+highlight CursorLineNr
+    \ term=bold
+    \ cterm=bold  ctermbg=NONE   ctermfg=178
+    \ gui=bold    guibg=#073642  guifg=Orange
+
+highlight LineNr
+    \ term=NONE
+    \ cterm=NONE  ctermfg=241    ctermbg=NONE
+    \ gui=NONE    guifg=#839497  guibg=#073642
+
+highlight User1
+    \ term=NONE
+    \ cterm=NONE  ctermbg=237    ctermfg=Grey
+    \ gui=NONE    guibg=#073642  guifg=#839496
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
