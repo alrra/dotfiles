@@ -29,6 +29,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'othree/html5.vim'
     Plugin 'plasticboy/vim-markdown'
+    Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
     Plugin 'shougo/neocomplcache.vim'
     Plugin 'shutnik/jshint2.vim'
@@ -346,6 +347,11 @@ nmap <leader>ti <Plug>IndentGuidesToggle
 
 " [,tl] Toggle show limits
 nmap <leader>tl :call ToggleLimits()<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" [,tn] Toggle NERDTree
+map <leader>tn :NERDTreeToggle<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
