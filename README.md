@@ -52,10 +52,10 @@ The snippet will:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6067283/1a6c8d90-ad7c-11e4-9861-1178c4868f48.png" alt="Output for Git status on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6263679/82b79a6e-b823-11e4-8211-9e55e971ca4d.png" alt="Output for Git status on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6066368/4b6a2544-ad75-11e4-8192-a4d4b4e1d9e8.png" alt="Output for Git status on Ubuntu" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6263677/82b4d432-b823-11e4-9832-69a27da75dda.png" alt="Output for Git status on Ubuntu" width="100%">
             </td>
         </tr>
         <tr>
@@ -71,10 +71,10 @@ The snippet will:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6067292/2768cac2-ad7c-11e4-9f7a-81c82fe5c993.png" alt="Output for Git status on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6263680/82b7ecd0-b823-11e4-80cb-c0b59879a809.png" alt="Output for Git status on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6066393/790aa5be-ad75-11e4-90d5-c346ba5981d6.png" alt="Output for Git log on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6263681/82ba0d80-b823-11e4-9cc0-e722fe340fb4.png" alt="Output for Git log on OS X" width="100%">
             </td>
         </tr>
         <tr>
@@ -90,10 +90,10 @@ The snippet will:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6067912/bfb4fb62-ad80-11e4-8980-2976663bb029.png" alt="MacVim" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6263678/82b76a26-b823-11e4-866b-f7c3605d6225.png" alt="MacVim" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6066432/a6ea920a-ad75-11e4-8650-14df975d8926.png" alt="Gnome Vim" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6263675/828dc78e-b823-11e4-86b1-d5116a8868c2.png" alt="Gnome Vim" width="100%">
             </td>
         </tr>
         <tr>
@@ -109,10 +109,10 @@ The snippet will:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6067336/5f804fb6-ad7c-11e4-8ccd-c7aaa83e25b5.png" alt="Vim on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6263682/82ce0128-b823-11e4-95f4-5b78d5e13ffb.png" alt="Vim on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6066455/ccff1c2c-ad75-11e4-8e0f-649b195aee60.png" alt="Vim on Ubuntu" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6263676/82b4346e-b823-11e4-867b-260be48c5771.png" alt="Vim on Ubuntu" width="100%">
             </td>
         </tr>
         <tr>
