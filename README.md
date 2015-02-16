@@ -1,15 +1,17 @@
-# Cătălin’s dotfiles (WIP)
+# [Cătălin](https://github.com/alrra)’s dotfiles
 
 ## Setup
 
-To setup the dotfiles, run the following snippet in the terminal:
+To setup the dotfiles just run one of the following snippets in the terminal:
 
 | OS | Snippet |
 |:---:|:---|
 | OS X | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/dotfiles)"` |
 | Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/dotfiles)"` |
 
-The snippet will:
+That's it! :sparkles:
+
+The setup process will:
 
 * Download the dotfiles on your computer (by default it will suggest
   `~/projects/dotfiles`)
@@ -97,8 +99,8 @@ The snippet will:
             </td>
         </tr>
         <tr>
-            <td align="center">MacVim</td>
-            <td align="center">Gnome Vim</td>
+            <td align="center">OS X (MacVim)</td>
+            <td align="center">Ubuntu (Gnome Vim)</td>
         </tr>
     </tbody>
 </table>
@@ -195,7 +197,7 @@ To update the dotfiles, just run the [`dotfiles`](dotfiles) script.
 $ ./dotfiles
 ```
 
-The update process will do basically the same things as setup,
+The update process will do basically the same things as [setup](#setup),
 but instead of downloading the dotfiles, it will just fetch the
 latest changes.
 
@@ -208,3 +210,8 @@ Inspiration and code was taken from many sources, including:
   [dotfiles](https://github.com/mathiasbynens/dotfiles)
 * [Nicolas Gallagher's](https://github.com/necolas)
   [dotfiles](https://github.com/necolas/dotfiles)
+
+
+## License
+
+The code is available under the [MIT license](LICENSE.md).
