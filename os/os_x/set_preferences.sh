@@ -471,6 +471,16 @@ set_ui_and_ux_preferences() {
 
 main() {
 
+    declare -a PROCESSES_TO_TERMINATE=(
+        "Dock"
+        "Finder"
+        "Safari"
+        "SystemUIServer"
+        "TextEdit"
+        "Transmission"
+        "cfprefsd"
+    )
+
     execute "set_chrome_and_chrome_canary_preferences" "Chrome & Chrome Canary"
     execute "set_dashboard_preferences" "Dashboard"
     execute "set_dock_preferences" "Dock"
@@ -485,8 +495,7 @@ main() {
     execute "set_transmission_preferences" "Transmission"
     execute "set_ui_and_ux_preferences" "UI & UX"
 
-    for i in "cfprefsd" "Dock" "Finder" "Safari" \
-             "SystemUIServer" "TextEdit" "Transmission"; do
+    for i in ${!PROCESSES_TO_TERMINATE[*]}; do
 	    killall "$i" &> /dev/null
     done
 

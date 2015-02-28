@@ -119,13 +119,13 @@ mkd() {
 
 server() {
 
+    declare -r MAX_NUMBER_OF_TRIES=10
     local i=0
-    local maxNumberOfTries=10
     local port="${1:-8000}"
 
     # Wait for the server to be available, and once
     # it is, open its address in the default browser
-    while [ $i -lt $maxNumberOfTries ]; do
+    while [ $i -lt $MAX_NUMBER_OF_TRIES ]; do
         if [ "$(lsof -i -nP | grep "$port" | grep -i "python")" != "" ]; then
             o "http://localhost:${port}/"
             break;

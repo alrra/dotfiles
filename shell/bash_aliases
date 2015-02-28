@@ -19,9 +19,9 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 if [ "$OS" == "osx" ]; then
-    alias localip="ipconfig getifaddr en1"
+    alias local-ip="ipconfig getifaddr en1"
 elif [ "$OS" == "ubuntu" ]; then
-    alias localip="ifconfig | \
+    alias local-ip="ifconfig | \
                    grep 'inet addr' | \
                    grep -v '127.0.0.1' | \
                    cut -d: -f2 | \
