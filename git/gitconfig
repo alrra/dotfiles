@@ -5,6 +5,7 @@
     c   = commit
     ca  = !git add -A && git commit                 # Commit all changes
     co  = checkout
+    cp  = cherry-pick
     d   = diff
     dc  = diff --cached
     g   = log --graph --pretty=custom               # Show custom graph
