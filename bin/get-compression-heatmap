@@ -1,0 +1,83 @@
+#!/bin/bash
+
+# DESCRIPTION:
+#
+#   Generate compression efficiency
+#   heatmap images for files / URLs.
+#
+# USAGE:
+#
+#   get-compression-heatmap URL/FILE ...
+#
+# USEFUL LINKS:
+#
+#   http://encode.ru/threads/1889-gzthermal-pseudo-thermal-view-of-Gzip-Deflate-compression-efficiency
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+get_script() {
+
+    declare -r OS_NAME="$(uname -s)"
+    local script="gzthermal"
+
+    # http://encode.ru/threads/1889-gzthermal-pseudo-thermal-view-of-Gzip-Deflate-compression-efficiency
+
+    if [ "$OS_NAME" == "Darwin" ]; then
+        script="$script/osx"
+    elif [ "$OS_NAME" == "Linux" ]; then
+        script="$script/linux"
+
+        if [ "$(uname -m)" == "x86_64" ]; then
+            script="${script}-64"
+        else
+            script="${script}-32"
+        fi
+    fi
+
+    printf "%s" "$(dirname "${BASH_SOURCE}")/$script"
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+main() {
+
+    declare -r script=$(get_script)
+
+    local cmd=""
+    local tmpFile=""
+
+    # Check if `cURL` is installed
+    if [ ! -x "$(command -v "curl")" ]; then
+        printf "Please install cURL!\n"
+        exit;
+    fi
+
+    while [ $# -ne 0 ]; do
+
+        tmpFile="/tmp/$(mktemp -u XXXXX).gz"
+
+        # Check if the current command line arguments is a local file
+        if [ -f "$1" ]; then
+            cmd="cat"
+
+        # If it's not, assume it is a URL
+        else
+            cmd="curl -sSL"
+        fi
+
+        printf "  * %s\n" "$1"
+
+        # Generate the heatmap image
+        ${cmd} "$1" | tee >(gzip > "$tmpFile") &> /dev/null \
+            && ${script} "$tmpFile" \
+            && rm -rf "$tmpFile" \
+            && mv "gzthermal-result.png" "$(printf '%s.png' "$1" | sed -e 's/\//-/g')" \
+
+        shift
+
+    done
+
+}
+
+main "$@"
