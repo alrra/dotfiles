@@ -49,7 +49,7 @@ main() {
 
     # Check if `cURL` is installed
     if [ ! -x "$(command -v "curl")" ]; then
-        printf "Please install cURL!\n"
+        printf "cURL is required, please install it!\n"
         exit;
     fi
 
@@ -57,7 +57,7 @@ main() {
 
         tmpFile="/tmp/$(mktemp -u XXXXX).gz"
 
-        # Check if the current command line arguments is a local file
+        # Check if the current command line argument is a local file
         if [ -f "$1" ]; then
             cmd="cat"
 
