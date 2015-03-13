@@ -25,8 +25,6 @@ declare -a APT_PACKAGES=(
     "google-chrome-unstable"
     "imagemagick"
     "nautilus-dropbox"
-    "nodejs"
-    "npm"
     "opera"
     "opera-next"
     "transmission"
