@@ -241,6 +241,8 @@ main() {
     if answer_is_yes; then
         ./os/install_applications.sh
         printf "\n"
+        ./os/install_node_versions.sh
+        printf "\n"
         ./os/install_npm_packages.sh
     fi
 

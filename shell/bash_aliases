@@ -165,10 +165,3 @@ if [ "$OS" == "osx" ]; then
 elif [ "$OS" == "ubuntu" ]; then
     alias o="xdg-open"
 fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-if [ "$OS" == "osx" ]; then
-    alias use-node="brew unlink iojs && brew link --force node"
-    alias use-iojs="brew unlink node && brew link --force iojs"
-fi

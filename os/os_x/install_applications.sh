@@ -10,8 +10,6 @@ declare -a HOMEBREW_FORMULAE=(
     "caskroom/cask/brew-cask"
     "git"
     "imagemagick --with-webp"
-    "iojs"
-    "node"
     "vim --override-system-vi"
     "zopfli"
 )
