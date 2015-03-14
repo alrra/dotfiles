@@ -28,7 +28,7 @@ The setup process will:
   [Ubuntu](os/ubuntu/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
 
-  <table>
+<table>
     <tbody>
         <tr>
             <td>
@@ -48,9 +48,10 @@ The setup process will:
 
 ## Screenshots
 
-* Output for Git status
 
-  <table>
+##### Output for Git status
+
+<table>
     <tbody>
         <tr>
             <td>
@@ -67,7 +68,8 @@ The setup process will:
     </tbody>
 </table>
 
-* Output for Git log
+
+##### Output for Git log
 
   <table>
     <tbody>
@@ -86,7 +88,8 @@ The setup process will:
     </tbody>
 </table>
 
-* gVim
+
+##### gVim
 
   <table>
     <tbody>
@@ -106,8 +109,9 @@ The setup process will:
 </table>
 
 
-* Vim
-  <table>
+##### Vim
+
+<table>
     <tbody>
         <tr>
             <td>
