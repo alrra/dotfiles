@@ -20,8 +20,6 @@ get_script() {
     declare -r OS_NAME="$(uname -s)"
     local script="gzthermal"
 
-    # http://encode.ru/threads/1889-gzthermal-pseudo-thermal-view-of-Gzip-Deflate-compression-efficiency
-
     if [ "$OS_NAME" == "Darwin" ]; then
         script="$script/osx"
     elif [ "$OS_NAME" == "Linux" ]; then

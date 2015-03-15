@@ -218,4 +218,4 @@ Inspiration and code was taken from many sources, including:
 
 ## License
 
-The code is available under the [MIT license](LICENSE.md).
+The code is available under the [MIT license](LICENSE.txt).
