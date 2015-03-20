@@ -54,8 +54,8 @@ export NVM_DIR="'$NVM_DIR'"
             execute "nvm install $i" "nvm (install $i)"
         done
 
-        # Use `io.js` by default
-        execute "nvm alias default iojs" "nvm (set default)"
+        # Use `Node.js` by default
+        execute "nvm alias default node" "nvm (set default)"
 
     fi
 
