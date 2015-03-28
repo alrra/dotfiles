@@ -474,6 +474,9 @@ main() {
     declare -a PROCESSES_TO_TERMINATE=(
         "Dock"
         "Finder"
+        "Google Chrome Canary"
+        "Google Chrome"
+        "Maps"
         "Safari"
         "SystemUIServer"
         "TextEdit"
