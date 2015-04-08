@@ -62,3 +62,6 @@
     #                     │        │            └─ date (relative)
     #                     │        └─ decorations (branch, heads or tags)
     #                     └─ hash (abbreviated)
+
+[include]
+    path = ~/.gitconfig.local
