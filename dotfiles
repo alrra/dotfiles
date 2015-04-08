@@ -223,11 +223,6 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Copy files"
-    ./os/copy_files.sh
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     print_info "Create symbolic links"
     ./os/create_symbolic_links.sh
 
