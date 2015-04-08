@@ -16,6 +16,7 @@ declare -a FILES_TO_SYMLINK=(
     "shell/screenrc"
 
     "git/gitattributes"
+    "git/gitconfig"
     "git/gitignore"
 
     "vim/vim"

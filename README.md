@@ -16,7 +16,7 @@ The setup process will:
 * Download the dotfiles on your computer (by default it will suggest
   `~/projects/dotfiles`)
 * Create some additional [directories](os/create_directories.sh)
-* [Copy](os/copy_files.sh) / [Symlink](os/create_symbolic_links.sh) the
+* [Symlink](os/create_symbolic_links.sh) the
   [git](git),
   [shell](shell), and
   [vim](vim) files
@@ -138,7 +138,7 @@ requirements by using the following files:
 
 #### `~/.bash.local`
 
-If the `~/.bash.local` file exist, it will be automatically sourced
+If the `~/.bash.local` file exists, it will be automatically sourced
 after all the other [bash related
 files](https://github.com/alrra/dotfiles/tree/master/shell), thus,
 allowing its content to add to or overwrite the existing aliases,
@@ -150,21 +150,11 @@ Here is a very simple example of a `~/.bash.local` file:
 
 #!/bin/bash
 
-declare -r GIT_USER_EMAIL="alrra@example.com"
-declare -r GIT_USER_NAME="Cătălin Mariș"
-
-# ----------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Set local aliases
 
 alias starwars="telnet towel.blinkenlights.nl"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Set local Git credentials
-
-git config --global user.name "$GIT_USER_NAME"
-git config --global user.email "$GIT_USER_EMAIL"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -174,11 +164,27 @@ PATH="/usr/local/bin:$PATH"
 PATH="$PATH:$HOME/projects/dotfiles/bin"
 
 export PATH
+
+```
+
+#### `~/.gitconfig.local`
+
+If the `~/.gitconfig.local` file exists, it will be automatically
+included after the configurations from `~/.gitconfig`, thus, allowing
+its content to overwrite or add to the existing `git` configurations.
+
+__Note:__ Use `~/.gitconfig.local` to store sensitive information such
+as the `git` user credentials, e.g.:
+
+```bash
+[user]
+    name = Cătălin Mariș
+    email = alrra@example.com
 ```
 
 #### `~/.vimrc.local`
 
-If the `~/.vimrc.local` file exist, it will be automatically sourced
+If the `~/.vimrc.local` file exists, it will be automatically sourced
 after `~/.vimrc`, thus, allowing its content to add or overwrite the
 settings from `~/.vimrc`.
 
