@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
 # Homebrew Formulae
 # https://github.com/Homebrew/homebrew
 
-declare -a HOMEBREW_FORMULAE=(
+declare -r -a HOMEBREW_FORMULAE=(
     "bash-completion"
     "caskroom/cask/brew-cask"
     "git"
@@ -17,7 +17,7 @@ declare -a HOMEBREW_FORMULAE=(
 # Homebrew Casks
 # https://github.com/caskroom/homebrew-cask
 
-declare -a HOMEBREW_CASKS=(
+declare -r -a HOMEBREW_CASKS=(
     "android-file-transfer"
     "atom"
     "chromium"
@@ -42,13 +42,45 @@ declare -a HOMEBREW_CASKS=(
 # Homebrew Alternate Casks
 # https://github.com/caskroom/homebrew-versions
 
-declare -a HOMEBREW_ALTERNATE_CASKS=(
+declare -r -a HOMEBREW_ALTERNATE_CASKS=(
     "firefox-nightly"
     "google-chrome-canary"
     "opera-beta"
     "opera-developer"
     "webkit-nightly"
 )
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew_install() {
+
+    declare -r -a FORMULAE=("${!1}"); shift;
+    declare -r CMD="$1"
+
+    for i in ${!FORMULAE[*]}; do
+        tmp="${FORMULAE[$i]}"
+        [ $(brew "$CMD" list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
+            && print_success "$tmp" \
+            || execute "brew $CMD install $tmp" "$tmp"
+    done
+
+    printf "\n"
+
+}
+
+brew_tap() {
+
+    declare -r REPOSITORY="$1"
+
+    brew tap "$REPOSITORY" &> /dev/null
+
+    [ "$(brew tap | grep "$REPOSITORY" &> /dev/null; printf $?)" -eq 0 ] \
+        && (print_success "brew tap ($REPOSITORY)"; return 0) \
+        || (print_error "brew tap ($REPOSITORY)"; return 1)
+
+    printf "\n"
+
+}
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -80,41 +112,15 @@ main() {
         execute "brew update" "brew (update)"
         execute "brew upgrade" "brew (upgrade)"
         execute "brew cleanup" "brew (cleanup)"
-
-        # Homebrew formulae
-        for i in ${!HOMEBREW_FORMULAE[*]}; do
-            tmp="${HOMEBREW_FORMULAE[$i]}"
-            [ $(brew list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
-                && print_success "$tmp" \
-                || execute "brew install $tmp" "$tmp"
-        done
-
         printf "\n"
 
-        # Homebrew casks
-        if [ $(brew list brew-cask &> /dev/null; printf $?) -eq 0 ]; then
+        brew_install "HOMEBREW_FORMULAE[@]"
 
-            for i in ${!HOMEBREW_CASKS[*]}; do
-                tmp="${HOMEBREW_CASKS[$i]}"
-                [ $(brew cask list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
-                    && print_success "$tmp" \
-                    || execute "brew cask install $tmp" "$tmp"
-            done
+        brew_tap "caskroom/cask" \
+            && brew_install "HOMEBREW_CASKS[@]" "cask"
 
-            printf "\n"
-
-            # Homebrew alternate casks
-            brew tap caskroom/versions &> /dev/null
-
-            if [ $(brew tap | grep "caskroom/versions" &> /dev/null; printf $?) -eq 0 ]; then
-                for i in ${!HOMEBREW_ALTERNATE_CASKS[*]}; do
-                    tmp="${HOMEBREW_ALTERNATE_CASKS[$i]}"
-                    [ $(brew cask list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
-                        && print_success "$tmp" \
-                        || execute "brew cask install $tmp" "$tmp"
-                done
-            fi
-        fi
+        brew_tap "caskroom/versions" \
+            && brew_install "HOMEBREW_ALTERNATE_CASKS[@]" "cask"
 
     fi
 
