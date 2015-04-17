@@ -6,6 +6,7 @@ cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
 # https://github.com/Homebrew/homebrew
 
 declare -r -a HOMEBREW_FORMULAE=(
+    "bash"
     "bash-completion"
     "caskroom/cask/brew-cask"
     "git"
