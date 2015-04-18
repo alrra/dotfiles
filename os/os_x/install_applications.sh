@@ -7,12 +7,18 @@ cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
 
 declare -r -a HOMEBREW_FORMULAE=(
     "bash"
-    "bash-completion"
     "caskroom/cask/brew-cask"
     "git"
     "imagemagick --with-webp"
     "vim --override-system-vi"
     "zopfli"
+)
+
+# Homebrew Versions Formulae
+# https://github.com/Homebrew/homebrew-versions
+
+declare -r -a HOMEBREW_VERSIONS_FORMULAE=(
+    "bash-completion2"
 )
 
 # Homebrew Casks
@@ -65,8 +71,6 @@ brew_install() {
             || execute "brew $CMD install $tmp" "$tmp"
     done
 
-    printf "\n"
-
 }
 
 brew_tap() {
@@ -78,8 +82,6 @@ brew_tap() {
     [ "$(brew tap | grep "$REPOSITORY" &> /dev/null; printf $?)" -eq 0 ] \
         && (print_success "brew tap ($REPOSITORY)"; return 0) \
         || (print_error "brew tap ($REPOSITORY)"; return 1)
-
-    printf "\n"
 
 }
 
@@ -116,12 +118,19 @@ main() {
         printf "\n"
 
         brew_install "HOMEBREW_FORMULAE[@]"
+        printf "\n"
+
+        brew_tap "homebrew/versions" \
+            && brew_install "HOMEBREW_VERSIONS_FORMULAE[@]"
+        printf "\n"
 
         brew_tap "caskroom/cask" \
             && brew_install "HOMEBREW_CASKS[@]" "cask"
+        printf "\n"
 
         brew_tap "caskroom/versions" \
             && brew_install "HOMEBREW_ALTERNATE_CASKS[@]" "cask"
+        printf "\n"
 
     fi
 
