@@ -10,9 +10,9 @@ enable_programmable_completion() {
     # http://tldp.org/LDP/abs/html/tabexpansion.html
 
     if [ "$OS" == "osx" ]; then
-        if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
 
-            source $(brew --prefix)/etc/bash_completion
+            source $(brew --prefix)/share/bash-completion/bash_completion
 
             # Make bash complete the `g` alias, just like it does `git`
             complete -o default -o nospace -F _git g
