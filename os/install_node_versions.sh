@@ -29,7 +29,7 @@ export NVM_DIR="'$NVM_DIR'"
         exit
     fi
 
-    # Install `npm` and add the necessary configs to `~/.bash.local`
+    # Install `nvm` and add the necessary configs to `~/.bash.local`
     if [ ! -d "$NVM_DIR" ]; then
 
         git clone https://github.com/creationix/nvm.git "$NVM_DIR" &> /dev/null
