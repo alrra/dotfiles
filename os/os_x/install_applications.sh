@@ -113,7 +113,7 @@ main() {
     if [ $(cmd_exists "brew") -eq 0 ]; then
 
         execute "brew update" "brew (update)"
-        execute "brew upgrade" "brew (upgrade)"
+        execute "brew upgrade --all" "brew (upgrade)"
         execute "brew cleanup" "brew (cleanup)"
         printf "\n"
 
