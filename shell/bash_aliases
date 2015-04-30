@@ -57,7 +57,7 @@ if [ "$OS" == "osx" ]; then
         alias brewr="brew uninstall"
         alias brews="brew search"
         alias brewu="brew update &&  \
-                     brew upgrade && \
+                     brew upgrade --all && \
                      brew cleanup"
     fi
 
