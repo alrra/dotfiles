@@ -8,6 +8,7 @@ cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
 declare -r -a HOMEBREW_FORMULAE=(
     "bash"
     "caskroom/cask/brew-cask"
+    "ffmpeg"
     "git"
     "imagemagick --with-webp"
     "vim --override-system-vi"
