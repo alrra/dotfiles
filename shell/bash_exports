@@ -16,7 +16,7 @@ export HISTCONTROL=ignoreboth
 export HISTFILESIZE=10000
 
 # Don't add certain commands to the history file
-export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:qh:ll:ls -l:pwd:* --help"
+export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
 
 # Increase the maximum number of commands recorded in the
 # command history (default value is 500)
