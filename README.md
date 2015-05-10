@@ -201,15 +201,9 @@ username with your own in the [setup snippets](#setup) and [in the
 
 ## Update
 
-To update the dotfiles, just run the [`dotfiles`](dotfiles) script.
-
-```bash
-$ ./dotfiles
-```
-
-The update process will do basically the same things as [setup](#setup),
-but instead of downloading the dotfiles, it will just fetch the
-latest changes.
+To update the dotfiles you can either run the [`dotfiles`
+script](dotfiles) or, if you want to just update one particular part,
+run the appropriate [`os` script](os).
 
 
 ## Acknowledgements
