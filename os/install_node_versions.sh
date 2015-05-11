@@ -38,6 +38,8 @@ export NVM_DIR="'$NVM_DIR'"
         printf "%s" "$CONFIGS" >> "$HOME/.bash.local"
         print_result $? "nvm (update ~/.bash.local)"
 
+        source "$HOME/.bash.local"
+
     fi
 
     if [ -d "$NVM_DIR" ]; then
@@ -51,7 +53,7 @@ export NVM_DIR="'$NVM_DIR'"
 
         # Install node versions
         for i in ${NODE_VERSIONS[@]}; do
-            execute "nvm install $i" "nvm (install $i)"
+            execute "nvm install $i" "nvm (install: $i)"
         done
 
         # Use `Node.js` by default
