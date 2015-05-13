@@ -9,7 +9,7 @@ set t_vb=                 " ┘ https://vim.wikia.com/wiki/Disable_beeping
 
 " MacVim specific settings
 if has('gui_macvim')
-    set guifont=Menlo:h15     " Use custom font settings
+    set guifont=Menlo:h16     " Use custom font settings
 endif
 
 
