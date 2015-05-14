@@ -11,13 +11,13 @@ main() {
     # Check if `brew` is installed
     if [ $(cmd_exists "brew") -eq 1 ]; then
         print_error "Brew is required, please install it!\n"
-        exit
+        exit 1
     fi
 
     # Check is `bash` is installed
     if [ $(brew list bash &> /dev/null; printf $?) -ne 0 ]; then
         print_error "Bash is required, please install it!\n"
-        exit
+        exit 1
     fi
 
     HOMEBREW_PREFIX="$(brew --prefix)"

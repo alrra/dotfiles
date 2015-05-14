@@ -13,7 +13,7 @@ main() {
     # Check if `npm` is installed
     if [ $(cmd_exists "npm") -eq 1 ]; then
         print_error "npm is required, please install it!\n"
-        exit
+        exit 1
     fi
 
     # Make sure the most recent version of `npm` is installed

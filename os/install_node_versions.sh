@@ -20,25 +20,27 @@ main() {
 export NVM_DIR="'$NVM_DIR'"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 '
+    declare exitCode=0
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if `Git` is installed
     if [ $(cmd_exists "git") -eq 1 ]; then
         print_error "Git is required, please install it!\n"
-        exit
+        exit 1
     fi
 
     # Install `nvm` and add the necessary configs to `~/.bash.local`
     if [ ! -d "$NVM_DIR" ]; then
 
         git clone https://github.com/creationix/nvm.git "$NVM_DIR" &> /dev/null
-        print_result $? "nvm"
+        exitCode=$?
+        print_result $exitCode "nvm"
 
-        printf "%s" "$CONFIGS" >> "$HOME/.bash.local"
+        [ $exitCode -eq 0 ] \
+            && printf "%s" "$CONFIGS" >> "$HOME/.bash.local" \
+            && source "$HOME/.bash.local"
         print_result $? "nvm (update ~/.bash.local)"
-
-        source "$HOME/.bash.local"
 
     fi
 

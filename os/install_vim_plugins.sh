@@ -9,7 +9,7 @@ main() {
     # Check if `Git` is installed
     if [ $(cmd_exists "git") -eq 1 ]; then
         print_error "Git is required, please install it!\n"
-        exit
+        exit 1
     fi
 
     rm -rf ~/.vim/plugins/Vundle.vim &> /dev/null \

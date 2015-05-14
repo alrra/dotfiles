@@ -164,7 +164,7 @@ download_utils() {
     local tmpFile="$(mktemp -u XXXXX)"
     download "$DOTFILES_UTILS_URL" "/tmp/$tmpFile" \
         && source "/tmp/$tmpFile" \
-        || exit
+        || exit 1
 }
 
 extract() {
