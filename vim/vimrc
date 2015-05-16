@@ -24,6 +24,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'chrisbra/unicode.vim'
     Plugin 'editorconfig/editorconfig-vim'
     Plugin 'godlygeek/tabular'
+    Plugin 'kien/ctrlp.vim'
     Plugin 'mattn/emmet-vim'
     Plugin 'mattn/webapi-vim'
     Plugin 'nathanaelkane/vim-indent-guides'
