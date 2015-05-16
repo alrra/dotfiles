@@ -346,6 +346,11 @@ nmap <leader>ss :call StripTrailingWhitespaces()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+" [,t ] Toggle NERDTree
+map <leader>t :NERDTreeToggle<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,ti] Toggle indent
 nmap <leader>ti <Plug>IndentGuidesToggle
 
@@ -353,11 +358,6 @@ nmap <leader>ti <Plug>IndentGuidesToggle
 
 " [,tl] Toggle show limits
 nmap <leader>tl :call ToggleLimits()<CR>
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" [,tn] Toggle NERDTree
-map <leader>tn :NERDTreeToggle<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
