@@ -11,6 +11,7 @@ declare -r -a HOMEBREW_FORMULAE=(
     "ffmpeg"
     "git"
     "imagemagick --with-webp"
+    "tmux"
     "vim --override-system-vi"
     "zopfli"
 )
