@@ -39,7 +39,6 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-surround'
-    Plugin 'vim-scripts/xoria256.vim'
 
 call vundle#end()
 
@@ -54,18 +53,30 @@ if has('autocmd')
     "           └─────────────── Enable loading of plugin files
 endif
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 set t_Co=256                   " Enable full-color support
-
-if has('gui_running')          " ┐
-    colorscheme solarized      " │
-else                           " │ Use custom color scheme
-    colorscheme xoria256       " │
-endif                          " ┘
-
-set autoindent                 " Copy indent to the new line
 
 set background=dark            " Use colors that look good
                                " on a dark background
+
+" Set custom configurations for when the
+" Solarized theme is used from vim's Terminal mode
+" http://ethanschoonover.com/solarized/vim-colors-solarized#advanced-configuration
+
+if !has('gui_running')
+    let g:solarized_contrast = "high"
+    let g:solarized_termcolors = 256
+    let g:solarized_termtrans = 1
+    let g:solarized_visibility = "high"
+endif
+
+colorscheme solarized          " Use custom color scheme
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+set autoindent                 " Copy indent to the new line
+
 
 set backspace=indent           " ┐
 set backspace+=eol             " │ Allow `backspace`
@@ -442,6 +453,11 @@ let g:syntastic_mode_map = {
 highlight ColorColumn
     \ term=NONE
     \ cterm=NONE  ctermbg=237    ctermfg=NONE
+    \ gui=NONE    guibg=#073642  guifg=NONE
+
+highlight CursorLine
+    \ term=NONE
+    \ cterm=NONE  ctermbg=235  ctermfg=NONE
     \ gui=NONE    guibg=#073642  guifg=NONE
 
 highlight CursorLineNr
