@@ -89,7 +89,7 @@ The setup process will:
 </table>
 
 
-##### gVim
+##### Vim
 
   <table>
     <tbody>
@@ -104,26 +104,6 @@ The setup process will:
         <tr>
             <td align="center">OS X (MacVim)</td>
             <td align="center">Ubuntu (Gnome Vim)</td>
-        </tr>
-    </tbody>
-</table>
-
-
-##### Vim
-
-<table>
-    <tbody>
-        <tr>
-            <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6263682/82ce0128-b823-11e4-95f4-5b78d5e13ffb.png" alt="Vim on OS X" width="100%">
-            </td>
-            <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6263676/82b4346e-b823-11e4-867b-260be48c5771.png" alt="Vim on Ubuntu" width="100%">
-            </td>
-        </tr>
-        <tr>
-            <td align="center">OS X</td>
-            <td align="center">Ubuntu</td>
         </tr>
     </tbody>
 </table>
