@@ -89,7 +89,27 @@ The setup process will:
 </table>
 
 
-##### Vim
+##### tmux
+
+  <table>
+    <tbody>
+        <tr>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/7801943/ad1376ea-0335-11e5-86bc-d37f06c7b082.png" alt="tmux" width="100%">
+            </td>
+            <td>
+                <img src="https://cloud.githubusercontent.com/assets/1223565/7801942/ad129572-0335-11e5-8e0e-e442733f9166.png" alt="tmux" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td align="center">OS X</td>
+            <td align="center">Ubuntu</td>
+        </tr>
+    </tbody>
+</table>
+
+
+##### vim
 
   <table>
     <tbody>
