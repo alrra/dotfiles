@@ -139,10 +139,9 @@ requirements by using the following files:
 #### `~/.bash.local`
 
 If the `~/.bash.local` file exists, it will be automatically sourced
-after all the other [bash related
-files](https://github.com/alrra/dotfiles/tree/master/shell), thus,
-allowing its content to add to or overwrite the existing aliases,
-settings, PATH, etc.
+after all the other [bash related files](shell), thus, allowing its
+content to add to or overwrite the existing aliases, settings, PATH,
+etc.
 
 Here is a very simple example of a `~/.bash.local` file:
 
