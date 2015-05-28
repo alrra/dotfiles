@@ -78,7 +78,6 @@ colorscheme solarized          " Use custom color scheme
 
 set autoindent                 " Copy indent to the new line
 
-
 set backspace=indent           " ┐
 set backspace+=eol             " │ Allow `backspace`
 set backspace+=start           " ┘ in insert mode
@@ -230,11 +229,13 @@ endfunction
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 function! ToggleRelativeLineNumbers()
+
     if ( &relativenumber == 1 )
         set number
     else
         set relativenumber
     endif
+
 endfunction
 
 " ----------------------------------------------------------------------
@@ -252,11 +253,14 @@ if has('autocmd')
     " files whenever their content is changed.
 
     augroup auto_reload_vim_configs
+
         autocmd!
         autocmd BufWritePost vimrc source $MYVIMRC
+
         if has('gui_running')
             autocmd BufWritePost gvimrc source $MYGVIMRC
         endif
+
     augroup END
 
     " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -265,11 +269,14 @@ if has('autocmd')
     " `~/.vimrc` and `~/.gvimrc` files whenever they are changed
 
     augroup auto_reload_vim_configs
+
         autocmd!
         autocmd BufWritePost vimrc source $MYVIMRC
+
         if has('gui_running')
             autocmd BufWritePost gvimrc source $MYGVIMRC
         endif
+
     augroup END
 
     " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -278,15 +285,21 @@ if has('autocmd')
     " http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
 
     augroup relative_line_numbers
+
         autocmd!
+
         " Automatically switch to absolute line numbers when vim loses focus
         autocmd FocusLost * :set number
+
         " Automatically switch to relative line numbers when vim gains focus
         autocmd FocusGained * :set relativenumber
+
         " Automatically switch to absolute line numbers when vim is in insert mode
         autocmd InsertEnter * :set number
+
         " Automatically switch to relative line numbers when vim is in normal mode
         autocmd InsertLeave * :set relativenumber
+
     augroup END
 
     " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
