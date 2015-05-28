@@ -83,18 +83,18 @@ mkd() {
 }
 
 print_error() {
-    # Print output in red
     printf "\e[0;31m  [✖] $1 $2\e[0m\n"
+    #           └─ Print output in red
 }
 
 print_info() {
-    # Print output in purple
     printf "\n\e[0;35m $1\e[0m\n\n"
+    #             └─ Print output in purple
 }
 
 print_question() {
-    # Print output in yellow
     printf "\e[0;33m  [?] $1\e[0m"
+    #           └─ Print output in yellow
 }
 
 print_result() {
