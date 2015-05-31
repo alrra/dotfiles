@@ -58,6 +58,15 @@ declare -r -a HOMEBREW_ALTERNATE_CASKS=(
     "webkit-nightly"
 )
 
+# Webfont tools
+# https://github.com/bramstein/homebrew-webfonttools
+
+declare -r -a WEBFONT_TOOLS=(
+    "sfnt2woff"
+    "sfnt2woff-zopfli"
+    "woff2"
+)
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 brew_install() {
@@ -131,6 +140,10 @@ main() {
 
         brew_tap "caskroom/versions" \
             && brew_install "HOMEBREW_ALTERNATE_CASKS[@]" "cask"
+        printf "\n"
+
+        brew_tap "bramstein/webfonttools" \
+            && brew_install "WEBFONT_TOOLS[@]"
         printf "\n"
 
     fi
