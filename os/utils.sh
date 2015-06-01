@@ -39,7 +39,7 @@ cmd_exists() {
 }
 
 execute() {
-    $1 &> /dev/null
+    eval "$1" &> /dev/null
     print_result $? "${2:-$1}"
 }
 
@@ -83,18 +83,31 @@ mkd() {
 }
 
 print_error() {
-    printf "\e[0;31m  [✖] $1 $2\e[0m\n"
-    #           └─ Print output in red
+    print_in_red "  [✖] $1 $2\n"
+}
+
+print_in_green() {
+    printf "\e[0;32m$1\e[0m"
+}
+
+print_in_purple() {
+    printf "\e[0;35m$1\e[0m"
+}
+
+print_in_red() {
+    printf "\e[0;31m$1\e[0m"
+}
+
+print_in_yellow() {
+    printf "\e[0;33m$1\e[0m"
 }
 
 print_info() {
-    printf "\n\e[0;35m $1\e[0m\n\n"
-    #             └─ Print output in purple
+    print_in_purple "\n $1\n\n"
 }
 
 print_question() {
-    printf "\e[0;33m  [?] $1\e[0m"
-    #           └─ Print output in yellow
+    print_in_yellow "  [?] $1"
 }
 
 print_result() {
@@ -107,6 +120,5 @@ print_result() {
 }
 
 print_success() {
-    # Print output in green
-    printf "\e[0;32m  [✔] $1\e[0m\n"
+    print_in_green "  [✔] $1\n"
 }

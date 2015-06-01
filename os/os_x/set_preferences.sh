@@ -3,22 +3,36 @@
 cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
 
 # ----------------------------------------------------------------------
-# | Chrome & Chrome Canary                                             |
+# | Chrome                                                             |
 # ----------------------------------------------------------------------
 
-set_chrome_and_chrome_canary_preferences() {
+set_chrome_preferences() {
 
-    # Disable the all too sensitive backswipe
-    defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false && \
-    defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false && \
+    execute 'defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false' \
+        'Disable backswipe'
 
-    # Use the system-native print preview dialog
-    defaults write com.google.Chrome DisablePrintPreview -bool true && \
-    defaults write com.google.Chrome.canary DisablePrintPreview -bool true && \
+    execute 'defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true' \
+        'Expand print dialog by default'
 
-    # Expand the print dialog by default
-    defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true && \
-    defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
+    execute 'defaults write com.google.Chrome DisablePrintPreview -bool true' \
+        'Use system-native print preview dialog'
+
+}
+
+# ----------------------------------------------------------------------
+# | Chrome Canary                                                      |
+# ----------------------------------------------------------------------
+
+set_chrome_canary_preferences() {
+
+    execute 'defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false' \
+        'Disable backswipe'
+
+    execute 'defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true' \
+        'Expand print dialog by default'
+
+    execute 'defaults write com.google.Chrome.canary DisablePrintPreview -bool true' \
+        'Use system-native print preview dialog'
 
 }
 
@@ -28,8 +42,8 @@ set_chrome_and_chrome_canary_preferences() {
 
 set_dashboard_preferences() {
 
-    # Disable Dashboard
-    defaults write com.apple.dashboard mcx-disabled -bool true
+    execute 'defaults write com.apple.dashboard mcx-disabled -bool true' \
+        'Disable Dashboard'
 
 }
 
@@ -39,38 +53,38 @@ set_dashboard_preferences() {
 
 set_dock_preferences() {
 
-    # Automatically hide or show the Dock
-    defaults write com.apple.dock autohide -bool true && \
+    execute 'defaults write com.apple.dock autohide -bool true' \
+        'Automatically hide/show the Dock'
 
-    # Enable spring loading for all Dock items
-    defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true && \
+    execute 'defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true' \
+        'Enable spring loading for all Dock items'
 
-    # Speed up Mission Control animations
-    defaults write com.apple.dock expose-animation-duration -float 0.2 && \
+    execute 'defaults write com.apple.dock expose-animation-duration -float 0.2' \
+        'Speed up Mission Control animations'
 
-    # Don’t group windows by application in Mission Control
-    defaults write com.apple.dock expose-group-by-app -bool false && \
+    execute 'defaults write com.apple.dock expose-group-by-app -bool false' \
+        'Do not group windows by application in Mission Control'
 
-    # Change minimize/maximize window effect
-    defaults write com.apple.dock mineffect -string "scale" && \
+    execute 'defaults write com.apple.dock mineffect -string "scale"' \
+        'Change minimize/maximize window effect'
 
-    # Reduce Dock clutter by minimizing windows into their application icons
-    defaults write com.apple.dock minimize-to-application -bool true && \
+    execute 'defaults write com.apple.dock minimize-to-application -bool true' \
+        'Reduce clutter by minimizing windows into their application icons'
 
-    # Don't automatically rearrange spaces based on most recent use
-    defaults write com.apple.dock mru-spaces -bool false && \
+    execute 'defaults write com.apple.dock mru-spaces -bool false' \
+        'Do not automatically rearrange spaces based on most recent use'
 
-    # Wipe all app icons from the Dock
-    defaults write com.apple.dock persistent-apps -array && \
+    execute 'defaults write com.apple.dock persistent-apps -array' \
+        'Wipe all app icons'
 
-    # Show indicator lights for open applications
-    defaults write com.apple.dock show-process-indicators -bool true && \
+    execute 'defaults write com.apple.dock show-process-indicators -bool true' \
+        'Show indicator lights for open applications'
 
-    # Make icons of hidden applications translucent
-    defaults write com.apple.dock showhidden -bool true && \
+    execute 'defaults write com.apple.dock showhidden -bool true' \
+        'Make icons of hidden applications translucent'
 
-    # Set the icon size
-    defaults write com.apple.dock tilesize -int 55
+    execute 'defaults write com.apple.dock tilesize -i' \
+        'Set icon size'
 
 }
 
@@ -80,80 +94,78 @@ set_dock_preferences() {
 
 set_finder_preferences() {
 
-    # Automatically open a new Finder window when a volume is mounted
-    defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true && \
-    defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true && \
-    defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true && \
+    execute 'defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true &&
+             defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true &&
+             defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true' \
+        "Automatically open a new Finder window when a volume is mounted"
 
-    # Use full POSIX path as window title
-    defaults write com.apple.finder _FXShowPosixPathInTitle -bool true && \
+    execute 'defaults write com.apple.finder _FXShowPosixPathInTitle -bool true' \
+        'Use full POSIX path as window title'
 
-    # Disable all animations
-    defaults write com.apple.finder DisableAllAnimations -bool true && \
+    execute 'defaults write com.apple.finder DisableAllAnimations -bool true' \
+        'Disable all animations'
 
-    # Disable the warning before emptying the Trash
-    defaults write com.apple.finder WarnOnEmptyTrash -bool false && \
+    execute 'defaults write com.apple.finder WarnOnEmptyTrash -bool false' \
+        'Disable the warning before emptying the Trash'
 
-    # Enable `Secure Empty Trash`
+    # execute 'defaults write com.apple.finder EmptyTrashSecurely -bool true'
+    #     'Enable "Secure Empty Trash"'
     # (Security of data on disk: https://www.youtube.com/watch?v=4SSSMi4X_mA)
-    #defaults write com.apple.finder EmptyTrashSecurely -bool true && \
 
-    # Search the current directory by default
-    defaults write com.apple.finder FXDefaultSearchScope -string "SCcf" && \
+    execute 'defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"' \
+        'Search the current directory by default'
 
-    # Disable the warning when changing a file extension
-    defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false && \
+    execute 'defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false' \
+        'Disable warning when changing a file extension'
 
-    # Use list view in all Finder windows by default
-    defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv" && \
+    execute 'defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"' \
+        'Use list view in all Finder windows by default'
 
-    # Set `Desktop` as the default location for new Finder windows
-    defaults write com.apple.finder NewWindowTarget -string "PfDe" && \
-    defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/" && \
+    execute 'defaults write com.apple.finder NewWindowTarget -string "PfDe" &&
+             defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"' \
+        'Set "Desktop" as the default location for new Finder windows'
 
-    # Show icons for hard drives, servers, and removable media on the desktop
-    defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true && \
-    defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true && \
-    defaults write com.apple.finder ShowMountedServersOnDesktop -bool true && \
-    defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true && \
+    execute 'defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true &&
+             defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true &&
+             defaults write com.apple.finder ShowMountedServersOnDesktop -bool true &&
+             defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true' \
+        'Show icons for hard drives, servers, and removable media on the desktop'
 
-    # Don't show recent tags
-    defaults write com.apple.finder ShowRecentTags -bool false && \
+    execute "defaults write com.apple.finder ShowRecentTags -bool false" \
+        "Don't show recent tags"
 
-    # Show all filename extensions
-    defaults write NSGlobalDomain AppleShowAllExtensions -bool true && \
+    execute "defaults write NSGlobalDomain AppleShowAllExtensions -bool true" \
+        "Show all filename extensions"
 
-    # For icons on the desktop and in other icon views:
+    execute '/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist' \
+        'Set icon size'
 
-        # Set size
-        /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist && \
+    execute '/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 1" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 1" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 1" ~/Library/Preferences/com.apple.finder.plist' \
+        'Set icon grid spacing size'
 
-        # Set grid spacing size
-        /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 1" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 1" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 1" ~/Library/Preferences/com.apple.finder.plist && \
+    execute '/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist' \
+        'Set icon label text size'
 
-        # Set label text size
-        /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist && \
+    execute '/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:labelOnBottom true" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:labelOnBottom true" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:labelOnBottom true" ~/Library/Preferences/com.apple.finder.plist' \
+        'Set icon label position'
 
-        # Set label position
-        /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:labelOnBottom true" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:labelOnBottom true" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:labelOnBottom true" ~/Library/Preferences/com.apple.finder.plist && \
+    execute '/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist' \
+        'Show item info'
 
-        # Show item info
-        /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist && \
-
-        # Set sort method
-        /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy none" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy none" ~/Library/Preferences/com.apple.finder.plist && \
-        /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy none" ~/Library/Preferences/com.apple.finder.plist
+    execute '/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy none" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy none" ~/Library/Preferences/com.apple.finder.plist &&
+             /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy none" ~/Library/Preferences/com.apple.finder.plist' \
+        'Set sort method'
 
 }
 
@@ -163,24 +175,23 @@ set_finder_preferences() {
 
 set_keyboard_preferences() {
 
-    # Enable full keyboard access for all controls
-    # (e.g. enable Tab in modal dialogs)
-    defaults write NSGlobalDomain AppleKeyboardUIMode -int 3 && \
+    execute 'defaults write NSGlobalDomain AppleKeyboardUIMode -int 3' \
+        'Enable full keyboard access for all controls'
 
-    # Disable press-and-hold for keys in favor of key repeat
-    defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false && \
+    execute 'defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false' \
+        'Disable press-and-hold in favor of key repeat'
 
-    # Delay Until Repeat
-    defaults write NSGlobalDomain "InitialKeyRepeat_Level_Saved" -int 15 && \
+    execute 'defaults write NSGlobalDomain "InitialKeyRepeat_Level_Saved" -int 15' \
+        'Set delay until repeat'
 
-    # Set the key repeat rate to fast
-    defaults write NSGlobalDomain KeyRepeat -int 2 && \
+    execute 'defaults write NSGlobalDomain KeyRepeat -int 2' \
+        'Set the key repeat rate to fast'
 
-    # Disable smart quotes
-    defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false && \
+    execute 'defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false' \
+        'Disable smart quotes'
 
-    # Disable smart dashes
-    defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+    execute 'defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false' \
+        'Disable smart dashes'
 
 }
 
@@ -190,19 +201,20 @@ set_keyboard_preferences() {
 
 set_language_and_region_preferences() {
 
-    # Set language and text formats
-    defaults write NSGlobalDomain AppleLanguages -array "en" "ro" && \
-    defaults write NSGlobalDomain AppleLocale -string "en_RO@currency=EUR" && \
-    defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters" && \
-    defaults write NSGlobalDomain AppleMetricUnits -bool true && \
+    execute 'defaults write NSGlobalDomain AppleLanguages -array "en" "ro"' \
+        'Set language'
 
-    # Disable auto-correct
-    #defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false && \
-    #defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false && \
+    execute 'defaults write NSGlobalDomain AppleLocale -string "en_RO@currency=EUR"' \
+        'Set locale'
 
-    # Set the timezone
-    # (see `systemsetup -listtimezones` for other values)
-    sudo systemsetup -settimezone "Europe/Bucharest" &> /dev/null
+    execute 'defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"' \
+        'Set measurement units'
+
+    execute 'sudo systemsetup -settimezone "Europe/Bucharest"' \
+        'Set timezone'
+
+    execute 'defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false' \
+        'Disable auto-correct'
 
 }
 
@@ -212,12 +224,12 @@ set_language_and_region_preferences() {
 
 set_maps_preferences() {
 
-    # Set view options
-    defaults write com.apple.Maps LastClosedWindowViewOptions "{
-        localizeLabels = 1;   // show labels in English
-        mapType = 11;         // show hybrid map
-        trafficEnabled = 0;   // do not show traffic
-    }"
+    execute 'defaults write com.apple.Maps LastClosedWindowViewOptions "{
+                localizeLabels = 1;   // show labels in English
+                mapType = 11;         // show hybrid map
+                trafficEnabled = 0;   // do not show traffic
+             }"' \
+        'Set view options'
 
 }
 
@@ -227,38 +239,39 @@ set_maps_preferences() {
 
 set_safari_preferences() {
 
-    # Disable opening `safe` files automatically
-    defaults write com.apple.Safari AutoOpenSafeDownloads -bool false && \
+    execute 'defaults write com.apple.Safari AutoOpenSafeDownloads -bool false' \
+        'Disable opening "safe" files automatically'
 
-    # Allow hitting the backspace key to go to the previous page in history
-    defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true && \
+    execute 'defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true' \
+        'Set backspace key to go to the previous page in history'
 
-    # Enable the `Develop` menu and the `Web Inspector`
-    defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true && \
-    defaults write com.apple.Safari IncludeDevelopMenu -bool true && \
-    defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true && \
 
-    # Set search type to `Contains` instead of `Starts With`
-    defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false && \
+    execute 'defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true &&
+             defaults write com.apple.Safari IncludeDevelopMenu -bool true &&
+             defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true' \
+        'Enable the "Develop" menu and the "Web Inspector"'
 
-    # Set home page to `about:blank`
-    defaults write com.apple.Safari HomePage -string "about:blank" && \
+    execute 'defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false' \
+        'Set search type to "Contains" instead of "Starts With"'
 
-    # Enable `Debug` menu
-    defaults write com.apple.Safari IncludeInternalDebugMenu -bool true && \
+    execute 'defaults write com.apple.Safari HomePage -string "about:blank"' \
+        'Set home page to "about:blank"'
 
-    # Hide bookmarks bar by default
-    defaults write com.apple.Safari ShowFavoritesBar -bool false && \
+    execute 'defaults write com.apple.Safari IncludeInternalDebugMenu -bool true' \
+        'Enable "Debug" menu'
 
-    # Show the full URL in the address bar (note: this will still hide the scheme)
-    defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true && \
+    execute 'defaults write com.apple.Safari ShowFavoritesBar -bool false' \
+        'Hide bookmarks bar by default'
 
-    # Don’t send search queries to Apple
-    defaults write com.apple.Safari SuppressSearchSuggestions -bool true && \
-    defaults write com.apple.Safari UniversalSearchEnabled -bool false && \
+    execute 'defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true' \
+        'Show the full URL in the address bar'
 
-    # Add a context menu item for showing the `Web Inspector` in web views
-    defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+    execute 'defaults write com.apple.Safari SuppressSearchSuggestions -bool true &&
+             defaults write com.apple.Safari UniversalSearchEnabled -bool false' \
+        'Don’t send search queries to Apple'
+
+    execute 'defaults write NSGlobalDomain WebKitDeveloperExtras -bool true' \
+        'Add a context menu item for showing the "Web Inspector" in web views'
 
 }
 
@@ -268,13 +281,12 @@ set_safari_preferences() {
 
 set_terminal_preferences() {
 
-    # Make the focus automatically follow the mouse
-    defaults write com.apple.terminal FocusFollowsMouse -string true && \
+    execute "defaults write com.apple.terminal FocusFollowsMouse -string true" \
+        "Make the focus automatically follow the mouse"
 
-    # Only use UTF-8
-    defaults write com.apple.terminal StringEncodings -array 4 && \
+    execute "defaults write com.apple.terminal StringEncodings -array 4" \
+        "Only use UTF-8"
 
-    # Use a custom terminal theme
     osascript <<EOD
 
     tell application "Terminal"
@@ -320,6 +332,7 @@ set_terminal_preferences() {
     end tell
 
 EOD
+    print_result $? "Set custom terminal theme"
 
 }
 
@@ -329,12 +342,12 @@ EOD
 
 set_textedit_preferences() {
 
-    # Open and save files as UTF-8 encoded
-    defaults write com.apple.TextEdit PlainTextEncoding -int 4 && \
-    defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4 && \
+    execute 'defaults write com.apple.TextEdit PlainTextEncoding -int 4 &&
+             defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4' \
+        'Open and save files as UTF-8 encoded'
 
-    # Use plain text mode for new documents
-    defaults write com.apple.TextEdit RichText -int 0
+    execute 'defaults write com.apple.TextEdit RichText -' \
+        'Use plain text mode for new documents'
 
 }
 
@@ -344,16 +357,16 @@ set_textedit_preferences() {
 
 set_trackpad_preferences() {
 
-    # Enable `Tap to click`
-    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true && \
-    defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 && \
-    defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 && \
+    execute 'defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true &&
+             defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 &&
+             defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1' \
+        'Enable "Tap to click"'
 
-    # Map `click or tap with two fingers` to the secondary click
-    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true && \
-    defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true && \
-    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 0 && \
-    defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 0
+    execute 'defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true &&
+             defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true &&
+             defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 0 &&
+             defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 0' \
+        'Map "click or tap with two fingers" to the secondary click'
 
 }
 
@@ -363,25 +376,25 @@ set_trackpad_preferences() {
 
 set_transmission_preferences() {
 
-    # Delete the original torrent files
-    defaults write org.m0k.transmission DeleteOriginalTorrent -bool true && \
+    execute 'defaults write org.m0k.transmission DeleteOriginalTorrent -bool true' \
+        'Delete the original torrent files'
 
-    # Don’t prompt for confirmation before downloading
-    defaults write org.m0k.transmission DownloadAsk -bool false && \
+    execute 'defaults write org.m0k.transmission DownloadAsk -bool false' \
+        'Don’t prompt for confirmation before downloading'
 
-    # Use `~/Downloads` to store complete downloads
-    defaults write org.m0k.transmission DownloadChoice -string "Constant" && \
-    defaults write org.m0k.transmission DownloadFolder -string "$HOME/Downloads" && \
+    execute 'defaults write org.m0k.transmission DownloadChoice -string "Constant" &&
+             defaults write org.m0k.transmission DownloadFolder -string "$HOME/Downloads"' \
+        'Use "~/Downloads" to store complete downloads'
 
-    # Use `~/Downloads/torrents` to store incomplete downloads
-    defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true && \
-    defaults write org.m0k.transmission IncompleteDownloadFolder -string "$HOME/Downloads/torrents" && \
+    execute 'defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true &&
+             defaults write org.m0k.transmission IncompleteDownloadFolder -string "$HOME/Downloads/torrents"' \
+        'Use "~/Downloads/torrents" to store incomplete downloads'
 
-    # Hide the donate message
-    defaults write org.m0k.transmission WarningDonate -bool false && \
+    execute 'defaults write org.m0k.transmission WarningDonate -bool false' \
+        'Hide the donate message'
 
-    # Hide the legal disclaimer
-    defaults write org.m0k.transmission WarningLegal -bool false
+    execute 'defaults write org.m0k.transmission WarningLegal -bool false' \
+        'Hide the legal disclaimer'
 
 }
 
@@ -391,83 +404,82 @@ set_transmission_preferences() {
 
 set_ui_and_ux_preferences() {
 
-    # Avoid creating `.DS_Store` files on network volumes
-    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true && \
+    execute "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true" \
+        "Avoid creating '.DS_Store' files on network volumes"
 
-    # Hide the battery percentage from the menu bar
-    defaults write com.apple.menuextra.battery ShowPercent -string "NO" && \
+    execute 'defaults write com.apple.menuextra.battery ShowPercent -string "NO"' \
+        'Hide battery percentage from the menu bar'
 
-    # Disable the "Are you sure you want to open this application?" dialog
-    defaults write com.apple.LaunchServices LSQuarantine -bool false && \
+    execute 'defaults write com.apple.LaunchServices LSQuarantine -bool false' \
+        'Disable "Are you sure you want to open this application?" dialog'
 
-    # Disable `Reopen windows when logging back in`
-    #defaults write com.apple.loginwindow TALLogoutSavesState 0 && \
+    # execute 'defaults write com.apple.loginwindow TALLogoutSavesState 0' \
+    #     'Disable "Reopen windows when logging back in"'
 
-    # Automatically quit the printer app once the print jobs are completed
-    defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true && \
+    execute 'defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true' \
+        'Automatically quit the printer app once the print jobs are completed'
 
-    # Disable shadow in screenshots
-    # https://www.youtube.com/watch?v=A0S140mmvzI
-    defaults write com.apple.screencapture disable-shadow -bool true && \
+    execute 'defaults write com.apple.screencapture disable-shadow -bool true' \
+        'Disable shadow in screenshots'
 
-    # Save screenshots to the ~/Desktop
-    defaults write com.apple.screencapture location -string "$HOME/Desktop" && \
+    execute 'defaults write com.apple.screencapture location -string "$HOME/Desktop"' \
+        'Save screenshots to the Desktop'
 
-    # Save screenshots as PNGs
-    defaults write com.apple.screencapture type -string "png" && \
+    execute 'defaults write com.apple.screencapture type -string "png"' \
+        'Save screenshots as PNGs'
 
-    # Require password immediately after the computer went into
-    # sleep or screen saver mode
-    defaults write com.apple.screensaver askForPassword -int 1 && \
-    defaults write com.apple.screensaver askForPasswordDelay -int 0 && \
+    execute 'defaults write com.apple.screensaver askForPassword -int 1 &&
+             defaults write com.apple.screensaver askForPasswordDelay -int 0'\
+        'Require password immediately after into sleep or screen saver mode'
 
-    # Enable subpixel font rendering on non-Apple LCDs
-    defaults write NSGlobalDomain AppleFontSmoothing -int 2 && \
+    execute 'defaults write NSGlobalDomain AppleFontSmoothing -int 2' \
+        'Enable subpixel font rendering on non-Apple LCDs'
 
-    # Always show scrollbars
-    defaults write NSGlobalDomain AppleShowScrollBars -string "Always" && \
+    execute 'defaults write NSGlobalDomain AppleShowScrollBars -string "Always"' \
+        'Always show scrollbars'
 
-    # Disable automatic termination of inactive apps
-    defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true && \
+    execute 'defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true' \
+        'Disable automatic termination of inactive apps'
 
-    # Expand save panel by default
-    defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true && \
+    execute 'defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true' \
+        'Expand save panel by default'
 
-    # Set sidebar icon size to medium
-    defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2 && \
+    execute 'defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2' \
+        'Set sidebar icon size to medium'
 
-    # Disable resume system-wide
-    defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false && \
+    execute 'defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false' \
+        'Disable resume system-wide'
 
-    # Expand print panel by default
-    defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true && \
+    execute 'defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true' \
+        'Expand print panel by default'
 
-    # Set computer name
-    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Laptop" && \
-    sudo scutil --set ComputerName "Laptop" && \
-    sudo scutil --set HostName "Laptop" && \
-    sudo scutil --set LocalHostName "Laptop" && \
+    execute 'sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Laptop" &&
+             sudo scutil --set ComputerName "Laptop" &&
+             sudo scutil --set HostName "Laptop" &&
+             sudo scutil --set LocalHostName "Laptop"' \
+        'Set computer name'
 
-    # Restart automatically if the computer freezes
-    sudo systemsetup -setrestartfreeze on && \
+    execute "sudo systemsetup -setrestartfreeze on" \
+        "Restart automatically if the computer freezes"
 
-    # Turn Bluetooth off
-    sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0 && \
-    sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist && \
-    sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist && \
+    execute 'sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0 &&
+             sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist &&
+             sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist' \
+        'Turn Bluetooth off'
 
-    # Hide the Time Machine and Volume icons from the menu bar
-    for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
-        sudo defaults write "${domain}" dontAutoLoad -array \
-            "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-            "/System/Library/CoreServices/Menu Extras/Volume.menu"
-    done && \
+    execute '   for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
+                    sudo defaults write "${domain}" dontAutoLoad -array \
+                        "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+                        "/System/Library/CoreServices/Menu Extras/Volume.menu"
+                done && \
 
-    sudo defaults write com.apple.systemuiserver menuExtras -array \
-        "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-        "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-        "/System/Library/CoreServices/Menu Extras/Battery.menu" \
-        "/System/Library/CoreServices/Menu Extras/Clock.menu"
+                sudo defaults write com.apple.systemuiserver menuExtras -array \
+                    "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+                    "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+                    "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+                    "/System/Library/CoreServices/Menu Extras/Clock.menu"
+            ' \
+        'Hide Time Machine and Volume icons from the menu bar'
 
 }
 
@@ -488,19 +500,47 @@ main() {
         "cfprefsd"
     )
 
-    execute "set_chrome_and_chrome_canary_preferences" "Chrome & Chrome Canary"
-    execute "set_dashboard_preferences" "Dashboard"
-    execute "set_dock_preferences" "Dock"
-    execute "set_finder_preferences" "Finder"
-    execute "set_keyboard_preferences" "Keyboard"
-    execute "set_language_and_region_preferences" "Language & Region"
-    execute "set_maps_preferences" "Maps"
-    execute "set_safari_preferences" "Safari"
-    execute "set_terminal_preferences" "Terminal"
-    execute "set_textedit_preferences" "TextEdit"
-    execute "set_trackpad_preferences" "Trackpad"
-    execute "set_transmission_preferences" "Transmission"
-    execute "set_ui_and_ux_preferences" "UI & UX"
+    print_in_purple "  Chrome\n\n"
+    set_chrome_preferences
+
+    print_in_purple "\n  Chrome Canary\n\n"
+    set_chrome_canary_preferences
+
+    print_in_purple "\n  Dashboard\n\n"
+    set_dashboard_preferences
+
+    print_in_purple "\n  Dock\n\n"
+    set_dock_preferences
+
+    print_in_purple "\n  Finder\n\n"
+    set_finder_preferences
+
+    print_in_purple "\n  Keyboard\n\n"
+    set_keyboard_preferences
+
+    print_in_purple "\n  Language & Region\n\n"
+    set_language_and_region_preferences
+
+    print_in_purple "\n  Maps\n\n"
+    set_maps_preferences
+
+    print_in_purple "\n  Safari\n\n"
+    set_safari_preferences
+
+    print_in_purple "\n  Terminal\n\n"
+    set_terminal_preferences
+
+    print_in_purple "\n  TextEdit\n\n"
+    set_textedit_preferences
+
+    print_in_purple "\n  Trackpad\n\n"
+    set_trackpad_preferences
+
+    print_in_purple "\n  Transmission\n\n"
+    set_transmission_preferences
+
+    print_in_purple "\n  UI & UX\n\n"
+    set_ui_and_ux_preferences
 
     for i in ${!PROCESSES_TO_TERMINATE[*]}; do
 	    killall "$i" &> /dev/null
