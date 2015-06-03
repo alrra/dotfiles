@@ -42,19 +42,19 @@ set_ui_and_ux_settings() {
     # execute 'gsettings set org.gnome.desktop.background picture-uri 'file:///home/...' &> /dev/null' \
     #     'Set desktop background image location'
 
-    execute 'gsettings set org.gnome.libgnomekbd.keyboard layouts "[ 'us', 'ro' ]"' \
+    execute "gsettings set org.gnome.libgnomekbd.keyboard layouts \"[ 'us', 'ro' ]\"" \
         'Set keyboard languages'
 
-    execute 'gsettings set com.canonical.Unity.Launcher favorites "[
-        "ubiquity-gtkui.desktop",
-        "nautilus-home.desktop",
-        "chromium-browser.desktop",
-        "google-chrome.desktop",
-        "firefox.desktop",
-        "firefox-trunk.desktop",
-        "opera-browser.desktop",
-        "opera-next-browser.desktop"
-    ]"'\
+    execute "gsettings set com.canonical.Unity.Launcher favorites \"[
+        'ubiquity-gtkui.desktop',
+        'nautilus-home.desktop',
+        'chromium-browser.desktop',
+        'google-chrome.desktop',
+        'firefox.desktop',
+        'firefox-trunk.desktop',
+        'opera-browser.desktop',
+        'opera-next-browser.desktop'
+    ]\"" \
         'Set Launcher favorites'
 
 }
