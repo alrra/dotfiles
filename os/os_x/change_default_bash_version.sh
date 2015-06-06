@@ -22,9 +22,26 @@ main() {
 
     HOMEBREW_PREFIX="$(brew --prefix)"
 
-    # Make OS X use the bash version installed through homebrew
-    [ -z "$(cat /etc/shells | grep "$HOMEBREW_PREFIX")" ] \
-        && sudo sh -c 'printf "$HOMEBREW_PREFIX/bin/bash" >> /etc/shells'
+
+    # Add the path of the bash version installed through Homebrew
+    # to the list of login shells from the `/etc/shells` file.
+    #
+    # This needs to be done because applications use this file to
+    # determine whether a shell is valid (e.g.: `chsh` consults the
+    # `/etc/shells` to determine whether an unprivileged user may
+    # change the login shell for her own account).
+    #
+    # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
+
+    if [ -z "$(cat /etc/shells | grep "$HOMEBREW_PREFIX")" ]; then
+        sudo sh -c 'printf "$HOMEBREW_PREFIX/bin/bash" >> /etc/shells'
+        print_result $? "Add \`$HOMEBREW_PREFIX/bin/bash\` in \`/etc/shells\`"
+    fi
+
+
+    # Make OS X use the bash version installed through Homebrew
+    #
+    # https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/chsh.1.html
 
     chsh -s "$HOMEBREW_PREFIX/bin/bash" &> /dev/null
     print_result $? "Use latest version of Bash"
