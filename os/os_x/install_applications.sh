@@ -126,7 +126,6 @@ main() {
 
         execute "brew update" "brew (update)"
         execute "brew upgrade --all" "brew (upgrade)"
-        execute "brew cleanup" "brew (cleanup)"
         printf "\n"
 
         brew_install "HOMEBREW_FORMULAE[@]"
@@ -146,6 +145,9 @@ main() {
 
         brew_tap "bramstein/webfonttools" \
             && brew_install "WEBFONT_TOOLS[@]"
+        printf "\n"
+
+        execute "brew cleanup" "brew (cleanup)"
         printf "\n"
 
     fi
