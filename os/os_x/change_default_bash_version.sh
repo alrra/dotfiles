@@ -34,7 +34,7 @@ main() {
     # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
 
     if [ -z "$(cat /etc/shells | grep "$HOMEBREW_PREFIX")" ]; then
-        sudo sh -c 'printf "$HOMEBREW_PREFIX/bin/bash" >> /etc/shells'
+        sudo sh -c "printf \"$HOMEBREW_PREFIX/bin/bash\n\" >> /etc/shells"
         print_result $? "Add \`$HOMEBREW_PREFIX/bin/bash\` in \`/etc/shells\`"
     fi
 
