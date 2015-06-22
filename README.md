@@ -1,8 +1,17 @@
 # [Cătălin](https://github.com/alrra)’s dotfiles
 
+These are the base dotfiles that I start with when I set up a
+new environment. For more specific local needs I use the `.local`
+files described in the [`Local Settings`](#local-settings) section.
+
+
 ## Setup
 
-To setup the dotfiles just run one of the following snippets in the terminal:
+To setup the dotfiles just run the appropriate snippet in the
+terminal:
+
+(:warning: **DO NOT** run the setup snippet if you don't fully
+understand [what it does](dotfiles). Seriously, **DON'T**!)
 
 | OS | Snippet |
 |:---:|:---|
