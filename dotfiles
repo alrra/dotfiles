@@ -97,9 +97,7 @@ download() {
 
 download_dotfiles() {
 
-    local tmpFile="$(mktemp -u XXXXX)"
-
-    cd "/tmp"
+    local tmpFile="$(mktemp /tmp/XXXXX)"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -161,10 +159,16 @@ download_dotfiles() {
 }
 
 download_utils() {
-    local tmpFile="$(mktemp -u XXXXX)"
-    download "$DOTFILES_UTILS_URL" "/tmp/$tmpFile" \
-        && source "/tmp/$tmpFile" \
-        || exit 1
+
+    local tmpFile="$(mktemp /tmp/XXXXX)"
+
+    download "$DOTFILES_UTILS_URL" "$tmpFile"
+
+    [ $? -ne 0 ] && exit 1
+
+    source "$tmpFile"
+    rm -rf "$tmpFile"
+
 }
 
 extract() {

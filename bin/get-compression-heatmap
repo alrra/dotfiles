@@ -53,7 +53,7 @@ main() {
 
     while [ $# -ne 0 ]; do
 
-        tmpFile="/tmp/$(mktemp -u XXXXX).gz"
+        tmpFile="$(mktemp /tmp/XXXXX.gz)"
 
         # Check if the current command line argument is a local file
         if [ -f "$1" ]; then
