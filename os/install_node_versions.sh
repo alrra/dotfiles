@@ -11,14 +11,15 @@ declare -r -a NODE_VERSIONS=(
 
 main() {
 
-    declare -r NVM_DIR="$HOME/.nvm"
+    declare -r NVM_DIRECTORY="$HOME/.nvm"
     declare -r CONFIGS='
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Node Version Manager
 
-export NVM_DIR="'$NVM_DIR'"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+export NVM_DIR="'$NVM_DIRECTORY'"
+[ -f "$NVM_DIR/nvm.sh" ] \
+    && source "$NVM_DIR/nvm.sh"
 '
     declare exitCode=0
 
@@ -31,9 +32,9 @@ export NVM_DIR="'$NVM_DIR'"
     fi
 
     # Install `nvm` and add the necessary configs to `~/.bash.local`
-    if [ ! -d "$NVM_DIR" ]; then
+    if [ ! -d "$NVM_DIRECTORY" ]; then
 
-        git clone https://github.com/creationix/nvm.git "$NVM_DIR" &> /dev/null
+        git clone https://github.com/creationix/nvm.git "$NVM_DIRECTORY" &> /dev/null
         exitCode=$?
         print_result $exitCode "nvm"
 
@@ -44,14 +45,14 @@ export NVM_DIR="'$NVM_DIR'"
 
     fi
 
-    if [ -d "$NVM_DIR" ]; then
+    if [ -d "$NVM_DIRECTORY" ]; then
 
         # Ensure the latest version of `nvm` is used
-        cd "$NVM_DIR" \
+        cd "$NVM_DIRECTORY" \
             && git checkout `git describe --abbrev=0 --tags` &> /dev/null
         print_result $? "nvm (update)"
 
-        source "$NVM_DIR/nvm.sh"
+        source "$NVM_DIRECTORY/nvm.sh"
 
         # Install node versions
         for i in ${NODE_VERSIONS[@]}; do
