@@ -44,7 +44,7 @@ The setup process will:
                 <img src="https://cloud.githubusercontent.com/assets/1223565/6079359/df4df582-ae0c-11e4-8643-db7c251284d6.gif" alt="Setup process" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6066251/68211e00-ad74-11e4-88e0-62048ff12fad.gif" alt="Setup process" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/8394025/f2e51020-1d2f-11e5-81df-eb6720d0ca34.gif" alt="Setup process" width="100%">
             </td>
         </tr>
         <tr>
