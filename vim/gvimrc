@@ -7,9 +7,15 @@ set guicursor=n:blinkon0  " Turn off blinking cursor in normal mode
 set visualbell            " ┐ Disable beeping and window flashing
 set t_vb=                 " ┘ https://vim.wikia.com/wiki/Disable_beeping
 
-" MacVim specific settings
-if has('gui_macvim')
-    set guifont=Menlo:h16     " Use custom font settings
+if has('gui_running')
+
+    " Set custom font settings
+    if has('gui_macvim')
+        set guifont=Menlo:h16
+    elseif has("gui_gnome")
+        set guifont=Monospace\ 12
+    endif
+
 endif
 
 
