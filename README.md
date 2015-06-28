@@ -64,7 +64,7 @@ The setup process will:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6263679/82b79a6e-b823-11e4-8211-9e55e971ca4d.png" alt="Output for Git status on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/8397253/3bbaa172-1dce-11e5-954c-bca125d21850.png" alt="Output for Git status on OS X" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/6263677/82b4d432-b823-11e4-9832-69a27da75dda.png" alt="Output for Git status on Ubuntu" width="100%">
@@ -84,10 +84,10 @@ The setup process will:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6263680/82b7ecd0-b823-11e4-80cb-c0b59879a809.png" alt="Output for Git status on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/8397255/504bef92-1dce-11e5-8f2b-714a0e57618b.png" alt="Output for Git status on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6263681/82ba0d80-b823-11e4-9cc0-e722fe340fb4.png" alt="Output for Git log on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6263681/82ba0d80-b823-11e4-9cc0-e722fe340fb4.png" alt="Output for Git log on Ubuntu" width="100%">
             </td>
         </tr>
         <tr>
@@ -104,10 +104,10 @@ The setup process will:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/7801943/ad1376ea-0335-11e5-86bc-d37f06c7b082.png" alt="tmux" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/8397259/87914cea-1dce-11e5-8cf8-f01abf00bd1e.png" alt="tmux on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/7801942/ad129572-0335-11e5-8e0e-e442733f9166.png" alt="tmux" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/7801942/ad129572-0335-11e5-8e0e-e442733f9166.png" alt="tmux on Ubuntu" width="100%">
             </td>
         </tr>
         <tr>
@@ -124,7 +124,7 @@ The setup process will:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6263678/82b76a26-b823-11e4-866b-f7c3605d6225.png" alt="MacVim" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/8397267/9d032b2a-1dce-11e5-8ff9-e3cecda07693.png" alt="MacVim" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/6263675/828dc78e-b823-11e4-86b1-d5116a8868c2.png" alt="Gnome Vim" width="100%">
