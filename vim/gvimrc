@@ -2,12 +2,17 @@
 " | General Settings                                                   |
 " ----------------------------------------------------------------------
 
-set guicursor=n:blinkon0  " Turn off blinking cursor in normal mode
+set guicursor=n:blinkon0    " Turn off blinking cursor in normal mode
 
-set visualbell            " ┐ Disable beeping and window flashing
-set t_vb=                 " ┘ https://vim.wikia.com/wiki/Disable_beeping
+set visualbell              " ┐ Disable beeping and window flashing
+set t_vb=                   " ┘ https://vim.wikia.com/wiki/Disable_beeping
 
 if has('gui_running')
+
+    set guioptions-=T       " Remove toolbar
+    set guioptions-=m       " Remove menu bar
+    set guioptions-=L       " Remove left-hand scroll bar
+    set guioptions-=r       " Remove right-hand scroll bar
 
     " Set custom font settings
     if has('gui_macvim')
