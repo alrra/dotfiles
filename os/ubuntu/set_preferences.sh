@@ -17,6 +17,17 @@ set_privacy_settings() {
 }
 
 # ----------------------------------------------------------------------
+# | Terminal                                                           |
+# ----------------------------------------------------------------------
+
+set_terminal_settings() {
+
+    execute 'gsettings set org.gnome.desktop.interface monospace-font-name "Monospace 12"' \
+        'Change font size'
+
+}
+
+# ----------------------------------------------------------------------
 # | UI/UX                                                              |
 # ----------------------------------------------------------------------
 
@@ -65,6 +76,9 @@ main() {
 
     print_in_purple "  Privacy\n\n"
     set_privacy_settings
+
+    print_in_purple "\n  Terminal\n\n"
+    set_terminal_settings
 
     print_in_purple "\n  UI & UX\n\n"
     set_ui_and_ux_settings
