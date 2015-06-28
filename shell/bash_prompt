@@ -82,10 +82,10 @@ set_ls_colors() {
 
         LS_COLORS=""
 
-        LS_COLORS+="no=0;35:"   # global default
-        LS_COLORS+="di=1;35:"   # directory
+        LS_COLORS+="no=0;39:"   # global default
+        LS_COLORS+="di=0;36:"   # directory
         LS_COLORS+="ex=0;32:"   # executable file
-        LS_COLORS+="fi=0;35:"   # file
+        LS_COLORS+="fi=0;39:"   # file
         LS_COLORS+="ec=:"       # non-filename text
         LS_COLORS+="mi=1;31:"   # non-existent file pointed to by a symlink
         LS_COLORS+="ln=target:" # symbolic link
