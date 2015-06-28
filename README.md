@@ -41,10 +41,10 @@ The setup process will:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6079359/df4df582-ae0c-11e4-8643-db7c251284d6.gif" alt="Setup process" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6079359/df4df582-ae0c-11e4-8643-db7c251284d6.gif" alt="OS X setup process" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8394025/f2e51020-1d2f-11e5-81df-eb6720d0ca34.gif" alt="Setup process" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/8397228/41ae6b28-1dcd-11e5-858c-a5cba394657d.gif" alt="Ubuntu setup process" width="100%">
             </td>
         </tr>
         <tr>
