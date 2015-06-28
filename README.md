@@ -41,15 +41,11 @@ The setup process will:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/6079359/df4df582-ae0c-11e4-8643-db7c251284d6.gif" alt="OS X setup process" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/6079359/df4df582-ae0c-11e4-8643-db7c251284d6.gif" alt="Setup process on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397228/41ae6b28-1dcd-11e5-858c-a5cba394657d.gif" alt="Ubuntu setup process" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/8397228/41ae6b28-1dcd-11e5-858c-a5cba394657d.gif" alt="Setup process on Ubuntu" width="100%">
             </td>
-        </tr>
-        <tr>
-            <td align="center">OS X</td>
-            <td align="center">Ubuntu</td>
         </tr>
     </tbody>
 </table>
@@ -58,10 +54,11 @@ The setup process will:
 ## Screenshots
 
 
-##### Output for Git status
+##### Git
 
 <table>
     <tbody>
+        <tr><td colspan="2">Output for Git status</tr></td>
         <tr>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/8397253/3bbaa172-1dce-11e5-954c-bca125d21850.png" alt="Output for Git status on OS X" width="100%">
@@ -70,18 +67,12 @@ The setup process will:
                 <img src="https://cloud.githubusercontent.com/assets/1223565/8397636/3708d218-1ddb-11e5-9d40-21c6871271b9.png" alt="Output for Git status on Ubuntu" width="100%">
             </td>
         </tr>
-        <tr>
-            <td align="center">OS X</td>
-            <td align="center">Ubuntu</td>
-        </tr>
     </tbody>
 </table>
 
-
-##### Output for Git log
-
-  <table>
+<table>
     <tbody>
+        <tr><td colspan="2">Output for Git log</tr></td>
         <tr>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/8397255/504bef92-1dce-11e5-8f2b-714a0e57618b.png" alt="Output for Git status on OS X" width="100%">
@@ -90,29 +81,21 @@ The setup process will:
                 <img src="https://cloud.githubusercontent.com/assets/1223565/8397637/40828b68-1ddb-11e5-94b6-4dd7aab105d8.png" alt="Output for Git log on Ubuntu" width="100%">
             </td>
         </tr>
-        <tr>
-            <td align="center">OS X</td>
-            <td align="center">Ubuntu</td>
-        </tr>
     </tbody>
 </table>
 
 
 ##### tmux
 
-  <table>
+<table>
     <tbody>
         <tr>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/8397259/87914cea-1dce-11e5-8cf8-f01abf00bd1e.png" alt="tmux on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397644/4c18395a-1ddb-11e5-973d-0cbec1a0d359.png" alt="tmux on Ubuntu" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/8397811/fe821aac-1de0-11e5-8d9c-cb08f2b409df.png" alt="tmux on Ubuntu" width="100%">
             </td>
-        </tr>
-        <tr>
-            <td align="center">OS X</td>
-            <td align="center">Ubuntu</td>
         </tr>
     </tbody>
 </table>
@@ -120,19 +103,15 @@ The setup process will:
 
 ##### vim
 
-  <table>
+<table>
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397632/20ae8922-1ddb-11e5-8a68-d61c8ab1b404.png" alt="MacVim" width="100%">
+               <img src="https://cloud.githubusercontent.com/assets/1223565/8397632/20ae8922-1ddb-11e5-8a68-d61c8ab1b404.png" alt="MacVim" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/8397645/54e1b99e-1ddb-11e5-80e1-8de3bfc19a68.png" alt="Gnome Vim" width="100%">
             </td>
-        </tr>
-        <tr>
-            <td align="center">OS X (MacVim)</td>
-            <td align="center">Ubuntu (Gnome Vim)</td>
         </tr>
     </tbody>
 </table>
