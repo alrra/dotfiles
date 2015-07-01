@@ -2,85 +2,17 @@
 
 cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
 
-# Homebrew Formulae
-# https://github.com/Homebrew/homebrew
-
-declare -r -a HOMEBREW_FORMULAE=(
-    "bash"
-    "caskroom/cask/brew-cask"
-    "ffmpeg"
-    "git"
-    "imagemagick --with-webp"
-    "tmux"
-    "vim --override-system-vi"
-    "zopfli"
-)
-
-# Homebrew Versions Formulae
-# https://github.com/Homebrew/homebrew-versions
-
-declare -r -a HOMEBREW_VERSIONS_FORMULAE=(
-    "bash-completion2"
-)
-
-# Homebrew Casks
-# https://github.com/caskroom/homebrew-cask
-
-declare -r -a HOMEBREW_CASKS=(
-    "android-file-transfer"
-    "atom"
-    "chromium"
-    "dropbox"
-    "firefox"
-    "flash"
-    "google-chrome"
-    "imageoptim"
-    "libreoffice"
-    "licecap"
-    "lisanet-gimp"
-    "macvim"
-    "opera"
-    "spectacle"
-    "the-unarchiver"
-    "transmission"
-    "virtualbox"
-    "vlc"
-)
-
-# Homebrew Alternate Casks
-# https://github.com/caskroom/homebrew-versions
-
-declare -r -a HOMEBREW_ALTERNATE_CASKS=(
-    "firefox-nightly"
-    "firefoxdeveloperedition"
-    "google-chrome-canary"
-    "opera-beta"
-    "opera-developer"
-    "webkit-nightly"
-)
-
-# Webfont tools
-# https://github.com/bramstein/homebrew-webfonttools
-
-declare -r -a WEBFONT_TOOLS=(
-    "sfnt2woff"
-    "sfnt2woff-zopfli"
-    "woff2"
-)
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 brew_install() {
 
-    declare -r -a FORMULAE=("${!1}"); shift;
-    declare -r CMD="$1"
+    declare -r CMD="$3"
+    declare -r FORMULA="$2"
+    declare -r FORMULA_READABLE_NAME="$1"
 
-    for i in ${!FORMULAE[*]}; do
-        tmp="${FORMULAE[$i]}"
-        [ $(brew "$CMD" list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
-            && print_success "$tmp" \
-            || execute "brew $CMD install $tmp" "$tmp"
-    done
+    [ $(brew "$CMD" list "$FORMULA" &> /dev/null; printf $?) -eq 0 ] \
+        && print_success "$FORMULA_READABLE_NAME" \
+        || execute "brew $CMD install $FORMULA" "$FORMULA_READABLE_NAME"
 
 }
 
@@ -91,8 +23,8 @@ brew_tap() {
     brew tap "$REPOSITORY" &> /dev/null
 
     [ "$(brew tap | grep "$REPOSITORY" &> /dev/null; printf $?)" -eq 0 ] \
-        && (print_success "brew tap ($REPOSITORY)"; return 0) \
-        || (print_error "brew tap ($REPOSITORY)"; return 1)
+        && (print_success "brew tap ($REPOSITORY)\n"; return 0) \
+        || (print_error "brew tap ($REPOSITORY)\n"; return 1)
 
 }
 
@@ -116,7 +48,7 @@ main() {
 
     # Homebrew
     if [ $(cmd_exists "brew") -eq 1 ]; then
-        printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
         #  └─ simulate the ENTER keypress
         print_result $? "brew"
     fi
@@ -125,29 +57,100 @@ main() {
 
         execute "brew update" "brew (update)"
         execute "brew upgrade --all" "brew (upgrade)"
-        printf "\n"
 
-        brew_install "HOMEBREW_FORMULAE[@]"
-        printf "\n"
+        print_in_green "\n  ---\n\n"
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        # Homebrew Formulae
+        # https://github.com/Homebrew/homebrew
+
+        brew_install "Bash 4" "bash"
+        brew_install "Cask" "caskroom/cask/brew-cask"
+        brew_install "FFmpeg" "ffmpeg"
+        brew_install "Git" "git"
+        brew_install "ImageMagick" "imagemagick --with-webp"
+        brew_install "Zopfli" "zopfli"
+        brew_install "tmux" "tmux"
+        brew_install "vim" "vim --override-system-vi"
+
+        print_in_green "\n  ---\n\n"
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        # Homebrew Versions Formulae
+        # https://github.com/Homebrew/homebrew-versions
 
         brew_tap "homebrew/versions" \
-            && brew_install "HOMEBREW_VERSIONS_FORMULAE[@]"
-        printf "\n"
+            && (
+                brew_install "Bash Completion 2" "bash-completion2"
+            )
+
+        print_in_green "\n  ---\n\n"
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        # Homebrew Casks
+        # https://github.com/caskroom/homebrew-cask
 
         brew_tap "caskroom/cask" \
-            && brew_install "HOMEBREW_CASKS[@]" "cask"
-        printf "\n"
+            && (
+                brew_install "Android File Transfer" "android-file-transfer"  "cask"
+                brew_install "Atom" "atom" "cask"
+                brew_install "Chrome" "google-chrome" "cask"
+                brew_install "Chromium" "chromium" "cask"
+                brew_install "Dropbox" "dropbox" "cask"
+                brew_install "Firefox" "firefox" "cask"
+                brew_install "Flash" "flash" "cask"
+                brew_install "GIMP" "lisanet-gimp" "cask"
+                brew_install "ImageOptim" "imageoptim" "cask"
+                brew_install "LICEcap" "licecap" "cask"
+                brew_install "LibreOffice" "libreoffice" "cask"
+                brew_install "MacVim" "macvim" "cask"
+                brew_install "Opera" "opera" "cask"
+                brew_install "Spectacle" "spectacle" "cask"
+                brew_install "Transmission" "transmission" "cask"
+                brew_install "Unarchiver" "the-unarchiver" "cask"
+                brew_install "VLC" "vlc" "cask"
+                brew_install "VirtualBox" "virtualbox" "cask"
+            )
+
+        print_in_green "\n  ---\n\n"
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        # Homebrew Alternate Casks
+        # https://github.com/caskroom/homebrew-versions
 
         brew_tap "caskroom/versions" \
-            && brew_install "HOMEBREW_ALTERNATE_CASKS[@]" "cask"
-        printf "\n"
+            && (
+                brew_install "Chrome Canary" "google-chrome-canary" "cask"
+                brew_install "Firefox Developer Edition" "firefoxdeveloperedition" "cask"
+                brew_install "Firefox Nightly" "firefox-nightly" "cask"
+                brew_install "Opera Beta" "opera-beta" "cask"
+                brew_install "Opera Developer" "opera-developer" "cask"
+                brew_install "WebKit" "webkit-nightly" "cask"
+            )
+
+        print_in_green "\n  ---\n\n"
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        # Webfont tools
+        # https://github.com/bramstein/homebrew-webfonttools
 
         brew_tap "bramstein/webfonttools" \
-            && brew_install "WEBFONT_TOOLS[@]"
-        printf "\n"
+            && (
+                brew_install "TTF/OTF → WOFF (Zopfli)" "sfnt2woff-zopfli"
+                brew_install "TTF/OTF → WOFF" "sfnt2woff"
+                brew_install "WOFF2" "woff2"
+            )
+
+        print_in_green "\n  ---\n\n"
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         execute "brew cleanup" "brew (cleanup)"
-        printf "\n"
 
     fi
 
