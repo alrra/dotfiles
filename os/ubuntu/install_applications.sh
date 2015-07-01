@@ -2,41 +2,6 @@
 
 cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
 
-declare -a APT_PACKAGES=(
-
-    # Tools for compiling/building software from source
-    "build-essential"
-
-    # GnuPG archive keys of the Debian archive
-    "debian-archive-keyring"
-
-    # Software which is not included by default
-    # in Ubuntu due to legal or copyright reasons
-    #"ubuntu-restricted-extras"
-
-    # Other
-    "atom"
-    "chromium-browser"
-    "curl"
-    "firefox-trunk"
-    "flashplugin-installer"
-    "gimp"
-    "git"
-    "google-chrome-unstable"
-    "imagemagick"
-    "nautilus-dropbox"
-    "opera"
-    "opera-next"
-    "tmux"
-    "transmission"
-    "vim-gnome"
-    "virtualbox"
-    "vlc"
-    "xclip"
-    "zopfli"
-
-)
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 add_key() {
@@ -84,13 +49,58 @@ add_source_list() {
 }
 
 install_package() {
-    local q="${2:-$1}"
 
-    if [ $(cmd_exists "$q") -eq 1 ]; then
-        execute "sudo apt-get install --allow-unauthenticated -qqy $1" "$1"
+    declare -r PACKAGE="$2"
+    declare -r PACKAGE_READABLE_NAME="$1"
+
+    if ! package_is_installed "$PACKAGE"; then
+        execute "sudo apt-get install --allow-unauthenticated -qqy $PACKAGE" "$PACKAGE_READABLE_NAME"
         #                                      suppress output ─┘│
         #            assume "yes" as the answer to all prompts ──┘
+    else
+        print_success "$PACKAGE_READABLE_NAME"
     fi
+
+}
+
+install_packages() {
+
+    # Tools for compiling/building software from source
+    install_package "build-essential" "build-essential"
+
+    # GnuPG archive keys of the Debian archive
+    install_package "debian-archive-keyring" "debian-archive-keyring"
+
+    # Software which is not included by default
+    # in Ubuntu due to legal or copyright reasons
+    #"ubuntu-restricted-extras"
+
+    # Other
+    install_package "Atom" "atom"
+    install_package "Chrome Canary" "google-chrome-unstable"
+    install_package "Chromium" "chromium-browser"
+    install_package "Dropbox" "nautilus-dropbox"
+    install_package "Firefox" "firefox-trunk"
+    install_package "Flash" "flashplugin-installer"
+    install_package "GIMO" "gimp"
+    install_package "GNOME Vim" "vim-gnome"
+    install_package "Git" "git"
+    install_package "ImageMagick" "imagemagick"
+    install_package "Opera Next" "opera-next"
+    install_package "Opera" "opera"
+    install_package "Transmission" "transmission"
+    install_package "VLC" "vlc"
+    install_package "VirtualBox" "virtualbox"
+    install_package "Zopfli" "zopfli"
+    install_package "cURL" "curl"
+    install_package "tmux" "tmux"
+    install_package "xclip" "xclip"
+
+}
+
+package_is_installed() {
+    dpkg -l "$1" &> /dev/null
+    return $?
 }
 
 remove_unneeded_packages() {
@@ -118,14 +128,11 @@ main() {
     local i=""
 
     add_software_sources
-    update_and_upgrade
 
+    update_and_upgrade
     printf "\n"
 
-    for i in ${!APT_PACKAGES[*]}; do
-        install_package "${APT_PACKAGES[$i]}"
-    done
-
+    install_packages
     printf "\n"
 
     update_and_upgrade
