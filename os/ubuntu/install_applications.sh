@@ -66,40 +66,40 @@ install_package() {
 install_packages() {
 
     # Tools for compiling/building software from source
-    install_package "build-essential" "build-essential"
+    install_package "Build Essential" "build-essential"
 
     # GnuPG archive keys of the Debian archive
-    install_package "debian-archive-keyring" "debian-archive-keyring"
+    install_package "GnuPG archive keys" "debian-archive-keyring"
 
     # Software which is not included by default
     # in Ubuntu due to legal or copyright reasons
-    #"ubuntu-restricted-extras"
+    #install_package "Ubuntu Restricted Extras" "ubuntu-restricted-extras"
 
     # Other
     install_package "Atom" "atom"
     install_package "Chrome Canary" "google-chrome-unstable"
     install_package "Chromium" "chromium-browser"
+    install_package "cURL" "curl"
     install_package "Dropbox" "nautilus-dropbox"
     install_package "Firefox" "firefox-trunk"
     install_package "Flash" "flashplugin-installer"
     install_package "GIMO" "gimp"
-    install_package "GNOME Vim" "vim-gnome"
     install_package "Git" "git"
+    install_package "GNOME Vim" "vim-gnome"
     install_package "ImageMagick" "imagemagick"
-    install_package "Opera Next" "opera-next"
     install_package "Opera" "opera"
-    install_package "Transmission" "transmission"
-    install_package "VLC" "vlc"
-    install_package "VirtualBox" "virtualbox"
-    install_package "Zopfli" "zopfli"
-    install_package "cURL" "curl"
+    install_package "Opera Next" "opera-next"
     install_package "tmux" "tmux"
+    install_package "Transmission" "transmission"
+    install_package "VirtualBox" "virtualbox"
+    install_package "VLC" "vlc"
     install_package "xclip" "xclip"
+    install_package "Zopfli" "zopfli"
 
 }
 
 package_is_installed() {
-    dpkg -l "$1" &> /dev/null
+    dpkg -s "$1" &> /dev/null
     return $?
 }
 
