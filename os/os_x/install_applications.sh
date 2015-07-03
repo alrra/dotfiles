@@ -70,9 +70,9 @@ main() {
         brew_install "FFmpeg" "ffmpeg"
         brew_install "Git" "git"
         brew_install "ImageMagick" "imagemagick --with-webp"
-        brew_install "Zopfli" "zopfli"
         brew_install "tmux" "tmux"
         brew_install "vim" "vim --override-system-vi"
+        brew_install "Zopfli" "zopfli"
 
         print_in_green "\n  ---\n\n"
 
@@ -104,15 +104,15 @@ main() {
                 brew_install "Flash" "flash" "cask"
                 brew_install "GIMP" "lisanet-gimp" "cask"
                 brew_install "ImageOptim" "imageoptim" "cask"
-                brew_install "LICEcap" "licecap" "cask"
                 brew_install "LibreOffice" "libreoffice" "cask"
+                brew_install "LICEcap" "licecap" "cask"
                 brew_install "MacVim" "macvim" "cask"
                 brew_install "Opera" "opera" "cask"
                 brew_install "Spectacle" "spectacle" "cask"
                 brew_install "Transmission" "transmission" "cask"
                 brew_install "Unarchiver" "the-unarchiver" "cask"
-                brew_install "VLC" "vlc" "cask"
                 brew_install "VirtualBox" "virtualbox" "cask"
+                brew_install "VLC" "vlc" "cask"
             )
 
         print_in_green "\n  ---\n\n"
