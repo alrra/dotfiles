@@ -83,7 +83,7 @@ install_packages() {
     install_package "Dropbox" "nautilus-dropbox"
     install_package "Firefox" "firefox-trunk"
     install_package "Flash" "flashplugin-installer"
-    install_package "GIMO" "gimp"
+    install_package "GIMP" "gimp"
     install_package "Git" "git"
     install_package "GNOME Vim" "vim-gnome"
     install_package "ImageMagick" "imagemagick"
