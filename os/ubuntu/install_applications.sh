@@ -75,7 +75,12 @@ install_packages() {
     # in Ubuntu due to legal or copyright reasons
     #install_package "Ubuntu Restricted Extras" "ubuntu-restricted-extras"
 
+    printf "\n"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Other
+
     install_package "Atom" "atom"
     install_package "Chrome Canary" "google-chrome-unstable"
     install_package "Chromium" "chromium-browser"
