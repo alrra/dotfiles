@@ -74,7 +74,7 @@ set_dock_preferences() {
     execute 'defaults write com.apple.dock mru-spaces -bool false' \
         'Do not automatically rearrange spaces based on most recent use'
 
-    execute 'defaults write com.apple.dock persistent-apps -array' \
+    execute 'defaults write com.apple.dock persistent-apps -array ""' \
         'Wipe all app icons'
 
     execute 'defaults write com.apple.dock show-process-indicators -bool true' \
@@ -542,7 +542,7 @@ main() {
     print_in_purple "\n  UI & UX\n\n"
     set_ui_and_ux_preferences
 
-    for i in ${!PROCESSES_TO_TERMINATE[*]}; do
+    for i in ${PROCESSES_TO_TERMINATE[*]}; do
 	    killall "$i" &> /dev/null
     done
 
