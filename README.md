@@ -44,7 +44,7 @@ The setup process will:
                 <img src="https://cloud.githubusercontent.com/assets/1223565/6079359/df4df582-ae0c-11e4-8643-db7c251284d6.gif" alt="Setup process on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397228/41ae6b28-1dcd-11e5-858c-a5cba394657d.gif" alt="Setup process on Ubuntu" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/8505939/9d613c04-2203-11e5-91b6-64dc085755c7.gif" alt="Setup process on Ubuntu" width="100%">
             </td>
         </tr>
     </tbody>
