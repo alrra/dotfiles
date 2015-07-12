@@ -34,7 +34,10 @@ main() {
 
     local i="", tmp=""
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # XCode Command Line Tools
+
     if [ $(xcode-select -p &> /dev/null; printf $?) -ne 0 ]; then
         xcode-select --install &> /dev/null
 
@@ -45,6 +48,14 @@ main() {
     fi
 
     print_success "XCode Command Line Tools\n"
+
+
+    # Prompt user to agree to the terms of the Xcode license
+    # https://github.com/alrra/dotfiles/issues/10
+
+    sudo xcodebuild -license
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Homebrew
     if [ $(cmd_exists "brew") -eq 1 ]; then
