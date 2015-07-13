@@ -31,10 +31,6 @@ add_software_sources() {
                 "http://dl.google.com/linux/deb/ stable main" \
                 "google-chrome.list"
 
-    # NodeJS
-    [ $(cmd_exists "node") -eq 1 ] \
-        && add_ppa "chris-lea/node.js"
-
     # Opera & Opera Next
     [ $(cmd_exists "opera") -eq 1 ] \
         && add_key "http://deb.opera.com/archive.key" \
