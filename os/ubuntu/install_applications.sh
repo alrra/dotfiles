@@ -17,26 +17,23 @@ add_ppa() {
 add_software_sources() {
 
     # Atom
-    [ $(cmd_exists "atom") -eq 1 ] \
-        && add_ppa "webupd8team/atom"
+
+    package_is_installed "atom" \
+        || add_ppa "webupd8team/atom"
 
     # Firefox Nightly
-    [ $(cmd_exists "firefox-trunk") -eq 1 ] \
-        && add_ppa "ubuntu-mozilla-daily/ppa"
+    package_is_installed "firefox-trunk" \
+        || add_ppa "ubuntu-mozilla-daily/ppa"
 
     # Google Chrome
-    [ $(cmd_exists "google-chrome") -eq 1 ] \
-        && add_key "https://dl-ssl.google.com/linux/linux_signing_key.pub" \
-        && add_source_list \
-                "http://dl.google.com/linux/deb/ stable main" \
-                "google-chrome.list"
+    package_is_installed "google-chrome" \
+        || ( add_key "https://dl-ssl.google.com/linux/linux_signing_key.pub" \
+                && add_source_list "http://dl.google.com/linux/deb/ stable main" "google-chrome.list" )
 
     # Opera & Opera Next
-    [ $(cmd_exists "opera") -eq 1 ] \
-        && add_key "http://deb.opera.com/archive.key" \
-        && add_source_list \
-                "http://deb.opera.com/opera/ stable non-free" \
-                "opera.list"
+    package_is_installed "opera" \
+        || ( add_key "http://deb.opera.com/archive.key" \
+                && add_source_list "http://deb.opera.com/opera/ stable non-free" "opera.list" )
 
 }
 
@@ -96,7 +93,6 @@ install_packages() {
 
 package_is_installed() {
     dpkg -s "$1" &> /dev/null
-    return $?
 }
 
 remove_unneeded_packages() {
@@ -120,8 +116,6 @@ update_and_upgrade() {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-
-    local i=""
 
     add_software_sources
 
