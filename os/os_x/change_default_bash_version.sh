@@ -8,6 +8,8 @@ main() {
 
     local HOMEBREW_PREFIX=""
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Check if `brew` is installed
     if [ $(cmd_exists "brew") -eq 1 ]; then
         print_error "Brew is required, please install it!\n"
@@ -20,8 +22,9 @@ main() {
         exit 1
     fi
 
-    HOMEBREW_PREFIX="$(brew --prefix)"
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    HOMEBREW_PREFIX="$(brew --prefix)"
 
     # Add the path of the bash version installed through Homebrew
     # to the list of login shells from the `/etc/shells` file.
@@ -38,9 +41,9 @@ main() {
         print_result $? "Add \`$HOMEBREW_PREFIX/bin/bash\` in \`/etc/shells\`"
     fi
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Make OS X use the bash version installed through Homebrew
-    #
     # https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/chsh.1.html
 
     chsh -s "$HOMEBREW_PREFIX/bin/bash" &> /dev/null
