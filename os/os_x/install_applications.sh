@@ -32,38 +32,38 @@ brew_tap() {
 
 main() {
 
-    local i="", tmp="", exitCode=0
+    local i="", tmp=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # XCode Command Line Tools
 
-    if [ $(xcode-select -p &> /dev/null; printf $?) -ne 0 ]; then
+    xcode-select -p &> /dev/null
+
+    if [ $? -ne 0 ]; then
+
+        # Prompt user to install the XCode Command Line Tools
         xcode-select --install &> /dev/null
 
         # Wait until the XCode Command Line Tools are installed
-        while [ $(xcode-select -p &> /dev/null; printf $?) -ne 0 ]; do
-            sleep 5
+        while true; do
+            xcode-select -p &> /dev/null \
+                && break \
+                || sleep 5
         done
 
-        xcode-select -p &> /dev/null
-        exitCode=$?
-
-        print_result $exitCode "XCode Command Line Tools\n"
-
-        if [ $exitCode == 0 ]; then
-
-            # Prompt user to agree to the terms of the Xcode license
-            # https://github.com/alrra/dotfiles/issues/10
-
-            sudo xcodebuild -license
-        fi
+        # Prompt user to agree to the terms of the Xcode license
+        # https://github.com/alrra/dotfiles/issues/10
+        sudo xcodebuild -license
 
     fi
+
+    print_success "XCode Command Line Tools\n"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Homebrew
+
     if [ $(cmd_exists "brew") -eq 1 ]; then
         printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
         #  └─ simulate the ENTER keypress
