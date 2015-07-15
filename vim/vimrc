@@ -249,22 +249,6 @@ if has('autocmd')
 
     " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    " Automatically reload the `~/.vimrc` and `~/.gvimrc`
-    " files whenever their content is changed.
-
-    augroup auto_reload_vim_configs
-
-        autocmd!
-        autocmd BufWritePost vimrc source $MYVIMRC
-
-        if has('gui_running')
-            autocmd BufWritePost gvimrc source $MYGVIMRC
-        endif
-
-    augroup END
-
-    " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     " Automatically reload the configurations from the
     " `~/.vimrc` and `~/.gvimrc` files whenever they are changed
 
