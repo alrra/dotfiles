@@ -17,7 +17,7 @@ if has('gui_running')
     " Set custom font settings
     if has('gui_macvim')
         set guifont=Menlo:h16
-    elseif has("gui_gnome")
+    elseif has('gui_gnome')
         set guifont=Monospace\ 12
     endif
 
