@@ -163,6 +163,8 @@ fi
 
 if [ "$OS" == "osx" ]; then
     alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+elif [ "$OS" == "ubuntu" ]; then
+    alias akf='gnome-screensaver-command --lock'
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
