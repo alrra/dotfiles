@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -23,7 +24,7 @@ set_trackpad_preferences() {
 
 main() {
 
-    print_in_purple "\n  Trackpad\n\n"
+    print_in_purple '\n  Trackpad\n\n'
     set_trackpad_preferences
 
 }

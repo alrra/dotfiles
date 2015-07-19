@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
-
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -24,7 +24,7 @@ set_terminal_settings() {
 
 main() {
 
-    print_in_purple "\n  Terminal\n\n"
+    print_in_purple '\n  Terminal\n\n'
     set_terminal_settings
 
 }
