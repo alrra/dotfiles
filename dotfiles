@@ -206,7 +206,10 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Setup the `dotfiles` if needed
-    if [ $(cmd_exists "git") -ne 0 ] || \
+
+    cmd_exists 'git'
+
+    if [ $? -ne 0 ] || \
        [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
 
         print_info "Download and extract archive"
@@ -222,13 +225,13 @@ main() {
     printf "\n"
 
     if answer_is_yes; then
-        ./os/create_directories.sh
+        ./os/create-directories.sh
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_info "Create symbolic links"
-    ./os/create_symbolic_links.sh
+    ./os/create-symbolic-links.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -238,11 +241,11 @@ main() {
     printf "\n"
 
     if answer_is_yes; then
-        ./os/install_applications.sh
+        ./os/install-applications.sh
         printf "\n"
-        ./os/install_node_versions.sh
+        ./os/install-node-versions.sh
         printf "\n"
-        ./os/install_npm_packages.sh
+        ./os/install-npm-packages.sh
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -253,16 +256,18 @@ main() {
     printf "\n"
 
     if answer_is_yes; then
-        ./os/set_preferences.sh
+        ./os/set-preferences.sh
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ $(cmd_exists "git") -eq 0 ]; then
+    cmd_exists 'git'
+
+    if [ $? -eq 0 ]; then
 
         if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
             print_info "Initialize Git repository"
-            ./os/initialize_git_repository.sh "$DOTFILES_ORIGIN"
+            ./os/initialize-git-repository.sh "$DOTFILES_ORIGIN"
         fi
 
         print_info "Update content"
@@ -271,14 +276,16 @@ main() {
         printf "\n"
 
         if answer_is_yes; then
-            ./os/update_content.sh
+            ./os/update-local-content.sh
         fi
 
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ $(cmd_exists "vim") -eq 0 ]; then
+    cmd_exists 'vim'
+
+    if [ $? -eq 0 ]; then
 
         print_info "Install Vim plugins"
 
@@ -286,7 +293,7 @@ main() {
         printf "\n"
 
         if answer_is_yes; then
-            ./os/install_vim_plugins.sh
+            ./os/install-vim-plugins.sh
         fi
 
     fi
@@ -299,7 +306,7 @@ main() {
     printf "\n"
 
     if answer_is_yes; then
-        ./os/restart_computer.sh
+        ./os/restart.sh
     fi
 
 }
