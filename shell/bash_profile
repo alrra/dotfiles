@@ -32,16 +32,16 @@ enable_programmable_completion() {
 get_os() {
 
     declare -r OS_NAME="$(uname -s)"
-    local os=""
+    local os=''
 
     if [ "$OS_NAME" == "Darwin" ]; then
-        os="osx"
+        os='osx'
 
     # Get Linux distribution
     # https://web.archive.org/web/20130929034731/http://linuxmafia.com/faq/Admin/release-files.html
     elif [ "$OS_NAME" == "Linux" ] && \
          [ -e "/etc/lsb-release" ]; then
-        os="ubuntu"
+        os='ubuntu'
     fi
 
     printf "%s" "$os"
@@ -49,16 +49,16 @@ get_os() {
 
 source_bash_files() {
 
-    local file=""
-    local i=""
+    local file=''
+    local i=''
 
     declare -r -a FILES_TO_SOURCE=(
-        "bash_aliases"
-        "bash_exports"
-        "bash_functions"
-        "bash_options"
-        "bash_prompt"
-        "bash.local"  # for local settings that should
+        'bash_aliases'
+        'bash_exports'
+        'bash_functions'
+        'bash_options'
+        'bash_prompt'
+        'bash.local'  # for local settings that should
                       # not be under version control
     )
 
