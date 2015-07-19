@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -r GITHUB_REPOSITORY="alrra/dotfiles"
+declare -r GITHUB_REPOSITORY='alrra/dotfiles'
 
 declare -r DOTFILES_ORIGIN="git@github.com:$GITHUB_REPOSITORY.git"
 declare -r DOTFILES_TARBALL_URL="https://github.com/$GITHUB_REPOSITORY/tarball/master"
@@ -15,57 +15,45 @@ declare dotfilesDirectory="$HOME/projects/dotfiles"
 check_os() {
 
     declare -r OS_NAME="$(uname -s)"
+    declare OS_VERSION=""
+
+    declare -r MINIMUM_OS_X_VERSION="10.10"
+    declare -r MINIMUM_UBUNTU_VERSION="14.04"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if the OS is OS X and it is above a certain version
-    if [ "$OS_NAME" == "Darwin" ]; then
-        if [ $(compare_versions "$(sw_vers -productVersion)" "10.10") == "<" ]; then
-            printf "Sorry, this script is intended only for OS X 10.10.0+."
-            return 1
-        else
-            return 0
-        fi
 
-    # Check if the OS is Ubuntu
+    if [ "$OS_NAME" == "Darwin" ]; then
+
+        OS_VERSION="$(sw_vers -productVersion)"
+
+        is_supported_version "$OS_VERSION" "$MINIMUM_OS_X_VERSION" \
+            && return 0
+
+        printf "Sorry, this script is intended only for OS X $MINIMUM_OS_X_VERSION+"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Check if the OS is Ubuntu and it is above a certain version
+
+    elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
+
+        OS_VERSION="$(lsb_release -d | cut -f2 | cut -d' ' -f2)"
+
+        is_supported_version "$OS_VERSION" "$MINIMUM_UBUNTU_VERSION" \
+            && return 0
+
+        printf "Sorry, this script is intended only for Ubuntu $MINIMUM_UBUNTU_VERSION+"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     else
-        if [ "$OS_NAME" != "Linux" ] || [ ! -e "/etc/lsb-release" ]; then
-            printf "Sorry, this script is intended only for OS X and Ubuntu!"
-            return 1
-        else
-            return 0
-        fi
+        printf 'Sorry, this script is intended only for OS X and Ubuntu!'
     fi
 
-}
+    return 1
 
-compare_versions() {
-
-    declare -a v1=(${1//./ })
-    declare -a v2=(${2//./ })
-    local i=""
-
-    # Fill empty positions in v1 with zeros
-    for (( i=${#v1[@]}; i<${#v2[@]}; i++ )); do
-        v1[i]=0
-    done
-
-    for (( i=0; i<${#v1[@]}; i++ )); do
-
-        # Fill empty positions in v2 with zeros
-        if [[ -z ${v2[i]} ]]; then
-            v2[i]=0
-        fi
-
-        if (( 10#${v1[i]} > 10#${v2[i]} )); then
-            printf ">"
-        fi
-
-        if (( 10#${v1[i]} < 10#${v2[i]} )); then
-            printf "<"
-        fi
-
-    done
-
-    printf "="
 }
 
 download() {
@@ -73,7 +61,7 @@ download() {
     local url="$1"
     local output="$2"
 
-    if [ -x "$(command -v curl)" ]; then
+    if command -v 'curl' &> /dev/null; then
 
         curl -LsSo "$output" "$url" &> /dev/null
         #     │││└─ write output to file
@@ -81,7 +69,7 @@ download() {
         #     │└─ don't show the progress meter
         #     └─ follow redirects
 
-    elif [ -x "$(command -v wget)" ]; then
+    elif command -v 'wget' &> /dev/null; then
 
         wget -qO "$output" "$url" &> /dev/null
         #     │└─ write output to file
@@ -89,6 +77,7 @@ download() {
 
     else
         return 1
+
     fi
 
     return $?
@@ -106,9 +95,10 @@ download_dotfiles() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    printf "\n"
+    printf '\n'
 
     ask_for_confirmation "Do you want to store the dotfiles in '$dotfilesDirectory'?"
+
     if ! answer_is_yes; then
         dotfilesDirectory=""
         while [ -z "$dotfilesDirectory" ]; do
@@ -133,24 +123,24 @@ download_dotfiles() {
         fi
     done
 
-    printf "\n"
+    printf '\n'
 
     mkdir -p "$dotfilesDirectory"
-    print_result $? "Create '$dotfilesDirectory'" "true"
+    print_result $? "Create '$dotfilesDirectory'" 'true'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Extract archive in the `dotfiles` directory
 
     extract "$tmpFile" "$dotfilesDirectory"
-    print_result $? "Extract archive" "true"
+    print_result $? 'Extract archive' 'true'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Remove archive
 
     rm -rf "$tmpFile"
-    print_result $? "Remove archive"
+    print_result $? 'Remove archive'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -162,12 +152,11 @@ download_utils() {
 
     local tmpFile="$(mktemp /tmp/XXXXX)"
 
-    download "$DOTFILES_UTILS_URL" "$tmpFile"
+    download "$DOTFILES_UTILS_URL" "$tmpFile" \
+        || return 1
 
-    [ $? -ne 0 ] && exit 1
-
-    source "$tmpFile"
-    rm -rf "$tmpFile"
+    source "$tmpFile" \
+        && rm -rf "$tmpFile"
 
 }
 
@@ -176,13 +165,38 @@ extract() {
     local archive="$1"
     local outputDir="$2"
 
-    if [ -x "$(command -v tar)" ]; then
+    if command -v 'tar' &> /dev/null; then
         tar -zxf "$archive" --strip-components 1 -C "$outputDir"
-    else
-        return 1
+        return $?
     fi
 
-    return $?
+    return 1
+
+}
+
+is_supported_version() {
+
+    declare -a v1=(${1//./ })
+    declare -a v2=(${2//./ })
+    local i=''
+
+    # Fill empty positions in v1 with zeros
+    for (( i=${#v1[@]}; i<${#v2[@]}; i++ )); do
+        v1[i]=0
+    done
+
+    for (( i=0; i<${#v1[@]}; i++ )); do
+
+        # Fill empty positions in v2 with zeros
+        if [[ -z ${v2[i]} ]]; then
+            v2[i]=0
+        fi
+
+        if (( 10#${v1[i]} < 10#${v2[i]} )); then
+            return 1
+        fi
+
+    done
 
 }
 
@@ -193,36 +207,40 @@ extract() {
 main() {
 
     # Ensure the OS is OS X or Ubuntu
-    check_os || exit;
+    check_os || exit 1
 
     # Ensure that the following actions are made
     # relative to the dotfiles directory root
     # http://mywiki.wooledge.org/BashFAQ/028
-    cd "$(dirname "${BASH_SOURCE}")";
+    cd "$(dirname "${BASH_SOURCE}")"
 
-    download_utils
+    # Load utils
+    if [ -x 'os/utils.sh' ]; then
+        source 'os/utils.sh'
+    else
+        download_utils || exit 1
+    fi
+
     ask_for_sudo
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Setup the `dotfiles` if needed
 
-    cmd_exists 'git'
+    if ! cmd_exists 'git' \
+        || [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
 
-    if [ $? -ne 0 ] || \
-       [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-
-        print_info "Download and extract archive"
+        print_info 'Download and extract archive'
         download_dotfiles
 
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Create directories"
+    print_info 'Create directories'
 
-    ask_for_confirmation "Do you want the additional directories to be created?"
-    printf "\n"
+    ask_for_confirmation 'Do you want the additional directories to be created?'
+    printf '\n'
 
     if answer_is_yes; then
         ./os/create-directories.sh
@@ -230,30 +248,34 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Create symbolic links"
+    print_info 'Create symbolic links'
     ./os/create-symbolic-links.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Install applications"
+    print_info 'Install applications'
 
-    ask_for_confirmation "Do you want to install the applications/command line tools?"
-    printf "\n"
+    ask_for_confirmation 'Do you want to install the applications/command line tools?'
+    printf '\n'
 
     if answer_is_yes; then
+
         ./os/install-applications.sh
-        printf "\n"
+        printf '\n'
+
         ./os/install-node-versions.sh
-        printf "\n"
+        printf '\n'
+
         ./os/install-npm-packages.sh
+
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Set preferences"
+    print_info 'Set preferences'
 
-    ask_for_confirmation "Do you want to set the custom preferences?"
-    printf "\n"
+    ask_for_confirmation 'Do you want to set the custom preferences?'
+    printf '\n'
 
     if answer_is_yes; then
         ./os/set-preferences.sh
@@ -261,19 +283,17 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    cmd_exists 'git'
-
-    if [ $? -eq 0 ]; then
+    if cmd_exists 'git'; then
 
         if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-            print_info "Initialize Git repository"
+            print_info 'Initialize Git repository'
             ./os/initialize-git-repository.sh "$DOTFILES_ORIGIN"
         fi
 
-        print_info "Update content"
+        print_info 'Update content'
 
-        ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
-        printf "\n"
+        ask_for_confirmation 'Do you want to update the content from the "dotfiles" directory?'
+        printf '\n'
 
         if answer_is_yes; then
             ./os/update-local-content.sh
@@ -283,14 +303,12 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    cmd_exists 'vim'
+    if cmd_exists 'vim'; then
 
-    if [ $? -eq 0 ]; then
+        print_info 'Install Vim plugins'
 
-        print_info "Install Vim plugins"
-
-        ask_for_confirmation "Do you want to install the Vim plugins?"
-        printf "\n"
+        ask_for_confirmation 'Do you want to install the Vim plugins?'
+        printf '\n'
 
         if answer_is_yes; then
             ./os/install-vim-plugins.sh
@@ -300,10 +318,10 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Restart"
+    print_info 'Restart'
 
-    ask_for_confirmation "Do you want to restart?"
-    printf "\n"
+    ask_for_confirmation 'Do you want to restart?'
+    printf '\n'
 
     if answer_is_yes; then
         ./os/restart.sh
