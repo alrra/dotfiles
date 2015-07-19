@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -9,7 +10,7 @@ set_finder_preferences() {
     execute 'defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true &&
              defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true &&
              defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true' \
-        "Automatically open a new Finder window when a volume is mounted"
+        'Automatically open a new Finder window when a volume is mounted'
 
     execute 'defaults write com.apple.finder _FXShowPosixPathInTitle -bool true' \
         'Use full POSIX path as window title'
@@ -43,11 +44,11 @@ set_finder_preferences() {
              defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true' \
         'Show icons for hard drives, servers, and removable media on the desktop'
 
-    execute "defaults write com.apple.finder ShowRecentTags -bool false" \
-        "Don't show recent tags"
+    execute 'defaults write com.apple.finder ShowRecentTags -bool false' \
+        'Do not show recent tags'
 
-    execute "defaults write NSGlobalDomain AppleShowAllExtensions -bool true" \
-        "Show all filename extensions"
+    execute 'defaults write NSGlobalDomain AppleShowAllExtensions -bool true' \
+        'Show all filename extensions'
 
     execute '/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist &&
              /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist &&
@@ -85,10 +86,10 @@ set_finder_preferences() {
 
 main() {
 
-    print_in_purple "\n  Finder\n\n"
+    print_in_purple '\n  Finder\n\n'
     set_finder_preferences
 
-	killall "Finder" &> /dev/null
+	killall 'Finder' &> /dev/null
 
 }
 

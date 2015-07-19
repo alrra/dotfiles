@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -27,7 +28,7 @@ set_language_and_region_preferences() {
 
 main() {
 
-    print_in_purple "\n  Language & Region\n\n"
+    print_in_purple '\n  Language & Region\n\n'
     set_language_and_region_preferences
 
 }

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -30,7 +31,7 @@ set_keyboard_preferences() {
 
 main() {
 
-    print_in_purple "\n  Keyboard\n\n"
+    print_in_purple '\n  Keyboard\n\n'
     set_keyboard_preferences
 
 }

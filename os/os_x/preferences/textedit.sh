@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -19,10 +20,10 @@ set_textedit_preferences() {
 
 main() {
 
-    print_in_purple "\n  TextEdit\n\n"
+    print_in_purple '\n  TextEdit\n\n'
     set_textedit_preferences
 
-	killall "TextEdit" &> /dev/null
+	killall 'TextEdit' &> /dev/null
 
 }
 

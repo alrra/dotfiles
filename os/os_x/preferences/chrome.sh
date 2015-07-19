@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -21,10 +22,10 @@ set_chrome_preferences() {
 
 main() {
 
-    print_in_purple "  Chrome\n\n"
+    print_in_purple '  Chrome\n\n'
     set_chrome_preferences
 
-	killall "Google Chrome" &> /dev/null
+	killall 'Google Chrome' &> /dev/null
 
 }
 

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -46,10 +47,10 @@ set_dock_preferences() {
 
 main() {
 
-    print_in_purple "\n  Dock\n\n"
+    print_in_purple '\n  Dock\n\n'
     set_dock_preferences
 
-	killall "Dock" &> /dev/null
+	killall 'Dock' &> /dev/null
 
 }
 

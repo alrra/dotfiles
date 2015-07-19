@@ -1,10 +1,11 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source 'utils.sh'
 
 declare -r -a NODE_VERSIONS=(
-    "iojs"
-    "node"
+    'iojs'
+    'node'
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -26,22 +27,28 @@ export NVM_DIR="'$NVM_DIRECTORY'"
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if `Git` is installed
-    if [ $(cmd_exists "git") -eq 1 ]; then
-        print_error "Git is required, please install it!\n"
+
+    cmd_exists 'git'
+
+    if [ $? -eq 1 ]; then
+        print_error 'Git is required, please install it!\n'
         exit 1
     fi
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Install `nvm` and add the necessary configs to `~/.bash.local`
+
     if [ ! -d "$NVM_DIRECTORY" ]; then
 
         git clone https://github.com/creationix/nvm.git "$NVM_DIRECTORY" &> /dev/null
         exitCode=$?
-        print_result $exitCode "nvm"
+        print_result $exitCode 'nvm'
 
         [ $exitCode -eq 0 ] \
             && printf "%s" "$CONFIGS" >> "$HOME/.bash.local" \
             && source "$HOME/.bash.local"
-        print_result $? "nvm (update ~/.bash.local)"
+        print_result $? 'nvm (update ~/.bash.local)'
 
     fi
 
@@ -50,7 +57,7 @@ export NVM_DIR="'$NVM_DIRECTORY'"
         # Ensure the latest version of `nvm` is used
         cd "$NVM_DIRECTORY" \
             && git checkout `git describe --abbrev=0 --tags` &> /dev/null
-        print_result $? "nvm (update)"
+        print_result $? 'nvm (update)'
 
         source "$NVM_DIRECTORY/nvm.sh"
 
@@ -60,7 +67,7 @@ export NVM_DIR="'$NVM_DIRECTORY'"
         done
 
         # Use `Node.js` by default
-        execute "nvm alias default node" "nvm (set default)"
+        execute 'nvm alias default node' 'nvm (set default)'
 
     fi
 

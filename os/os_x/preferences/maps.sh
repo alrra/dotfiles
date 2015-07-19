@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -19,10 +20,10 @@ set_maps_preferences() {
 
 main() {
 
-    print_in_purple "\n  Maps\n\n"
+    print_in_purple '\n  Maps\n\n'
     set_maps_preferences
 
-	killall "Maps" &> /dev/null
+	killall 'Maps' &> /dev/null
 
 }
 

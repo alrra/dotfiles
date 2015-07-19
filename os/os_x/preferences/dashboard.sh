@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -15,7 +16,7 @@ set_dashboard_preferences() {
 
 main() {
 
-    print_in_purple "\n  Dashboard\n\n"
+    print_in_purple '\n  Dashboard\n\n'
     set_dashboard_preferences
 
 
@@ -23,7 +24,7 @@ main() {
     # the changes for Dashboard, 'killall Dock' is enough as Dock
     # is Dashboard's parent process.
 
-	killall "Dock" &> /dev/null
+	killall 'Dock' &> /dev/null
 
 }
 
