@@ -8,13 +8,13 @@ enable_color_support() {
 
     if [[ $COLORTERM == gnome-* && $TERM == xterm ]] && \
        infocmp gnome-256color &> /dev/null; then
-        export TERM="gnome-256color"
+        export TERM='gnome-256color'
     elif infocmp xterm-256color &> /dev/null; then
-        export TERM="xterm-256color"
+        export TERM='xterm-256color'
     fi
 
     if [ "$OS" == "osx" ]; then
-        alias ls="ls -G" # or CLICOLOR=1
+        alias ls='ls -G' # or CLICOLOR=1
 
     elif [ "$OS" == "ubuntu" ]; then
         if [ -x /usr/bin/dircolors ]; then
@@ -23,12 +23,12 @@ enable_color_support() {
                 && eval "$(dircolors -b ~/.dircolors)" \
                 || eval "$(dircolors -b)"
 
-            alias dir="dir --color=auto"
-            alias egrep="egrep --color=auto"
-            alias fgrep="fgrep --color=auto"
-            alias grep="grep --color=auto"
-            alias ls="ls --color=auto"
-            alias vdir="vdir --color=auto"
+            alias dir='dir --color=auto'
+            alias egrep='egrep --color=auto'
+            alias fgrep='fgrep --color=auto'
+            alias grep='grep --color=auto'
+            alias ls='ls --color=auto'
+            alias vdir='vdir --color=auto'
 
         fi
     fi
@@ -52,19 +52,19 @@ set_ls_colors() {
 
     if [ "$OS" == "osx" ]; then
 
-        LSCOLORS=""
+        LSCOLORS=''
 
-        LSCOLORS+="gx" # Directory
-        LSCOLORS+="fx" # Symbolic link
-        LSCOLORS+="cx" # Socket
-        LSCOLORS+="dx" # Pipe
-        LSCOLORS+="cx" # Executable
-        LSCOLORS+="eg" # Block special
-        LSCOLORS+="ed" # Character special
-        LSCOLORS+="ab" # Executable with setuid bit set
-        LSCOLORS+="ag" # Executable with setgid bit set
-        LSCOLORS+="cc" # Directory writable to others, with sticky bit
-        LSCOLORS+="bd" # Directory writable to others, without sticky bit
+        LSCOLORS+='gx' # Directory
+        LSCOLORS+='fx' # Symbolic link
+        LSCOLORS+='cx' # Socket
+        LSCOLORS+='dx' # Pipe
+        LSCOLORS+='cx' # Executable
+        LSCOLORS+='eg' # Block special
+        LSCOLORS+='ed' # Character special
+        LSCOLORS+='ab' # Executable with setuid bit set
+        LSCOLORS+='ag' # Executable with setgid bit set
+        LSCOLORS+='cc' # Directory writable to others, with sticky bit
+        LSCOLORS+='bd' # Directory writable to others, without sticky bit
 
         export LSCOLORS
 
@@ -80,16 +80,16 @@ set_ls_colors() {
 
     elif [ "$OS" == "ubuntu" ]; then
 
-        LS_COLORS=""
+        LS_COLORS=''
 
-        LS_COLORS+="no=0;39:"   # global default
-        LS_COLORS+="di=0;36:"   # directory
-        LS_COLORS+="ex=0;32:"   # executable file
-        LS_COLORS+="fi=0;39:"   # file
-        LS_COLORS+="ec=:"       # non-filename text
-        LS_COLORS+="mi=1;31:"   # non-existent file pointed to by a symlink
-        LS_COLORS+="ln=target:" # symbolic link
-        LS_COLORS+="or=31;01"   # symbolic link pointing to a non-existent file
+        LS_COLORS+='no=0;39:'   # global default
+        LS_COLORS+='di=0;36:'   # directory
+        LS_COLORS+='ex=0;32:'   # executable file
+        LS_COLORS+='fi=0;39:'   # file
+        LS_COLORS+='ec=:'       # non-filename text
+        LS_COLORS+='mi=1;31:'   # non-existent file pointed to by a symlink
+        LS_COLORS+='ln=target:' # symbolic link
+        LS_COLORS+='or=31;01'   # symbolic link pointing to a non-existent file
 
         export LS_COLORS
 
@@ -107,8 +107,8 @@ set_ls_colors() {
 
 get_git_repository_details() {
 
-    local branchName=""
-    local tmp=""
+    local branchName=''
+    local tmp=''
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -154,8 +154,8 @@ get_git_repository_details() {
 
 set_prompts() {
 
-    local black="" blue="" bold="" cyan="" green="" orange="" \
-          purple="" red="" reset="" white="" yellow=""
+    local black='' blue='' bold='' cyan='' green='' orange='' \
+          purple='' red='' reset='' white='' yellow=''
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -181,7 +181,7 @@ set_prompts() {
 
     else
 
-        bold=""
+        bold=''
         reset="\e[0m"
 
         black="\e[1;30m"
@@ -223,7 +223,7 @@ set_prompts() {
     # | PS2 - Continuation interactive prompt                          |
     # ------------------------------------------------------------------
 
-    PS2="⚡ "
+    PS2='⚡ '
 
     export PS2
 
