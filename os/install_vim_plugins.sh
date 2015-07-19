@@ -1,14 +1,16 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source 'utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
     # Check if `Git` is installed
-    if [ $(cmd_exists "git") -eq 1 ]; then
-        print_error "Git is required, please install it!\n"
+    cmd_exists 'git'
+    if [ $? -eq 1 ]; then
+        print_error 'Git is required, please install it!\n'
         exit 1
     fi
 
@@ -18,7 +20,7 @@ main() {
         #     └─ simulate the ENTER keypress for
         #        the case where there are warnings
 
-    print_result $? "Install Vim plugins"
+    print_result $? 'Install Vim plugins'
 
 }
 

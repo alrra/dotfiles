@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source 'utils.sh'
 
 declare -a DIRECTORIES=(
     "$HOME/archive"
@@ -10,9 +11,11 @@ declare -a DIRECTORIES=(
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
+
     for i in ${DIRECTORIES[@]}; do
         mkd "$i"
     done
+
 }
 
 main

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -21,10 +22,10 @@ set_chrome_canary_preferences() {
 
 main() {
 
-    print_in_purple "\n  Chrome Canary\n\n"
+    print_in_purple '\n  Chrome Canary\n\n'
     set_chrome_canary_preferences
 
-	killall "Google Chrome Canary" &> /dev/null
+	killall 'Google Chrome Canary' &> /dev/null
 
 }
 

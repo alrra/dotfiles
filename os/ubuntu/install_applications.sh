@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -18,22 +19,22 @@ add_software_sources() {
 
     # Atom
 
-    package_is_installed "atom" \
-        || add_ppa "webupd8team/atom"
+    package_is_installed 'atom' \
+        || add_ppa 'webupd8team/atom'
 
     # Firefox Nightly
-    package_is_installed "firefox-trunk" \
-        || add_ppa "ubuntu-mozilla-daily/ppa"
+    package_is_installed 'firefox-trunk' \
+        || add_ppa 'ubuntu-mozilla-daily/ppa'
 
     # Google Chrome
-    package_is_installed "google-chrome" \
-        || ( add_key "https://dl-ssl.google.com/linux/linux_signing_key.pub" \
-                && add_source_list "http://dl.google.com/linux/deb/ stable main" "google-chrome.list" )
+    package_is_installed 'google-chrome' \
+        || ( add_key 'https://dl-ssl.google.com/linux/linux_signing_key.pub' \
+                && add_source_list 'http://dl.google.com/linux/deb/ stable main' 'google-chrome.list' )
 
     # Opera & Opera Next
-    package_is_installed "opera" \
-        || ( add_key "http://deb.opera.com/archive.key" \
-                && add_source_list "http://deb.opera.com/opera/ stable non-free" "opera.list" )
+    package_is_installed 'opera' \
+        || ( add_key 'http://deb.opera.com/archive.key' \
+                && add_source_list 'http://deb.opera.com/opera/ stable non-free' 'opera.list' )
 
 }
 
@@ -59,35 +60,40 @@ install_package() {
 install_packages() {
 
     # Tools for compiling/building software from source
-    install_package "Build Essential" "build-essential"
+    install_package 'Build Essential' 'build-essential'
 
     # GnuPG archive keys of the Debian archive
-    install_package "GnuPG archive keys" "debian-archive-keyring"
+    install_package 'GnuPG archive keys' 'debian-archive-keyring'
 
     # Software which is not included by default
     # in Ubuntu due to legal or copyright reasons
-    #install_package "Ubuntu Restricted Extras" "ubuntu-restricted-extras"
+    #install_package 'Ubuntu Restricted Extras' 'ubuntu-restricted-extras'
+
+    printf '\n'
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Other
-    install_package "Atom" "atom"
-    install_package "Chrome Canary" "google-chrome-unstable"
-    install_package "Chromium" "chromium-browser"
-    install_package "cURL" "curl"
-    install_package "Dropbox" "nautilus-dropbox"
-    install_package "Firefox" "firefox-trunk"
-    install_package "Flash" "flashplugin-installer"
-    install_package "GIMP" "gimp"
-    install_package "Git" "git"
-    install_package "GNOME Vim" "vim-gnome"
-    install_package "ImageMagick" "imagemagick"
-    install_package "Opera" "opera"
-    install_package "Opera Next" "opera-next"
-    install_package "tmux" "tmux"
-    install_package "Transmission" "transmission"
-    install_package "VirtualBox" "virtualbox"
-    install_package "VLC" "vlc"
-    install_package "xclip" "xclip"
-    install_package "Zopfli" "zopfli"
+
+    install_package 'Atom' 'atom'
+    install_package 'Chrome Canary' 'google-chrome-unstable'
+    install_package 'Chromium' 'chromium-browser'
+    install_package 'cURL' 'curl'
+    install_package 'Dropbox' 'nautilus-dropbox'
+    install_package 'Firefox' 'firefox-trunk'
+    install_package 'Flash' 'flashplugin-installer'
+    install_package 'GIMP' 'gimp'
+    install_package 'Git' 'git'
+    install_package 'GNOME Vim' 'vim-gnome'
+    install_package 'ImageMagick' 'imagemagick'
+    install_package 'Opera' 'opera'
+    install_package 'Opera Next' 'opera-next'
+    install_package 'tmux' 'tmux'
+    install_package 'Transmission' 'transmission'
+    install_package 'VirtualBox' 'virtualbox'
+    install_package 'VLC' 'vlc'
+    install_package 'xclip' 'xclip'
+    install_package 'Zopfli' 'zopfli'
 
 }
 
@@ -99,17 +105,17 @@ remove_unneeded_packages() {
 
     # Remove packages that were automatically installed to satisfy
     # dependencies for other other packages and are no longer needed
-    execute "sudo apt-get autoremove -qqy" "autoremove"
+    execute 'sudo apt-get autoremove -qqy' 'autoremove'
 
 }
 
 update_and_upgrade() {
 
     # Resynchronize the package index files from their sources
-    execute "sudo apt-get update -qqy" "update"
+    execute 'sudo apt-get update -qqy' 'update'
 
     # Unstall the newest versions of all packages installed
-    execute "sudo apt-get upgrade -qqy" "upgrade"
+    execute 'sudo apt-get upgrade -qqy' 'upgrade'
 
 }
 
@@ -120,10 +126,10 @@ main() {
     add_software_sources
 
     update_and_upgrade
-    printf "\n"
+    printf '\n'
 
     install_packages
-    printf "\n"
+    printf '\n'
 
     update_and_upgrade
     remove_unneeded_packages

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -47,7 +48,7 @@ set_ui_and_ux_settings() {
 
 main() {
 
-    print_in_purple "\n  UI & UX\n\n"
+    print_in_purple '\n  UI & UX\n\n'
     set_ui_and_ux_settings
 
 }

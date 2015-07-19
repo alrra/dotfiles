@@ -18,7 +18,7 @@
 get_script() {
 
     declare -r OS_NAME="$(uname -s)"
-    local script="gzthermal"
+    local script='gzthermal'
 
     if [ "$OS_NAME" == "Darwin" ]; then
         script="$script/osx"
@@ -40,16 +40,23 @@ get_script() {
 
 main() {
 
-    declare -r script=$(get_script)
+    declare -r script="$(get_script)"
 
-    local cmd=""
-    local tmpFile=""
+    local cmd=''
+    local tmpFile=''
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if `cURL` is installed
-    if [ ! -x "$(command -v "curl")" ]; then
-        printf "cURL is required, please install it!\n"
-        exit;
+
+    command -v 'curl' &> /dev/null
+
+    if [ $? -ne 0 ]; then
+        printf 'cURL is required, please install it!\n'
+        exit 1
     fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     while [ $# -ne 0 ]; do
 
@@ -57,11 +64,11 @@ main() {
 
         # Check if the current command line argument is a local file
         if [ -f "$1" ]; then
-            cmd="cat"
+            cmd='cat'
 
         # If it's not, assume it is a URL
         else
-            cmd="curl -sSL"
+            cmd='curl -sSL'
         fi
 
         printf "  * %s\n" "$1"
