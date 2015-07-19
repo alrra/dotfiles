@@ -26,30 +26,25 @@ set_github_ssh_key() {
         ssh-keygen -t rsa -C "$(get_answer)"
     fi
 
-    cmd_exists 'open' \
-        && cmd_exists 'pbcopy' \
-        && (
+    if cmd_exists 'open' && cmd_exists 'pbcopy'; then
 
-            # Copy SSH key to clipboard
-            cat "$sshKeyFile" | pbcopy
-            print_result $? "Copy SSH key to clipboard"
+        # Copy SSH key to clipboard
+        cat "$sshKeyFile" | pbcopy
+        print_result $? "Copy SSH key to clipboard"
 
-            # Open the GitHub web page where the SSH key can be added
-            open "$GITHUB_SSH_URL"
-        )
+        # Open the GitHub web page where the SSH key can be added
+        open "$GITHUB_SSH_URL"
 
-    cmd_exists 'xclip' \
-        && cmd_exists 'xdg-open' \
-        && (
+    elif cmd_exists 'xclip' && cmd_exists 'xdg-open'; then
 
-            # Copy SSH key to clipboard
-            cat "$sshKeyFile" | xclip -selection clip
-            print_result $? "Copy SSH key to clipboard"
+        # Copy SSH key to clipboard
+        cat "$sshKeyFile" | xclip -selection clip
+        print_result $? "Copy SSH key to clipboard"
 
-            # Open the GitHub web page where the SSH key can be added
-            xdg-open "$GITHUB_SSH_URL"
+        # Open the GitHub web page where the SSH key can be added
+        xdg-open "$GITHUB_SSH_URL"
 
-        )
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -58,7 +53,7 @@ set_github_ssh_key() {
     while true; do
 
         ssh -T git@github.com &> /dev/null
-        [ $? eq 1 ] && break
+        [ $? -eq 1 ] && break
 
         sleep 5
 
@@ -74,10 +69,9 @@ set_github_ssh_key() {
 
 main() {
 
-    is_git_repository
-    if [ $? -eq 0 ]; then
+    if is_git_repository; then
 
-        ssh -T git@github.com &> /dev/null;
+        ssh -T git@github.com &> /dev/null
         [ $? -ne 1 ] && set_github_ssh_key
 
         # Update content and remove untracked files

@@ -16,9 +16,7 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    is_git_repository
-
-    if [ $? -eq 1 ]; then
+    if ! is_git_repository; then
 
         # Run the following Git commands in the root of
         # the dotfiles directory, not in the `os/` directory
