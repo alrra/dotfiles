@@ -12,15 +12,13 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if `brew` is installed
-    cmd_exists 'brew'
-    if [ $? -eq 1 ]; then
+    if ! cmd_exists 'brew'; then
         print_error 'Brew is required, please install it!\n'
         exit 1
     fi
 
     # Check is `bash` is installed
-    brew list bash &> /dev/null
-    if [ $? -ne 0 ]; then
+    if ! brew list bash &> /dev/null; then
         print_error 'Bash is required, please install it!\n'
         exit 1
     fi

@@ -35,18 +35,20 @@ main() {
 
     # XCode Command Line Tools
 
-    xcode-select -p &> /dev/null
-
-    if [ $? -ne 0 ]; then
+    if ! xcode-select -p &> /dev/null; then
 
         # Prompt user to install the XCode Command Line Tools
         xcode-select --install &> /dev/null
 
         # Wait until the XCode Command Line Tools are installed
         while true; do
-            xcode-select -p &> /dev/null \
-                && break \
-                || sleep 5
+
+            if xcode-select -p &> /dev/null; then
+                break
+            fi
+
+            sleep 5
+
         done
 
         # Prompt user to agree to the terms of the Xcode license
@@ -61,18 +63,13 @@ main() {
 
     # Homebrew
 
-    cmd_exists 'brew'
-
-    if [ $? -eq 1 ]; then
+    if ! cmd_exists 'brew'; then
         printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
         #  └─ simulate the ENTER keypress
         print_result $? 'brew'
     fi
 
-
-    cmd_exists 'brew'
-
-    if [ $? -eq 0 ]; then
+    if cmd_exists 'brew'; then
 
         execute 'brew update' 'brew (update)'
         execute 'brew upgrade --all' 'brew (upgrade)'

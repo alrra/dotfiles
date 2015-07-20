@@ -22,8 +22,7 @@ main() {
     fi
 
     # Check if `npm` is installed
-    cmd_exists 'npm'
-    if [ $? -eq 1 ]; then
+    if ! cmd_exists 'npm'; then
         print_error 'npm is required, please install it!\n'
         exit 1
     fi
