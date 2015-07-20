@@ -34,9 +34,7 @@ fi
 # npm
 # https://docs.npmjs.com/
 
-command -v "npm"
-
-if [ $? -eq 0 ]; then
+if command -v 'npm' &> /dev/null; then
     alias npmi='npm install'
     alias npmr='npm uninstall'
     alias npms='npm search'
