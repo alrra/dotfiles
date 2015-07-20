@@ -8,8 +8,7 @@ cd "$(dirname "${BASH_SOURCE}")" \
 main() {
 
     # Check if `Git` is installed
-    cmd_exists 'git'
-    if [ $? -eq 1 ]; then
+    if ! cmd_exists 'git'; then
         print_error 'Git is required, please install it!\n'
         exit 1
     fi
