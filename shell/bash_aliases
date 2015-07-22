@@ -124,7 +124,7 @@ if [ "$OS" == "osx" ]; then
     # and clear Apple’s system logs to improve shell startup speed
 
     alias empty-trash='sudo rm -frv /Volumes/*/.Trashes \
-                        && sudo rm -frv ~/.Trash
+                        && sudo rm -frv ~/.Trash \
                         && sudo rm -frv /private/var/log/asl/*.asl'
 
 fi
