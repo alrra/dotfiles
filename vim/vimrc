@@ -291,8 +291,22 @@ if has('autocmd')
     " Automatically strip the trailing whitespaces when files are saved
 
     augroup strip_trailing_whitespaces
-        autocmd!
-        autocmd BufWritePre * :call StripTrailingWhitespaces()
+
+        " List of file types that use the trailing whitespaces:
+        "
+        "  * Markdown (mkd)
+        "    https://daringfireball.net/projects/markdown/syntax#block
+
+        let excludedFileTypes = [ 'mkd' ]
+
+        " Only strip the trailing whitespaces if the file type
+        " is not in the excluded file types list
+
+        if index(excludedFileTypes, &filetype) != -1
+            autocmd!
+            autocmd BufWritePre * :call StripTrailingWhitespaces()
+        endif
+
     augroup END
 
 endif
