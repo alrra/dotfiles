@@ -5,9 +5,9 @@
 " Use Vundle to manage the vim plugins
 " https://github.com/gmarik/Vundle.vim
 
+" Required by Vundle
 set nocompatible               " Don't make vim vi-compatibile
 filetype off                   " Disable file type detection
-                               " (required by Vundle)
 
 " Set the runtime path to include Vundle
 set runtimepath+=~/.vim/plugins/Vundle.vim

@@ -13,7 +13,7 @@ declare -r -a NPM_PACKAGES=(
 main() {
 
     # Check if `NVM_DIR` is set, and if it's not, it's because
-    # `~/.bash.local` was not sourced, and therefore, npm won't
+    # `~/.bash.local` was not sourced and therefore, npm won't
     # be available (this happens when the `dotfiles` are set up
     # for the first time)
 
@@ -21,14 +21,20 @@ main() {
         source "$HOME/.bash.local"
     fi
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Check if `npm` is installed
     if ! cmd_exists 'npm'; then
         print_error 'npm is required, please install it!\n'
         exit 1
     fi
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Make sure the most recent version of `npm` is installed
     execute 'npm install --global npm' 'npm (update)'
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Install the `npm` packages
     for i in ${NPM_PACKAGES[@]}; do
