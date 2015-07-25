@@ -29,6 +29,7 @@ endif
 " ----------------------------------------------------------------------
 
 " Load local settings if they exist
+
 if filereadable(glob('~/.gvimrc.local'))
     source ~/.gvimrc.local
 endif

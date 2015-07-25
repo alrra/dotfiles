@@ -18,11 +18,14 @@ enable_programmable_completion() {
             complete -o default -o nospace -F _git g
 
         fi
+
     elif [ "$OS" == "ubuntu" ]; then
         if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
             source /etc/bash_completion
         fi
     fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     [ -f "$NVM_DIR/bash_completion" ] \
         && source $NVM_DIR/bash_completion

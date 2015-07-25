@@ -8,7 +8,7 @@
 
 datauri() {
 
-    local mimeType=""
+    local mimeType=''
 
     if [ -f "$1" ]; then
         mimeType=$(file -b --mime-type "$1")
@@ -76,10 +76,8 @@ gz() {
 # Create new directories and enter the first one
 
 mkd() {
-    if [ -n "$*" ]; then
-        mkdir -p "$@" && cd "$@"
-        #      └─ make parent directories if needed
-    fi
+    [ -n "$*" ] && mkdir -p "$@" && cd "$@"
+    #                     └─ make parent directories if needed
 }
 
 # ----------------------------------------------------------------------
@@ -90,7 +88,7 @@ mkd() {
 
 ? () {
 
-    local result=""
+    local result=''
 
     #                       ┌─ default (when --mathlib is used) is 20
     result="$( printf "scale=10;%s\n" "$*" | bc --mathlib | tr -d "\\\n" )"
