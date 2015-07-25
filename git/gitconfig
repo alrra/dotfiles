@@ -15,14 +15,20 @@
     st  = status
     ulc = reset --soft HEAD~1                       # Undo last commit
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Credit an author on the latest commit
+
     credit = "!f() { \
         if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
             git commit --amend --author \"$1 <$2>\" -C HEAD; \
         fi \
     }; f"
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Merge GitHub pull request on top of the `master` branch
+
     mpr = "!f() { \
         if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
             git fetch origin refs/pull/$1/head:pr/$1 && \
@@ -35,28 +41,33 @@
     }; f"
 
 [color "branch"]
+
     current = green bold
     local = green
     remote = yellow
 
 [color "diff"]
+
     frag = magenta
     meta = yellow
     new = green
     old = red
 
 [color "status"]
+
     added = green reverse
     changed = yellow reverse
     untracked = red reverse
 
 [core]
+
     attributesfile = ~/.gitattributes
     autocrlf = input
     editor = vim
     excludesfile = ~/.gitignore
 
 [pretty]
+
     custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
     #                     │        │            │            │             └─ author name
     #                     │        │            │            └─ message
@@ -64,10 +75,14 @@
     #                     │        └─ decorations (branch, heads or tags)
     #                     └─ hash (abbreviated)
 
+
 [push]
+
     # Make `git push` automatically push relevant
-    # annotated tags when pushing branches out.
+    # annotated tags when pushing branches out
+
     followTags = true
 
 [include]
+
     path = ~/.gitconfig.local
