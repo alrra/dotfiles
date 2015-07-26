@@ -10,9 +10,9 @@ main() {
     declare -r OS="$(get_os)"
 
     if [ "$OS" == "osx" ]; then
-        ./os_x/set-preferences.sh
+        ./os_x/preferences/main.sh
     elif [ "$OS" == "ubuntu" ]; then
-        ./ubuntu/set-preferences.sh
+        ./ubuntu/preferences/main.sh
     fi
 
 }

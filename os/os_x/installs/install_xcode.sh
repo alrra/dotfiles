@@ -29,7 +29,7 @@ main () {
 
     fi
 
-    print_success 'XCode Command Line Tools\n'
+    print_success 'XCode Command Line Tools'
 
 }
 

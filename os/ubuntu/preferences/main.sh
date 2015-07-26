@@ -6,9 +6,9 @@ cd "$(dirname "${BASH_SOURCE}")"
 
 main() {
 
-    ./preferences/privacy.sh
-    ./preferences/terminal.sh
-    ./preferences/ui-and-ux.sh
+    ./set_privacy_preferences.sh
+    ./set_terminal_preferences.sh
+    ./set_ui_and_ux_preferences.sh
 
 }
 
