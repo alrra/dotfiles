@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_ui_and_ux_settings() {
+set_ui_and_ux_preferences() {
 
     execute 'gsettings set com.canonical.indicator.bluetooth visible false' \
         'Hide bluetooth icon from the menu bar'
@@ -49,7 +49,7 @@ set_ui_and_ux_settings() {
 main() {
 
     print_in_purple '\n  UI & UX\n\n'
-    set_ui_and_ux_settings
+    set_ui_and_ux_preferences
 
 }
 

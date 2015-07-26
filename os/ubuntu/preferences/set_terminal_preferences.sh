@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_terminal_settings() {
+set_terminal_preferences() {
 
     execute 'gsettings set org.gnome.desktop.interface monospace-font-name "Monospace 12"' \
         'Change font size'
@@ -25,7 +25,7 @@ set_terminal_settings() {
 main() {
 
     print_in_purple '\n  Terminal\n\n'
-    set_terminal_settings
+    set_terminal_preferences
 
 }
 
