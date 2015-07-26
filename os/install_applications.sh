@@ -10,10 +10,10 @@ main() {
     declare -r OS="$(get_os)"
 
     if [ "$OS" == "osx" ]; then
-        ./os_x/install-applications.sh
-        ./os_x/change-default-bash-version.sh
+        ./os_x/installs/main.sh
+        ./os_x/change_default_bash_version.sh
     elif [ "$OS" == "ubuntu" ]; then
-        ./ubuntu/install-applications.sh
+        ./ubuntu/installs/main.sh
     fi
 
 }

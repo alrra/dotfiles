@@ -1,33 +1,34 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE}")" \
-    && source '../utils.sh'
+    && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
-    ./installs/xcode.sh
-
-    ./installs/homebrew.sh
+    ./install_xcode.sh
     print_in_green '\n  ---\n\n'
 
-    ./installs/homebrew-formulae.sh
+    ./install_homebrew.sh
     print_in_green '\n  ---\n\n'
 
-    ./installs/homebrew-versions-formulae.sh
+    ./install_homebrew_formulae.sh
     print_in_green '\n  ---\n\n'
 
-    ./installs/homebrew-casks.sh
+    ./install_homebrew_versions_formulae.sh
     print_in_green '\n  ---\n\n'
 
-    ./installs/homebrew-alternate-casks.sh
+    ./install_homebrew_casks.sh
     print_in_green '\n  ---\n\n'
 
-    ./installs/homebrew-web-font-tools.sh
+    ./install_homebrew_alternate_casks.sh
     print_in_green '\n  ---\n\n'
 
-    execute 'brew cleanup' 'brew (cleanup)'
+    ./install_homebrew_web_font_tools.sh
+    print_in_green '\n  ---\n\n'
+
+    ./cleanup.sh
 
 }
 
