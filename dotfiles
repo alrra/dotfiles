@@ -254,7 +254,7 @@ main() {
     printf '\n'
 
     if answer_is_yes; then
-        ./os/create-directories.sh
+        ./os/create_directories.sh
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
