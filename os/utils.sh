@@ -113,8 +113,7 @@ print_result() {
         && print_success "$2" \
         || print_error "$2"
 
-    [ "$3" == "true" ] && [ $1 -ne 0 ] \
-        && exit 1
+    return $1
 }
 
 print_success() {

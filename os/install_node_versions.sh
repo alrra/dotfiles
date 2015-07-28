@@ -40,16 +40,12 @@ export NVM_DIR="'$NVM_DIRECTORY'"
 
         git clone https://github.com/creationix/nvm.git "$NVM_DIRECTORY" &> /dev/null
 
+        print_result $? 'nvm'
+
         if [ $? -eq 0 ]; then
-
-            print_success "nvm"
-
             printf "%s" "$CONFIGS" >> "$HOME/.bash.local" \
                 && source "$HOME/.bash.local"
             print_result $? 'nvm (update ~/.bash.local)'
-
-        else
-            print_error "nvm"
         fi
 
     fi

@@ -25,12 +25,9 @@ brew_tap() {
 
     brew tap "$REPOSITORY" &> /dev/null
 
-    if brew tap | grep "$REPOSITORY" &> /dev/null; then
-        print_success "brew tap ($REPOSITORY)\n"
-        return 0
-    else
-        print_error "brew tap ($REPOSITORY)\n"
-        return 1
-    fi
+    brew tap | grep "$REPOSITORY" &> /dev/null;
+    print_result $? "brew tap ($REPOSITORY)\n"
+
+    return $?
 
 }
