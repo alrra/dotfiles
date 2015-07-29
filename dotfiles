@@ -239,7 +239,7 @@ main() {
     # Setup the `dotfiles` if needed
 
     if ! cmd_exists 'git' \
-        && [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
+        || [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
 
         print_info 'Download and extract archive'
         download_dotfiles
