@@ -30,11 +30,11 @@ The setup process will:
   [shell](shell), and
   [vim](vim) files
 * Install applications / command-line tools for
-  [OS X](os/os_x/install_applications.sh) /
-  [Ubuntu](os/ubuntu/install_applications.sh)
+  [OS X](os/os_x/installs/main.sh) /
+  [Ubuntu](os/ubuntu/installs/main.sh)
 * Set custom
-  [OS X](os/os_x/set_preferences.sh) /
-  [Ubuntu](os/ubuntu/set_preferences.sh) preferences
+  [OS X](os/os_x/preferences/main.sh) /
+  [Ubuntu](os/ubuntu/preferences/main.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
 
 <table>
