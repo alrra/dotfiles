@@ -2,48 +2,7 @@
 " | General Settings                                                   |
 " ----------------------------------------------------------------------
 
-" Use Vundle to manage the vim plugins
-" https://github.com/gmarik/Vundle.vim
-
-" Required by Vundle
 set nocompatible               " Don't make vim vi-compatibile
-filetype off                   " Disable file type detection
-
-" Set the runtime path to include Vundle
-set runtimepath+=~/.vim/plugins/Vundle.vim
-
-" Initialize Vundle and specify the path
-" where the plugins should be installed
-call vundle#begin('~/.vim/plugins')
-
-    " Let Vundle manage Vundle (this is important!)
-    Plugin 'gmarik/Vundle.vim'
-
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'ap/vim-css-color'
-    Plugin 'chrisbra/unicode.vim'
-    Plugin 'editorconfig/editorconfig-vim'
-    Plugin 'godlygeek/tabular'
-    Plugin 'jelera/vim-javascript-syntax'
-    Plugin 'kien/ctrlp.vim'
-    Plugin 'mattn/emmet-vim'
-    Plugin 'mattn/webapi-vim'
-    Plugin 'nathanaelkane/vim-indent-guides'
-    Plugin 'othree/html5.vim'
-    Plugin 'plasticboy/vim-markdown'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/syntastic'
-    Plugin 'shougo/neocomplcache.vim'
-    Plugin 'shutnik/jshint2.vim'
-    Plugin 'tomtom/tcomment_vim'
-    Plugin 'tpope/vim-commentary'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'tpope/vim-repeat'
-    Plugin 'tpope/vim-surround'
-
-call vundle#end()
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 syntax on                      " Enable syntax highlighting
 
@@ -53,28 +12,6 @@ if has('autocmd')
     "           │     └───────── Enable loading of indent file
     "           └─────────────── Enable loading of plugin files
 endif
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-set t_Co=256                   " Enable full-color support
-
-set background=dark            " Use colors that look good
-                               " on a dark background
-
-" Set custom configurations for when the
-" Solarized theme is used from vim's Terminal mode
-" http://ethanschoonover.com/solarized/vim-colors-solarized#advanced-configuration
-
-if !has('gui_running')
-    let g:solarized_contrast = 'high'
-    let g:solarized_termcolors = 256
-    let g:solarized_termtrans = 1
-    let g:solarized_visibility = 'high'
-endif
-
-colorscheme solarized          " Use custom color scheme
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 set autoindent                 " Copy indent to the new line
 
@@ -175,6 +112,125 @@ set winminheight=0             " Allow windows to be squashed
 
 
 " ----------------------------------------------------------------------
+" | Plugins                                                            |
+" ----------------------------------------------------------------------
+
+" Use Vundle to manage the vim plugins
+" https://github.com/gmarik/Vundle.vim
+
+" Disable file type detection
+" (required by Vundle)
+filetype off
+
+" Set the runtime path to include Vundle
+set runtimepath+=~/.vim/plugins/Vundle.vim
+
+" Initialize Vundle and specify the path
+" where the plugins should be installed
+call vundle#begin('~/.vim/plugins')
+
+    " Let Vundle manage Vundle (this is important!)
+    Plugin 'gmarik/Vundle.vim'
+
+    Plugin 'altercation/vim-colors-solarized'
+    Plugin 'ap/vim-css-color'
+    Plugin 'chrisbra/unicode.vim'
+    Plugin 'editorconfig/editorconfig-vim'
+    Plugin 'godlygeek/tabular'
+    Plugin 'jelera/vim-javascript-syntax'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'mattn/emmet-vim'
+    Plugin 'mattn/webapi-vim'
+    Plugin 'nathanaelkane/vim-indent-guides'
+    Plugin 'othree/html5.vim'
+    Plugin 'plasticboy/vim-markdown'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/syntastic'
+    Plugin 'shougo/neocomplcache.vim'
+    Plugin 'shutnik/jshint2.vim'
+    Plugin 'tomtom/tcomment_vim'
+    Plugin 'tpope/vim-commentary'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-repeat'
+    Plugin 'tpope/vim-surround'
+
+call vundle#end()
+
+filetype on
+
+
+" ----------------------------------------------------------------------
+" | Plugins - Emmet                                                    |
+" ----------------------------------------------------------------------
+
+" Redefine trigger key for Emmet
+" http://docs.emmet.io/cheat-sheet/
+
+let g:user_emmet_leader_key='<C-E>'
+
+" Load custom Emmet snippets
+" http://docs.emmet.io/customization/snippets/
+
+let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
+
+
+" ----------------------------------------------------------------------
+" | Plugins - Indent Guides                                            |
+" ----------------------------------------------------------------------
+
+" Set custom indent colors
+" https://github.com/nathanaelkane/vim-indent-guides#setting-custom-indent-colors
+
+let g:indent_guides_auto_colors = 0
+
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd
+        \ guibg=#00323D
+        \ ctermbg=Magenta
+
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven
+        \ guibg=#073642
+        \ ctermbg=DarkMagenta
+
+
+" ----------------------------------------------------------------------
+" | Plugins - Markdown                                                 |
+" ----------------------------------------------------------------------
+
+" Disable Folding
+" https://github.com/plasticboy/vim-markdown#disable-folding
+
+let g:vim_markdown_folding_disabled=1
+
+
+" ----------------------------------------------------------------------
+" | Plugins - NeoComplCache                                            |
+" ----------------------------------------------------------------------
+
+" Enable `neocomplcache` by default
+" https://github.com/Shougo/neocomplcache.vim#installation
+
+let g:neocomplcache_enable_at_startup=1
+
+
+" ----------------------------------------------------------------------
+" | Plugins - Syntastic                                                |
+" ----------------------------------------------------------------------
+
+" Inform Syntastic which checkers to use based on file types
+" https://github.com/scrooloose/syntastic#3-faq
+
+let g:syntastic_html_checkers = [ 'jshint' ]
+let g:syntastic_javascript_checkers = [ 'jshint' ]
+
+" Disable syntax checking by default
+let g:syntastic_mode_map = {
+    \ 'active_filetypes': [],
+    \ 'mode': 'passive',
+    \ 'passive_filetypes': []
+\}
+
+
+" ----------------------------------------------------------------------
 " | Helper Functions                                                   |
 " ----------------------------------------------------------------------
 
@@ -237,6 +293,7 @@ function! ToggleRelativeLineNumbers()
     endif
 
 endfunction
+
 
 " ----------------------------------------------------------------------
 " | Automatic Commands                                                 |
@@ -313,17 +370,34 @@ endif
 
 
 " ----------------------------------------------------------------------
+" | Color Scheme                                                       |
+" ----------------------------------------------------------------------
+
+set t_Co=256                   " Enable full-color support
+
+set background=dark            " Use colors that look good
+                               " on a dark background
+
+" Set custom configurations for when the
+" Solarized theme is used from vim's Terminal mode
+" http://ethanschoonover.com/solarized/vim-colors-solarized#advanced-configuration
+
+if !has('gui_running')
+    let g:solarized_contrast = 'high'
+    let g:solarized_termcolors = 256
+    let g:solarized_termtrans = 1
+    let g:solarized_visibility = 'high'
+endif
+
+colorscheme solarized          " Use custom color scheme
+
+
+" ----------------------------------------------------------------------
 " | Key Mappings                                                       |
 " ----------------------------------------------------------------------
 
 " Use a different mapleader (default is '\')
 let mapleader = ','
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Redefine trigger key for Emmet
-" http://docs.emmet.io/cheat-sheet/
-let g:user_emmet_leader_key='<C-E>'
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -400,66 +474,6 @@ map <leader>W :w !sudo tee %<CR>
 
 
 " ----------------------------------------------------------------------
-" | Plugins                                                            |
-" ----------------------------------------------------------------------
-
-" Emmet
-
-" Load custom Emmet snippets
-" http://docs.emmet.io/customization/snippets/
-let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Indent Guides
-
-" Set custom indent colors
-" https://github.com/nathanaelkane/vim-indent-guides#setting-custom-indent-colors
-
-let g:indent_guides_auto_colors = 0
-
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd
-        \ guibg=#00323D
-        \ ctermbg=Magenta
-
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven
-        \ guibg=#073642
-        \ ctermbg=DarkMagenta
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Markdown
-
-" Disable Folding
-" https://github.com/plasticboy/vim-markdown#disable-folding
-let g:vim_markdown_folding_disabled=1
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" NeoComplCache
-
-" Enable `neocomplcache` by default
-" https://github.com/Shougo/neocomplcache.vim#installation
-let g:neocomplcache_enable_at_startup=1
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Syntastic
-
-" Inform Syntastic which checkers to use based on file types
-" https://github.com/scrooloose/syntastic#3-faq
-let g:syntastic_html_checkers = [ 'jshint', 'validator' ]
-let g:syntastic_javascript_checkers = [ 'jscs', 'jshint' ]
-
-" Disable syntax checking by default
-let g:syntastic_mode_map = {
-    \ 'active_filetypes': [],
-    \ 'mode': 'passive',
-    \ 'passive_filetypes': []
-\}
-
-
-" ----------------------------------------------------------------------
 " | Status Line                                                        |
 " ----------------------------------------------------------------------
 
@@ -529,6 +543,10 @@ set statusline+=\ (%P)\        " Percent through file
 " ----------------------------------------------------------------------
 
 " Load local settings if they exist
+"
+" Note: The following needs to be included last in order to allow
+"       any of the above settings to be overwritten by local ones
+
 if filereadable(glob('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
