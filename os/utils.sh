@@ -55,6 +55,8 @@ get_os() {
         os='osx'
     elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
         os='ubuntu'
+    else
+        os="$OS_NAME"
     fi
 
     printf "%s" "$os"

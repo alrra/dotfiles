@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" \
+cd "$(dirname "$BASH_SOURCE")" \
     && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -24,9 +24,7 @@ brew_tap() {
     declare -r REPOSITORY="$1"
 
     brew tap "$REPOSITORY" &> /dev/null
-
-    brew tap | grep "$REPOSITORY" &> /dev/null;
-    print_result $? "brew tap ($REPOSITORY)\n"
+    print_result $? "brew tap $REPOSITORY\n"
 
     return $?
 
