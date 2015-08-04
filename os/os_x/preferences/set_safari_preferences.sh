@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" \
+cd "$(dirname "$BASH_SOURCE}")" \
     && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -12,7 +12,6 @@ set_safari_preferences() {
 
     execute 'defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true' \
         'Set backspace key to go to the previous page in history'
-
 
     execute 'defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true &&
              defaults write com.apple.Safari IncludeDevelopMenu -bool true &&

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" \
+cd "$(dirname "$BASH_SOURCE")" \
     && source '../../utils.sh' \
     && source './utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-main () {
+main() {
 
     # Homebrew Versions Formulae
     # https://github.com/Homebrew/homebrew-versions

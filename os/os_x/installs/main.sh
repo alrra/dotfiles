@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" \
+cd "$(dirname "$BASH_SOURCE")" \
     && source '../../utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -26,6 +26,9 @@ main() {
     print_in_green '\n  ---\n\n'
 
     ./install_homebrew_web_font_tools.sh
+    print_in_green '\n  ---\n\n'
+
+    ./update_and_upgrade.sh
     print_in_green '\n  ---\n\n'
 
     ./cleanup.sh
