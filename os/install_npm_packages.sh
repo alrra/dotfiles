@@ -1,7 +1,9 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" \
+cd "$(dirname "$BASH_SOURCE")" \
     && source 'utils.sh'
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 declare -r -a NPM_PACKAGES=(
     'jshint'
@@ -17,13 +19,12 @@ main() {
     # be available (this happens when the `dotfiles` are set up
     # for the first time)
 
-    if [ -z "$NVM_DIR" ]; then
-        source "$HOME/.bash.local"
-    fi
+    [ -z "$NVM_DIR" ] && source "$HOME/.bash.local"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if `npm` is installed
+
     if ! cmd_exists 'npm'; then
         print_error 'npm is required, please install it!\n'
         exit 1
@@ -31,12 +32,14 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Make sure the most recent version of `npm` is installed
+    # Ensure the most recent version of `npm` is installed
+
     execute 'npm install --global npm' 'npm (update)'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Install the `npm` packages
+
     for i in ${NPM_PACKAGES[@]}; do
         execute "npm install --global $i" "$i"
     done

@@ -32,7 +32,7 @@ get_script() {
         fi
     fi
 
-    printf "%s" "$(dirname "${BASH_SOURCE}")/$script"
+    printf "%s" "$(dirname "$BASH_SOURCE")/$script"
 
 }
 

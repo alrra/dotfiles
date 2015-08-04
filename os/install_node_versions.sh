@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" \
+cd "$(dirname "$BASH_SOURCE")" \
     && source 'utils.sh'
 
 declare -r -a NODE_VERSIONS=(
@@ -39,7 +39,6 @@ export NVM_DIR="'$NVM_DIRECTORY'"
     if [ ! -d "$NVM_DIRECTORY" ]; then
 
         git clone https://github.com/creationix/nvm.git "$NVM_DIRECTORY" &> /dev/null
-
         print_result $? 'nvm'
 
         if [ $? -eq 0 ]; then

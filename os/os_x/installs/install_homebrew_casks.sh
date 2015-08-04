@@ -1,18 +1,21 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" \
+cd "$(dirname "$BASH_SOURCE")" \
     && source '../../utils.sh' \
     && source './utils.sh'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-main () {
+main() {
 
     # Homebrew Casks
     # https://github.com/caskroom/homebrew-cask
 
     if cmd_exists 'brew' \
         && brew_tap 'caskroom/cask'; then
+
+        brew_install 'Homebrew Cask' 'caskroom/cask/brew-cask'
+        printf '\n'
 
         brew_install 'Android File Transfer' 'android-file-transfer' 'cask'
         brew_install 'Atom' 'atom' 'cask'
