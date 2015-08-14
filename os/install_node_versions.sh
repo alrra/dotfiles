@@ -12,6 +12,7 @@ declare -r -a NODE_VERSIONS=(
 
 main() {
 
+    declare -r NVM_DIRECTORY="$HOME/.nvm"
     declare -r CONFIGS='
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -21,7 +22,6 @@ export NVM_DIR="'$NVM_DIRECTORY'"
 [ -f "$NVM_DIR/nvm.sh" ] \
     && source "$NVM_DIR/nvm.sh"
 '
-    declare -r NVM_DIRECTORY="$HOME/.nvm"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
