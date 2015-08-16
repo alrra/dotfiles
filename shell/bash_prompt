@@ -1,10 +1,16 @@
 #!/bin/bash
 
+source "$(dirname $(readlink $BASH_SOURCE))/../os/utils.sh"
+
 # ----------------------------------------------------------------------
 # | Colors                                                             |
 # ----------------------------------------------------------------------
 
 enable_color_support() {
+
+    declare OS="$(get_os)"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [[ $COLORTERM == gnome-* && $TERM == xterm ]] \
         && infocmp gnome-256color &> /dev/null; then
@@ -13,10 +19,11 @@ enable_color_support() {
         export TERM='xterm-256color'
     fi
 
-    if [ "$OS" == "osx" ]; then
-        alias ls='ls -G' # or CLICOLOR=1
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    elif [ "$OS" == "ubuntu" ]; then
+    if [ "$OS" == 'osx' ]; then
+        alias ls='ls -G' # or CLICOLOR=1
+    elif [ "$OS" == 'ubuntu' ]; then
         if [ -x /usr/bin/dircolors ]; then
 
             test -r ~/.dircolors \
@@ -37,6 +44,8 @@ enable_color_support() {
 
 set_ls_colors() {
 
+    declare OS="$(get_os)"
+
     # There are several different implementations of color for ls:
 
     # ------------------------------------------------------------------
@@ -50,7 +59,7 @@ set_ls_colors() {
     #    environment variable (built-in defaults are used if this
     #    variable is not set)
 
-    if [ "$OS" == "osx" ]; then
+    if [ "$OS" == 'osx' ]; then
 
         LSCOLORS=''
 
@@ -78,7 +87,7 @@ set_ls_colors() {
     #    environment variable (built-in defaults are used if this
     #    variable is not set)
 
-    elif [ "$OS" == "ubuntu" ]; then
+    elif [ "$OS" == 'ubuntu' ]; then
 
         LS_COLORS=''
 
@@ -279,7 +288,8 @@ main
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Unset functions in order to not pollute the global space
+# Unset anything that just pollutes the global space
+
 unset -f enable_color_support
 unset -f main
 unset -f set_ls_colors

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source "$(dirname $(readlink $BASH_SOURCE))/../os/utils.sh" \
+    && declare OS="$(get_os)"
+
 # ----------------------------------------------------------------------
 # | Navigation                                                         |
 # ----------------------------------------------------------------------
@@ -17,9 +20,9 @@ alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-if [ "$OS" == "osx" ]; then
+if [ "$OS" == 'osx' ]; then
     alias local-ip='ipconfig getifaddr en1'
-elif [ "$OS" == "ubuntu" ]; then
+elif [ "$OS" == 'ubuntu' ]; then
     alias local-ip="ifconfig | \
                     | grep 'inet addr' \
                     | grep -v '127.0.0.1' \
@@ -45,7 +48,7 @@ fi
 
 # OS specific package managers
 
-if [ "$OS" == "osx" ]; then
+if [ "$OS" == 'osx' ]; then
 
     # Homebrew
     if command -v 'brew' &> /dev/null; then
@@ -58,7 +61,7 @@ if [ "$OS" == "osx" ]; then
                       && brew cleanup'
     fi
 
-elif [ "$OS" == "ubuntu" ]; then
+elif [ "$OS" == 'ubuntu' ]; then
 
     # Advanced Packaging Tool
     alias apti='sudo apt-get install'
@@ -73,7 +76,7 @@ fi
 
 # Update
 
-if [ "$OS" == "osx" ]; then
+if [ "$OS" == 'osx' ]; then
 
     alias update='sudo softwareupdate --install --all \
                    && brew update \
@@ -82,7 +85,7 @@ if [ "$OS" == "osx" ]; then
                    && npm install -g npm \
                    && npm update -g'
 
-elif [ "$OS" == "ubuntu" ]; then
+elif [ "$OS" == 'ubuntu' ]; then
 
     alias update='sudo apt-get update \
                    && sudo apt-get upgrade \
@@ -110,19 +113,17 @@ alias rm='rm -rf'
 
 # Copy to clipboard
 
-if [ "$OS" == "osx" ]; then
+if [ "$OS" == 'osx' ]; then
     alias cc='pbcopy'
-
-elif [ "$OS" == "ubuntu" ]; then
+elif [ "$OS" == 'ubuntu' ]; then
     alias cc='xclip -selection clip'
-
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Empty Trash
 
-if [ "$OS" == "osx" ]; then
+if [ "$OS" == 'osx' ]; then
 
     # Empty the trash, the main HDD and on all mounted volumes
     # and clear Apple’s system logs to improve shell startup speed
@@ -137,21 +138,17 @@ fi
 
 # Hide/Show files
 
-if [ "$OS" == "osx" ]; then
+if [ "$OS" == 'osx' ]; then
 
     # Hide/Show desktop icons
-    alias hide-desktop-icons='defaults write com.apple.finder CreateDesktop -bool false \
-                                && killall Finder'
-    alias show-desktop-icons='defaults write com.apple.finder CreateDesktop -bool true \
-                                && killall Finder'
+    alias hide-desktop-icons='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
+    alias show-desktop-icons='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
 
     # Hide/Show hidden files in Finder
-    alias hide-hidden-files='defaults write com.apple.finder AppleShowAllFiles -bool false \
-                                && killall Finder'
-    alias show-hidden-files='defaults write com.apple.finder AppleShowAllFiles -bool true \
-                                && killall Finder'
+    alias hide-hidden-files='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
+    alias show-hidden-files='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
 
-elif [ "$OS" == "ubuntu" ]; then
+elif [ "$OS" == 'ubuntu' ]; then
 
     # Hide/Show desktop icons
     alias hide-desktop-icons='gsettings set org.gnome.desktop.background show-desktop-icons false'
@@ -163,22 +160,24 @@ fi
 
 # Lock screen
 
-if [ "$OS" == "osx" ]; then
+if [ "$OS" == 'osx' ]; then
     alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
-
-elif [ "$OS" == "ubuntu" ]; then
+elif [ "$OS" == 'ubuntu' ]; then
     alias akf='gnome-screensaver-command --lock'
-
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Open
 
-if [ "$OS" == "osx" ]; then
+if [ "$OS" == 'osx' ]; then
     alias o='open'
-
-elif [ "$OS" == "ubuntu" ]; then
+elif [ "$OS" == 'ubuntu' ]; then
     alias o='xdg-open'
-
 fi
+
+# ----------------------------------------------------------------------
+
+# Unset anything that just pollutes the global space
+
+unset OS
