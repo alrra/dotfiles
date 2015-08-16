@@ -1,17 +1,25 @@
 #!/bin/bash
 
+source "$(dirname $(readlink $BASH_SOURCE))/../os/utils.sh"
+
 # ----------------------------------------------------------------------
 # | Helper Functions                                                   |
 # ----------------------------------------------------------------------
 
 enable_programmable_completion() {
 
+    declare -r OS="$(get_os)"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Enable programmable completion features
     # http://tldp.org/LDP/abs/html/tabexpansion.html
 
-    if [ "$OS" == "osx" ]; then
+    if [ "$OS" == 'osx' ]; then
+
         if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
 
+            # Use `bash-completion` 2.x
             source $(brew --prefix)/share/bash-completion/bash_completion
 
             # Make bash complete the `g` alias, just like it does `git`
@@ -19,10 +27,12 @@ enable_programmable_completion() {
 
         fi
 
-    elif [ "$OS" == "ubuntu" ]; then
+    elif [ "$OS" == 'ubuntu' ]; then
+
         if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
             source /etc/bash_completion
         fi
+
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -30,24 +40,6 @@ enable_programmable_completion() {
     [ -f "$NVM_DIR/bash_completion" ] \
         && source $NVM_DIR/bash_completion
 
-}
-
-get_os() {
-
-    declare -r OS_NAME="$(uname -s)"
-    local os=''
-
-    if [ "$OS_NAME" == "Darwin" ]; then
-        os='osx'
-
-    # Get Linux distribution
-    # https://web.archive.org/web/20130929034731/http://linuxmafia.com/faq/Admin/release-files.html
-    elif [ "$OS_NAME" == "Linux" ] && \
-         [ -e "/etc/lsb-release" ]; then
-        os='ubuntu'
-    fi
-
-    printf "%s" "$os"
 }
 
 source_bash_files() {
@@ -77,27 +69,23 @@ source_bash_files() {
 # ----------------------------------------------------------------------
 
 main() {
-
-    # The presence of the OS variable in this scope is important as
-    # the following functions rely on it (e.g. the sourced files use
-    # it to determine what to execute)
-    declare -r OS="$(get_os)"
-
     source_bash_files
     enable_programmable_completion
-
 }
 
 main
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Unset functions in order to not pollute the global space
+# Unset anything that just pollutes the global space
+
 unset -f enable_programmable_completion
-unset -f get_os
 unset -f main
 unset -f source_bash_files
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Clear system messages (e.g.: system copyright notice, the
 # date and time of the last login, the message of the day, etc.)
+
 clear
