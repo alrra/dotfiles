@@ -144,6 +144,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'othree/html5.vim'
     Plugin 'plasticboy/vim-markdown'
+    Plugin 'raimondi/delimitmate'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
     Plugin 'shougo/neocomplcache.vim'
