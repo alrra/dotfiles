@@ -212,6 +212,9 @@ let g:vim_markdown_folding_disabled=1
 
 let g:neocomplcache_enable_at_startup=1
 
+" Make `<TAB>` autocomplete
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
 
 " ----------------------------------------------------------------------
 " | Plugins - Syntastic                                                |
