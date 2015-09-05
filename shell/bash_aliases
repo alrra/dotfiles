@@ -46,7 +46,8 @@ if [ "$OS" == 'osx' ]; then
         alias brews='brew search'
         alias brewu='brew update \
                       && brew upgrade --all \
-                      && brew cleanup'
+                      && brew cleanup \
+                      && brew cask cleanup'
     fi
 
 elif [ "$OS" == 'ubuntu' ]; then
