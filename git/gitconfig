@@ -61,6 +61,7 @@
 
 [core]
 
+    abbrev = 12
     attributesfile = ~/.gitattributes
     autocrlf = input
     editor = vim
