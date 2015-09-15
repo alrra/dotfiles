@@ -4,7 +4,6 @@ cd "$(dirname "$BASH_SOURCE")" \
     && source 'utils.sh'
 
 declare -r -a NODE_VERSIONS=(
-    'iojs'
     'node'
 )
 
