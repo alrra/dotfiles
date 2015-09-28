@@ -358,18 +358,16 @@ if has('autocmd')
 
         " List of file types that use the trailing whitespaces:
         "
-        "  * Markdown (mkd)
+        "  * Markdown
         "    https://daringfireball.net/projects/markdown/syntax#block
 
-        let excludedFileTypes = [ 'mkd' ]
+        let excludedFileTypes = [ 'mkd.markdown' ]
 
-        " Only strip the trailing whitespaces if the file type
-        " is not in the excluded file types list
+        " Only strip the trailing whitespaces if the file type is
+        " not in the excluded file types list
 
-        if index(excludedFileTypes, &filetype) != -1
-            autocmd!
-            autocmd BufWritePre * :call StripTrailingWhitespaces()
-        endif
+        autocmd!
+        autocmd BufWritePre * if index(excludedFileTypes, &ft) < 0
 
     augroup END
 
