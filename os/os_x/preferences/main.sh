@@ -16,6 +16,7 @@ main() {
     ./set_dashboard_preferences.sh
     ./set_dock_preferences.sh
     ./set_finder_preferences.sh
+    ./set_firefox_preferences.sh
     ./set_keyboard_preferences.sh
     ./set_language_and_region_preferences.sh
     ./set_maps_preferences.sh
