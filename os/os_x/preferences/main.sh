@@ -12,7 +12,6 @@ main() {
     )
 
     ./set_chrome_preferences.sh
-    ./set_chrome_canary_preferences.sh
     ./set_dashboard_preferences.sh
     ./set_dock_preferences.sh
     ./set_finder_preferences.sh
