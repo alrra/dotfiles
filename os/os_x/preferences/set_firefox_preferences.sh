@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_firefox_preferences() {
+set_preferences() {
 
     execute 'defaults write org.mozilla.firefox AppleEnableSwipeNavigateWithScrolls -bool false' \
         'Disable backswipe'
@@ -17,7 +17,7 @@ set_firefox_preferences() {
 main() {
 
     print_in_purple '  Firefox\n\n'
-    set_firefox_preferences
+    set_preferences
 
     killall 'firefox' &> /dev/null
 

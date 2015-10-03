@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_language_and_region_preferences() {
+set_preferences() {
 
     # execute 'defaults write NSGlobalDomain AppleLanguages -array "en"' \
     #     'Set language'
@@ -23,7 +23,7 @@ set_language_and_region_preferences() {
 main() {
 
     print_in_purple '\n  Language & Region\n\n'
-    set_language_and_region_preferences
+    set_preferences
 
 }
 

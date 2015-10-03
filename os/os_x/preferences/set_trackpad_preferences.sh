@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_trackpad_preferences() {
+set_preferences() {
 
     execute 'defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true &&
              defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 &&
@@ -25,7 +25,7 @@ set_trackpad_preferences() {
 main() {
 
     print_in_purple '\n  Trackpad\n\n'
-    set_trackpad_preferences
+    set_preferences
 
 }
 

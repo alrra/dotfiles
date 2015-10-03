@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_transmission_preferences() {
+set_preferences() {
 
     execute 'defaults write org.m0k.transmission DeleteOriginalTorrent -bool true' \
         'Delete the original torrent files'
@@ -34,7 +34,7 @@ set_transmission_preferences() {
 main() {
 
     print_in_purple '\n  Transmission\n\n'
-    set_transmission_preferences
+    set_preferences
 
 	killall 'Transmission' &> /dev/null
 

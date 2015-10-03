@@ -6,8 +6,10 @@ cd "$(dirname "$BASH_SOURCE")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
+
     update
     upgrade
+
 }
 
 main
