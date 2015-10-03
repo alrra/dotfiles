@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_chrome_preferences() {
+set_preferences() {
 
     execute 'defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false' \
         'Disable backswipe'
@@ -23,7 +23,7 @@ set_chrome_preferences() {
 main() {
 
     print_in_purple '  Chrome\n\n'
-    set_chrome_preferences
+    set_preferences
 
 	killall 'Google Chrome' &> /dev/null
 

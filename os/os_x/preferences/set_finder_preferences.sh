@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_finder_preferences() {
+set_preferences() {
 
     execute 'defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true &&
              defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true &&
@@ -87,7 +87,7 @@ set_finder_preferences() {
 main() {
 
     print_in_purple '\n  Finder\n\n'
-    set_finder_preferences
+    set_preferences
 
 	killall 'Finder' &> /dev/null
 

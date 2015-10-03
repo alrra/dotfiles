@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_safari_preferences() {
+set_preferences() {
 
     execute 'defaults write com.apple.Safari AutoOpenSafeDownloads -bool false' \
         'Disable opening "safe" files automatically'
@@ -47,7 +47,7 @@ set_safari_preferences() {
 main() {
 
     print_in_purple '\n  Safari\n\n'
-    set_safari_preferences
+    set_preferences
 
 	killall 'Safari' &> /dev/null
 

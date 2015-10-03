@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_keyboard_preferences() {
+set_preferences() {
 
     execute 'defaults write NSGlobalDomain AppleKeyboardUIMode -int 3' \
         'Enable full keyboard access for all controls'
@@ -32,7 +32,7 @@ set_keyboard_preferences() {
 main() {
 
     print_in_purple '\n  Keyboard\n\n'
-    set_keyboard_preferences
+    set_preferences
 
 }
 
