@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_textedit_preferences() {
+set_preferences() {
 
     execute 'defaults write com.apple.TextEdit PlainTextEncoding -int 4 &&
              defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4' \
@@ -21,7 +21,7 @@ set_textedit_preferences() {
 main() {
 
     print_in_purple '\n  TextEdit\n\n'
-    set_textedit_preferences
+    set_preferences
 
 	killall 'TextEdit' &> /dev/null
 

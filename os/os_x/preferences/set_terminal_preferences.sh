@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_terminal_preferences() {
+set_preferences() {
 
     execute 'defaults write com.apple.terminal FocusFollowsMouse -string true' \
         'Make the focus automatically follow the mouse'
@@ -67,7 +67,7 @@ EOD
 main() {
 
     print_in_purple '\n  Terminal\n\n'
-    set_terminal_preferences
+    set_preferences
 
 }
 

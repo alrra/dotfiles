@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_dock_preferences() {
+set_preferences() {
 
     execute 'defaults write com.apple.dock autohide -bool true' \
         'Automatically hide/show the Dock'
@@ -48,7 +48,7 @@ set_dock_preferences() {
 main() {
 
     print_in_purple '\n  Dock\n\n'
-    set_dock_preferences
+    set_preferences
 
 	killall 'Dock' &> /dev/null
 

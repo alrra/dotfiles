@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_dashboard_preferences() {
+set_preferences() {
 
     execute 'defaults write com.apple.dashboard mcx-disabled -bool true' \
         'Disable Dashboard'
@@ -17,7 +17,7 @@ set_dashboard_preferences() {
 main() {
 
     print_in_purple '\n  Dashboard\n\n'
-    set_dashboard_preferences
+    set_preferences
 
 
     # 'killall Dashboard' doesn't actually do anything. To apply

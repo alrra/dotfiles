@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_maps_preferences() {
+set_preferences() {
 
     execute 'defaults write com.apple.Maps LastClosedWindowViewOptions "{
                 localizeLabels = 1;   // show labels in English
@@ -21,7 +21,7 @@ set_maps_preferences() {
 main() {
 
     print_in_purple '\n  Maps\n\n'
-    set_maps_preferences
+    set_preferences
 
 	killall 'Maps' &> /dev/null
 

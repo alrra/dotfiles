@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_privacy_preferences() {
+set_preferences() {
 
     execute 'gsettings set com.canonical.Unity.Lenses remote-content-search "none"' \
         'Turn off "Remote Search" so that search terms in Dash do not get sent over the internet'
@@ -20,7 +20,7 @@ set_privacy_preferences() {
 main() {
 
     print_in_purple '  Privacy\n\n'
-    set_privacy_preferences
+    set_preferences
 
 }
 
