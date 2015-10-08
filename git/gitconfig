@@ -76,6 +76,11 @@
     editor = vim
     excludesfile = ~/.gitignore
 
+[diff "bin"]
+
+    # Use `hexdump` to diff binary files
+    textconv = hexdump -v -C
+
 [pretty]
 
     custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
@@ -90,7 +95,6 @@
 
     # Make `git push` automatically push relevant
     # annotated tags when pushing branches out
-
     followTags = true
 
 [include]
