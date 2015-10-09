@@ -1,0 +1,14 @@
+# For more information about the configurations used
+# in this file, please see the Travis CI documentation:
+# https://docs.travis-ci.com
+
+language: generic
+
+os:
+  - linux
+  - osx
+
+script:
+  - echo "yey!"
+
+sudo: required

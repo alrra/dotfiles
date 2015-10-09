@@ -22,3 +22,10 @@ trim_trailing_whitespace = true
 # https://daringfireball.net/projects/markdown/syntax#block
 
 trim_trailing_whitespace = false
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+[.travis.yml]
+
+indent_size = 2
+indent_style = space
