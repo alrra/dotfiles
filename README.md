@@ -45,7 +45,7 @@ The setup process will:
                 <img src="https://cloud.githubusercontent.com/assets/1223565/8509030/c79a6fd2-2293-11e5-8132-46effb733dfa.gif" alt="Setup process on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8509024/ac135b5c-2293-11e5-8bac-f10103af2948.gif" alt="Setup process on Ubuntu" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/10560844/c580ee18-751f-11e5-8b15-2b8214bacdfd.gif" alt="Setup process on Ubuntu" width="100%">
             </td>
         </tr>
     </tbody>
@@ -79,39 +79,23 @@ The setup process will:
                 <img src="https://cloud.githubusercontent.com/assets/1223565/8397255/504bef92-1dce-11e5-8f2b-714a0e57618b.png" alt="Output for Git status on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397637/40828b68-1ddb-11e5-94b6-4dd7aab105d8.png" alt="Output for Git log on Ubuntu" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/10560955/4b5e1300-7523-11e5-9e96-95ea67de9474.png" alt="Output for Git log on Ubuntu" width="100%">
             </td>
         </tr>
     </tbody>
 </table>
 
 
-##### tmux
+##### tmux + vim
 
 <table>
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397259/87914cea-1dce-11e5-8cf8-f01abf00bd1e.png" alt="tmux on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/8397259/87914cea-1dce-11e5-8cf8-f01abf00bd1e.png" alt="tmux and vim on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397811/fe821aac-1de0-11e5-8d9c-cb08f2b409df.png" alt="tmux on Ubuntu" width="100%">
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-
-##### vim
-
-<table>
-    <tbody>
-        <tr>
-            <td>
-               <img src="https://cloud.githubusercontent.com/assets/1223565/8397632/20ae8922-1ddb-11e5-8a68-d61c8ab1b404.png" alt="MacVim" width="100%">
-            </td>
-            <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397645/54e1b99e-1ddb-11e5-80e1-8de3bfc19a68.png" alt="Gnome Vim" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/10560956/557ca2de-7523-11e5-9000-fc1e189a95f5.png" alt="tmux and vim on Ubuntu" width="100%">
             </td>
         </tr>
     </tbody>
