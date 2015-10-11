@@ -62,7 +62,7 @@ The setup process will:
         <tr><td colspan="2">Output for Git status</tr></td>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397253/3bbaa172-1dce-11e5-954c-bca125d21850.png" alt="Output for Git status on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/10561038/f9f11a28-7525-11e5-8e1d-a304ad3557f9.png" alt="Output for Git status on OS X" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/8397636/3708d218-1ddb-11e5-9d40-21c6871271b9.png" alt="Output for Git status on Ubuntu" width="100%">
@@ -76,7 +76,7 @@ The setup process will:
         <tr><td colspan="2">Output for Git log</tr></td>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397255/504bef92-1dce-11e5-8f2b-714a0e57618b.png" alt="Output for Git status on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/10560966/e4ec08a6-7523-11e5-8941-4e12f6550a63.png" alt="Output for Git status on OS X" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/10560955/4b5e1300-7523-11e5-9e96-95ea67de9474.png" alt="Output for Git log on Ubuntu" width="100%">
@@ -92,7 +92,7 @@ The setup process will:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397259/87914cea-1dce-11e5-8cf8-f01abf00bd1e.png" alt="tmux and vim on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/10561007/498e1212-7525-11e5-8252-81503b3d6184.png" alt="tmux and vim on OS X" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/10560956/557ca2de-7523-11e5-9000-fc1e189a95f5.png" alt="tmux and vim on Ubuntu" width="100%">
