@@ -48,6 +48,11 @@ set incsearch                  " Highlight search pattern as
 
 set laststatus=2               " Always show the status line
 
+set lazyredraw                 " Do not redraw the screen while
+                               " executing macros, registers
+                               " and other commands that have
+                               " not been typed
+
 set listchars=tab:▸\           " ┐
 set listchars+=trail:·         " │ Use custom symbols to
 set listchars+=eol:↴           " │ represent invisible characters
