@@ -11,8 +11,8 @@ export EDITOR='vim'
 # Ignore commands that start with spaces and duplicates
 export HISTCONTROL=ignoreboth
 
-# Increase the maximum number of lines contained in the
-# history file (default value is 500)
+# Increase the maximum number of lines of history
+# persisted in the Bash history file (default value is 500)
 export HISTFILESIZE=10000
 
 # Don't add certain commands to the history file
@@ -35,6 +35,11 @@ export LESS_TERMCAP_me=$'\E[0m'      # end bold mode
 
 # Don't clear the screen after quitting a man page
 export MANPAGER='less -X'
+
+# Increase the maximum number of lines of history persisted
+# in the `Node` REPL history file (default value is 1000)
+# https://github.com/nodejs/node/blob/a85f4b5ce5791caf8caa9b31970313c6183a5499/doc/api/repl.markdown#persistent-history
+export NODE_REPL_HISTORY_SIZE=10000
 
 # Make new shells get the history lines from all previous
 # shells instead of the default "last window closed" history
