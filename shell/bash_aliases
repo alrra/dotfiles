@@ -95,6 +95,7 @@ alias g='git'
 alias ll='ls -l'
 alias m='man'
 alias map='xargs -n1'
+alias n='npm'
 alias q='exit'
 alias rm='rm -rf'
 
