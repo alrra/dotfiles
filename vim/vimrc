@@ -372,7 +372,7 @@ if has('autocmd')
         " not in the excluded file types list
 
         autocmd!
-        autocmd BufWritePre * if index(excludedFileTypes, &ft) < 0
+        autocmd BufWritePre * if index(excludedFileTypes, &ft) < 0 | :call StripTrailingWhitespaces()
 
     augroup END
 
