@@ -67,19 +67,19 @@ fi
 
 if [ "$OS" == 'osx' ]; then
 
-    alias update='sudo softwareupdate --install --all \
-                   && brew update \
-                   && brew upgrade --all \
-                   && brew cleanup \
-                   && npm install -g npm \
-                   && npm update -g'
+    alias u='sudo softwareupdate --install --all \
+                && brew update \
+                && brew upgrade --all \
+                && brew cleanup \
+                && npm install -g npm \
+                && npm update -g'
 
 elif [ "$OS" == 'ubuntu' ]; then
 
-    alias update='sudo apt-get update \
-                   && sudo apt-get upgrade \
-                   && npm install -g npm \
-                   && npm upgrade -g'
+    alias u='sudo apt-get update \
+                && sudo apt-get upgrade \
+                && npm install -g npm \
+                && npm upgrade -g'
 
 fi
 
