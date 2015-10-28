@@ -50,7 +50,7 @@ main() {
     print_in_purple '\n  Dock\n\n'
     set_preferences
 
-	killall 'Dock' &> /dev/null
+    killall 'Dock' &> /dev/null
 
 }
 

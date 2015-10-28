@@ -16,7 +16,7 @@ set_preferences() {
 
 main() {
 
-    print_in_purple '  Firefox\n\n'
+    print_in_purple '\n  Firefox\n\n'
     set_preferences
 
     killall 'firefox' &> /dev/null

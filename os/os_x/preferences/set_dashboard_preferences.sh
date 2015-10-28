@@ -24,7 +24,7 @@ main() {
     # the changes for Dashboard, 'killall Dock' is enough as Dock
     # is Dashboard's parent process.
 
-	killall 'Dock' &> /dev/null
+    killall 'Dock' &> /dev/null
 
 }
 
