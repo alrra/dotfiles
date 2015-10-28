@@ -23,7 +23,7 @@ main() {
     print_in_purple '\n  Maps\n\n'
     set_preferences
 
-	killall 'Maps' &> /dev/null
+    killall 'Maps' &> /dev/null
 
 }
 

@@ -49,7 +49,7 @@ main() {
     print_in_purple '\n  Safari\n\n'
     set_preferences
 
-	killall 'Safari' &> /dev/null
+    killall 'Safari' &> /dev/null
 
 }
 
