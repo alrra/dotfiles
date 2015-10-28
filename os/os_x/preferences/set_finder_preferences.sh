@@ -89,7 +89,7 @@ main() {
     print_in_purple '\n  Finder\n\n'
     set_preferences
 
-	killall 'Finder' &> /dev/null
+    killall 'Finder' &> /dev/null
 
 }
 

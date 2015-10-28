@@ -23,7 +23,7 @@ main() {
     print_in_purple '\n  TextEdit\n\n'
     set_preferences
 
-	killall 'TextEdit' &> /dev/null
+    killall 'TextEdit' &> /dev/null
 
 }
 
