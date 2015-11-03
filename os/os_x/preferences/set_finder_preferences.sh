@@ -21,10 +21,6 @@ set_preferences() {
     execute 'defaults write com.apple.finder WarnOnEmptyTrash -bool false' \
         'Disable the warning before emptying the Trash'
 
-    # execute 'defaults write com.apple.finder EmptyTrashSecurely -bool true'
-    #     'Enable "Secure Empty Trash"'
-    # (Security of data on disk: https://www.youtube.com/watch?v=4SSSMi4X_mA)
-
     execute 'defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"' \
         'Search the current directory by default'
 
