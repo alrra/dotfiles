@@ -6,7 +6,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 declare -r -a NPM_PACKAGES=(
-    'babel'
+    'babel-cli'
     'jshint'
     'svgo'
 )
