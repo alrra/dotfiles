@@ -207,7 +207,7 @@ qt() {
 # | Text Processing                                                    |
 # ----------------------------------------------------------------------
 
-# Human redable file size
+# Human readable file size
 # (because `du -h` doesn't cut it for me)
 
 hrfs() {
