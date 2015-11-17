@@ -25,6 +25,7 @@ main() {
         brew_install 'Firefox' 'firefox' 'cask'
         brew_install 'Flash' 'flash' 'cask'
         brew_install 'GIMP' 'lisanet-gimp' 'cask'
+        brew_install 'ImageAlpha' 'imagealpha' 'cask'
         brew_install 'ImageOptim' 'imageoptim' 'cask'
         brew_install 'LibreOffice' 'libreoffice' 'cask'
         brew_install 'LICEcap' 'licecap' 'cask'
