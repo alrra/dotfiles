@@ -165,7 +165,7 @@ for key, value in map.items():
 httpd = socketserver.ThreadingTCPServer(('localhost', port), handler, False)
 
 # Prevent 'cannot bind to address' errors on restart
-# http://brokenbad.com/address-reuse-in-pythons-socketserver/
+# https://brokenbad.com/address-reuse-in-pythons-socketserver/
 httpd.allow_reuse_address = True
 
 # Manually bind socket and start the server
