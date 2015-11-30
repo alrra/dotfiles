@@ -17,6 +17,14 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # Find commits by source code
+
+    cc = "!f() { \
+        git log --pretty=custom --decorate --date=short -S\"$1\"; \
+    }; f"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Credit an author on the latest commit
 
     credit = "!f() { \
@@ -57,7 +65,7 @@
     # Remove the tag with the specified tag name if exists,
     # and tag the latest commit with that name
 
-	retag = "!f() { \
+    retag = "!f() { \
         git tag -d "$1" &> /dev/null; \
         git tag $1; \
     }; f"
