@@ -12,7 +12,7 @@
     l   = log --pretty=custom                       # Show custom log
     lc  = shortlog --summary --numbered             # List contributors
     rlc = reset --hard HEAD~1                       # Remove last commit
-    st  = status
+    s   = status
     ulc = reset --soft HEAD~1                       # Undo last commit
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
