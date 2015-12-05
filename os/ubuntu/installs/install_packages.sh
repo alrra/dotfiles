@@ -132,6 +132,22 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    if ! package_is_installed 'opera-beta'; then
+        install_package 'Opera Beta' 'opera-beta'
+    else
+        print_success 'Opera Beta'
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if ! package_is_installed 'opera-developer'; then
+        install_package 'Opera Developer' 'opera-developer'
+    else
+        print_success 'Opera Developer'
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     install_package 'tmux' 'tmux'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
