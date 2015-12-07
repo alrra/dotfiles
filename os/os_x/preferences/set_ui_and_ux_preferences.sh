@@ -50,6 +50,9 @@ set_preferences() {
     execute 'defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2' \
         'Set sidebar icon size to medium'
 
+    execute 'defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false' \
+        'Disable the over-the-top focus ring animation'
+
     execute 'defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false' \
         'Disable resume system-wide'
 
