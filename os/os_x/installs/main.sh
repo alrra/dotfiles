@@ -46,7 +46,6 @@ main() {
     brew_install 'ImageMagick' 'imagemagick --with-webp'
     brew_install 'ImageOptim' 'imageoptim' 'caskroom/cask' 'cask'
     brew_install 'LibreOffice' 'libreoffice' 'caskroom/cask' 'cask'
-    brew_install 'MacVim' 'macvim' 'caskroom/cask' 'cask'
     brew_install 'Opera Beta' 'opera-beta' 'caskroom/versions' 'cask'
     brew_install 'Opera Developer' 'opera-developer' 'caskroom/versions' 'cask'
     brew_install 'Spectacle' 'spectacle' 'caskroom/cask' 'cask'
