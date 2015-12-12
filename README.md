@@ -42,7 +42,7 @@ The setup process will:
         <tr><td colspan="2">Setup process in action</tr></td>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8509030/c79a6fd2-2293-11e5-8132-46effb733dfa.gif" alt="Setup process on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/11821505/91e437be-a372-11e5-9500-025c316fe22c.gif" alt="Setup process on OS X" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/10560844/c580ee18-751f-11e5-8b15-2b8214bacdfd.gif" alt="Setup process on Ubuntu" width="100%">
