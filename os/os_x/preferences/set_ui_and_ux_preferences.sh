@@ -96,6 +96,8 @@ main() {
     print_in_purple '\n  UI & UX\n\n'
     set_preferences
 
+    killall 'SystemUIServer' &> /dev/null
+
 }
 
 main
