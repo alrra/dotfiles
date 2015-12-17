@@ -7,7 +7,6 @@ cd "$(dirname "$BASH_SOURCE")"
 main() {
 
     declare -a PROCESSES_TO_TERMINATE=(
-        'SystemUIServer'
         'cfprefsd'
     )
 
