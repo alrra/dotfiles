@@ -101,6 +101,17 @@ alias rm='rm -rf'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Clear DNS cache
+
+if [ "$OS" == 'osx' ]; then
+
+    alias clear-dns-cache='sudo dscacheutil -flushcache; \
+                           sudo killall -HUP mDNSResponder'
+
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Copy to clipboard
 
 if [ "$OS" == 'osx' ]; then
