@@ -7,8 +7,8 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 set_preferences() {
 
-    # execute 'defaults write NSGlobalDomain AppleLanguages -array "en"' \
-    #     'Set language'
+    execute 'defaults write NSGlobalDomain AppleLanguages -array "en"' \
+        'Set language'
 
     execute 'defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"' \
         'Set measurement units'
