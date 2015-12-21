@@ -134,6 +134,10 @@ if [ "$OS" == 'osx' ]; then
                        sudo rm -frv /private/var/log/asl/*.asl; \
                        sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"'
 
+elif [ "$OS" == 'ubuntu' ]; then
+
+    alias empty-trash='rm -rf ~/.local/share/Trash/files/*'
+
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
