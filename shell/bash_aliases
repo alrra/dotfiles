@@ -112,16 +112,6 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Copy to clipboard
-
-if [ "$OS" == 'osx' ]; then
-    alias cc='pbcopy'
-elif [ "$OS" == 'ubuntu' ]; then
-    alias cc='xclip -selection clip'
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Empty Trash
 
 if [ "$OS" == 'osx' ]; then
