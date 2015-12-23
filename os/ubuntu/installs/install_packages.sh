@@ -112,8 +112,6 @@ main() {
 
     if ! package_is_installed 'opera'; then
 
-        printf '\n'
-
         add_key 'http://deb.opera.com/archive.key'
         print_result $? "Opera (add key)"
 
@@ -122,10 +120,10 @@ main() {
 
         update
 
-        install_package 'Opera' 'opera-stable'
+    fi
 
-        printf '\n'
-
+    if ! package_is_installed 'opera'; then
+        install_package 'Opera' 'opera'
     else
         print_success 'Opera'
     fi
