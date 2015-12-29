@@ -16,6 +16,17 @@ alias cd..='cd ..'
 # | Network                                                            |
 # ----------------------------------------------------------------------
 
+# Clear DNS cache
+
+if [ "$OS" == 'osx' ]; then
+
+    alias clear-dns-cache='sudo dscacheutil -flushcache; \
+                           sudo killall -HUP mDNSResponder'
+
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -98,17 +109,6 @@ alias map='xargs -n1'
 alias n='npm'
 alias q='exit'
 alias rm='rm -rf'
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Clear DNS cache
-
-if [ "$OS" == 'osx' ]; then
-
-    alias clear-dns-cache='sudo dscacheutil -flushcache; \
-                           sudo killall -HUP mDNSResponder'
-
-fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
