@@ -1,47 +1,5 @@
 #!/bin/bash
 
-source "$(dirname $(readlink $BASH_SOURCE))/../os/utils.sh"
-
-# ----------------------------------------------------------------------
-# | Helper Functions                                                   |
-# ----------------------------------------------------------------------
-
-enable_programmable_completion() {
-
-    declare -r OS="$(get_os)"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Enable programmable completion features
-    # http://tldp.org/LDP/abs/html/tabexpansion.html
-
-    if [ "$OS" == 'osx' ]; then
-
-        if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
-
-            # Use `bash-completion` 2.x
-            source $(brew --prefix)/share/bash-completion/bash_completion
-
-            # Make bash complete the `g` alias, just like it does `git`
-            complete -o default -o nospace -F _git g
-
-        fi
-
-    elif [ "$OS" == 'ubuntu' ]; then
-
-        if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-            source /etc/bash_completion
-        fi
-
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    [ -f "$NVM_DIR/bash_completion" ] \
-        && source $NVM_DIR/bash_completion
-
-}
-
 source_bash_files() {
 
     local file=''
@@ -49,6 +7,7 @@ source_bash_files() {
 
     declare -r -a FILES_TO_SOURCE=(
         'bash_aliases'
+        'bash_completion'
         'bash_exports'
         'bash_functions'
         'bash_options'
@@ -64,23 +23,7 @@ source_bash_files() {
 
 }
 
-# ----------------------------------------------------------------------
-# | Main                                                               |
-# ----------------------------------------------------------------------
-
-main() {
-    source_bash_files
-    enable_programmable_completion
-}
-
-main
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Unset anything that just pollutes the global space
-
-unset -f enable_programmable_completion
-unset -f main
+source_bash_files
 unset -f source_bash_files
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
