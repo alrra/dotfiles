@@ -1,0 +1,18 @@
+#!/bin/bash
+
+main () {
+
+    if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
+
+        # Use `bash-completion` 2.x
+        source $(brew --prefix)/share/bash-completion/bash_completion
+
+        # Make bash complete the `g` alias, just like it does `git`
+        complete -o default -o nospace -F _git g
+
+
+    fi
+
+}
+
+main
