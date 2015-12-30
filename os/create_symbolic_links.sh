@@ -6,6 +6,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 declare -a FILES_TO_SYMLINK=(
 
     'shell/bash_aliases'
+    'shell/bash_autocomplete'
     'shell/bash_exports'
     'shell/bash_functions'
     'shell/bash_logout'
