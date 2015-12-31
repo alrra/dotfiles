@@ -29,15 +29,17 @@ alias rm='rm -rf'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Load OS specific aliases
+
 if [ "$OS" == 'osx' ]; then
     source "$DOTFILES_DIR_PATH/shell/os_x/bash_aliases"
 elif [ "$OS" == 'ubuntu' ]; then
     source "$DOTFILES_DIR_PATH/shell/ubuntu/bash_aliases"
 fi
 
-# ----------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Unset anything that just pollutes the global space
+# Cleanup
 
 unset DOTFILES_DIR_PATH
 unset OS
