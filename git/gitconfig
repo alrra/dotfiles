@@ -71,8 +71,8 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Remove the tag with the specified tag name if exists,
-    # and tag the latest commit with that name
+    # Remove the tag with the specified tag name if
+    # exists and tag the latest commit with that name
 
     retag = "!f() { \
         git tag -d "$1" &> /dev/null; \

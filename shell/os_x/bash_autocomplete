@@ -10,7 +10,6 @@ main () {
         # Make bash complete the `g` alias, just like it does `git`
         complete -o default -o nospace -F _git g
 
-
     fi
 
 }
