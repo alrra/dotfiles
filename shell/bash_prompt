@@ -1,14 +1,11 @@
 #!/bin/bash
 
-source "$(dirname $(readlink $BASH_SOURCE))/../os/utils.sh"
-
-# ----------------------------------------------------------------------
-# | Colors                                                             |
-# ----------------------------------------------------------------------
-
 enable_color_support() {
 
-    declare OS="$(get_os)"
+    declare DOTFILES_DIR_PATH="$(dirname $(dirname $(readlink $BASH_SOURCE)))"
+
+    source "$DOTFILES_DIR_PATH/os/utils.sh" \
+        && declare OS="$(get_os)"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -21,93 +18,17 @@ enable_color_support() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # Load OS specific color support
+
     if [ "$OS" == 'osx' ]; then
-        alias ls='ls -G' # or CLICOLOR=1
+        source "$DOTFILES_DIR_PATH/shell/os_x/bash_colors"
     elif [ "$OS" == 'ubuntu' ]; then
-        if [ -x /usr/bin/dircolors ]; then
-
-            test -r ~/.dircolors \
-                && eval "$(dircolors -b ~/.dircolors)" \
-                || eval "$(dircolors -b)"
-
-            alias dir='dir --color=auto'
-            alias egrep='egrep --color=auto'
-            alias fgrep='fgrep --color=auto'
-            alias grep='grep --color=auto'
-            alias ls='ls --color=auto'
-            alias vdir='vdir --color=auto'
-
-        fi
+        source "$DOTFILES_DIR_PATH/shell/ubuntu/bash_colors"
     fi
 
 }
 
-set_ls_colors() {
-
-    declare OS="$(get_os)"
-
-    # There are several different implementations of color for ls:
-
-    # ------------------------------------------------------------------
-    # | FreeBSD / OS X                                                 |
-    # ------------------------------------------------------------------
-
-    #  - `ls` displays colors if the `-G` option is passed or if
-    #    the `CLICOLOR` environment variable is set
-    #
-    #  - the actual colors are configured through the `LSCOLORS`
-    #    environment variable (built-in defaults are used if this
-    #    variable is not set)
-
-    if [ "$OS" == 'osx' ]; then
-
-        LSCOLORS=''
-
-        LSCOLORS+='gx' # Directory
-        LSCOLORS+='fx' # Symbolic link
-        LSCOLORS+='cx' # Socket
-        LSCOLORS+='dx' # Pipe
-        LSCOLORS+='cx' # Executable
-        LSCOLORS+='eg' # Block special
-        LSCOLORS+='ed' # Character special
-        LSCOLORS+='ab' # Executable with setuid bit set
-        LSCOLORS+='ag' # Executable with setgid bit set
-        LSCOLORS+='cc' # Directory writable to others, with sticky bit
-        LSCOLORS+='bd' # Directory writable to others, without sticky bit
-
-        export LSCOLORS
-
-    # ------------------------------------------------------------------
-    # | GNU                                                            |
-    # ------------------------------------------------------------------
-
-    #  - `ls` displays colors if the `--color` option is passed
-    #
-    #  - the actual colors are configured through the `LS_COLORS`
-    #    environment variable (built-in defaults are used if this
-    #    variable is not set)
-
-    elif [ "$OS" == 'ubuntu' ]; then
-
-        LS_COLORS=''
-
-        LS_COLORS+='no=0;39:'   # global default
-        LS_COLORS+='di=0;36:'   # directory
-        LS_COLORS+='ex=0;32:'   # executable file
-        LS_COLORS+='fi=0;39:'   # file
-        LS_COLORS+='ec=:'       # non-filename text
-        LS_COLORS+='mi=1;31:'   # non-existent file pointed to by a symlink
-        LS_COLORS+='ln=target:' # symbolic link
-        LS_COLORS+='or=31;01'   # symbolic link pointing to a non-existent file
-
-        export LS_COLORS
-
-    fi
-}
-
-# ----------------------------------------------------------------------
-# | Prompts                                                            |
-# ----------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Note: Don't break this function into smaller, more specialized ones
 # as you will only pollute the global space even more (this function
@@ -160,6 +81,8 @@ get_git_repository_details() {
     printf "%s" "$1$branchName$tmp"
 
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 set_prompts() {
 
@@ -275,13 +198,10 @@ set_prompts() {
 
 }
 
-# ----------------------------------------------------------------------
-# | Main                                                               |
-# ----------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
     enable_color_support
-    set_ls_colors
     set_prompts
 }
 
@@ -289,9 +209,8 @@ main
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Unset anything that just pollutes the global space
+# Cleanup
 
 unset -f enable_color_support
 unset -f main
-unset -f set_ls_colors
 unset -f set_prompts

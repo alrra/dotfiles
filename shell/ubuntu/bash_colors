@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Set LS_COLORS (GNU)
+#
+#  - `ls` displays colors if the `--color` option is passed
+#
+#  - the actual colors are configured through the `LS_COLORS`
+#    environment variable (built-in defaults are used if this
+#    variable is not set)
+
+LS_COLORS=''
+
+LS_COLORS+='no=0;39:'   # global default
+LS_COLORS+='di=0;36:'   # directory
+LS_COLORS+='ex=0;32:'   # executable file
+LS_COLORS+='fi=0;39:'   # file
+LS_COLORS+='ec=:'       # non-filename text
+LS_COLORS+='mi=1;31:'   # non-existent file pointed to by a symlink
+LS_COLORS+='ln=target:' # symbolic link
+LS_COLORS+='or=31;01'   # symbolic link pointing to a non-existent file
+
+export LS_COLORS
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Enable color support
+
+if [ -x /usr/bin/dircolors ]; then
+
+    test -r ~/.dircolors \
+        && eval "$(dircolors -b ~/.dircolors)" \
+        || eval "$(dircolors -b)"
+
+    alias dir='dir --color=auto'
+    alias egrep='egrep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias grep='grep --color=auto'
+    alias ls='ls --color=auto'
+    alias vdir='vdir --color=auto'
+
+fi
