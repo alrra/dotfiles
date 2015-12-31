@@ -1,8 +1,31 @@
 #!/bin/bash
 
-# ----------------------------------------------------------------------
-# | File System                                                        |
-# ----------------------------------------------------------------------
+# Simple Calculator
+
+? () {
+
+    local result=''
+
+    #                       ┌─ default (when --mathlib is used) is 20
+    result="$( printf "scale=10;%s\n" "$*" | bc --mathlib | tr -d "\\\n" )"
+    #                         remove the tailing "\" and "\n" ─┘
+    #                         (large numbers are printed on multiple lines)
+
+    if [[ "$result" == *.* ]]; then
+        # improve the output for decimal numbers
+        printf "%s" "$result" |
+        sed -e "s/^\./0./"        `# add "0" for cases like ".5"` \
+            -e "s/^-\./-0./"      `# add "0" for cases like "-.5"`\
+            -e "s/0*$//;s/\.$//"   # remove tailing zeros
+    else
+        printf "%s" "$result"
+    fi
+
+    printf "\n"
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Create data URI from a file
 
@@ -73,6 +96,40 @@ gz() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Human readable file size
+# (because `du -h` doesn't cut it for me)
+
+hrfs() {
+
+    printf "%s" "$1" |
+    awk '{
+            i = 1;
+            split("B KB MB GB TB PB EB ZB YB WTFB", v);
+            value = $1;
+
+            # confirm that the input is a number
+            if ( value + .0 == value ) {
+
+                while ( value >= 1024 ) {
+                    value/=1024;
+                    i++;
+                }
+
+                if ( value == int(value) ) {
+                    printf "%d %s", value, v[i]
+                } else {
+                    printf "%.1f %s", value, v[i]
+                }
+
+            }
+        }' |
+    sed -e ":l; s/\([0-9]\)\([0-9]\{3\}\)/\1,\2/; t l"
+    #                          └─ add commas to the numbers
+    #                             (changes "1023.2 KB" to "1,023.2 KB")
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Create new directories and enter the first one
 
 mkd() {
@@ -80,38 +137,31 @@ mkd() {
     #                     └─ make parent directories if needed
 }
 
-# ----------------------------------------------------------------------
-# | Miscellaneous                                                      |
-# ----------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Simple Calculator
+# Search history
 
-? () {
-
-    local result=''
-
-    #                       ┌─ default (when --mathlib is used) is 20
-    result="$( printf "scale=10;%s\n" "$*" | bc --mathlib | tr -d "\\\n" )"
-    #                         remove the tailing "\" and "\n" ─┘
-    #                         (large numbers are printed on multiple lines)
-
-    if [[ "$result" == *.* ]]; then
-        # improve the output for decimal numbers
-        printf "%s" "$result" |
-        sed -e "s/^\./0./"        `# add "0" for cases like ".5"` \
-            -e "s/^-\./-0./"      `# add "0" for cases like "-.5"`\
-            -e "s/0*$//;s/\.$//"   # remove tailing zeros
-    else
-        printf "%s" "$result"
-    fi
-
-    printf "\n"
-
+qh() {
+    #           ┌─ enable colors for pipe
+    #           │  ("--color=auto" enables colors only if
+    #           │  the output is in the terminal)
+    grep --color=always "$*" "$HISTFILE" |       less -RX
+    # display ANSI color escape sequences in raw form ─┘│
+    #       don't clear the screen after quitting less ─┘
 }
 
-# ----------------------------------------------------------------------
-# | Network                                                            |
-# ----------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Search for text within the current directory
+
+qt() {
+    grep -ir --color=always "$*" . | less -RX
+    #     │└─ search all files under each directory, recursively
+    #     └─ ignore case
+}
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Start an HTTP server from a directory, optionally specifying the port
 
@@ -176,65 +226,4 @@ httpd.serve_forever()
 
     " "$port"
 
-}
-
-# ----------------------------------------------------------------------
-# | Search                                                             |
-# ----------------------------------------------------------------------
-
-# Search history
-
-qh() {
-    #           ┌─ enable colors for pipe
-    #           │  ("--color=auto" enables colors only if
-    #           │  the output is in the terminal)
-    grep --color=always "$*" "$HISTFILE" |       less -RX
-    # display ANSI color escape sequences in raw form ─┘│
-    #       don't clear the screen after quitting less ─┘
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Search for text within the current directory
-
-qt() {
-    grep -ir --color=always "$*" . | less -RX
-    #     │└─ search all files under each directory, recursively
-    #     └─ ignore case
-}
-
-# ----------------------------------------------------------------------
-# | Text Processing                                                    |
-# ----------------------------------------------------------------------
-
-# Human readable file size
-# (because `du -h` doesn't cut it for me)
-
-hrfs() {
-
-    printf "%s" "$1" |
-    awk '{
-            i = 1;
-            split("B KB MB GB TB PB EB ZB YB WTFB", v);
-            value = $1;
-
-            # confirm that the input is a number
-            if ( value + .0 == value ) {
-
-                while ( value >= 1024 ) {
-                    value/=1024;
-                    i++;
-                }
-
-                if ( value == int(value) ) {
-                    printf "%d %s", value, v[i]
-                } else {
-                    printf "%.1f %s", value, v[i]
-                }
-
-            }
-        }' |
-    sed -e ":l; s/\([0-9]\)\([0-9]\{3\}\)/\1,\2/; t l"
-    #                          └─ add commas to the numbers
-    #                             (changes "1023.2 KB" to "1,023.2 KB")
 }
