@@ -25,8 +25,6 @@ main() {
         #        the case where there are warnings
     print_result $? 'Install Vim plugins'
 
-    printf '\n'
-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # In the case of fresh installs, in order for `npm` to be
@@ -38,7 +36,7 @@ main() {
 
     cd ~/.vim/plugins/tern_for_vim \
         && npm install &> /dev/null
-    print_result $? 'tern_for_vim (extra installations)'
+    print_result $? 'Install extra parts for `tern_for_vim`'
 
 }
 

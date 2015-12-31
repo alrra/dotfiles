@@ -177,6 +177,8 @@ filetype on
 
 let g:user_emmet_leader_key='<C-E>'
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " Load custom Emmet snippets
 " http://docs.emmet.io/customization/snippets/
 
@@ -220,7 +222,10 @@ let g:vim_markdown_folding_disabled=1
 
 let g:neocomplcache_enable_at_startup=1
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " Make `<TAB>` autocomplete
+
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
