@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 source_bash_files() {
 
     local file=''
