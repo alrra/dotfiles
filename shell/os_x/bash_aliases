@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Clear DNS cache
 
 alias clear-dns-cache='sudo dscacheutil -flushcache; \
