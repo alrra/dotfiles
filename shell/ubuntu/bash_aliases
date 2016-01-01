@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Advanced Packaging Tool
 
 alias apti='sudo apt-get install'

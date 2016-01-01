@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 enable_color_support() {
 
     declare DOTFILES_DIR_PATH="$(dirname $(dirname $(readlink $BASH_SOURCE)))"
@@ -30,10 +32,10 @@ enable_color_support() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Note: Don't break this function into smaller, more specialized ones
+# [!] Don't break this function into smaller, more specialized ones
 # as you will only pollute the global space even more (this function
-# cannot be unset due to the fact that it's called every time the prompt
-# string is shown)
+# cannot be unset due to the fact that it's called every time the
+# prompt string is shown)
 
 get_git_repository_details() {
 
