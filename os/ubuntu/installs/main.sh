@@ -8,11 +8,12 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 main() {
 
-    ./update_and_upgrade.sh
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    update
+    upgrade
 
     print_in_green '\n  ---\n\n'
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Tools for compiling/building software from source
     install_package 'Build Essential' 'build-essential'
@@ -24,22 +25,21 @@ main() {
     # in Ubuntu due to legal or copyright reasons
     #install_package 'Ubuntu Restricted Extras' 'ubuntu-restricted-extras'
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     print_in_green '\n  ---\n\n'
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if ! package_is_installed 'atom'; then
 
         add_ppa 'webupd8team/atom'
         print_result $? "Atom (add PPA)"
 
-        update
+        update &> /dev/null
+        print_result $? "Atom (resynchronize package index files)"
 
-        install_package 'Atom' 'atom'
-
-    else
-        print_success 'Atom'
     fi
+
+    install_package 'Atom' 'atom'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -51,13 +51,12 @@ main() {
         add_to_source_list 'http://dl.google.com/linux/deb/ stable main' 'google-chrome.list'
         print_result $? "Chrome Canary (add to package resource list)"
 
-        update
+        update &> /dev/null
+        print_result $? "Chrome Canary (resynchronize package index files)"
 
-        install_package 'Chrome Canary' 'google-chrome-unstable'
-
-    else
-        print_success 'Chrome Canary'
     fi
+
+    install_package 'Chrome Canary' 'google-chrome-unstable'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -78,13 +77,12 @@ main() {
         add_ppa 'ubuntu-mozilla-daily/ppa'
         print_result $? "Firefox Nightly (add PPA)"
 
-        update
+        update &> /dev/null
+        print_result $? "Firefox Nightly (resynchronize package index files)"
 
-        install_package 'Firefox Nightly' 'firefox-trunk'
-
-    else
-        print_success 'Firefox Nightly'
     fi
+
+    install_package 'Firefox Nightly' 'firefox-trunk'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -116,31 +114,14 @@ main() {
         add_to_source_list 'http://deb.opera.com/opera-stable/ stable non-free' 'opera.list'
         print_result $? "Opera (add to package resource list)"
 
-        update
+        update &> /dev/null
+        print_result $? "Opera (resynchronize package index files)"
 
     fi
 
-    if ! package_is_installed 'opera'; then
-        install_package 'Opera' 'opera'
-    else
-        print_success 'Opera'
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if ! package_is_installed 'opera-beta'; then
-        install_package 'Opera Beta' 'opera-beta'
-    else
-        print_success 'Opera Beta'
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if ! package_is_installed 'opera-developer'; then
-        install_package 'Opera Developer' 'opera-developer'
-    else
-        print_success 'Opera Developer'
-    fi
+    install_package 'Opera' 'opera'
+    install_package 'Opera Beta' 'opera-beta'
+    install_package 'Opera Developer' 'opera-developer'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -169,12 +150,13 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_in_green '\n  ---\n\n'
-    ./update_and_upgrade.sh
+    update
+    upgrade
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_in_green '\n  ---\n\n'
-    ./cleanup.sh
+    autoremove
 
 }
 
