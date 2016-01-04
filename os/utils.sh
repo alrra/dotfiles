@@ -63,6 +63,10 @@ get_os() {
 
 }
 
+get_os_arch() {
+    printf "%s" "$(getconf LONG_BIT)"
+}
+
 is_git_repository() {
     git rev-parse &> /dev/null
     return $?
