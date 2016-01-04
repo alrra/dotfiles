@@ -8,6 +8,10 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 main() {
 
+    declare OS_ARCH="$(get_os_arch)"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     update
     upgrade
 
@@ -119,7 +123,15 @@ main() {
 
     fi
 
-    install_package 'Opera' 'opera'
+    # Opera stable based on Blink is only
+    # available for the 64-bit version of Ubuntu
+
+    if [ "$OS_ARCH" == '64' ]; then
+        install_package 'Opera' 'opera-stable'
+    elif [ "$OS_ARCH" == '32' ]; then
+        install_package 'Opera' 'opera'
+    fi
+
     install_package 'Opera Beta' 'opera-beta'
     install_package 'Opera Developer' 'opera-developer'
 
