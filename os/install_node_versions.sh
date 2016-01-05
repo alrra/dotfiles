@@ -20,6 +20,9 @@ main() {
 export NVM_DIR="'$NVM_DIRECTORY'"
 [ -f "$NVM_DIR/nvm.sh" ] \
     && source "$NVM_DIR/nvm.sh"
+
+[ -f "$NVM_DIR/bash_completion" ] \
+    && source $NVM_DIR/bash_completion
 '
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
