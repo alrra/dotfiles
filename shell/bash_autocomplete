@@ -23,11 +23,6 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-[ -f "$NVM_DIR/bash_completion" ] \
-    && source $NVM_DIR/bash_completion
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Cleanup
 
 unset DOTFILES_DIR_PATH
