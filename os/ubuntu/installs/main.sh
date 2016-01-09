@@ -127,12 +127,29 @@ main() {
     # available for the 64-bit version of Ubuntu
 
     if [ "$OS_ARCH" == '64' ]; then
+
+        # Automatically answer `Yes` to the `package configuration` prompt
+        # https://github.com/alrra/dotfiles/issues/17
+
+        printf "opera-stable opera-stable/add-deb-source boolean true\n" \
+            | sudo debconf-set-selections
+
         install_package 'Opera' 'opera-stable'
+
     elif [ "$OS_ARCH" == '32' ]; then
+
         install_package 'Opera' 'opera'
+
     fi
 
+    printf "opera-beta opera-beta/add-deb-source boolean true\n" \
+        | sudo debconf-set-selections
+
     install_package 'Opera Beta' 'opera-beta'
+
+    printf "opera-developer opera-developer/add-deb-source boolean true\n" \
+        | sudo debconf-set-selections
+
     install_package 'Opera Developer' 'opera-developer'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
