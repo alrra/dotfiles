@@ -36,6 +36,7 @@ main() {
     # Ensure the most recent version of `npm` is installed
 
     execute 'npm install --global npm' 'npm (update)'
+    printf '\n'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

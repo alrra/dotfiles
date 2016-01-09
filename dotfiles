@@ -272,10 +272,10 @@ main() {
     if answer_is_yes; then
 
         ./os/install_applications.sh
-        printf '\n'
+        print_in_green '\n  ---\n\n'
 
         ./os/install_node_versions.sh
-        printf '\n'
+        print_in_green '\n  ---\n\n'
 
         ./os/install_npm_packages.sh
 

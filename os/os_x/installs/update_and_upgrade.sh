@@ -12,6 +12,7 @@ main() {
     # https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/softwareupdate.8.html
 
     execute 'sudo softwareupdate --install --all' 'Update system software'
+    printf '\n'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
