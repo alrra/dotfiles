@@ -18,6 +18,7 @@ main() {
     ./set_keyboard_preferences.sh
     ./set_language_and_region_preferences.sh
     ./set_maps_preferences.sh
+    ./set_photos_preferences.sh
     ./set_safari_preferences.sh
     ./set_terminal_preferences.sh
     ./set_textedit_preferences.sh
