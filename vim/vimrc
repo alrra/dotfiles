@@ -371,7 +371,10 @@ if has('autocmd')
         "  * Markdown
         "    https://daringfireball.net/projects/markdown/syntax#block
 
-        let excludedFileTypes = [ 'mkd.markdown' ]
+        let excludedFileTypes = [
+            \ 'markdown',
+            \ 'mkd.markdown'
+        \]
 
         " Only strip the trailing whitespaces if the file type is
         " not in the excluded file types list
