@@ -13,6 +13,9 @@ set_preferences() {
     execute 'defaults write com.apple.menuextra.battery ShowPercent -string "NO"' \
         'Hide battery percentage from the menu bar'
 
+    execute 'defaults write com.apple.CrashReporter UseUNC 1' \
+        'Make crash reports appear as notifications'
+
     execute 'defaults write com.apple.LaunchServices LSQuarantine -bool false' \
         'Disable "Are you sure you want to open this application?" dialog'
 
