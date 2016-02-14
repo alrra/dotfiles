@@ -138,8 +138,9 @@ set_prompts() {
     # | PS1 - Default interactive prompt                               |
     # ------------------------------------------------------------------
 
-    PS1="\[\033]0;\w\007\]"         # Terminal title (set to the
+    PS1="\[\033]0;\W\007\]"         # Terminal title (set to the
                                     # current working directory)
+
     PS1+="\[$bold\]"
     PS1+="\[$orange\]\u"            # Username
     PS1+="\[$white\]@"
