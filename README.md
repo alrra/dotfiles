@@ -11,12 +11,12 @@ To setup the dotfiles just run the appropriate snippet in the
 terminal:
 
 (:warning: **DO NOT** run the setup snippet if you don't fully
-understand [what it does](dotfiles). Seriously, **DON'T**!)
+understand [what it does](setup.sh). Seriously, **DON'T**!)
 
 | OS | Snippet |
 |:---:|:---|
-| OS X | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/dotfiles)"` |
-| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/dotfiles)"` |
+| OS X | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/setup.sh)"` |
+| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/setup.sh)"` |
 
 That's it! :sparkles:
 
@@ -168,13 +168,13 @@ Same as `~/.vimrc.local` but for `~/.gvimrc`.
 
 If you decide to fork this project, don't forget to substitute my
 username with your own in the [setup snippets](#setup) and [in the
-`dotfiles` script](https://github.com/alrra/dotfiles/blob/5b524ba9ca07b66db1955d18a2fb66bf4b48f677/dotfiles#L3).
+`setup` script](https://github.com/alrra/dotfiles/blob/5b524ba9ca07b66db1955d18a2fb66bf4b48f677/dotfiles#L3).
 
 
 ## Update
 
-To update the dotfiles you can either run the [`dotfiles`
-script](dotfiles) or, if you want to just update one particular part,
+To update the dotfiles you can either run the [`setup`
+script](setup.sh) or, if you want to just update one particular part,
 run the appropriate [`os` script](os).
 
 
