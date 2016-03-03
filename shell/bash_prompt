@@ -115,7 +115,7 @@ set_prompts() {
 
     else
 
-        bold=''
+        bold="\e[1m"
         reset="\e[0m"
 
         black="\e[1;30m"
