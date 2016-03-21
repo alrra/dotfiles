@@ -5,50 +5,83 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_github_ssh_key() {
+add_ssh_configs() {
+    printf '%s\n' \
+        "Host github.com" \
+        "  IdentityFile $1" \
+        "  LogLevel ERROR" >> ~/.ssh/config
+    print_result $? 'Add SSH configs'
+}
+
+copy_public_ssh_key_to_clipboard () {
+
+    if cmd_exists 'pbcopy'; then
+
+        cat "$1" | pbcopy
+        print_result $? 'Copy public SSH key to clipboard'
+
+    elif cmd_exists 'xclip'; then
+
+        cat "$1" | xclip -selection clip
+        print_result $? 'Copy public SSH key to clipboard'
+
+    else
+        print_warning "Please copy the public SSH key ($1) to clipboard"
+    fi
+
+}
+
+generate_ssh_keys() {
+    ask 'Please provide an email address (email): ' && printf '\n'
+    ssh-keygen -t rsa -b 4096 -C "$(get_answer)" -f "$1"
+    print_result $? 'Generate SSH keys'
+}
+
+open_github_ssh_page() {
 
     declare -r GITHUB_SSH_URL='https://github.com/settings/ssh'
-    local sshKeyFile='id_rsa.pub'
-    local workingDirectory="$(pwd)"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    cd "$HOME/.ssh"
-
-    # Setup GitHub SSH Key
-    # https://help.github.com/articles/generating-ssh-keys
-
-    print_info 'Set up the SSH key'
-
-    if [ ! -r "$sshKeyFile" ]; then
-        rm -rf "$sshKeyFile"
-        ask 'Please provide an email address (email): ' && printf '\n'
-        ssh-keygen -t rsa -C "$(get_answer)"
-    fi
-
-    if cmd_exists 'open' && cmd_exists 'pbcopy'; then
-
-        # Copy SSH key to clipboard
-        cat "$sshKeyFile" | pbcopy
-        print_result $? "Copy SSH key to clipboard"
-
-        # Open the GitHub web page where the SSH key can be added
+    if cmd_exists 'open'; then
         open "$GITHUB_SSH_URL"
-
-    elif cmd_exists 'xclip' && cmd_exists 'xdg-open'; then
-
-        # Copy SSH key to clipboard
-        cat "$sshKeyFile" | xclip -selection clip
-        print_result $? "Copy SSH key to clipboard"
-
-        # Open the GitHub web page where the SSH key can be added
+    elif cmd_exists 'xdg-open'; then
         xdg-open "$GITHUB_SSH_URL"
+    else
+        print_warning "Please add the public SSH key to GitHub ($GITHUB_SSH_URL)"
+    fi
 
+}
+
+set_github_ssh_key() {
+
+    local sshKeyFileName="$HOME/.ssh/github"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # If there is already a file with that
+    # name, generate another, unique, file name
+
+    if [ -f "$sshKeyFileName" ]; then
+        sshKeyFileName="$(mktemp -u $HOME/.ssh/github_XXXXX)"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Before proceeding, wait for everything to be ok
+    print_info 'Set up the SSH keys'
+
+    generate_ssh_keys "$sshKeyFileName"
+
+    add_ssh_configs "$sshKeyFileName"
+
+    copy_public_ssh_key_to_clipboard "${sshKeyFileName}.pub"
+
+    open_github_ssh_page
+
+    test_ssh_connection \
+        && rm "${sshKeyFileName}.pub"
+
+}
+
+test_ssh_connection() {
 
     while true; do
 
@@ -59,9 +92,7 @@ set_github_ssh_key() {
 
     done
 
-    print_success 'Set up the SSH key'
-
-    cd "$workingDirectory"
+    print_success 'Set up the SSH keys'
 
 }
 
