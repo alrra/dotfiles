@@ -56,7 +56,7 @@ main() {
             || print_error 'Chrome Canary (add to package resource list)'
 
         update &> /dev/null \
-            || print_error 'Chrome Canary (resynch package index files)'
+            || print_error 'Chrome Canary (resync package index files)'
 
     fi
 
