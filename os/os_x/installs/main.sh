@@ -50,6 +50,7 @@ main() {
     brew_install 'Opera' 'opera' 'caskroom/cask' 'cask'
     brew_install 'Opera Beta' 'opera-beta' 'caskroom/versions' 'cask'
     brew_install 'Opera Developer' 'opera-developer' 'caskroom/versions' 'cask'
+    brew_install 'Safari Technology Preview' 'safari-technology-preview' 'caskroom/versions' 'cask'
     brew_install 'Spectacle' 'spectacle' 'caskroom/cask' 'cask'
     brew_install 'tmux' 'tmux'
     brew_install 'Transmission' 'transmission' 'caskroom/cask' 'cask'
