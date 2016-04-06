@@ -152,6 +152,7 @@ as the `git` user credentials, e.g.:
 [user]
     name = Cătălin Mariș
     email = alrra@example.com
+    signingkey = XXXXXXXX
 ```
 
 #### `~/.vimrc.local`
