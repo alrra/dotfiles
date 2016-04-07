@@ -15,6 +15,56 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+cmd_exists() {
+    command -v "$1" &> /dev/null
+}
+
+compress_file() {
+    cat "$1" | tee >(gzip > "$2") &> /dev/null
+}
+
+fetch_page() {
+
+    declare -r -a CURL_DEFAULT_OPTIONS=(
+        --connect-timeout 30
+        --header "Accept-Encoding: gzip, deflate"
+        --header "Cache-Control: no-cache" # Prevent intermediate
+                                           # proxies from caching
+                                           # the response
+
+        --location                         # If the page was moved
+                                           # to a different location,
+                                           # redo the request
+        --max-time 150
+        --show-error
+        --silent
+        --user-agent "Mozilla/5.0 Gecko"   # Send a fake UA string
+                                           # for sites that sniff
+                                           # it instead of using the
+                                           # Accept-Encoding header
+    )
+
+    local tmpFile=''
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Try to get the compressed version of the page
+
+    curl "${CURL_DEFAULT_OPTIONS[@]}" "$1" &> /dev/null 1> "$2" \
+        || return 1
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # If the page is not served compressed, compress it!
+
+    if ! file "$2" | grep "gzip compressed data" &> /dev/null; then
+        tmpFile="$(mktemp -u /tmp/XXXXX)"
+        compress_file "$2" "$tmpFile"
+        mv "$tmpFile" "$2"
+    fi
+
+}
+
 get_script() {
 
     declare -r OS_NAME="$(uname -s)"
@@ -36,22 +86,46 @@ get_script() {
 
 }
 
+open_img() {
+
+    if cmd_exists 'open'; then
+        open "$1"
+    elif cmd_exists 'xdg-open'; then
+        xdg-open "$1"
+    fi
+
+}
+
+print_error() {
+    printf " [✖] %s\n" "$1"
+}
+
+print_result() {
+    [ $1 -eq 0 ] \
+        && print_success "$2" \
+        || print_error "$2"
+
+    return $1
+}
+
+print_success() {
+    printf " [✔] %s\n" "$1"
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
     declare -r script="$(get_script)"
 
-    local cmd=''
+    local imageFile=''
     local tmpFile=''
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if `cURL` is installed
 
-    command -v 'curl' &> /dev/null
-
-    if [ $? -ne 0 ]; then
+    if ! cmd_exists 'curl'; then
         printf 'cURL is required, please install it!\n'
         exit 1
     fi
@@ -60,24 +134,35 @@ main() {
 
     while [ $# -ne 0 ]; do
 
-        tmpFile="$(mktemp /tmp/XXXXX.gz)"
+        tmpFile="$(mktemp -u /tmp/XXXXX)"
+        imageFile="$(printf '%s.png' "$1" | sed 's/[^a-zA-Z0-9.]/-/g')"
 
-        # Check if the current command line argument is a local file
-        if [ -f "$1" ]; then
-            cmd='cat'
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        # If it's not, assume it is a URL
-        else
-            cmd='curl -sSL'
+        # Check if the current command line argument is
+        # a local file, and if it's not, assume it is a URL
+
+        [ -f "$1" ] \
+            && compress_file "$1" "$tmpFile" \
+            || fetch_page "$1" "$tmpFile"
+
+        if [ $? -ne 0 ]; then
+            print_error "$1"
+            shift
+            continue
         fi
 
-        printf "  * %s\n" "$1"
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         # Generate the heatmap image
-        ${cmd} "$1" | tee >(gzip > "$tmpFile") &> /dev/null \
-            && ${script} "$tmpFile" \
-            && rm -rf "$tmpFile" \
-            && mv "gzthermal-result.png" "$(printf '%s.png' "$1" | sed -e 's/\//-/g')" \
+
+        ${script} "$tmpFile" \
+            && mv "gzthermal-result.png" "$imageFile" \
+            && open_img "$imageFile"
+
+        print_result $? "$1"
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         shift
 
