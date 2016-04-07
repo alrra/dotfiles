@@ -34,7 +34,6 @@ ask_for_sudo() {
 
 cmd_exists() {
     command -v "$1" &> /dev/null
-    return $?
 }
 
 execute() {
@@ -69,7 +68,6 @@ get_os_arch() {
 
 is_git_repository() {
     git rev-parse &> /dev/null
-    return $?
 }
 
 mkd() {
