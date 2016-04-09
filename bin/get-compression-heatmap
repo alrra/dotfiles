@@ -2,8 +2,7 @@
 
 # DESCRIPTION:
 #
-#   Generate compression efficiency
-#   heatmap images for files / URLs.
+#   Generate compression efficiency heatmap images for files / URLs.
 #
 # USAGE:
 #
@@ -11,7 +10,13 @@
 #
 # USEFUL LINKS:
 #
+#   http://encode.ru/threads/1725-pngthermal-pseudo-thermal-view-of-create_heatmap_for_png-compression-efficiency
 #   http://encode.ru/threads/1889-gzthermal-pseudo-thermal-view-of-Gzip-Deflate-compression-efficiency
+
+# ----------------------------------------------------------------------
+
+declare gzthermal=""
+declare pngthermal=""
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -23,7 +28,25 @@ compress_file() {
     cat "$1" | tee >(gzip > "$2") &> /dev/null
 }
 
-fetch_page() {
+create_heatmap_for_file() {
+
+    local tmpFile="$1"
+
+    if [ "$(get_file_mime_type "$1")" != "application/x-gzip" ]; then
+        tmpFile="$(create_tmp_file)"
+        compress_file "$1" "$tmpFile"
+    fi \
+        && "${gzthermal}" "$tmpFile" \
+        && mv "gzthermal-result.png" "$2"
+        #       └─ this cannot be changed :(
+
+}
+
+create_heatmap_for_png() {
+    "${pngthermal}" "$1" "$2"
+}
+
+create_heatmap_for_webpage() {
 
     declare -r -a CURL_DEFAULT_OPTIONS=(
         --connect-timeout 30
@@ -44,53 +67,57 @@ fetch_page() {
                                            # Accept-Encoding header
     )
 
-    local tmpFile=''
+    local tmpFile="$(create_tmp_file)"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Try to get the compressed version of the page
+    # Try to get the compressed version of the page, and if the
+    # page isn't served compressed, `create_heatmap_for_file` will
+    # take care of compressing it
 
-    curl "${CURL_DEFAULT_OPTIONS[@]}" "$1" &> /dev/null 1> "$2" \
-        || return 1
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # If the page is not served compressed, compress it!
-
-    if ! file "$2" | grep "gzip compressed data" &> /dev/null; then
-        tmpFile="$(mktemp -u /tmp/XXXXX)"
-        compress_file "$2" "$tmpFile"
-        mv "$tmpFile" "$2"
-    fi
+    curl "${CURL_DEFAULT_OPTIONS[@]}" "$1" &> /dev/null 1> "$tmpFile" \
+        && create_heatmap_for_file "$tmpFile" "$2"
 
 }
 
-get_script() {
+create_tmp_file() {
+    printf "%s" "$(mktemp /tmp/XXXXX)"
+}
+
+get_file_mime_type() {
+    printf "%s" "$(file "$1" --brief --mime-type)"
+}
+
+get_image_name() {
+    printf "%s.png" "$(printf "%s" "$1" | sed 's/[^a-zA-Z0-9]/-/g')"
+}
+
+get_script_path() {
 
     declare -r OS_NAME="$(uname -s)"
-    local script='gzthermal'
+    local path="$1"
 
     if [ "$OS_NAME" == "Darwin" ]; then
-        script="$script/osx"
+        path="$path/osx"
     elif [ "$OS_NAME" == "Linux" ]; then
-        script="$script/linux"
+        path="$path/linux"
 
         if [ "$(uname -m)" == "x86_64" ]; then
-            script="${script}-64"
+            path="${path}-64"
         else
-            script="${script}-32"
+            path="${path}-31"
         fi
     fi
 
-    printf "%s" "$(dirname "$BASH_SOURCE")/$script"
+    printf "%s" "$(dirname "$BASH_SOURCE")/$path"
 
 }
 
-open_img() {
+open_image() {
 
-    if cmd_exists 'open'; then
+    if cmd_exists "open"; then
         open "$1"
-    elif cmd_exists 'xdg-open'; then
+    elif cmd_exists "xdg-open"; then
         xdg-open "$1"
     fi
 
@@ -112,55 +139,60 @@ print_success() {
     printf " [✔] %s\n" "$1"
 }
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ----------------------------------------------------------------------
 
 main() {
 
-    declare -r script="$(get_script)"
-
-    local imageFile=''
-    local tmpFile=''
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     # Check if `cURL` is installed
 
-    if ! cmd_exists 'curl'; then
-        printf 'cURL is required, please install it!\n'
+    if ! cmd_exists "curl"; then
+        printf "cURL is required, please install it!\n"
         exit 1
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    local imageFile=""
+
+    gzthermal="$(get_script_path "gzthermal")"
+    pngthermal="$(get_script_path "pngthermal")"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     while [ $# -ne 0 ]; do
 
-        tmpFile="$(mktemp -u /tmp/XXXXX)"
-        imageFile="$(printf '%s.png' "$1" | sed 's/[^a-zA-Z0-9.]/-/g')"
+        imageFile="$(get_image_name "$1")"
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        # Check if the current command line argument is
-        # a local file, and if it's not, assume it is a URL
+        # Check if the current command
+        # line argument is a local file
 
-        [ -f "$1" ] \
-            && compress_file "$1" "$tmpFile" \
-            || fetch_page "$1" "$tmpFile"
+        if [ -f "$1" ]; then
 
-        if [ $? -ne 0 ]; then
-            print_error "$1"
-            shift
-            continue
+            if [ $(get_file_mime_type "$1") != "image/png" ]; then
+                create_heatmap_for_file "$1" "$imageFile"
+            else
+                create_heatmap_for_png "$1" "$imageFile"
+            fi
+
+        # If it's not, assume it is a URL
+
+        else
+            create_heatmap_for_webpage "$1" "$imageFile"
         fi
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        # Generate the heatmap image
+        print_result $? "$1" \
+            && open_image "$imageFile"
 
-        ${script} "$tmpFile" \
-            && mv "gzthermal-result.png" "$imageFile" \
-            && open_img "$imageFile"
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        print_result $? "$1"
+        # Opening too many images really
+        # quickly makes OS X's Preview crash
+
+        sleep 0.2
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
