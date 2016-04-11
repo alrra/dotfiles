@@ -1,20 +1,20 @@
 #!/bin/bash
 
 cd "$(dirname "$BASH_SOURCE")" \
-    && source '../../utils.sh'
+    && source "../../utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
-    local HOMEBREW_PREFIX=''
+    local HOMEBREW_PREFIX=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if `Homebrew` is installed
 
-    if ! cmd_exists 'brew'; then
-        print_error 'Homebrew is required, please install it!\n'
+    if ! cmd_exists "brew"; then
+        print_error "Homebrew is required, please install it!\n"
         exit 1
     fi
 
@@ -23,7 +23,7 @@ main() {
     # Check if latest version of `Bash` is installed
 
     if ! brew list bash &> /dev/null; then
-        print_error 'Bash 4.x is required, please install it!\n'
+        print_error "Bash 4.x is required, please install it!\n"
         exit 1
     fi
 
@@ -52,7 +52,7 @@ main() {
     # https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/chsh.1.html
 
     chsh -s "$HOMEBREW_PREFIX/bin/bash" &> /dev/null
-    print_result $? 'Bash (use latest version)'
+    print_result $? "Bash (use latest version)"
 
 }
 

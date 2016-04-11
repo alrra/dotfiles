@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "$BASH_SOURCE")" \
-    && source '../../utils.sh'
+    && source "../../utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -16,7 +16,7 @@ brew_install() {
 
     # Check if `Homebrew` is installed
 
-    if ! cmd_exists 'brew'; then
+    if ! cmd_exists "brew"; then
         print_error "$FORMULA_READABLE_NAME (\`brew\` is not installed)"
         return 1
     fi

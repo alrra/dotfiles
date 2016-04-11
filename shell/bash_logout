@@ -3,5 +3,5 @@
 # Clear console on exit
 
 [ "$SHLVL" == 1 ] \
-    && command -v 'clear' &> /dev/null  \
+    && command -v "clear" &> /dev/null  \
     && clear

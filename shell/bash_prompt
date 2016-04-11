@@ -13,16 +13,16 @@ enable_color_support() {
 
     if [[ $COLORTERM == gnome-* && $TERM == xterm ]] \
         && infocmp gnome-256color &> /dev/null; then
-        export TERM='gnome-256color'
+        export TERM="gnome-256color"
     elif infocmp xterm-256color &> /dev/null; then
-        export TERM='xterm-256color'
+        export TERM="xterm-256color"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Load OS specific color support
 
-    if [ "$OS" == 'osx' ]; then
+    if [ "$OS" == "osx" ]; then
         source "$DOTFILES_DIR_PATH/shell/os_x/bash_colors"
     elif [ "$OS" == 'ubuntu' ]; then
         source "$DOTFILES_DIR_PATH/shell/ubuntu/bash_colors"
@@ -39,8 +39,8 @@ enable_color_support() {
 
 get_git_repository_details() {
 
-    local branchName=''
-    local tmp=''
+    local branchName=""
+    local tmp=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -88,8 +88,8 @@ get_git_repository_details() {
 
 set_prompts() {
 
-    local black='' blue='' bold='' cyan='' green='' orange='' \
-          purple='' red='' reset='' white='' yellow=''
+    local black="" blue="" bold="" cyan="" green="" orange="" \
+          purple="" red="" reset="" white="" yellow=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -158,7 +158,7 @@ set_prompts() {
     # | PS2 - Continuation interactive prompt                          |
     # ------------------------------------------------------------------
 
-    PS2='⚡ '
+    PS2="⚡ "
 
     export PS2
 
@@ -175,7 +175,7 @@ set_prompts() {
     # local dateCmd=""
     #
     # if [ "$(date +%N)" != "N" ] || \
-    #    [ ! -x "$(command -v 'gdate')" ]; then
+    #    [ ! -x "$(command -v "gdate")" ]; then
     #    dateCmd="date +%s.%N"
     # else
     #    dateCmd="gdate +%s.%N"

@@ -4,24 +4,24 @@
 
 # Advanced Packaging Tool
 
-alias apti='sudo apt-get install'
-alias aptr='sudo apt-get remove'
-alias apts='sudo apt-cache search'
-alias aptu='sudo apt-get update \
-             && sudo apt-get upgrade'
+alias apti="sudo apt-get install"
+alias aptr="sudo apt-get remove"
+alias apts="sudo apt-cache search"
+alias aptu="sudo apt-get update \
+             && sudo apt-get upgrade"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Empty Trash
 
-alias empty-trash='rm -rf ~/.local/share/Trash/files/*'
+alias empty-trash="rm -rf ~/.local/share/Trash/files/*"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Hide/Show desktop icons
 
-alias hide-desktop-icons='gsettings set org.gnome.desktop.background show-desktop-icons false'
-alias show-desktop-icons='gsettings set org.gnome.desktop.background show-desktop-icons true'
+alias hide-desktop-icons="gsettings set org.gnome.desktop.background show-desktop-icons false"
+alias show-desktop-icons="gsettings set org.gnome.desktop.background show-desktop-icons true"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -37,19 +37,19 @@ alias local-ip="ifconfig | \
 
 # Lock screen
 
-alias akf='gnome-screensaver-command --lock'
+alias akf="gnome-screensaver-command --lock"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Open
 
-alias o='xdg-open'
+alias o="xdg-open"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Update
 
-alias u='sudo apt-get update \
+alias u="sudo apt-get update \
             && sudo apt-get upgrade \
             && npm install -g npm \
-            && npm upgrade -g'
+            && npm upgrade -g"

@@ -6,7 +6,7 @@
 
 ? () {
 
-    local result=''
+    local result=""
 
     #                       ┌─ default (when --mathlib is used) is 20
     result="$( printf "scale=10;%s\n" "$*" | bc --mathlib | tr -d "\\\n" )"
@@ -33,7 +33,7 @@
 
 datauri() {
 
-    local mimeType=''
+    local mimeType=""
 
     if [ -f "$1" ]; then
         mimeType=$(file -b --mime-type "$1")
@@ -47,7 +47,7 @@ datauri() {
                     "$mimeType" \
                     "$(openssl base64 -in "$1" | tr -d "\n")"
     else
-        printf "'%s' is not a file.\n" "$1"
+        printf ""%s" is not a file.\n" "$1"
     fi
 
 }
@@ -88,10 +88,10 @@ gz() {
                             #              └─ remove tailing zeros
 
         else
-            printf "'%s' is empty.\n" "$1"
+            printf ""%s" is empty.\n" "$1"
         fi
     else
-        printf "'%s' is not a file.\n" "$1"
+        printf ""%s" is not a file.\n" "$1"
     fi
 
 }

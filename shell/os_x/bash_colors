@@ -11,19 +11,19 @@
 #    environment variable (built-in defaults are used if this
 #    variable is not set)
 
-LSCOLORS=''
+LSCOLORS=""
 
-LSCOLORS+='gx' # Directory
-LSCOLORS+='fx' # Symbolic link
-LSCOLORS+='cx' # Socket
-LSCOLORS+='dx' # Pipe
-LSCOLORS+='cx' # Executable
-LSCOLORS+='eg' # Block special
-LSCOLORS+='ed' # Character special
-LSCOLORS+='ab' # Executable with setuid bit set
-LSCOLORS+='ag' # Executable with setgid bit set
-LSCOLORS+='cc' # Directory writable to others, with sticky bit
-LSCOLORS+='bd' # Directory writable to others, without sticky bit
+LSCOLORS+="gx" # Directory
+LSCOLORS+="fx" # Symbolic link
+LSCOLORS+="cx" # Socket
+LSCOLORS+="dx" # Pipe
+LSCOLORS+="cx" # Executable
+LSCOLORS+="eg" # Block special
+LSCOLORS+="ed" # Character special
+LSCOLORS+="ab" # Executable with setuid bit set
+LSCOLORS+="ag" # Executable with setgid bit set
+LSCOLORS+="cc" # Directory writable to others, with sticky bit
+LSCOLORS+="bd" # Directory writable to others, without sticky bit
 
 export LSCOLORS
 
@@ -31,4 +31,4 @@ export LSCOLORS
 
 # Enable color support
 
-alias ls='ls -G' # or CLICOLOR=1
+alias ls="ls -G" # or CLICOLOR=1

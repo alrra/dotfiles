@@ -15,9 +15,9 @@ source "$DOTFILES_DIR_PATH/os/utils.sh" \
 # Enable programmable completion features
 # http://tldp.org/LDP/abs/html/tabexpansion.html
 
-if [ "$OS" == 'osx' ]; then
+if [ "$OS" == "osx" ]; then
     source "$DOTFILES_DIR_PATH/shell/os_x/bash_autocomplete"
-elif [ "$OS" == 'ubuntu' ]; then
+elif [ "$OS" == "ubuntu" ]; then
     source "$DOTFILES_DIR_PATH/shell/ubuntu/bash_autocomplete"
 fi
 
