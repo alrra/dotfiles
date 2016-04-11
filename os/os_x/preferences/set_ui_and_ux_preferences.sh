@@ -19,9 +19,6 @@ set_preferences() {
     execute "defaults write com.apple.LaunchServices LSQuarantine -bool false" \
         "Disable 'Are you sure you want to open this application?' dialog"
 
-    # execute "defaults write com.apple.loginwindow TALLogoutSavesState 0" \
-    #     "Disable "Reopen windows when logging back in""
-
     execute "defaults write com.apple.print.PrintingPrefs 'Quit When Finished' -bool true" \
         "Automatically quit the printer app once the print jobs are completed"
 

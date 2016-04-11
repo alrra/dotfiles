@@ -22,7 +22,7 @@ set_preferences() {
 
 main() {
 
-    print_in_purple "  Chrome\n\n"
+    print_in_purple "\n  Chrome\n\n"
     set_preferences
 
     killall "Google Chrome" &> /dev/null
