@@ -4,17 +4,17 @@
 
 source_bash_files() {
 
-    local file=''
-    local i=''
+    local file=""
+    local i=""
 
     declare -r -a FILES_TO_SOURCE=(
-        'bash_aliases'
-        'bash_autocomplete'
-        'bash_exports'
-        'bash_functions'
-        'bash_options'
-        'bash_prompt'
-        'bash.local'  # for local settings that should
+        "bash_aliases"
+        "bash_autocomplete"
+        "bash_exports"
+        "bash_functions"
+        "bash_options"
+        "bash_prompt"
+        "bash.local"  # for local settings that should
                       # not be under version control
     )
 

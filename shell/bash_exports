@@ -6,7 +6,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Make vim the default editor
-export EDITOR='vim'
+export EDITOR="vim"
 
 # Ignore commands that start with spaces and duplicates
 export HISTCONTROL=ignoreboth
@@ -16,25 +16,25 @@ export HISTCONTROL=ignoreboth
 export HISTFILESIZE=10000
 
 # Don't add certain commands to the history file
-export HISTIGNORE='&:[bf]g:c:clear:history:exit:q:pwd:* --help'
+export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
 
 # Increase the maximum number of commands recorded in the
 # command history (default value is 500)
 export HISTSIZE=10000
 
 # Prefer US English and use UTF-8 encoding
-export LANG='en_US'
-export LC_ALL='en_US.UTF-8'
+export LANG="en_US"
+export LC_ALL="en_US.UTF-8"
 
 # Use custom `less` colors for man pages
 # https://www.gnu.org/software/termutils/manual/termutils-2.0/html_chapter/tput_1.html
-export LESS_TERMCAP_md=$'\E[1;32m'   # begin bold mode
-export LESS_TERMCAP_me=$'\E[0m'      # end bold mode
-#export LESS_TERMCAP_us=$'\E[4;32m'   # begin underscore mode
-#export LESS_TERMCAP_ue=$'\E[0m'      # end underscore mode
+export LESS_TERMCAP_md=$"\E[1;32m"   # begin bold mode
+export LESS_TERMCAP_me=$"\E[0m"      # end bold mode
+#export LESS_TERMCAP_us=$"\E[4;32m"   # begin underscore mode
+#export LESS_TERMCAP_ue=$"\E[0m"      # end underscore mode
 
 # Don't clear the screen after quitting a man page
-export MANPAGER='less -X'
+export MANPAGER="less -X"
 
 # Increase the maximum number of lines of history persisted
 # in the `Node` REPL history file (default value is 1000)
@@ -46,4 +46,4 @@ export NODE_REPL_HISTORY_SIZE=10000
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Make Python use UTF-8 encoding for output to stdin/stdout/stderr
-export PYTHONIOENCODING='UTF-8'
+export PYTHONIOENCODING="UTF-8"

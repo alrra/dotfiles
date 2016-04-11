@@ -7,7 +7,7 @@ set guicursor=n:blinkon0    " Turn off blinking cursor in normal mode
 set visualbell              " ┐ Disable beeping and window flashing
 set t_vb=                   " ┘ https://vim.wikia.com/wiki/Disable_beeping
 
-if has('gui_running')
+if has("gui_running")
 
     set guioptions-=T       " Remove toolbar
     set guioptions-=m       " Remove menu bar
@@ -15,9 +15,9 @@ if has('gui_running')
     set guioptions-=r       " Remove right-hand scroll bar
 
     " Set custom font settings
-    if has('gui_macvim')
+    if has("gui_macvim")
         set guifont=Menlo:h16
-    elseif has('gui_gnome')
+    elseif has("gui_gnome")
         set guifont=Monospace\ 12
     endif
 
@@ -33,6 +33,6 @@ endif
 " Note: The following needs to be included last in order to allow
 "       any of the above settings to be overwritten by local ones
 
-if filereadable(glob('~/.gvimrc.local'))
+if filereadable(glob("~/.gvimrc.local"))
     source ~/.gvimrc.local
 endif

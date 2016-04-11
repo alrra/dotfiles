@@ -1,31 +1,31 @@
 #!/bin/bash
 
 cd "$(dirname "$BASH_SOURCE")" \
-    && source 'utils.sh'
+    && source "utils.sh"
 
 declare -a FILES_TO_SYMLINK=(
 
-    'shell/bash_aliases'
-    'shell/bash_autocomplete'
-    'shell/bash_exports'
-    'shell/bash_functions'
-    'shell/bash_logout'
-    'shell/bash_options'
-    'shell/bash_profile'
-    'shell/bash_prompt'
-    'shell/bashrc'
-    'shell/curlrc'
-    'shell/inputrc'
-    'shell/screenrc'
-    'shell/tmux.conf'
+    "shell/bash_aliases"
+    "shell/bash_autocomplete"
+    "shell/bash_exports"
+    "shell/bash_functions"
+    "shell/bash_logout"
+    "shell/bash_options"
+    "shell/bash_profile"
+    "shell/bash_prompt"
+    "shell/bashrc"
+    "shell/curlrc"
+    "shell/inputrc"
+    "shell/screenrc"
+    "shell/tmux.conf"
 
-    'git/gitattributes'
-    'git/gitconfig'
-    'git/gitignore'
+    "git/gitattributes"
+    "git/gitconfig"
+    "git/gitignore"
 
-    'vim/vim'
-    'vim/vimrc'
-    'vim/gvimrc'
+    "vim/vim"
+    "vim/vimrc"
+    "vim/gvimrc"
 
 )
 
@@ -33,9 +33,9 @@ declare -a FILES_TO_SYMLINK=(
 
 main() {
 
-    local i=''
-    local sourceFile=''
-    local targetFile=''
+    local i=""
+    local sourceFile=""
+    local targetFile=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

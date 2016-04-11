@@ -1,14 +1,14 @@
 #!/bin/bash
 
 cd "$(dirname "$BASH_SOURCE")" \
-    && source '../../utils.sh'
+    && source "../../utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 set_preferences() {
 
-    execute 'defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true' \
-        'Prevent Photos from opening automatically when devices are plugged in'
+    execute "defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true" \
+        "Prevent Photos from opening automatically when devices are plugged in"
 
 }
 
@@ -16,10 +16,10 @@ set_preferences() {
 
 main() {
 
-    print_in_purple '\n  Photos\n\n'
+    print_in_purple "\n  Photos\n\n"
     set_preferences
 
-    killall 'Photos' &> /dev/null
+    killall "Photos" &> /dev/null
 
 }
 

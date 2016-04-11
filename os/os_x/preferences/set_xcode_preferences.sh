@@ -1,14 +1,14 @@
 #!/bin/bash
 
 cd "$(dirname "$BASH_SOURCE")" \
-    && source '../../utils.sh'
+    && source "../../utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 set_preferences() {
 
-    execute 'xcrun simctl delete unavailable' \
-        'Remove unavailable simulators'
+    execute "xcrun simctl delete unavailable" \
+        "Remove unavailable simulators"
 
 }
 
@@ -16,10 +16,10 @@ set_preferences() {
 
 main() {
 
-    print_in_purple '\n  Xcode\n\n'
+    print_in_purple "\n  Xcode\n\n"
     set_preferences
 
-    killall 'Xcode' &> /dev/null
+    killall "Xcode" &> /dev/null
 
 }
 

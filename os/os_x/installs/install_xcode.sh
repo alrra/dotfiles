@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd "$(dirname "$BASH_SOURCE")" \
-    && source '../../utils.sh' \
-    && source './utils.sh'
+    && source "../../utils.sh" \
+    && source "./utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -20,7 +20,7 @@ main() {
             sleep 5
         done
 
-        print_result $? 'Install XCode Command Line Tools'
+        print_result $? "Install XCode Command Line Tools"
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -29,7 +29,7 @@ main() {
         # https://github.com/alrra/dotfiles/issues/13
 
         sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
-        print_result $? 'Make "xcode-select" developer directory point to Xcode'
+        print_result $? "Make "xcode-select" developer directory point to Xcode"
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -37,11 +37,11 @@ main() {
         # https://github.com/alrra/dotfiles/issues/10
 
         sudo xcodebuild -license
-        print_result $? 'Agree with the XCode Command Line Tools licence'
+        print_result $? "Agree with the XCode Command Line Tools licence"
 
     fi
 
-    print_result $? 'XCode Command Line Tools'
+    print_result $? "XCode Command Line Tools"
 
 }
 

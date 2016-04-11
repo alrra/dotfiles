@@ -4,71 +4,71 @@
 
 # Clear DNS cache
 
-alias clear-dns-cache='sudo dscacheutil -flushcache; \
-                       sudo killall -HUP mDNSResponder'
+alias clear-dns-cache="sudo dscacheutil -flushcache; \
+                       sudo killall -HUP mDNSResponder"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Homebrew
 
-alias brewd='brew doctor'
-alias brewi='brew install'
-alias brewr='brew uninstall'
-alias brews='brew search'
-alias brewu='brew update && \
+alias brewd="brew doctor"
+alias brewi="brew install"
+alias brewr="brew uninstall"
+alias brews="brew search"
+alias brewu="brew update && \
              brew upgrade --all && \
              brew cleanup && \
-             brew cask cleanup'
+             brew cask cleanup"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Empty the trash, the main HDD and on all mounted volumes
 # and clear Apple’s system logs to improve shell startup speed
 
-alias empty-trash='sudo rm -frv /Volumes/*/.Trashes; \
+alias empty-trash="sudo rm -frv /Volumes/*/.Trashes; \
                    sudo rm -frv ~/.Trash; \
                    sudo rm -frv /private/var/log/asl/*.asl; \
-                   sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"'
+                   sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Hide/Show desktop icons
 
-alias hide-desktop-icons='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
-alias show-desktop-icons='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
+alias hide-desktop-icons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias show-desktop-icons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Hide/Show hidden files in Finder
 
-alias hide-hidden-files='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
-alias show-hidden-files='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
+alias hide-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+alias show-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Lock screen
 
-alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Get local IP
 
-alias local-ip='ipconfig getifaddr en1'
+alias local-ip="ipconfig getifaddr en1"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Open
 
-alias o='open'
+alias o="open"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Update
 
-alias u='sudo softwareupdate --install --all \
+alias u="sudo softwareupdate --install --all \
             && brew update \
             && brew upgrade --all \
             && brew cleanup \
             && npm install -g npm \
-            && npm update -g'
+            && npm update -g"

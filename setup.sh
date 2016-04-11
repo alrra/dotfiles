@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -r GITHUB_REPOSITORY='alrra/dotfiles'
+declare -r GITHUB_REPOSITORY="alrra/dotfiles"
 
 declare -r DOTFILES_ORIGIN="git@github.com:$GITHUB_REPOSITORY.git"
 declare -r DOTFILES_TARBALL_URL="https://github.com/$GITHUB_REPOSITORY/tarball/master"
@@ -17,7 +17,7 @@ download() {
     local url="$1"
     local output="$2"
 
-    if command -v 'curl' &> /dev/null; then
+    if command -v "curl" &> /dev/null; then
 
         curl -LsSo "$output" "$url" &> /dev/null
         #     │││└─ write output to file
@@ -27,7 +27,7 @@ download() {
 
         return $?
 
-    elif command -v 'wget' &> /dev/null; then
+    elif command -v "wget" &> /dev/null; then
 
         wget -qO "$output" "$url" &> /dev/null
         #     │└─ write output to file
@@ -47,17 +47,17 @@ download_dotfiles() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     download "$DOTFILES_TARBALL_URL" "$tmpFile"
-    print_result $? 'Download archive' 'true'
-    printf '\n'
+    print_result $? "Download archive" "true"
+    printf "\n"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ask_for_confirmation "Do you want to store the dotfiles in '$dotfilesDirectory'?"
 
     if ! answer_is_yes; then
-        dotfilesDirectory=''
+        dotfilesDirectory=""
         while [ -z "$dotfilesDirectory" ]; do
-            ask 'Please specify another location for the dotfiles (path): '
+            ask "Please specify another location for the dotfiles (path): "
             dotfilesDirectory="$(get_answer)"
         done
     fi
@@ -70,32 +70,32 @@ download_dotfiles() {
             rm -rf "$dotfilesDirectory"
             break
         else
-            dotfilesDirectory=''
+            dotfilesDirectory=""
             while [ -z "$dotfilesDirectory" ]; do
-                ask 'Please specify another location for the dotfiles (path): '
+                ask "Please specify another location for the dotfiles (path): "
                 dotfilesDirectory="$(get_answer)"
             done
         fi
     done
 
-    printf '\n'
+    printf "\n"
 
     mkdir -p "$dotfilesDirectory"
-    print_result $? "Create '$dotfilesDirectory'" 'true'
+    print_result $? "Create '$dotfilesDirectory'" "true"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Extract archive in the `dotfiles` directory
 
     extract "$tmpFile" "$dotfilesDirectory"
-    print_result $? 'Extract archive' 'true'
+    print_result $? "Extract archive" "true"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Remove archive
 
     rm -rf "$tmpFile"
-    print_result $? 'Remove archive'
+    print_result $? "Remove archive"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -121,7 +121,7 @@ extract() {
     local archive="$1"
     local outputDir="$2"
 
-    if command -v 'tar' &> /dev/null; then
+    if command -v "tar" &> /dev/null; then
         tar -zxf "$archive" --strip-components 1 -C "$outputDir"
         return $?
     fi
@@ -134,7 +134,7 @@ is_supported_version() {
 
     declare -a v1=(${1//./ })
     declare -a v2=(${2//./ })
-    local i=''
+    local i=""
 
     # Fill empty positions in v1 with zeros
     for (( i=${#v1[@]}; i<${#v2[@]}; i++ )); do
@@ -158,11 +158,11 @@ is_supported_version() {
 
 verify_os() {
 
-    declare -r MINIMUM_OS_X_VERSION='10.10'
-    declare -r MINIMUM_UBUNTU_VERSION='14.04'
+    declare -r MINIMUM_OS_X_VERSION="10.10"
+    declare -r MINIMUM_UBUNTU_VERSION="14.04"
     declare -r OS_NAME="$(uname -s)"
 
-    declare OS_VERSION=''
+    declare OS_VERSION=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -193,7 +193,7 @@ verify_os() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     else
-        printf 'Sorry, this script is intended only for OS X and Ubuntu!'
+        printf "Sorry, this script is intended only for OS X and Ubuntu!"
     fi
 
     return 1
@@ -224,8 +224,8 @@ main() {
 
     # Load utils
 
-    if [ -x 'os/utils.sh' ]; then
-        source 'os/utils.sh' || exit 1
+    if [ -x "os/utils.sh" ]; then
+        source "os/utils.sh" || exit 1
     else
         download_utils || exit 1
     fi
@@ -238,20 +238,20 @@ main() {
 
     # Setup the `dotfiles` if needed
 
-    if ! cmd_exists 'git' \
+    if ! cmd_exists "git" \
         || [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
 
-        print_info 'Download and extract archive'
+        print_info "Download and extract archive"
         download_dotfiles
 
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info 'Create directories'
+    print_info "Create directories"
 
-    ask_for_confirmation 'Do you want the additional directories to be created?'
-    printf '\n'
+    ask_for_confirmation "Do you want the additional directories to be created?"
+    printf "\n"
 
     if answer_is_yes; then
         ./os/create_directories.sh
@@ -259,23 +259,23 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info 'Create symbolic links'
+    print_info "Create symbolic links"
     ./os/create_symbolic_links.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info 'Install applications'
+    print_info "Install applications"
 
-    ask_for_confirmation 'Do you want to install the applications/command line tools?'
-    printf '\n'
+    ask_for_confirmation "Do you want to install the applications/command line tools?"
+    printf "\n"
 
     if answer_is_yes; then
 
         ./os/install_applications.sh
-        print_in_green '\n  ---\n\n'
+        print_in_green "\n  ---\n\n"
 
         ./os/install_node_versions.sh
-        print_in_green '\n  ---\n\n'
+        print_in_green "\n  ---\n\n"
 
         ./os/install_npm_packages.sh
 
@@ -283,10 +283,10 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info 'Set preferences'
+    print_info "Set preferences"
 
-    ask_for_confirmation 'Do you want to set the custom preferences?'
-    printf '\n'
+    ask_for_confirmation "Do you want to set the custom preferences?"
+    printf "\n"
 
     if answer_is_yes; then
         ./os/set_preferences.sh
@@ -294,19 +294,19 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if cmd_exists 'git'; then
+    if cmd_exists "git"; then
 
         if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-            print_info 'Initialize Git repository'
+            print_info "Initialize Git repository"
             ./os/initialize_git_repository.sh "$DOTFILES_ORIGIN"
         fi
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        print_info 'Update content'
+        print_info "Update content"
 
-        ask_for_confirmation 'Do you want to update the content from the "dotfiles" directory?'
-        printf '\n'
+        ask_for_confirmation "Do you want to update the content from the "dotfiles" directory?"
+        printf "\n"
 
         if answer_is_yes; then
             ./os/update_content.sh
@@ -316,12 +316,12 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if cmd_exists 'vim'; then
+    if cmd_exists "vim"; then
 
-        print_info 'Install/Update Vim plugins'
+        print_info "Install/Update Vim plugins"
 
-        ask_for_confirmation 'Do you want to install/update the Vim plugins?'
-        printf '\n'
+        ask_for_confirmation "Do you want to install/update the Vim plugins?"
+        printf "\n"
 
         if answer_is_yes; then
             ./os/install_vim_plugins.sh
@@ -331,10 +331,10 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info 'Restart'
+    print_info "Restart"
 
-    ask_for_confirmation 'Do you want to restart?'
-    printf '\n'
+    ask_for_confirmation "Do you want to restart?"
+    printf "\n"
 
     if answer_is_yes; then
         ./os/restart.sh
