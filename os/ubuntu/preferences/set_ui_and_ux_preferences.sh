@@ -24,9 +24,6 @@ set_preferences() {
     execute "gsettings set org.gnome.desktop.background picture-options 'stretched'" \
         "Set desktop background image options"
 
-    # execute "gsettings set org.gnome.desktop.background picture-uri 'file:///home/...' &> /dev/null" \
-    #     "Set desktop background image location"
-
     execute "gsettings set org.gnome.libgnomekbd.keyboard layouts \"[ 'us', 'ro' ]\"" \
         "Set keyboard languages"
 
