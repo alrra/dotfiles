@@ -6,7 +6,7 @@ set nocompatible               " Don't make vim vi-compatibile
 
 syntax on                      " Enable syntax highlighting
 
-if has('autocmd')
+if has("autocmd")
     filetype plugin indent on
     "           │     │    └──── Enable file type detection
     "           │     └───────── Enable loading of indent file
@@ -26,7 +26,7 @@ set backupskip+=/private/tmp/* " ┘ for certain files
 
 set clipboard=unnamed          " ┐
                                " │ Use the system clipboard
-if has('unnamedplus')          " │ as the default register
+if has("unnamedplus")          " │ as the default register
     set clipboard+=unnamedplus " │
 endif                          " ┘
 
@@ -132,7 +132,7 @@ set runtimepath+=~/.vim/plugins/Vundle.vim
 
 " Initialize Vundle and specify the path
 " where the plugins should be installed
-call vundle#begin('~/.vim/plugins')
+call vundle#begin("~/.vim/plugins")
 
     " Let Vundle manage Vundle (this is important!)
     Plugin 'gmarik/Vundle.vim'
@@ -175,14 +175,14 @@ filetype on
 " Redefine trigger key for Emmet
 " http://docs.emmet.io/cheat-sheet/
 
-let g:user_emmet_leader_key='<C-E>'
+let g:user_emmet_leader_key="<C-E>"
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Load custom Emmet snippets
 " http://docs.emmet.io/customization/snippets/
 
-let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
+let g:user_emmet_settings = webapi#json#decode(join(readfile(expand("~/.vim/snippets/emmet.json")), "\n"))
 
 
 " ----------------------------------------------------------------------
@@ -236,14 +236,14 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " Inform Syntastic which checkers to use based on file types
 " https://github.com/scrooloose/syntastic#3-faq
 
-let g:syntastic_html_checkers = [ 'jshint' ]
-let g:syntastic_javascript_checkers = [ 'jshint' ]
+let g:syntastic_html_checkers = [ "jshint" ]
+let g:syntastic_javascript_checkers = [ "jshint" ]
 
 " Disable syntax checking by default
 let g:syntastic_mode_map = {
-    \ 'active_filetypes': [],
-    \ 'mode': 'passive',
-    \ 'passive_filetypes': []
+    \ "active_filetypes": [],
+    \ "mode": "passive",
+    \ "passive_filetypes": []
 \}
 
 
@@ -253,10 +253,10 @@ let g:syntastic_mode_map = {
 
 function! GetGitBranchName()
 
-    let branchName = ''
+    let branchName = ""
 
-    if exists('g:loaded_fugitive')
-        let branchName = '[' . fugitive#head() . ']'
+    if exists("g:loaded_fugitive")
+        let branchName = "[" . fugitive#head() . "]"
     endif
 
     return branchName
@@ -269,8 +269,8 @@ function! StripTrailingWhitespaces()
 
     " Save last search and cursor position
     let searchHistory = @/
-    let cursorLine = line('.')
-    let cursorColumn = col('.')
+    let cursorLine = line(".")
+    let cursorColumn = col(".")
 
     " Strip trailing whitespaces
     %s/\s\+$//e
@@ -291,7 +291,7 @@ function! ToggleLimits()
     " [81]
     "   - general use
 
-    if ( &colorcolumn == '73' )
+    if ( &colorcolumn == "73" )
         set colorcolumn+=51,81
     else
         set colorcolumn-=51,81
@@ -316,7 +316,7 @@ endfunction
 " | Automatic Commands                                                 |
 " ----------------------------------------------------------------------
 
-if has('autocmd')
+if has("autocmd")
 
     " Autocommand Groups
     " http://learnvimscriptthehardway.stevelosh.com/chapters/14.html
@@ -331,7 +331,7 @@ if has('autocmd')
         autocmd!
         autocmd BufWritePost vimrc source $MYVIMRC
 
-        if has('gui_running')
+        if has("gui_running")
             autocmd BufWritePost gvimrc source $MYGVIMRC
         endif
 
@@ -372,8 +372,8 @@ if has('autocmd')
         "    https://daringfireball.net/projects/markdown/syntax#block
 
         let excludedFileTypes = [
-            \ 'markdown',
-            \ 'mkd.markdown'
+            \ "markdown",
+            \ "mkd.markdown"
         \]
 
         " Only strip the trailing whitespaces if the file type is
@@ -400,11 +400,11 @@ set background=dark            " Use colors that look good
 " Solarized theme is used from vim's Terminal mode
 " http://ethanschoonover.com/solarized/vim-colors-solarized#advanced-configuration
 
-if !has('gui_running')
-    let g:solarized_contrast = 'high'
+if !has("gui_running")
+    let g:solarized_contrast = "high"
     let g:solarized_termcolors = 256
     let g:solarized_termtrans = 1
-    let g:solarized_visibility = 'high'
+    let g:solarized_visibility = "high"
 endif
 
 colorscheme solarized          " Use custom color scheme
@@ -414,8 +414,8 @@ colorscheme solarized          " Use custom color scheme
 " | Key Mappings                                                       |
 " ----------------------------------------------------------------------
 
-" Use a different mapleader (default is '\')
-let mapleader = ','
+" Use a different mapleader (default is "\")
+let mapleader = ","
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -565,6 +565,6 @@ set statusline+=\ (%P)\        " Percent through file
 " Note: The following needs to be included last in order to allow
 "       any of the above settings to be overwritten by local ones
 
-if filereadable(glob('~/.vimrc.local'))
+if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif

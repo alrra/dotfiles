@@ -7,7 +7,7 @@ cd "$(dirname "$BASH_SOURCE")"
 main() {
 
     declare -a PROCESSES_TO_TERMINATE=(
-        'cfprefsd'
+        "cfprefsd"
     )
 
     ./set_app_store_preferences.sh

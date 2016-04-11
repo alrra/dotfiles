@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "$BASH_SOURCE")" \
-    && source 'utils.sh'
+    && source "utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -9,8 +9,8 @@ main() {
 
     # Check if `Git` is installed
 
-    if ! cmd_exists 'git'; then
-        print_error 'Git is required, please install it!\n'
+    if ! cmd_exists "git"; then
+        print_error "Git is required, please install it!\n"
         exit 1
     fi
 
@@ -23,20 +23,20 @@ main() {
         && printf "\n" | vim +PluginInstall +qall 2> /dev/null
         #     └─ simulate the ENTER keypress for
         #        the case where there are warnings
-    print_result $? 'Install Vim plugins'
+    print_result $? "Install Vim plugins"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # In the case of fresh installs, in order for `npm` to be
     # available, # the `~/bash.local` file needs to be sourced
 
-    if ! cmd_exists 'npm'; then
+    if ! cmd_exists "npm"; then
         source "$HOME/.bash.local"
     fi
 
     cd ~/.vim/plugins/tern_for_vim \
         && npm install &> /dev/null
-    print_result $? 'Install extra parts for `tern_for_vim`'
+    print_result $? "Install extra parts for \`tern_for_vim\`"
 
 }
 

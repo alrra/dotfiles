@@ -48,12 +48,12 @@ get_answer() {
 get_os() {
 
     declare -r OS_NAME="$(uname -s)"
-    local os=''
+    local os=""
 
     if [ "$OS_NAME" == "Darwin" ]; then
-        os='osx'
+        os="osx"
     elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
-        os='ubuntu'
+        os="ubuntu"
     else
         os="$OS_NAME"
     fi

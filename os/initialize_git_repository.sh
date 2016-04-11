@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "$BASH_SOURCE")" \
-    && source 'utils.sh'
+    && source "utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -12,7 +12,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     [ -z "$GIT_ORIGIN" ] \
-        && print_error 'Please provide a URL for the Git origin'
+        && print_error "Please provide a URL for the Git origin"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -25,7 +25,7 @@ main() {
         git init &> /dev/null \
             && git remote add origin "$GIT_ORIGIN" &> /dev/null
 
-        print_result $? 'Initialize the Git repository'
+        print_result $? "Initialize the Git repository"
 
     fi
 

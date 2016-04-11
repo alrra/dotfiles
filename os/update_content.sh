@@ -1,29 +1,29 @@
 #!/bin/bash
 
 cd "$(dirname "$BASH_SOURCE")" \
-    && source 'utils.sh'
+    && source "utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 add_ssh_configs() {
-    printf '%s\n' \
+    printf "%s\n" \
         "Host github.com" \
         "  IdentityFile $1" \
         "  LogLevel ERROR" >> ~/.ssh/config
-    print_result $? 'Add SSH configs'
+    print_result $? "Add SSH configs"
 }
 
 copy_public_ssh_key_to_clipboard () {
 
-    if cmd_exists 'pbcopy'; then
+    if cmd_exists "pbcopy"; then
 
         cat "$1" | pbcopy
-        print_result $? 'Copy public SSH key to clipboard'
+        print_result $? "Copy public SSH key to clipboard"
 
-    elif cmd_exists 'xclip'; then
+    elif cmd_exists "xclip"; then
 
         cat "$1" | xclip -selection clip
-        print_result $? 'Copy public SSH key to clipboard'
+        print_result $? "Copy public SSH key to clipboard"
 
     else
         print_warning "Please copy the public SSH key ($1) to clipboard"
@@ -32,18 +32,18 @@ copy_public_ssh_key_to_clipboard () {
 }
 
 generate_ssh_keys() {
-    ask 'Please provide an email address (email): ' && printf '\n'
+    ask "Please provide an email address (email): " && printf "\n"
     ssh-keygen -t rsa -b 4096 -C "$(get_answer)" -f "$1"
-    print_result $? 'Generate SSH keys'
+    print_result $? "Generate SSH keys"
 }
 
 open_github_ssh_page() {
 
-    declare -r GITHUB_SSH_URL='https://github.com/settings/ssh'
+    declare -r GITHUB_SSH_URL="https://github.com/settings/ssh"
 
-    if cmd_exists 'open'; then
+    if cmd_exists "open"; then
         open "$GITHUB_SSH_URL"
-    elif cmd_exists 'xdg-open'; then
+    elif cmd_exists "xdg-open"; then
         xdg-open "$GITHUB_SSH_URL"
     else
         print_warning "Please add the public SSH key to GitHub ($GITHUB_SSH_URL)"
@@ -66,7 +66,7 @@ set_github_ssh_key() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info 'Set up the SSH keys'
+    print_info "Set up the SSH keys"
 
     generate_ssh_keys "$sshKeyFileName"
 
@@ -92,7 +92,7 @@ test_ssh_connection() {
 
     done
 
-    print_success 'Set up the SSH keys'
+    print_success "Set up the SSH keys"
 
 }
 
@@ -110,7 +110,7 @@ main() {
             && git reset --hard origin/master &> /dev/null \
             && git clean -fd  &> /dev/null
 
-        print_result $? 'Update content'
+        print_result $? "Update content"
 
     fi
 

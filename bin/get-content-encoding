@@ -40,17 +40,17 @@ declare -r -a CURL_DEFAULT_OPTIONS=(
 
 check_for_sdch() {
 
-    declare availDicts=''
+    declare availDicts=""
     declare currentHeaders="$1"
-    declare dict=''
-    declare dictClientID=''
-    declare dicts=''
-    declare i=''
+    declare dict=""
+    declare dictClientID=""
+    declare dicts=""
+    declare i=""
     declare url="$2"
 
     # Check if the server advertised any dictionaries
     dicts="$( printf "%s" "$currentHeaders" |
-              grep -i 'Get-Dictionary:' |
+              grep -i "Get-Dictionary:" |
               cut -d':' -f2 |
               sed s/,/\ /g )"
 
@@ -58,7 +58,7 @@ check_for_sdch() {
     if [ -n "$dicts" ]; then
         for i in $dicts; do
 
-            dict=''
+            dict=""
 
             # Check if the dictionary location is specified as a path,
             # and if it is, construct it's URL from the host name of the
@@ -105,11 +105,11 @@ check_for_sdch() {
 
 get_content_encoding() {
 
-    declare currentHeaders=''
-    declare encoding=''
-    declare headers=''
-    declare indent=''
-    declare tmp=''
+    declare currentHeaders=""
+    declare encoding=""
+    declare headers=""
+    declare indent=""
+    declare tmp=""
     declare url="$1"
 
     headers="$(curl "${CURL_DEFAULT_OPTIONS[@]}" \
@@ -131,7 +131,7 @@ get_content_encoding() {
 
             # Get the value of the `Content-Encoding` header
             encoding="$( printf "%s" "$currentHeaders" |
-                         grep -i 'Content-Encoding:' |
+                         grep -i "Content-Encoding:" |
                          cut -d' ' -f2 |
                          tr "\r" "," |
                          tr -d "\n" |
@@ -151,7 +151,7 @@ get_content_encoding() {
             # Get the next URL from the series of redirects
             tmp="$url"
             url="$( printf "%s" "$currentHeaders" |
-                    grep -i 'Location' |
+                    grep -i "Location" |
                     sed -e 's/Location://' |
                     sed 's/^ *//' |
                     tr -d '\r' )"
@@ -169,10 +169,8 @@ main() {
 
     # Check if `cURL` is installed
 
-    command -v 'curl' &> /dev/null
-
-    if [ $? -ne 0 ]; then
-        printf 'cURL is required, please install it!\n'
+    if ! command -v "curl" &> /dev/null; then
+        printf "cURL is required, please install it!\n"
         exit 1
     fi
 
@@ -183,7 +181,7 @@ main() {
         shift
     done
 
-    printf '\n'
+    printf "\n"
 
 }
 

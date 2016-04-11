@@ -34,9 +34,7 @@ main() {
 
     # Check if ImageMagick's convert command-line tool is installed
 
-    command -v 'convert' $> /dev/null
-
-    if [ $? -ne 0 ]; then
+    if ! command -v "convert" $> /dev/null; then
         printf "Please install ImageMagick's 'convert' command-line tool!"
         exit;
     fi
