@@ -12,16 +12,9 @@
 # | Miscellaneous                                                      |
 # ----------------------------------------------------------------------
 
-# Dependency directory
-# https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
+# Node.js & npm
 
 node_modules
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# npm log file
-# https://docs.npmjs.com/misc/config#loglevel
-
 npm-debug.log
 
 
