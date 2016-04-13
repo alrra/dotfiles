@@ -28,10 +28,10 @@ export LC_ALL="en_US.UTF-8"
 
 # Use custom `less` colors for man pages
 # https://www.gnu.org/software/termutils/manual/termutils-2.0/html_chapter/tput_1.html
-export LESS_TERMCAP_md=$"\E[1;32m"   # begin bold mode
-export LESS_TERMCAP_me=$"\E[0m"      # end bold mode
-#export LESS_TERMCAP_us=$"\E[4;32m"   # begin underscore mode
-#export LESS_TERMCAP_ue=$"\E[0m"      # end underscore mode
+export LESS_TERMCAP_md=$'\e[1;32m'   # begin bold mode
+export LESS_TERMCAP_me=$'\e[0m'      # end bold mode
+#export LESS_TERMCAP_us=$'\e[4;32m'   # begin underscore mode
+#export LESS_TERMCAP_ue=$'\e[0m'      # end underscore mode
 
 # Don't clear the screen after quitting a man page
 export MANPAGER="less -X"
