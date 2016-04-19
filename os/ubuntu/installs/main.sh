@@ -112,10 +112,10 @@ main() {
 
     if ! package_is_installed "opera"; then
 
-        add_key "http://deb.opera.com/archive.key" \
+        add_key "https://deb.opera.com/archive.key" \
             || print_error "Opera (add key)"
 
-        add_to_source_list "http://deb.opera.com/opera-stable/ stable non-free" "opera.list" \
+        add_to_source_list "https://deb.opera.com/opera-stable/ stable non-free" "opera.list" \
             || print_error "Opera (add to package resource list)"
 
         update &> /dev/null \
