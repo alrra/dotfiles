@@ -115,10 +115,13 @@ get_script_path() {
 
 open_image() {
 
-    if cmd_exists "open"; then
-        open "$1"
-    elif cmd_exists "xdg-open"; then
+    # The order of the following checks matters
+    # as on Ubuntu there is also a utility called `open`
+
+    if cmd_exists "xdg-open"; then
         xdg-open "$1"
+    elif cmd_exists "open"; then
+        open "$1"
     fi
 
 }
