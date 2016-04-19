@@ -9,6 +9,8 @@ main() {
 
     declare -r OS="$(get_os)"
 
+    print_warning "This may take awhile, so please be patient!\n"
+
     if [ "$OS" == "osx" ]; then
         ./os_x/installs/main.sh
     elif [ "$OS" == "ubuntu" ]; then
