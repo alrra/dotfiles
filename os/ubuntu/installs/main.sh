@@ -52,7 +52,7 @@ main() {
         add_key "https://dl-ssl.google.com/linux/linux_signing_key.pub" \
             || print_error "Chrome Canary (add key)"
 
-        add_to_source_list "http://dl.google.com/linux/deb/ stable main" "google-chrome.list" \
+        add_to_source_list "[arch=amd64] https://dl.google.com/linux/deb/ stable main" "google-chrome.list" \
             || print_error "Chrome Canary (add to package resource list)"
 
         update &> /dev/null \
