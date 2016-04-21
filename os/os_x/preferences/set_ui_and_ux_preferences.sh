@@ -31,8 +31,8 @@ set_preferences() {
     execute "defaults write com.apple.screencapture type -string 'png'" \
         "Save screenshots as PNGs"
 
-    execute "defaults write com.apple.screensaver askForPassword -int 1 &&
-             defaults write com.apple.screensaver askForPasswordDelay -int 0"\
+    execute "defaults write com.apple.screensaver askForPassword -int 1 \
+                && defaults write com.apple.screensaver askForPasswordDelay -int 0"\
         "Require password immediately after into sleep or screen saver mode"
 
     execute "defaults write NSGlobalDomain AppleFontSmoothing -int 2" \
@@ -59,31 +59,30 @@ set_preferences() {
     execute "defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true" \
         "Expand print panel by default"
 
-    execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'Laptop' &&
-             sudo scutil --set ComputerName 'Laptop' &&
-             sudo scutil --set HostName 'Laptop' &&
-             sudo scutil --set LocalHostName 'Laptop'" \
+    execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'Laptop' \
+                && sudo scutil --set ComputerName 'laptop' \
+                && sudo scutil --set HostName 'laptop' \
+                && sudo scutil --set LocalHostName 'laptop'" \
         "Set computer name"
 
     execute "sudo systemsetup -setrestartfreeze on" \
         "Restart automatically if the computer freezes"
 
-    execute "sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0 &&
-             sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist &&
-             sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist" \
+    execute "sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0 \
+                && sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist \
+                && sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist" \
         "Turn Bluetooth off"
 
     execute "   for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
                     sudo defaults write \"${domain}\" dontAutoLoad -array \
                         '/System/Library/CoreServices/Menu Extras/TimeMachine.menu' \
                         '/System/Library/CoreServices/Menu Extras/Volume.menu'
-                done && \
-
-                sudo defaults write com.apple.systemuiserver menuExtras -array \
-                    '/System/Library/CoreServices/Menu Extras/Bluetooth.menu' \
-                    '/System/Library/CoreServices/Menu Extras/AirPort.menu' \
-                    '/System/Library/CoreServices/Menu Extras/Battery.menu' \
-                    '/System/Library/CoreServices/Menu Extras/Clock.menu'
+                done \
+                    && sudo defaults write com.apple.systemuiserver menuExtras -array \
+                        '/System/Library/CoreServices/Menu Extras/Bluetooth.menu' \
+                        '/System/Library/CoreServices/Menu Extras/AirPort.menu' \
+                        '/System/Library/CoreServices/Menu Extras/Battery.menu' \
+                        '/System/Library/CoreServices/Menu Extras/Clock.menu'
             " \
         "Hide Time Machine and Volume icons from the menu bar"
 

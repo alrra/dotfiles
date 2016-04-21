@@ -8,7 +8,7 @@ alias apti="sudo apt-get install"
 alias aptr="sudo apt-get remove"
 alias apts="sudo apt-cache search"
 alias aptu="sudo apt-get update \
-             && sudo apt-get upgrade"
+                && sudo apt-get upgrade"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -27,11 +27,11 @@ alias show-desktop-icons="gsettings set org.gnome.desktop.background show-deskto
 
 # Get local IP
 
-alias local-ip="ifconfig | \
-                | grep 'inet addr' \
-                | grep -v '127.0.0.1' \
-                | cut -d: -f2 \
-                | cut -d' ' -f1"
+alias local-ip="ifconfig \
+                    | grep 'inet addr' \
+                    | grep -v '127.0.0.1' \
+                    | cut -d: -f2 \
+                    | cut -d' ' -f1"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

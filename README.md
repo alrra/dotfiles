@@ -185,8 +185,6 @@ Inspiration and code was taken from many sources, including:
 
 * [Mathias Bynens'](https://github.com/mathiasbynens)
   [dotfiles](https://github.com/mathiasbynens/dotfiles)
-* [Nicolas Gallagher's](https://github.com/necolas)
-  [dotfiles](https://github.com/necolas/dotfiles)
 
 
 ## License

@@ -11,8 +11,10 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    [ -z "$GIT_ORIGIN" ] \
-        && print_error "Please provide a URL for the Git origin"
+    if [ -z "$GIT_ORIGIN" ]; then
+        print_error "Please provide a URL for the Git origin"
+        exit 1
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

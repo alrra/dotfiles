@@ -6,9 +6,11 @@ cd "$(dirname "$BASH_SOURCE")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 add_key() {
+
     wget -qO - "$1" | sudo apt-key add - &> /dev/null
     #     │└─ write output to file
     #     └─ don't show output
+
 }
 
 add_ppa() {
@@ -22,7 +24,8 @@ add_to_source_list() {
 autoremove() {
 
     # Remove packages that were automatically installed to satisfy
-    # dependencies for other other packages and are no longer needed
+    # dependencies for other packages and are no longer needed
+
     execute "sudo apt-get autoremove -qqy" "autoremove"
 
 }

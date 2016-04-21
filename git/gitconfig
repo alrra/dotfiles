@@ -146,4 +146,11 @@
 
 [include]
 
+    # Load local configs
+    # https://git-scm.com/docs/git-config#_includes
+    #
+    # Note: The following needs to remain at the end of this file in
+    #       order to allow any of the above configs to be overwritten
+    #       by the local ones
+
     path = ~/.gitconfig.local
