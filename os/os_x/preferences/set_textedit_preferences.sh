@@ -7,8 +7,8 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 set_preferences() {
 
-    execute "defaults write com.apple.TextEdit PlainTextEncoding -int 4 &&
-             defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4" \
+    execute "defaults write com.apple.TextEdit PlainTextEncoding -int 4 \
+                && defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4" \
         "Open and save files as UTF-8 encoded"
 
     execute "defaults write com.apple.TextEdit RichText -" \

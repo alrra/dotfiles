@@ -22,8 +22,8 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     brew_install "Bash" "bash"
-    ./change_default_bash_version.sh
     brew_install "Bash Completion 2" "bash-completion2" "homebrew/versions"
+    ./change_default_bash_version.sh
 
     print_in_green "\n  ---\n\n"
 
