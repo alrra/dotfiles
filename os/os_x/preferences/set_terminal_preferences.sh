@@ -20,6 +20,8 @@ set_preferences() {
         local allOpenedWindows
         local initialOpenedWindows
         local windowID
+
+        set themeFileName to "solarized_dark.terminal"
         set themeName to "Solarized Dark"
 
         (* Store the IDs of all the open terminal windows *)
@@ -28,7 +30,7 @@ set_preferences() {
         (* Open the custom theme so that it gets added to the list
            of available terminal themes (note: this will open two
            additional terminal windows) *)
-        do shell script "open '" & themeName & ".terminal'"
+        do shell script "open " & themeFileName
 
         (* Wait a little bit to ensure that the custom theme is added *)
         delay 1
