@@ -26,6 +26,7 @@ main() {
 
         # Point the `xcode-select` developer directory to
         # the appropriate directory from within `Xcode.app`
+        #
         # https://github.com/alrra/dotfiles/issues/13
 
         sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
@@ -34,6 +35,7 @@ main() {
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         # Prompt user to agree to the terms of the Xcode license
+        #
         # https://github.com/alrra/dotfiles/issues/10
 
         sudo xcodebuild -license

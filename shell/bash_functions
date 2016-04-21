@@ -14,7 +14,7 @@
     #                         (large numbers are printed on multiple lines)
 
     if [[ "$result" == *.* ]]; then
-        # improve the output for decimal numbers
+        # Improve the output for decimal numbers
         printf "%s" "$result" |
         sed -e "s/^\./0./"        `# add "0" for cases like ".5"` \
             -e "s/^-\./-0./"      `# add "0" for cases like "-.5"`\
@@ -88,10 +88,10 @@ gz() {
                             #              └─ remove tailing zeros
 
         else
-            printf ""%s" is empty.\n" "$1"
+            printf "\"%s\" is empty.\n" "$1"
         fi
     else
-        printf ""%s" is not a file.\n" "$1"
+        printf "\"%s\" is not a file.\n" "$1"
     fi
 
 }
@@ -135,8 +135,9 @@ hrfs() {
 # Create new directories and enter the first one
 
 mkd() {
-    [ -n "$*" ] && mkdir -p "$@" && cd "$@"
-    #                     └─ make parent directories if needed
+    [ -n "$*" ] \
+        && mkdir -p "$@" && cd "$@"
+        #         └─ make parent directories if needed
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -173,8 +174,11 @@ server() {
     local i=0
     local port="${1:-8000}"
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Wait for the server to be available, and once
     # it is, open its address in the default browser
+
     while [ $i -lt $MAX_NUMBER_OF_TRIES ]; do
         if [ "$(lsof -i -nP | grep "$port" | grep -i "python")" != "" ]; then
             o "http://localhost:${port}/"
@@ -183,6 +187,8 @@ server() {
         i=$(( i + 1 ))
         sleep 1
     done &
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Start server
     python -c "

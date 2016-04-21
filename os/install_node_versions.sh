@@ -12,6 +12,8 @@ declare -r -a NODE_VERSIONS=(
 main() {
 
     declare -r NVM_DIRECTORY="$HOME/.nvm"
+    declare -r NVM_GIT_REPOSITORY_URL="https://github.com/creationix/nvm.git"
+
     declare -r CONFIGS='
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -40,7 +42,7 @@ export NVM_DIR="'$NVM_DIRECTORY'"
 
     if [ ! -d "$NVM_DIRECTORY" ]; then
 
-        git clone https://github.com/creationix/nvm.git "$NVM_DIRECTORY" &> /dev/null
+        git clone "$NVM_GIT_REPO_URL" "$NVM_DIRECTORY" &> /dev/null
         print_result $? "nvm"
 
         if [ $? -eq 0 ]; then
@@ -53,20 +55,31 @@ export NVM_DIR="'$NVM_DIRECTORY'"
 
     if [ -d "$NVM_DIRECTORY" ]; then
 
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
         # Ensure the latest version of `nvm` is used
+
         cd "$NVM_DIRECTORY" \
             && git checkout `git describe --abbrev=0 --tags` &> /dev/null
         print_result $? "nvm (update)"
 
         source "$NVM_DIRECTORY/nvm.sh"
 
-        # Install node versions
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        # Install the specified `node` versions
+
         for i in ${NODE_VERSIONS[@]}; do
             execute "nvm install $i" "nvm (install: $i)"
         done
 
-        # Use `Node.js` by default
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        # By default, use the latest stable version of `node`
+
         execute "nvm alias default node" "nvm (set default)"
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     fi
 

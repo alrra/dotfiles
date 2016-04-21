@@ -34,8 +34,8 @@ enable_color_support() {
 
 # [!] Don't break this function into smaller, more specialized ones
 # as you will only pollute the global space even more (this function
-# cannot be unset due to the fact that it's called every time the
-# prompt string is shown)
+# cannot be unset because it's called every time the prompt string
+# is shown)
 
 get_git_repository_details() {
 
@@ -169,7 +169,7 @@ set_prompts() {
     #
     # The GNU `date` command has the `%N` interpreted sequence while
     # other implementations don't (on OS X `gdate` can be used instead
-    # of the native `date` if the `coreutils` package was installed)
+    # of the native `date` if the `coreutils` package has been installed)
     #
     # local dateCmd=""
     #

@@ -30,8 +30,9 @@ endif
 
 " Load local settings if they exist
 "
-" Note: The following needs to be included last in order to allow
-"       any of the above settings to be overwritten by local ones
+" Note: The following needs to remain at the end of this file in
+"       order to allow any of the above settings to be overwritten
+"       by the local ones
 
 if filereadable(glob("~/.gvimrc.local"))
     source ~/.gvimrc.local

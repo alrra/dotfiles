@@ -19,11 +19,17 @@ source_bash_files() {
     )
 
     for i in ${!FILES_TO_SOURCE[*]}; do
+
         file="$HOME/.${FILES_TO_SOURCE[$i]}"
-        [ -r "$file" ] && source "$file"
+
+        [ -r "$file" ] \
+            && source "$file"
+
     done
 
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 source_bash_files
 unset -f source_bash_files

@@ -95,7 +95,7 @@ test_ssh_connection() {
 
     done
 
-    print_success "Set up the SSH keys"
+    print_result $? "Set up the SSH keys"
 
 }
 
