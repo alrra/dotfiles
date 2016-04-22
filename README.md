@@ -37,9 +37,11 @@ The setup process will:
   [Ubuntu](os/ubuntu/preferences/main.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
 
+
+Setup process in action:
+
 <table>
     <tbody>
-        <tr><td colspan="2">Setup process in action</tr></td>
         <tr>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/11821505/91e437be-a372-11e5-9500-025c316fe22c.gif" alt="Setup process on OS X" width="100%">
@@ -48,18 +50,22 @@ The setup process will:
                 <img src="https://cloud.githubusercontent.com/assets/1223565/14654513/bb323662-0686-11e6-8fc1-ac05caf6cb58.gif" alt="Setup process on Ubuntu" width="100%">
             </td>
         </tr>
+        <tr align="center">
+            <td>OS X</td>
+            <td>Ubuntu</td>
+        </td>
     </tbody>
 </table>
 
 
 ## Screenshots
 
+### Git
 
-##### Git
+Output for `git status`:
 
 <table>
     <tbody>
-        <tr><td colspan="2">Output for Git status</tr></td>
         <tr>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/10561038/f9f11a28-7525-11e5-8e1d-a304ad3557f9.png" alt="Output for Git status on OS X" width="100%">
@@ -68,12 +74,17 @@ The setup process will:
                 <img src="https://cloud.githubusercontent.com/assets/1223565/8397636/3708d218-1ddb-11e5-9d40-21c6871271b9.png" alt="Output for Git status on Ubuntu" width="100%">
             </td>
         </tr>
+        <tr align="center">
+            <td>OS X</td>
+            <td>Ubuntu</td>
+        </td>
     </tbody>
 </table>
 
+Output for `git log`:
+
 <table>
     <tbody>
-        <tr><td colspan="2">Output for Git log</tr></td>
         <tr>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/10560966/e4ec08a6-7523-11e5-8941-4e12f6550a63.png" alt="Output for Git status on OS X" width="100%">
@@ -82,11 +93,14 @@ The setup process will:
                 <img src="https://cloud.githubusercontent.com/assets/1223565/10560955/4b5e1300-7523-11e5-9e96-95ea67de9474.png" alt="Output for Git log on Ubuntu" width="100%">
             </td>
         </tr>
+        <tr align="center">
+            <td>OS X</td>
+            <td>Ubuntu</td>
+        </td>
     </tbody>
 </table>
 
-
-##### tmux + vim
+### tmux + vim
 
 <table>
     <tbody>
@@ -98,6 +112,10 @@ The setup process will:
                 <img src="https://cloud.githubusercontent.com/assets/1223565/10560956/557ca2de-7523-11e5-9000-fc1e189a95f5.png" alt="tmux and vim on Ubuntu" width="100%">
             </td>
         </tr>
+        <tr align="center">
+            <td>OS X</td>
+            <td>Ubuntu</td>
+        </td>
     </tbody>
 </table>
 
