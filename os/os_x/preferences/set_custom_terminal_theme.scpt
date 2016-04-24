@@ -7,8 +7,6 @@ tell application "Terminal"
     set themeFileName to "solarized_dark.terminal"
     set themeName to "Solarized Dark"
 
-    (* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - *)
-
     (* Store the IDs of all the open terminal windows *)
     set initialOpenedWindows to id of every window
 
