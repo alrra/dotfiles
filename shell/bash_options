@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Shell Options
-# http://ss64.com/bash/shopt.html
+# https://www.gnu.org/software/bash/manual/bashref.html#The-Shopt-Builtin
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
