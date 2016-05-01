@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "$BASH_SOURCE")" \
+cd "$(dirname "${BASH_SOURCE[0]}")" \
     && source "../../utils.sh" \
     && source "utils.sh"
 
@@ -8,9 +8,11 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 main() {
 
-    declare OS_ARCH="$(get_os_arch)"
+    local OS_ARCH=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    OS_ARCH="$(get_os_arch)"
 
     update
     upgrade

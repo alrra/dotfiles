@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "$BASH_SOURCE")" \
+cd "$(dirname "${BASH_SOURCE[0]}")" \
     && source "utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -17,12 +17,12 @@ copy_public_ssh_key_to_clipboard () {
 
     if cmd_exists "pbcopy"; then
 
-        cat "$1" | pbcopy
+        pbcopy < "$1"
         print_result $? "Copy public SSH key to clipboard"
 
     elif cmd_exists "xclip"; then
 
-        cat "$1" | xclip -selection clip
+        xclip -selection clip < "$1"
         print_result $? "Copy public SSH key to clipboard"
 
     else
@@ -64,7 +64,7 @@ set_github_ssh_key() {
     # name, generate another, unique, file name
 
     if [ -f "$sshKeyFileName" ]; then
-        sshKeyFileName="$(mktemp -u $HOME/.ssh/github_XXXXX)"
+        sshKeyFileName="$(mktemp -u "$HOME/.ssh/github_XXXXX")"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
