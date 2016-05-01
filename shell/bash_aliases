@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare DOTFILES_DIR_PATH="$(dirname $(dirname $(readlink $BASH_SOURCE)))"
+declare DOTFILES_DIR_PATH="$(dirname "$(dirname "$(readlink "${BASH_SOURCE[0]}")")")"
 
 source "$DOTFILES_DIR_PATH/os/utils.sh" \
     && declare OS="$(get_os)"

@@ -1,13 +1,17 @@
 #!/bin/bash
 
-cd "$(dirname "$BASH_SOURCE")" \
+cd "$(dirname "${BASH_SOURCE[0]}")" \
     && source "utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
-    declare -r OS="$(get_os)"
+    local OS=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    OS="$(get_os)"
 
     print_warning "This may take awhile, so please be patient!\n"
 

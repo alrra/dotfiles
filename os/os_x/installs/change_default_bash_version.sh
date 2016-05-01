@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "$BASH_SOURCE")" \
+cd "$(dirname "${BASH_SOURCE[0]}")" \
     && source "../../utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -41,9 +41,9 @@ main() {
 
     HOMEBREW_PREFIX="$(brew --prefix)"
 
-    if [ -z "$(cat /etc/shells | grep "$HOMEBREW_PREFIX")" ]; then
-        sudo sh -c "printf \"$HOMEBREW_PREFIX/bin/bash\n\" >> /etc/shells"
-        print_result $? "Bash (add \`$HOMEBREW_PREFIX/bin/bash\` in \`/etc/shells\`)"
+    if ! grep "$HOMEBREW_PREFIX" < /etc/shells &> /dev/null; then
+        sudo sh -c "printf \"%s\n\" \"$HOMEBREW_PREFIX/bin/bash\" >> /etc/shells"
+        print_result $? "Bash (add '$HOMEBREW_PREFIX/bin/bash' in '/etc/shells')"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

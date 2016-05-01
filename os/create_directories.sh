@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "$BASH_SOURCE")" \
+cd "$(dirname "${BASH_SOURCE[0]}")" \
     && source "utils.sh"
 
 declare -a DIRECTORIES=(
@@ -11,7 +11,7 @@ declare -a DIRECTORIES=(
 
 main() {
 
-    for i in ${DIRECTORIES[@]}; do
+    for i in "${DIRECTORIES[@]}"; do
         mkd "$i"
     done
 

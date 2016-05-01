@@ -29,9 +29,11 @@ export LS_COLORS
 
 if [ -x /usr/bin/dircolors ]; then
 
-    test -r ~/.dircolors \
-        && eval "$(dircolors -b ~/.dircolors)" \
-        || eval "$(dircolors -b)"
+    if test -r ~/.dircolors; then
+        eval "$(dircolors -b ~/.dircolors)"
+    else
+        eval "$(dircolors -b)"
+    fi
 
     alias dir="dir --color=auto"
     alias egrep="egrep --color=auto"

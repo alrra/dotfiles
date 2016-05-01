@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "$BASH_SOURCE")" \
+cd "$(dirname "${BASH_SOURCE[0]}")" \
     && source "../../utils.sh" \
     && source "./utils.sh"
 
@@ -30,7 +30,7 @@ main() {
         # https://github.com/alrra/dotfiles/issues/13
 
         sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
-        print_result $? "Make "xcode-select" developer directory point to Xcode"
+        print_result $? "Make 'xcode-select' developer directory point to Xcode"
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

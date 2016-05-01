@@ -1,13 +1,17 @@
 #!/bin/bash
 
-cd "$(dirname "$BASH_SOURCE")" \
+cd "$(dirname "${BASH_SOURCE[0]}")" \
     && source "utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
-    declare -r OS="$(get_os)"
+    local OS=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    OS="$(get_os)"
 
     if [ "$OS" == "osx" ]; then
         ./os_x/preferences/main.sh

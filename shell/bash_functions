@@ -16,9 +16,9 @@
     if [[ "$result" == *.* ]]; then
         # Improve the output for decimal numbers
         printf "%s" "$result" |
-        sed -e "s/^\./0./"        `# add "0" for cases like ".5"` \
-            -e "s/^-\./-0./"      `# add "0" for cases like "-.5"`\
-            -e "s/0*$//;s/\.$//"   # remove tailing zeros
+        sed -e "s/^\./0./"          # add "0" for cases like ".5"` \
+            -e "s/^-\./-0./"        # add "0" for cases like "-.5"`\
+            -e "s/0*$//;s/\.$//"    # remove tailing zeros
     else
         printf "%s" "$result"
     fi
@@ -47,7 +47,7 @@ datauri() {
                     "$mimeType" \
                     "$(openssl base64 -in "$1" | tr -d "\n")"
     else
-        printf ""%s" is not a file.\n" "$1"
+        printf "%s is not a file.\n" "$1"
     fi
 
 }
@@ -74,14 +74,14 @@ gz() {
         if [ -s "$1" ]; then
 
             originalSize=$( wc -c < "$1" )
-            printf "\n original size:   %12s\n" "$(hrfs $originalSize)"
+            printf "\n original size:   %12s\n" "$(hrfs "$originalSize")"
 
             gzippedSize=$( gzip -c "$1" | wc -c )
-            printf " gzipped size:    %12s\n" "$(hrfs $gzippedSize)"
+            printf " gzipped size:    %12s\n" "$(hrfs "$gzippedSize")"
 
             printf " ─────────────────────────────\n"
             printf " reduction:       %12s [%s%%]\n\n" \
-                        "$( hrfs $(($originalSize-$gzippedSize)) )" \
+                        "$( hrfs $((originalSize - gzippedSize)) )" \
                         "$( printf "%s %s" "$originalSize $gzippedSize" | \
                             awk '{ printf "%.1f", 100 - $2 * 100 / $1 }' | \
                             sed -e "s/0*$//;s/\.$//" )"
@@ -135,9 +135,15 @@ hrfs() {
 # Create new directories and enter the first one
 
 mkd() {
-    [ -n "$*" ] \
-        && mkdir -p "$@" && cd "$@"
-        #         └─ make parent directories if needed
+    if [ -n "$*" ]; then
+
+        mkdir -p "$@"
+        #      └─ make parent directories if needed
+
+        cd "$@" \
+            || exit 1
+
+    fi
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
