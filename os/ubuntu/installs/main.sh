@@ -154,6 +154,10 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    install_package "ShellCheck" "shellcheck"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     install_package "tmux" "tmux"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
