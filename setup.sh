@@ -42,9 +42,11 @@ download() {
 
 download_dotfiles() {
 
-    local tmpFile="$(mktemp /tmp/XXXXX)"
+    local tmpFile=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    tmpFile="$(mktemp -u /tmp/XXXXX)"
 
     download "$DOTFILES_TARBALL_URL" "$tmpFile"
     print_result $? "Download archive" "true"
@@ -99,13 +101,16 @@ download_dotfiles() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    cd "$dotfilesDirectory"
+    cd "$dotfilesDirectory" \
+        || return 1
 
 }
 
 download_utils() {
 
-    local tmpFile="$(mktemp /tmp/XXXXX)"
+    local tmpFile=""
+
+    tmpFile="$(mktemp -u /tmp/XXXXX)"
 
     download "$DOTFILES_UTILS_URL" "$tmpFile" \
         && source "$tmpFile" \
@@ -160,14 +165,16 @@ verify_os() {
 
     declare -r MINIMUM_OS_X_VERSION="10.10"
     declare -r MINIMUM_UBUNTU_VERSION="14.04"
-    declare -r OS_NAME="$(uname -s)"
 
-    declare OS_VERSION=""
+    local OS_NAME=""
+    local OS_VERSION=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if the OS is `OS X` and
     # it's above the required version
+
+    OS_NAME="$(uname -s)"
 
     if [ "$OS_NAME" == "Darwin" ]; then
 
@@ -175,7 +182,7 @@ verify_os() {
 
         is_supported_version "$OS_VERSION" "$MINIMUM_OS_X_VERSION" \
             && return 0 \
-            || printf "Sorry, this script is intended only for OS X $MINIMUM_OS_X_VERSION+"
+            || printf "Sorry, this script is intended only for OS X %s+" "$MINIMUM_OS_X_VERSION"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -188,7 +195,7 @@ verify_os() {
 
         is_supported_version "$OS_VERSION" "$MINIMUM_UBUNTU_VERSION" \
             && return 0 \
-            || printf "Sorry, this script is intended only for Ubuntu $MINIMUM_UBUNTU_VERSION+"
+            || printf "Sorry, this script is intended only for Ubuntu %s+" "$MINIMUM_UBUNTU_VERSION"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -218,7 +225,8 @@ main() {
     #
     # http://mywiki.wooledge.org/BashFAQ/028
 
-    cd "$(dirname "$BASH_SOURCE")"
+    cd "$(dirname "${BASH_SOURCE[0]}")" \
+        || exit 1
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -305,7 +313,7 @@ main() {
 
         print_info "Update content"
 
-        ask_for_confirmation "Do you want to update the content from the "dotfiles" directory?"
+        ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
         printf "\n"
 
         if answer_is_yes; then

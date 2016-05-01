@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "$BASH_SOURCE")" \
+cd "$(dirname "${BASH_SOURCE[0]}")" \
     && source "../../utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -74,7 +74,7 @@ set_preferences() {
         "Turn Bluetooth off"
 
     execute "   for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
-                    sudo defaults write \"${domain}\" dontAutoLoad -array \
+                    sudo defaults write \"\${domain}\" dontAutoLoad -array \
                         '/System/Library/CoreServices/Menu Extras/TimeMachine.menu' \
                         '/System/Library/CoreServices/Menu Extras/Volume.menu'
                 done \

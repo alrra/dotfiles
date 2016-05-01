@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "$BASH_SOURCE")" \
+cd "$(dirname "${BASH_SOURCE[0]}")" \
     && source "utils.sh"
 
 declare -r -a NODE_VERSIONS=(
@@ -12,20 +12,21 @@ declare -r -a NODE_VERSIONS=(
 main() {
 
     declare -r NVM_DIRECTORY="$HOME/.nvm"
-    declare -r NVM_GIT_REPOSITORY_URL="https://github.com/creationix/nvm.git"
+    declare -r NVM_GIT_REPO_URL="https://github.com/creationix/nvm.git"
 
-    declare -r CONFIGS='
+    declare -r CONFIGS="
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Node Version Manager
 
-export NVM_DIR="'$NVM_DIRECTORY'"
-[ -f "$NVM_DIR/nvm.sh" ] \
-    && source "$NVM_DIR/nvm.sh"
+export NVM_DIR=\"$NVM_DIRECTORY\"
 
-[ -f "$NVM_DIR/bash_completion" ] \
-    && source $NVM_DIR/bash_completion
-'
+[ -f \"\$NVM_DIR/nvm.sh\" ] \\
+    && source \"\$NVM_DIR/nvm.sh\"
+
+[ -f \"\$NVM_DIR/bash_completion\" ] \\
+    && source \"\$NVM_DIR/bash_completion\"
+"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -60,7 +61,7 @@ export NVM_DIR="'$NVM_DIRECTORY'"
         # Ensure the latest version of `nvm` is used
 
         cd "$NVM_DIRECTORY" \
-            && git checkout `git describe --abbrev=0 --tags` &> /dev/null
+            && git checkout "$(git describe --abbrev=0 --tags)" &> /dev/null
         print_result $? "nvm (update)"
 
         source "$NVM_DIRECTORY/nvm.sh"
@@ -69,7 +70,7 @@ export NVM_DIR="'$NVM_DIRECTORY'"
 
         # Install the specified `node` versions
 
-        for i in ${NODE_VERSIONS[@]}; do
+        for i in "${NODE_VERSIONS[@]}"; do
             execute "nvm install $i" "nvm (install: $i)"
         done
 

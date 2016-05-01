@@ -42,20 +42,24 @@ execute() {
 }
 
 get_answer() {
-    printf "$REPLY"
+    printf "%s" "$REPLY"
 }
 
 get_os() {
 
-    declare -r OS_NAME="$(uname -s)"
     local os=""
+    local osName=""
 
-    if [ "$OS_NAME" == "Darwin" ]; then
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    osName="$(uname -s)"
+
+    if [ "$osName" == "Darwin" ]; then
         os="osx"
-    elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
+    elif [ "$osName" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
         os="ubuntu"
     else
-        os="$OS_NAME"
+        os="$osName"
     fi
 
     printf "%s" "$os"
@@ -89,19 +93,19 @@ print_error() {
 }
 
 print_in_green() {
-    printf "\e[0;32m$1\e[0m"
+    printf "\e[0;32m%b\e[0m" "$1"
 }
 
 print_in_purple() {
-    printf "\e[0;35m$1\e[0m"
+    printf "\e[0;35m%b\e[0m" "$1"
 }
 
 print_in_red() {
-    printf "\e[0;31m$1\e[0m"
+    printf "\e[0;31m%b\e[0m" "$1"
 }
 
 print_in_yellow() {
-    printf "\e[0;33m$1\e[0m"
+    printf "\e[0;33m%b\e[0m" "$1"
 }
 
 print_info() {
@@ -113,11 +117,15 @@ print_question() {
 }
 
 print_result() {
-    [ $1 -eq 0 ] \
-        && print_success "$2" \
-        || print_error "$2"
 
-    return $1
+    if [ "$1" -eq 0 ]; then
+        print_success "$2"
+    else
+        print_error "$2"
+    fi
+
+    return "$1"
+
 }
 
 print_success() {

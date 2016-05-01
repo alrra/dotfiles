@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "$BASH_SOURCE")" \
+cd "$(dirname "${BASH_SOURCE[0]}")" \
     && source "utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -42,7 +42,7 @@ main() {
 
     # Install the specified `npm` packages
 
-    for i in ${NPM_PACKAGES[@]}; do
+    for i in "${NPM_PACKAGES[@]}"; do
         execute "npm install --global $i" "$i"
     done
 
