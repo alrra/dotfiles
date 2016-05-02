@@ -37,7 +37,7 @@ alias local-ip="ifconfig \
 
 # Lock screen
 
-alias akf="gnome-screensaver-command --lock"
+alias afk="gnome-screensaver-command --lock"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
