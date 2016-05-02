@@ -61,8 +61,9 @@ export NVM_DIR=\"$NVM_DIRECTORY\"
         # Ensure the latest version of `nvm` is used
 
         cd "$NVM_DIRECTORY" \
+            && git fetch origin &> /dev/null \
             && git checkout "$(git describe --abbrev=0 --tags)" &> /dev/null
-        print_result $? "nvm (update)"
+        print_result $? "nvm (upgrade)"
 
         source "$NVM_DIRECTORY/nvm.sh"
 
