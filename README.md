@@ -11,12 +11,12 @@ To setup the dotfiles just run the appropriate snippet in the
 terminal:
 
 (:warning: **DO NOT** run the setup snippet if you don't fully
-understand [what it does](setup.sh). Seriously, **DON'T**!)
+understand [what it does](src/setup.sh). Seriously, **DON'T**!)
 
 | OS | Snippet |
 |:---:|:---|
-| OS X | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/setup.sh)"` |
-| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/setup.sh)"` |
+| OS X | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/src/setup.sh)"` |
+| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/src/setup.sh)"` |
 
 That's it! :sparkles:
 
@@ -24,18 +24,18 @@ The setup process will:
 
 * Download the dotfiles on your computer (by default it will suggest
   `~/projects/dotfiles`)
-* Create some additional [directories](os/create_directories.sh)
-* [Symlink](os/create_symbolic_links.sh) the
-  [git](git),
-  [shell](shell), and
-  [vim](vim) files
+* Create some additional [directories](src/os/create_directories.sh)
+* [Symlink](src/os/create_symbolic_links.sh) the
+  [git](src/git),
+  [shell](src/shell), and
+  [vim](src/vim) files
 * Install applications / command-line tools for
-  [OS X](os/os_x/installs/main.sh) /
-  [Ubuntu](os/ubuntu/installs/main.sh)
+  [OS X](src/os/os_x/installs/main.sh) /
+  [Ubuntu](src/os/ubuntu/installs/main.sh)
 * Set custom
-  [OS X](os/os_x/preferences/main.sh) /
-  [Ubuntu](os/ubuntu/preferences/main.sh) preferences
-* Install [vim plugins](vim/vim/plugins)
+  [OS X](src/os/os_x/preferences/main.sh) /
+  [Ubuntu](src/os/ubuntu/preferences/main.sh) preferences
+* Install [vim plugins](src/vim/vim/plugins)
 
 
 Setup process in action:
@@ -130,7 +130,7 @@ requirements by using the following files:
 #### `~/.bash.local`
 
 If the `~/.bash.local` file exists, it will be automatically sourced
-after all the other [bash related files](shell), thus, allowing its
+after all the other [bash related files](src/shell), thus, allowing its
 content to add to or overwrite the existing aliases, settings, PATH,
 etc.
 
@@ -151,7 +151,7 @@ alias starwars="telnet towel.blinkenlights.nl"
 # Set PATH additions
 
 PATH="/usr/local/bin:$PATH"
-PATH="$PATH:$HOME/projects/dotfiles/bin"
+PATH="$PATH:$HOME/projects/dotfiles/src/bin"
 
 export PATH
 
@@ -193,8 +193,8 @@ username with your own in the [setup snippets](#setup) and [in the
 ## Update
 
 To update the dotfiles you can either run the [`setup`
-script](setup.sh) or, if you want to just update one particular part,
-run the appropriate [`os` script](os).
+script](src/setup.sh) or, if you want to just update one particular 
+part, run the appropriate [`os` script](src/os).
 
 
 ## Acknowledgements

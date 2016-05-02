@@ -20,7 +20,7 @@ install:
 
       # TODO
 
-      #./setup.sh
+      #./src/setup.sh
 
 language: generic
 
