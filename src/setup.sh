@@ -46,7 +46,7 @@ download_dotfiles() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    tmpFile="$(mktemp -u /tmp/XXXXX)"
+    tmpFile="$(mktemp /tmp/XXXXX)"
 
     download "$DOTFILES_TARBALL_URL" "$tmpFile"
     print_result $? "Download archive" "true"
@@ -110,7 +110,7 @@ download_utils() {
 
     local tmpFile=""
 
-    tmpFile="$(mktemp -u /tmp/XXXXX)"
+    tmpFile="$(mktemp /tmp/XXXXX)"
 
     download "$DOTFILES_UTILS_URL" "$tmpFile" \
         && source "$tmpFile" \
