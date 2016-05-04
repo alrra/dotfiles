@@ -7,11 +7,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 main() {
 
-    if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-        ./run_shellcheck.sh
-    elif [ "$TRAVIS_OS_NAME" == "linux" ]; then
-        printf "\n"
-    fi
+    ./run_shellcheck.sh
 
 }
 

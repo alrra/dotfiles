@@ -7,18 +7,30 @@ dist: trusty
 before_install:
   - |
 
-      # The Travis CI Ubuntu Trusty images do not
-      # have the 'multiverse' suite enabled by default.
-
       if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+
+        # The Travis CI Ubuntu Trusty images do not
+        # have the some of the suites enabled by default.
+
         sudo add-apt-repository multiverse
+        sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ trusty-backports restricted main universe"
+        sudo apt-get update -qqy
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        sudo apt-get install -qqy shellcheck
+
+      elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
+
+        brew install shellcheck
+
       fi
 
 language: generic
 
 os:
-  - osx
   - linux
+  - osx
 
 osx_image: xcode7.3
 
