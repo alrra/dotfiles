@@ -189,7 +189,7 @@ Same as `~/.vimrc.local` but for `~/.gvimrc`.
 
 If you decide to fork this project, don't forget to substitute my
 username with your own in the [setup snippets](#setup) and [in the
-`setup` script](https://github.com/alrra/dotfiles/blob/07be2cd3ae0a978eb8e0e91066bca9bc249e9bf3/src/setup.sh#L3).
+`setup` script](https://github.com/alrra/dotfiles/blob/1503cf23ef23f6e31342b140bcd246625160b94f/src/os/setup.sh#L3).
 
 
 ## Update
