@@ -7,15 +7,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 main() {
 
-    # Install "ShellCheck" if needed
-
-    if ! cmd_exists "shellcheck"; then
-        brew install shellcheck &> /dev/null
-        print_result $? "Install ShellCheck"
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     # ' At first you're like "shellcheck is awesome" but then you're
     #   like "wtf are we still using bash" '
     #
@@ -34,7 +25,6 @@ main() {
         ! -path '../src/os/os_x/preferences/set_custom_terminal_theme.scpt' \
         ! -path '../src/os/os_x/preferences/solarized_dark.terminal' \
         -exec shellcheck \
-                -x \
                 -e SC1090 \
                 -e SC1091 \
                 -e SC2155 \
