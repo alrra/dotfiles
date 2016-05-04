@@ -15,7 +15,6 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ./install_homebrew.sh
-    brew_install "Homebrew Cask" "caskroom/cask/brew-cask" "caskroom/cask"
 
     print_in_green "\n  ---\n\n"
 
