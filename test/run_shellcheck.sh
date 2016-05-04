@@ -20,7 +20,6 @@ main() {
         ../test \
         ../src/os \
         ../src/shell \
-        ../src/setup.sh \
         ../src/os \
         -type f \
         ! -path '../src/shell/curlrc' \

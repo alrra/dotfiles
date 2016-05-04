@@ -101,7 +101,7 @@ download_dotfiles() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    cd "$dotfilesDirectory/src" \
+    cd "$dotfilesDirectory/src/os" \
         || return 1
 
 }
@@ -232,8 +232,8 @@ main() {
 
     # Load utils
 
-    if [ -x "os/utils.sh" ]; then
-        source "os/utils.sh" || exit 1
+    if [ -x "utils.sh" ]; then
+        source "utils.sh" || exit 1
     else
         download_utils || exit 1
     fi
@@ -262,13 +262,13 @@ main() {
     printf "\n"
 
     if answer_is_yes; then
-        ./os/create_directories.sh
+        ./create_directories.sh
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_info "Create symbolic links"
-    ./os/create_symbolic_links.sh
+    ./create_symbolic_links.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -279,13 +279,13 @@ main() {
 
     if answer_is_yes; then
 
-        ./os/install_applications.sh
+        ./install_applications.sh
         print_in_green "\n  ---\n\n"
 
-        ./os/install_node_versions.sh
+        ./install_node_versions.sh
         print_in_green "\n  ---\n\n"
 
-        ./os/install_npm_packages.sh
+        ./install_npm_packages.sh
 
     fi
 
@@ -297,7 +297,7 @@ main() {
     printf "\n"
 
     if answer_is_yes; then
-        ./os/set_preferences.sh
+        ./set_preferences.sh
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -306,7 +306,7 @@ main() {
 
         if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
             print_info "Initialize Git repository"
-            ./os/initialize_git_repository.sh "$DOTFILES_ORIGIN"
+            ./initialize_git_repository.sh "$DOTFILES_ORIGIN"
         fi
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -317,7 +317,7 @@ main() {
         printf "\n"
 
         if answer_is_yes; then
-            ./os/update_content.sh
+            ./update_content.sh
         fi
 
     fi
@@ -332,7 +332,7 @@ main() {
         printf "\n"
 
         if answer_is_yes; then
-            ./os/install_vim_plugins.sh
+            ./install_vim_plugins.sh
         fi
 
     fi
@@ -345,7 +345,7 @@ main() {
     printf "\n"
 
     if answer_is_yes; then
-        ./os/restart.sh
+        ./restart.sh
     fi
 
 }
