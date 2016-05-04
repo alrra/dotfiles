@@ -180,9 +180,11 @@ verify_os() {
 
         OS_VERSION="$(sw_vers -productVersion)"
 
-        is_supported_version "$OS_VERSION" "$MINIMUM_OS_X_VERSION" \
-            && return 0 \
-            || printf "Sorry, this script is intended only for OS X %s+" "$MINIMUM_OS_X_VERSION"
+        if is_supported_version "$OS_VERSION" "$MINIMUM_OS_X_VERSION"; then
+            return 0
+        else
+            printf "Sorry, this script is intended only for OS X %s+" "$MINIMUM_OS_X_VERSION"
+        fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -193,9 +195,11 @@ verify_os() {
 
         OS_VERSION="$(lsb_release -d | cut -f2 | cut -d' ' -f2)"
 
-        is_supported_version "$OS_VERSION" "$MINIMUM_UBUNTU_VERSION" \
-            && return 0 \
-            || printf "Sorry, this script is intended only for Ubuntu %s+" "$MINIMUM_UBUNTU_VERSION"
+        if is_supported_version "$OS_VERSION" "$MINIMUM_UBUNTU_VERSION"; then
+            return 0
+        else
+            printf "Sorry, this script is intended only for Ubuntu %s+" "$MINIMUM_UBUNTU_VERSION"
+        fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
