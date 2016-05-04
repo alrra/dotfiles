@@ -13,12 +13,12 @@ To setup the dotfiles just run the appropriate snippet in the
 terminal:
 
 (:warning: **DO NOT** run the setup snippet if you don't fully
-understand [what it does](src/setup.sh). Seriously, **DON'T**!)
+understand [what it does](src/os/setup.sh). Seriously, **DON'T**!)
 
 | OS | Snippet |
 |:---:|:---|
-| OS X | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/src/setup.sh)"` |
-| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/src/setup.sh)"` |
+| OS X | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/src/os/setup.sh)"` |
+| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/src/os/setup.sh)"` |
 
 That's it! :sparkles:
 
@@ -195,7 +195,7 @@ username with your own in the [setup snippets](#setup) and [in the
 ## Update
 
 To update the dotfiles you can either run the [`setup`
-script](src/setup.sh) or, if you want to just update one particular 
+script](src/os/setup.sh) or, if you want to just update one particular
 part, run the appropriate [`os` script](src/os).
 
 
