@@ -22,7 +22,8 @@ main() {
 
         # Run the following Git commands in the root of
         # the dotfiles directory, not in the `os/` directory
-        cd ..
+        cd ../../ \
+            || print_error "Cannot 'cd ../../'"
 
         git init &> /dev/null \
             && git remote add origin "$GIT_ORIGIN" &> /dev/null
