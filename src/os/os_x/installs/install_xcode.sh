@@ -34,12 +34,12 @@ main() {
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        # Prompt user to agree to the terms of the Xcode license
+        # Automatically agree to the terms of the Xcode license
         #
         # https://github.com/alrra/dotfiles/issues/10
 
-        sudo xcodebuild -license
-        print_result $? "Agree with the XCode Command Line Tools licence"
+        sudo xcodebuild -license accept
+        print_result $? "Agree to the terms of the XCode Command Line Tools licence"
 
     fi
 
