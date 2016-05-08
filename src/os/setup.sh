@@ -6,7 +6,10 @@ declare -r DOTFILES_ORIGIN="git@github.com:$GITHUB_REPOSITORY.git"
 declare -r DOTFILES_TARBALL_URL="https://github.com/$GITHUB_REPOSITORY/tarball/master"
 declare -r DOTFILES_UTILS_URL="https://raw.githubusercontent.com/$GITHUB_REPOSITORY/master/src/os/utils.sh"
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 declare dotfilesDirectory="$HOME/projects/dotfiles"
+declare skipQuestions=false
 
 # ----------------------------------------------------------------------
 # | Helper Functions                                                   |
@@ -54,33 +57,41 @@ download_dotfiles() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ask_for_confirmation "Do you want to store the dotfiles in '$dotfilesDirectory'?"
+    if ! $skipQuestions; then
 
-    if ! answer_is_yes; then
-        dotfilesDirectory=""
-        while [ -z "$dotfilesDirectory" ]; do
-            ask "Please specify another location for the dotfiles (path): "
-            dotfilesDirectory="$(get_answer)"
-        done
-    fi
+        ask_for_confirmation "Do you want to store the dotfiles in '$dotfilesDirectory'?"
 
-    # Ensure the `dotfiles` directory is available
-
-    while [ -e "$dotfilesDirectory" ]; do
-        ask_for_confirmation "'$dotfilesDirectory' already exists, do you want to overwrite it?"
-        if answer_is_yes; then
-            rm -rf "$dotfilesDirectory"
-            break
-        else
+        if ! answer_is_yes; then
             dotfilesDirectory=""
             while [ -z "$dotfilesDirectory" ]; do
                 ask "Please specify another location for the dotfiles (path): "
                 dotfilesDirectory="$(get_answer)"
             done
         fi
-    done
 
-    printf "\n"
+        # Ensure the `dotfiles` directory is available
+
+        while [ -e "$dotfilesDirectory" ]; do
+            ask_for_confirmation "'$dotfilesDirectory' already exists, do you want to overwrite it?"
+            if answer_is_yes; then
+                rm -rf "$dotfilesDirectory"
+                break
+            else
+                dotfilesDirectory=""
+                while [ -z "$dotfilesDirectory" ]; do
+                    ask "Please specify another location for the dotfiles (path): "
+                    dotfilesDirectory="$(get_answer)"
+                done
+            fi
+        done
+
+        printf "\n"
+
+    else
+
+        rm -rf "$dotfilesDirectory" &> /dev/null
+
+    fi
 
     mkdir -p "$dotfilesDirectory"
     print_result $? "Create '$dotfilesDirectory'" "true"
@@ -224,6 +235,16 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    while :; do
+        case $1 in
+            -y|--yes) skipQuestions=true; break;;
+                   *) break;;
+        esac
+        shift 1
+    done
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Ensure that the following actions
     # are made relative to this file's path
     #
@@ -262,26 +283,35 @@ main() {
 
     print_info "Create directories"
 
-    ask_for_confirmation "Do you want the additional directories to be created?"
-    printf "\n"
+    if ! $skipQuestions; then
+        ask_for_confirmation "Do you want the additional directories to be created?"
+        printf "\n"
+    fi
 
-    if answer_is_yes; then
+    if $skipQuestions || answer_is_yes; then
         ./create_directories.sh
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_info "Create symbolic links"
-    ./create_symbolic_links.sh
+
+    if ! $skipQuestions; then
+        ./create_symbolic_links.sh
+    else
+        ./create_symbolic_links.sh -y
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_info "Install applications"
 
-    ask_for_confirmation "Do you want to install the applications/command line tools?"
-    printf "\n"
+    if ! $skipQuestions; then
+        ask_for_confirmation "Do you want to install the applications/command line tools?"
+        printf "\n"
+    fi
 
-    if answer_is_yes; then
+    if $skipQuestions || answer_is_yes; then
 
         ./install_applications.sh
         print_in_green "\n  ---\n\n"
@@ -297,10 +327,12 @@ main() {
 
     print_info "Set preferences"
 
-    ask_for_confirmation "Do you want to set the custom preferences?"
-    printf "\n"
+    if ! $skipQuestions; then
+        ask_for_confirmation "Do you want to set the custom preferences?"
+        printf "\n"
+    fi
 
-    if answer_is_yes; then
+    if $skipQuestions || answer_is_yes; then
         ./set_preferences.sh
     fi
 
@@ -315,13 +347,17 @@ main() {
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        print_info "Update content"
+        if ! $skipQuestions; then
 
-        ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
-        printf "\n"
+            print_info "Update content"
 
-        if answer_is_yes; then
-            ./update_content.sh
+            ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
+            printf "\n"
+
+            if answer_is_yes; then
+                ./update_content.sh
+            fi
+
         fi
 
     fi
@@ -332,10 +368,12 @@ main() {
 
         print_info "Install/Update Vim plugins"
 
-        ask_for_confirmation "Do you want to install/update the Vim plugins?"
-        printf "\n"
+        if ! $skipQuestions; then
+            ask_for_confirmation "Do you want to install/update the Vim plugins?"
+            printf "\n"
+        fi
 
-        if answer_is_yes; then
+        if $skipQuestions || answer_is_yes; then
             ./install_vim_plugins.sh
         fi
 
@@ -343,15 +381,20 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Restart"
 
-    ask_for_confirmation "Do you want to restart?"
-    printf "\n"
+    if ! $skipQuestions; then
 
-    if answer_is_yes; then
-        ./restart.sh
+        print_info "Restart"
+
+        ask_for_confirmation "Do you want to restart?"
+        printf "\n"
+
+        if answer_is_yes; then
+            ./restart.sh
+        fi
+
     fi
 
 }
 
-main
+main "$@"
