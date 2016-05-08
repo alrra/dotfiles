@@ -74,10 +74,6 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "Dropbox" "nautilus-dropbox"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     if ! package_is_installed "firefox-trunk"; then
 
         add_ppa "ubuntu-mozilla-daily/ppa" \
