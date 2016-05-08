@@ -33,6 +33,10 @@ before_install:
 
       rm -rf "$NVM_DIR"
 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+      ./src/os/setup.sh -y
+
 
 language: generic
 
