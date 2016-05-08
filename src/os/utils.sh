@@ -37,8 +37,27 @@ cmd_exists() {
 }
 
 execute() {
-    eval "$1" &> /dev/null
+
+    local tmpFile="$(mktemp /tmp/XXXXX)"
+    local exitCode=0
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    eval "$1" \
+        &> /dev/null \
+        2> "$tmpFile"
+
     print_result $? "${2:-$1}"
+    exitCode=$?
+
+    if [ $exitCode -ne 0 ]; then
+        print_error_stream "↳ ERROR:" < "$tmpFile"
+    fi
+
+    rm -rf "$tmpFile"
+
+    return $exitCode
+
 }
 
 get_answer() {
@@ -48,18 +67,18 @@ get_answer() {
 get_os() {
 
     local os=""
-    local osName=""
+    local kernelName=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    osName="$(uname -s)"
+    kernelName="$(uname -s)"
 
-    if [ "$osName" == "Darwin" ]; then
+    if [ "$kernelName" == "Darwin" ]; then
         os="osx"
-    elif [ "$osName" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
+    elif [ "$kernelName" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
         os="ubuntu"
     else
-        os="$osName"
+        os="$kernelName"
     fi
 
     printf "%s" "$os"
@@ -90,6 +109,12 @@ mkd() {
 
 print_error() {
     print_in_red "  [✖] $1 $2\n"
+}
+
+print_error_stream() {
+    while read -r line; do
+        print_error "$1 $line"
+    done
 }
 
 print_in_green() {

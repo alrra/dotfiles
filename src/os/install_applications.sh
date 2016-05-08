@@ -11,7 +11,10 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    OS="$(get_os)"
+    OS="$(get_os)" \
+        || print_error "Failed to get the kernel name"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_warning "This may take awhile, so please be patient!\n"
 
