@@ -26,6 +26,14 @@ before_install:
 
       fi
 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+      # To better simulate a clean OS install, remove certain things
+      # included by default by Travis CI
+
+      rm -rf "$NVM_DIR"
+
+
 language: generic
 
 os:
