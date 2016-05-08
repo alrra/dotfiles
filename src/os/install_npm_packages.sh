@@ -19,8 +19,9 @@ main() {
     # `~/.bash.local` was not sourced (this happens when the
     # `dotfiles` are set up for the first time)
 
-    [ -z "$NVM_DIR" ] \
-        && source "$HOME/.bash.local"
+    if [ -z "$NVM_DIR" ] || ! cmd_exists "npm"; then
+        source "$HOME/.bash.local"
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -35,7 +36,10 @@ main() {
 
     # Ensure the most recent version of `npm` is installed
 
-    execute "npm install --global npm" "npm (update)"
+    execute \
+        "npm install --silent --global npm" \
+        "npm (update)"
+
     printf "\n"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -43,7 +47,9 @@ main() {
     # Install the specified `npm` packages
 
     for i in "${NPM_PACKAGES[@]}"; do
-        execute "npm install --global $i" "$i"
+        execute \
+            "npm install --silent --global $i" \
+            "$i"
     done
 
 }

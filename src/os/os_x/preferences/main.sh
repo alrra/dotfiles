@@ -11,6 +11,8 @@ main() {
         "cfprefsd"
     )
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     ./set_app_store_preferences.sh
     ./set_chrome_preferences.sh
     ./set_dashboard_preferences.sh
@@ -27,6 +29,8 @@ main() {
     ./set_trackpad_preferences.sh
     ./set_transmission_preferences.sh
     ./set_ui_and_ux_preferences.sh
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     for i in ${PROCESSES_TO_TERMINATE[*]}; do
         killall "$i" &> /dev/null

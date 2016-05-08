@@ -42,17 +42,19 @@ main() {
     HOMEBREW_PREFIX="$(brew --prefix)"
 
     if ! grep "$HOMEBREW_PREFIX" < /etc/shells &> /dev/null; then
-        sudo sh -c "printf \"%s\n\" \"$HOMEBREW_PREFIX/bin/bash\" >> /etc/shells"
-        print_result $? "Bash (add '$HOMEBREW_PREFIX/bin/bash' in '/etc/shells')"
+        execute \
+            "sudo sh -c 'printf '%s' '$HOMEBREW_PREFIX/bin/bash' >> /etc/shells'" \
+            "Bash (add '$HOMEBREW_PREFIX/bin/bash' in '/etc/shells')"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Make OS X use the Bash version installed through Homebrew
+    # Make OS X use the `Bash` version installed through `Homebrew`
     # https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/chsh.1.html
 
-    chsh -s "$HOMEBREW_PREFIX/bin/bash" &> /dev/null
-    print_result $? "Bash (use latest version)"
+    execute \
+        "sudo chsh -s '$HOMEBREW_PREFIX/bin/bash'" \
+        "Bash (use latest version)"
 
 }
 

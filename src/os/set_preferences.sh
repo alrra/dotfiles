@@ -11,7 +11,10 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    OS="$(get_os)"
+    OS="$(get_os)" \
+        || print_error "Failed to get the kernel name"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [ "$OS" == "osx" ]; then
         ./os_x/preferences/main.sh

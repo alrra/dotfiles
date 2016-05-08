@@ -17,7 +17,7 @@ brew_install() {
     # Check if `Homebrew` is installed
 
     if ! cmd_exists "brew"; then
-        print_error "$FORMULA_READABLE_NAME (\`brew\` is not installed)"
+        print_error "$FORMULA_READABLE_NAME ('brew' is not installed)"
         return 1
     fi
 
@@ -27,7 +27,7 @@ brew_install() {
 
     if [ -n "$TAP_VALUE" ]; then
         if ! brew_tap "$TAP_VALUE"; then
-            print_error "$FORMULA_READABLE_NAME (\`brew tap $TAP_VALUE\` failed)"
+            print_error "$FORMULA_READABLE_NAME ('brew tap $TAP_VALUE' failed)"
             return 1
         fi
     fi
@@ -39,7 +39,9 @@ brew_install() {
     if brew "$CMD" list "$FORMULA" &> /dev/null; then
         print_success "$FORMULA_READABLE_NAME"
     else
-        execute "brew $CMD install $FORMULA" "$FORMULA_READABLE_NAME"
+        execute \
+            "brew $CMD install $FORMULA" \
+            "$FORMULA_READABLE_NAME"
     fi
 
 }
