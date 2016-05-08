@@ -5,22 +5,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_preferences() {
+print_in_purple "\n  App Store\n\n"
 
-    execute "defaults write com.apple.appstore ShowDebugMenu -bool true" \
-        "Enable debug menu"
+execute "defaults write com.apple.appstore ShowDebugMenu -bool true" \
+    "Enable debug menu"
 
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-main() {
-
-    print_in_purple "\n  App Store\n\n"
-    set_preferences
-
-    killall "App Store" &> /dev/null
-
-}
-
-main
+killall "App Store" &> /dev/null

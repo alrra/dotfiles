@@ -5,22 +5,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-set_preferences() {
+print_in_purple "\n  Photos\n\n"
 
-    execute "defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true" \
-        "Prevent Photos from opening automatically when devices are plugged in"
+execute "defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true" \
+    "Prevent Photos from opening automatically when devices are plugged in"
 
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-main() {
-
-    print_in_purple "\n  Photos\n\n"
-    set_preferences
-
-    killall "Photos" &> /dev/null
-
-}
-
-main
+killall "Photos" &> /dev/null
