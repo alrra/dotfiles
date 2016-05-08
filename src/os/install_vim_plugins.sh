@@ -22,12 +22,11 @@ main() {
 
     # Install / Update vim plugins
 
-    rm -rf ~/.vim/plugins/Vundle.vim &> /dev/null \
-        && git clone "$VUNDLE_GIT_REPO_URL" ~/.vim/plugins/Vundle.vim &> /dev/null \
-        && printf "\n" | vim +PluginInstall +qall 2> /dev/null
-        #     └─ simulate the ENTER keypress for
-        #        the case where there are warnings
-    print_result $? "Install Vim plugins"
+    execute \
+        "rm -rf '$HOME/.vim/plugins/Vundle.vim' \
+            && git clone --quiet '$VUNDLE_GIT_REPO_URL' '$HOME/.vim/plugins/Vundle.vim' \
+            && printf '\n' | vim +PluginInstall +qall" \
+        "Install Vim plugins"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -42,9 +41,10 @@ main() {
 
     # Additional installs
 
-    cd ~/.vim/plugins/tern_for_vim \
-        && npm install &> /dev/null
-    print_result $? "Install extra parts for \`tern_for_vim\`"
+    execute \
+        "cd $HOME/.vim/plugins/tern_for_vim \
+            && npm install" \
+        "Install extra parts for 'tern_for_vim'"
 
 }
 

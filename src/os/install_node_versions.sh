@@ -43,13 +43,15 @@ export NVM_DIR=\"$NVM_DIRECTORY\"
 
     if [ ! -d "$NVM_DIRECTORY" ]; then
 
-        git clone "$NVM_GIT_REPO_URL" "$NVM_DIRECTORY" &> /dev/null
-        print_result $? "nvm"
+        execute \
+            "git clone --quiet $NVM_GIT_REPO_URL $NVM_DIRECTORY" \
+            "nvm"
 
         if [ $? -eq 0 ]; then
-            printf "%s" "$CONFIGS" >> "$HOME/.bash.local" \
-                && source "$HOME/.bash.local"
-            print_result $? "nvm (update ~/.bash.local)"
+            execute \
+                "printf '%s' '$CONFIGS' >> $HOME/.bash.local \
+                    && source $HOME/.bash.local" \
+                "nvm (update ~/.bash.local)"
         fi
 
     fi
@@ -60,26 +62,30 @@ export NVM_DIR=\"$NVM_DIRECTORY\"
 
         # Ensure the latest version of `nvm` is used
 
-        cd "$NVM_DIRECTORY" \
-            && git fetch origin &> /dev/null \
-            && git checkout "$(git describe --abbrev=0 --tags)" &> /dev/null
-        print_result $? "nvm (upgrade)"
-
-        source "$NVM_DIRECTORY/nvm.sh"
+        execute \
+            "cd $NVM_DIRECTORY \
+                && git fetch --quiet origin \
+                && git checkout --quiet \$(git describe --abbrev=0 --tags) \
+                && source $NVM_DIRECTORY/nvm.sh" \
+            "nvm (upgrade)"
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         # Install the specified `node` versions
 
         for i in "${NODE_VERSIONS[@]}"; do
-            execute "nvm install $i" "nvm (install: $i)"
+            execute \
+                "nvm install $i" \
+                "nvm (install: $i)"
         done
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         # By default, use the latest stable version of `node`
 
-        execute "nvm alias default node" "nvm (set default)"
+        execute \
+            "nvm alias default node" \
+            "nvm (set default)"
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

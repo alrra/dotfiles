@@ -22,13 +22,13 @@ main() {
 
         # Run the following Git commands in the root of
         # the dotfiles directory, not in the `os/` directory
+
         cd ../../ \
-            || print_error "Cannot 'cd ../../'"
+            || print_error "Failed to 'cd ../../'"
 
-        git init &> /dev/null \
-            && git remote add origin "$GIT_ORIGIN" &> /dev/null
-
-        print_result $? "Initialize the Git repository"
+        execute \
+            "git init && git remote add origin $GIT_ORIGIN" \
+            "Initialize the Git repository"
 
     fi
 

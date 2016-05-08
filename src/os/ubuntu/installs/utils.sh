@@ -26,7 +26,9 @@ autoremove() {
     # Remove packages that were automatically installed to satisfy
     # dependencies for other packages and are no longer needed
 
-    execute "sudo apt-get autoremove -qqy" "autoremove"
+    execute \
+        "sudo apt-get autoremove -qqy" \
+        "autoremove"
 
 }
 
@@ -52,13 +54,19 @@ package_is_installed() {
 update() {
 
     # Resynchronize the package index files from their sources
-    execute "sudo apt-get update -qqy" "update"
+
+    execute \
+        "sudo apt-get update -qqy" \
+        "update"
 
 }
 
 upgrade() {
 
     # Install the newest versions of all packages installed
-    execute "sudo apt-get upgrade -qqy" "upgrade"
+
+    execute \
+        "sudo apt-get upgrade -qqy" \
+        "upgrade"
 
 }
