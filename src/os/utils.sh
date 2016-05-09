@@ -85,12 +85,57 @@ get_os() {
 
 }
 
+get_os_version() {
+
+    local os=""
+    local version=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    os="$(get_os)"
+
+    if [ "$os" == "osx" ]; then
+        version="$(sw_vers -productVersion)"
+    elif [ "$os" == "ubuntu" ]; then
+        version="$(lsb_release -d | cut -f2 | cut -d' ' -f2)"
+    fi
+
+    printf "%s" "$version"
+
+}
+
 get_os_arch() {
     printf "%s" "$(getconf LONG_BIT)"
 }
 
 is_git_repository() {
     git rev-parse &> /dev/null
+}
+
+is_supported_version() {
+
+    declare -a v1=(${1//./ })
+    declare -a v2=(${2//./ })
+    local i=""
+
+    # Fill empty positions in v1 with zeros
+    for (( i=${#v1[@]}; i<${#v2[@]}; i++ )); do
+        v1[i]=0
+    done
+
+    for (( i=0; i<${#v1[@]}; i++ )); do
+
+        # Fill empty positions in v2 with zeros
+        if [[ -z ${v2[i]} ]]; then
+            v2[i]=0
+        fi
+
+        if (( 10#${v1[i]} < 10#${v2[i]} )); then
+            return 1
+        fi
+
+    done
+
 }
 
 mkd() {
