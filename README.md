@@ -9,10 +9,10 @@ files described in the [`Local Settings`](#local-settings) section.
 
 ## Setup
 
-To setup the dotfiles just run the appropriate snippet in the
+To set up the `dotfiles` just run the appropriate snippet in the
 terminal:
 
-(:warning: **DO NOT** run the setup snippet if you don't fully
+(:warning: **DO NOT** run the `setup` snippet if you don't fully
 understand [what it does](src/os/setup.sh). Seriously, **DON'T**!)
 
 | OS | Snippet |
@@ -28,16 +28,16 @@ The setup process will:
   `~/projects/dotfiles`)
 * Create some additional [directories](src/os/create_directories.sh)
 * [Symlink](src/os/create_symbolic_links.sh) the
-  [git](src/git),
-  [shell](src/shell), and
-  [vim](src/vim) files
+  [`git`](src/git),
+  [`shell`](src/shell), and
+  [`vim`](src/vim) files
 * Install applications / command-line tools for
   [OS X](src/os/os_x/installs/main.sh) /
   [Ubuntu](src/os/ubuntu/installs/main.sh)
 * Set custom
   [OS X](src/os/os_x/preferences/main.sh) /
   [Ubuntu](src/os/ubuntu/preferences/main.sh) preferences
-* Install [vim plugins](src/vim/vim/plugins)
+* Install [`vim` plugins](src/vim/vim/plugins)
 
 
 Setup process in action:
@@ -49,7 +49,7 @@ Setup process in action:
                 <img src="https://cloud.githubusercontent.com/assets/1223565/11821505/91e437be-a372-11e5-9500-025c316fe22c.gif" alt="Setup process on OS X" width="100%">
             </td>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/14654513/bb323662-0686-11e6-8fc1-ac05caf6cb58.gif" alt="Setup process on Ubuntu" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/15118673/f41d9c8e-1615-11e6-9b25-5a4da543fef1.gif" alt="Setup process on Ubuntu" width="100%">
             </td>
         </tr>
         <tr align="center">
@@ -126,15 +126,15 @@ Output for `git log`:
 
 ### Local Settings
 
-The dotfiles can be easily extended to suit additional local
+The `dotfiles` can be easily extended to suit additional local
 requirements by using the following files:
 
 #### `~/.bash.local`
 
 If the `~/.bash.local` file exists, it will be automatically sourced
-after all the other [bash related files](src/shell), thus, allowing its
-content to add to or overwrite the existing aliases, settings, PATH,
-etc.
+after all the other [`bash` related files](src/shell), thus, allowing
+its content to add to or overwrite the existing aliases, settings,
+PATH, etc.
 
 Here is a very simple example of a `~/.bash.local` file:
 
@@ -188,7 +188,7 @@ Same as `~/.vimrc.local` but for `~/.gvimrc`.
 ### Forks
 
 If you decide to fork this project, don't forget to substitute my
-username with your own in the [setup snippets](#setup) and [in the
+username with your own in the [`setup` snippets](#setup) and [in the
 `setup` script](https://github.com/alrra/dotfiles/blob/1503cf23ef23f6e31342b140bcd246625160b94f/src/os/setup.sh#L3).
 
 
