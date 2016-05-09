@@ -48,7 +48,14 @@ main() {
     brew_install "Opera" "opera" "caskroom/cask" "cask"
     brew_install "Opera Beta" "opera-beta" "caskroom/versions" "cask"
     brew_install "Opera Developer" "opera-developer" "caskroom/versions" "cask"
-    brew_install "Safari Technology Preview" "safari-technology-preview" "caskroom/versions" "cask"
+
+    # `Safari Technology Preview` requires OS X 10.11.4 or later
+    # https://github.com/alrra/dotfiles/issues/26
+
+    if is_supported_version "$(get_os_version)" "10.11.4"; then
+        brew_install "Safari Technology Preview" "safari-technology-preview" "caskroom/versions" "cask"
+    fi
+
     brew_install "ShellCheck" "shellcheck"
     brew_install "Spectacle" "spectacle" "caskroom/cask" "cask"
     brew_install "tmux" "tmux"
