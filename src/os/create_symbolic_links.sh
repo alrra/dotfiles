@@ -70,6 +70,7 @@ main() {
                 if answer_is_yes; then
 
                     rm -rf "$targetFile"
+
                     execute \
                         "ln -fs $sourceFile $targetFile" \
                         "$targetFile → $sourceFile"

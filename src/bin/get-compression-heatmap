@@ -94,14 +94,14 @@ get_image_name() {
 
 get_script_path() {
 
-    declare -r OS_NAME="$(uname -s)"
+    declare -r os_name="$(uname -s)"
     local path="$1"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ "$OS_NAME" == "Darwin" ]; then
+    if [ "$os_name" == "Darwin" ]; then
         path="$path/osx"
-    elif [ "$OS_NAME" == "Linux" ]; then
+    elif [ "$os_name" == "Linux" ]; then
         path="$path/linux"
 
         if [ "$(uname -m)" == "x86_64" ]; then

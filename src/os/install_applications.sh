@@ -7,20 +7,20 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 main() {
 
-    local OS=""
+    local os=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    OS="$(get_os)" \
+    os="$(get_os)" \
         || print_error "Failed to get the kernel name"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_warning "This may take awhile, so please be patient!\n"
 
-    if [ "$OS" == "osx" ]; then
+    if [ "$os" == "osx" ]; then
         ./os_x/installs/main.sh
-    elif [ "$OS" == "ubuntu" ]; then
+    elif [ "$os" == "ubuntu" ]; then
         ./ubuntu/installs/main.sh
     fi
 
