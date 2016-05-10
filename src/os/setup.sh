@@ -177,21 +177,21 @@ verify_os() {
     declare -r MINIMUM_OS_X_VERSION="10.10"
     declare -r MINIMUM_UBUNTU_VERSION="14.04"
 
-    local OS_NAME=""
-    local OS_VERSION=""
+    local os_name=""
+    local os_version=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if the OS is `OS X` and
     # it's above the required version
 
-    OS_NAME="$(uname -s)"
+    os_name="$(uname -s)"
 
-    if [ "$OS_NAME" == "Darwin" ]; then
+    if [ "$os_name" == "Darwin" ]; then
 
-        OS_VERSION="$(sw_vers -productVersion)"
+        os_version="$(sw_vers -productversion)"
 
-        if is_supported_version "$OS_VERSION" "$MINIMUM_OS_X_VERSION"; then
+        if is_supported_version "$os_version" "$MINIMUM_OS_X_VERSION"; then
             return 0
         else
             printf "Sorry, this script is intended only for OS X %s+" "$MINIMUM_OS_X_VERSION"
@@ -202,11 +202,11 @@ verify_os() {
     # Check if the OS is `Ubuntu` and
     # it's above the required version
 
-    elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
+    elif [ "$os_name" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
 
-        OS_VERSION="$(lsb_release -d | cut -f2 | cut -d' ' -f2)"
+        os_version="$(lsb_release -d | cut -f2 | cut -d' ' -f2)"
 
-        if is_supported_version "$OS_VERSION" "$MINIMUM_UBUNTU_VERSION"; then
+        if is_supported_version "$os_version" "$MINIMUM_UBUNTU_VERSION"; then
             return 0
         else
             printf "Sorry, this script is intended only for Ubuntu %s+" "$MINIMUM_UBUNTU_VERSION"

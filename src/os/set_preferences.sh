@@ -7,18 +7,18 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 main() {
 
-    local OS=""
+    local os=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    OS="$(get_os)" \
-        || print_error "Failed to get the kernel name"
+    os="$(get_os)" \
+        || print_error "failed to get the kernel name"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ "$OS" == "osx" ]; then
+    if [ "$os" == "osx" ]; then
         ./os_x/preferences/main.sh
-    elif [ "$OS" == "ubuntu" ]; then
+    elif [ "$os" == "ubuntu" ]; then
         ./ubuntu/preferences/main.sh
     fi
 

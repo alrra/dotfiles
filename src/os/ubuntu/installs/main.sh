@@ -8,11 +8,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 main() {
 
-    local OS_ARCH=""
+    local os_arch=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    OS_ARCH="$(get_os_arch)"
+    os_arch="$(get_os_arch)"
 
     update
     upgrade
@@ -124,7 +124,7 @@ main() {
     # Opera stable based on Blink is only
     # available for the 64-bit version of Ubuntu
 
-    if [ "$OS_ARCH" == "64" ]; then
+    if [ "$os_arch" == "64" ]; then
 
         # Automatically answer `Yes` to the `package configuration` prompt
         # https://github.com/alrra/dotfiles/issues/17
@@ -134,7 +134,7 @@ main() {
 
         install_package "Opera" "opera-stable"
 
-    elif [ "$OS_ARCH" == "32" ]; then
+    elif [ "$os_arch" == "32" ]; then
 
         install_package "Opera" "opera"
 
