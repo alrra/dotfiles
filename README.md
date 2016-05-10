@@ -181,9 +181,6 @@ If the `~/.vimrc.local` file exists, it will be automatically sourced
 after `~/.vimrc`, thus, allowing its content to add or overwrite the
 settings from `~/.vimrc`.
 
-#### `~/.gvimrc.local`
-
-Same as `~/.vimrc.local` but for `~/.gvimrc`.
 
 ### Forks
 
