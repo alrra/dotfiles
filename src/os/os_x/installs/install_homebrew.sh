@@ -17,7 +17,7 @@ main() {
         #  └─ simulate the ENTER keypress
     fi
 
-    print_result $? "Homebrew"
+    print_result $? "brew"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -37,7 +37,7 @@ main() {
         git config --file="$HOMEBREW_GIT_CONFIG_FILE" --replace-all homebrew.analyticsdisabled true &> /dev/null
     fi
 
-    print_result $? "Homebrew (opt-out of analytics)"
+    print_result $? "brew (opt-out of analytics)"
 
 }
 
