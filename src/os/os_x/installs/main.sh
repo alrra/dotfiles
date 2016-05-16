@@ -15,6 +15,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ./install_homebrew.sh
+    ./update_and_upgrade.sh
 
     print_in_green "\n  ---\n\n"
 
@@ -153,7 +154,6 @@ main() {
 
     print_in_green "\n  ---\n\n"
 
-    ./update_and_upgrade.sh
     ./cleanup.sh
 
 }
