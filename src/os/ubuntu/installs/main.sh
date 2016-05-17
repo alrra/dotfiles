@@ -35,20 +35,6 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if ! package_is_installed "atom"; then
-
-        add_ppa "webupd8team/atom" \
-            || print_error "Atom (add PPA)"
-
-        update &> /dev/null \
-            || print_error "Atom (resync package index files)"
-
-    fi
-
-    install_package "Atom" "atom"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     if ! package_is_installed "google-chrome-unstable"; then
 
         add_key "https://dl-ssl.google.com/linux/linux_signing_key.pub" \

@@ -33,10 +33,6 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    brew_install "Atom" "atom" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     brew_install "Chrome" "google-chrome" "caskroom/cask" "cask"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
