@@ -189,7 +189,7 @@ verify_os() {
 
     if [ "$os_name" == "Darwin" ]; then
 
-        os_version="$(sw_vers -productversion)"
+        os_version="$(sw_vers -productVersion)"
 
         if is_supported_version "$os_version" "$MINIMUM_OS_X_VERSION"; then
             return 0
