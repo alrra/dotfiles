@@ -21,7 +21,7 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # If something when wrong so far, don't continue any further
+    # If something went wrong so far, don't continue any further
 
     [ $? -ne 0 ] \
         && exit 0
