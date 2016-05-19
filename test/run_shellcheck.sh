@@ -23,7 +23,7 @@ main() {
         ! -path '../src/shell/screenrc' \
         ! -path '../src/shell/tmux.conf' \
         ! -path '../src/os/os_x/preferences/set_custom_terminal_theme.scpt' \
-        ! -path '../src/os/os_x/preferences/solarized_dark.terminal' \
+        ! -path '../src/os/os_x/preferences/Solarized Dark.terminal' \
         -exec shellcheck \
                 -e SC1090 \
                 -e SC1091 \
