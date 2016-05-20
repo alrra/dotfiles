@@ -13,5 +13,5 @@ execute "defaults write com.apple.terminal FocusFollowsMouse -string true" \
 execute "defaults write com.apple.terminal StringEncodings -array 4" \
     "Only use UTF-8"
 
-execute "osascript set_custom_terminal_theme.scpt" \
+execute "./set_custom_terminal_theme.applescript" \
     "Set custom terminal theme"

@@ -22,7 +22,7 @@ main() {
         ! -path '../src/shell/inputrc' \
         ! -path '../src/shell/screenrc' \
         ! -path '../src/shell/tmux.conf' \
-        ! -path '../src/os/os_x/preferences/set_custom_terminal_theme.scpt' \
+        ! -path '../src/os/os_x/preferences/set_custom_terminal_theme.applescript' \
         ! -path '../src/os/os_x/preferences/Solarized Dark.terminal' \
         -exec shellcheck \
                 -e SC1090 \

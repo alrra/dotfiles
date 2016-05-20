@@ -1,3 +1,5 @@
+#!/usr/bin/osascript
+
 tell application "Terminal"
 
     local allOpenedWindows
