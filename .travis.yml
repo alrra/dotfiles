@@ -6,6 +6,8 @@ dist: trusty
 
 before_install:
   - ./test/customize_environment.sh
+
+install:
   - ./src/os/setup.sh -y
 
 language: generic
