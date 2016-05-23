@@ -282,15 +282,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_info "Create directories"
-
-    if ! $skipQuestions; then
-        ask_for_confirmation "Do you want the additional directories to be created?"
-        printf "\n"
-    fi
-
-    if $skipQuestions || answer_is_yes; then
-        ./create_directories.sh
-    fi
+    ./create_directories.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -306,35 +298,19 @@ main() {
 
     print_info "Install applications"
 
-    if ! $skipQuestions; then
-        ask_for_confirmation "Do you want to install the applications/command line tools?"
-        printf "\n"
-    fi
+    ./install_applications.sh
+    print_in_green "\n  ---\n\n"
 
-    if $skipQuestions || answer_is_yes; then
+    ./install_node_versions.sh
+    print_in_green "\n  ---\n\n"
 
-        ./install_applications.sh
-        print_in_green "\n  ---\n\n"
-
-        ./install_node_versions.sh
-        print_in_green "\n  ---\n\n"
-
-        ./install_npm_packages.sh
-
-    fi
+    ./install_npm_packages.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_info "Set preferences"
 
-    if ! $skipQuestions; then
-        ask_for_confirmation "Do you want to set the custom preferences?"
-        printf "\n"
-    fi
-
-    if $skipQuestions || answer_is_yes; then
-        ./set_preferences.sh
-    fi
+    ./set_preferences.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -367,15 +343,7 @@ main() {
     if cmd_exists "vim"; then
 
         print_info "Install/Update Vim plugins"
-
-        if ! $skipQuestions; then
-            ask_for_confirmation "Do you want to install/update the Vim plugins?"
-            printf "\n"
-        fi
-
-        if $skipQuestions || answer_is_yes; then
-            ./install_vim_plugins.sh
-        fi
+        ./install_vim_plugins.sh
 
     fi
 
