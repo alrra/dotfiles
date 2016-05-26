@@ -2,8 +2,6 @@
 # in this file, please see the Travis CI documentation:
 # https://docs.travis-ci.com
 
-dist: trusty
-
 before_install:
   - ./test/customize_environment.sh
 
@@ -12,11 +10,14 @@ install:
 
 language: generic
 
-os:
-  - linux
-  - osx
+matrix:
+  include:
 
-osx_image: xcode7.3
+    - os: linux
+      dist: trusty
+
+    - os: osx
+      osx_image: xcode7.3
 
 script:
   - ./test/main.sh
