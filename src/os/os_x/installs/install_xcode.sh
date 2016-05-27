@@ -11,6 +11,7 @@ main() {
     if ! xcode-select --print-path &> /dev/null; then
 
         # Prompt user to install the XCode Command Line Tools
+
         xcode-select --install &> /dev/null
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
