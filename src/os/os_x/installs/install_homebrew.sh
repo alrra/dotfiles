@@ -8,7 +8,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 main() {
 
-    local HOMEBREW_GIT_CONFIG_FILE=""
+    local homebrewGitConfigFilePath=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -17,24 +17,28 @@ main() {
         #  └─ simulate the ENTER keypress
     fi
 
-    print_result $? "brew"
+    print_result $? "brew" \
+        || return 1
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # If something went wrong so far, don't continue any further
+    # Try to get the path of the `Homebrew` git config file,
+    # and if something fails, don't continue any further
 
-    [ $? -ne 0 ] \
-        && exit 0
+    homebrewGitConfigFilePath="$(brew --repository 2> /dev/null)/.git/config"
+
+    if [ $? -ne 0 ]; then
+        print_error "brew (get config file path)"
+        return 1
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Opt-out of Homebrew's analytics
     # https://github.com/Homebrew/brew/blob/0c95c60511cc4d85d28f66b58d51d85f8186d941/share/doc/homebrew/Analytics.md#opting-out
 
-    HOMEBREW_GIT_CONFIG_FILE="$(brew --repository)/.git/config"
-
-    if [ "$(git config --file="$HOMEBREW_GIT_CONFIG_FILE" --get homebrew.analyticsdisabled)" != "true" ]; then
-        git config --file="$HOMEBREW_GIT_CONFIG_FILE" --replace-all homebrew.analyticsdisabled true &> /dev/null
+    if [ "$(git config --file="$homebrewGitConfigFilePath" --get homebrew.analyticsdisabled)" != "true" ]; then
+        git config --file="$homebrewGitConfigFilePath" --replace-all homebrew.analyticsdisabled true &> /dev/null
     fi
 
     print_result $? "brew (opt-out of analytics)"
