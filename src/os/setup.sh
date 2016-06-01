@@ -146,32 +146,6 @@ extract() {
 
 }
 
-is_supported_version() {
-
-    declare -a v1=(${1//./ })
-    declare -a v2=(${2//./ })
-    local i=""
-
-    # Fill empty positions in v1 with zeros
-    for (( i=${#v1[@]}; i<${#v2[@]}; i++ )); do
-        v1[i]=0
-    done
-
-    for (( i=0; i<${#v1[@]}; i++ )); do
-
-        # Fill empty positions in v2 with zeros
-        if [[ -z ${v2[i]} ]]; then
-            v2[i]=0
-        fi
-
-        if (( 10#${v1[i]} < 10#${v2[i]} )); then
-            return 1
-        fi
-
-    done
-
-}
-
 verify_os() {
 
     declare -r MINIMUM_OS_X_VERSION="10.10"
@@ -228,27 +202,8 @@ verify_os() {
 
 main() {
 
-    # Ensure the OS is supported and
-    # it's above the required version
-
-    verify_os || exit 1
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    while :; do
-        case $1 in
-            -y|--yes) skipQuestions=true; break;;
-                   *) break;;
-        esac
-        shift 1
-    done
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     # Ensure that the following actions
     # are made relative to this file's path
-    #
-    # http://mywiki.wooledge.org/BashFAQ/028
 
     cd "$(dirname "${BASH_SOURCE[0]}")" \
         || exit 1
@@ -262,6 +217,25 @@ main() {
     else
         download_utils || exit 1
     fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Ensure the OS is supported and
+    # it's above the required version
+
+    verify_os \
+        || exit 1
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    while :; do
+        case $1 in
+            -y|--yes) skipQuestions=true; break;;
+                   *) break;;
+        esac
+        shift 1
+    done
+
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
