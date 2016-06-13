@@ -2,7 +2,7 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Set LSCOLORS (FreeBSD / OS X)
+# Set LSCOLORS (FreeBSD / macOS)
 #
 #  - `ls` displays colors if the `-G` option is passed or if
 #    the `CLICOLOR` environment variable is set

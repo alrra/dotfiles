@@ -100,7 +100,7 @@ get_script_path() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [ "$os_name" == "Darwin" ]; then
-        path="$path/osx"
+        path="$path/macos"
     elif [ "$os_name" == "Linux" ]; then
         path="$path/linux"
 
@@ -199,7 +199,7 @@ main() {
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         # Opening too many images really
-        # quickly makes OS X's Preview crash
+        # quickly makes macOS' Preview crash
 
         sleep 0.2
 
