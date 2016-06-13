@@ -74,7 +74,7 @@ get_os() {
     kernelName="$(uname -s)"
 
     if [ "$kernelName" == "Darwin" ]; then
-        os="osx"
+        os="macos"
     elif [ "$kernelName" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
         os="ubuntu"
     else
@@ -94,7 +94,7 @@ get_os_version() {
 
     os="$(get_os)"
 
-    if [ "$os" == "osx" ]; then
+    if [ "$os" == "macos" ]; then
         version="$(sw_vers -productVersion)"
     elif [ "$os" == "ubuntu" ]; then
         version="$(lsb_release -d | cut -f2 | cut -d' ' -f2)"

@@ -16,8 +16,8 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ "$os" == "osx" ]; then
-        ./os_x/preferences/main.sh
+    if [ "$os" == "macos" ]; then
+        ./macos/preferences/main.sh
     elif [ "$os" == "ubuntu" ]; then
         ./ubuntu/preferences/main.sh
     fi

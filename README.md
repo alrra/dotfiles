@@ -17,7 +17,7 @@ understand [what it does](src/os/setup.sh). Seriously, **DON'T**!)
 
 | OS | Snippet |
 |:---:|:---|
-| OS X | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/src/os/setup.sh)"` |
+| macOS | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/src/os/setup.sh)"` |
 | Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/src/os/setup.sh)"` |
 
 That's it! :sparkles:
@@ -32,10 +32,10 @@ The setup process will:
   [`shell`](src/shell), and
   [`vim`](src/vim) files
 * Install applications / command-line tools for
-  [OS X](src/os/os_x/installs/main.sh) /
+  [macOS](src/os/macos/installs/main.sh) /
   [Ubuntu](src/os/ubuntu/installs/main.sh)
 * Set custom
-  [OS X](src/os/os_x/preferences/main.sh) /
+  [macOS](src/os/macos/preferences/main.sh) /
   [Ubuntu](src/os/ubuntu/preferences/main.sh) preferences
 * Install [`vim` plugins](src/vim/vim/plugins)
 
@@ -46,14 +46,14 @@ Setup process in action:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/11821505/91e437be-a372-11e5-9500-025c316fe22c.gif" alt="Setup process on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/11821505/91e437be-a372-11e5-9500-025c316fe22c.gif" alt="Setup process on macOS" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/15118673/f41d9c8e-1615-11e6-9b25-5a4da543fef1.gif" alt="Setup process on Ubuntu" width="100%">
             </td>
         </tr>
         <tr align="center">
-            <td>OS X</td>
+            <td>macOS</td>
             <td>Ubuntu</td>
         </td>
     </tbody>
@@ -70,14 +70,14 @@ Output for `git status`:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/10561038/f9f11a28-7525-11e5-8e1d-a304ad3557f9.png" alt="Output for Git status on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/10561038/f9f11a28-7525-11e5-8e1d-a304ad3557f9.png" alt="Output for Git status on macOS" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/8397636/3708d218-1ddb-11e5-9d40-21c6871271b9.png" alt="Output for Git status on Ubuntu" width="100%">
             </td>
         </tr>
         <tr align="center">
-            <td>OS X</td>
+            <td>macOS</td>
             <td>Ubuntu</td>
         </td>
     </tbody>
@@ -89,14 +89,14 @@ Output for `git log`:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/10560966/e4ec08a6-7523-11e5-8941-4e12f6550a63.png" alt="Output for Git status on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/10560966/e4ec08a6-7523-11e5-8941-4e12f6550a63.png" alt="Output for Git status on macOS" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/10560955/4b5e1300-7523-11e5-9e96-95ea67de9474.png" alt="Output for Git log on Ubuntu" width="100%">
             </td>
         </tr>
         <tr align="center">
-            <td>OS X</td>
+            <td>macOS</td>
             <td>Ubuntu</td>
         </td>
     </tbody>
@@ -108,14 +108,14 @@ Output for `git log`:
     <tbody>
         <tr>
             <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/10561007/498e1212-7525-11e5-8252-81503b3d6184.png" alt="tmux and vim on OS X" width="100%">
+                <img src="https://cloud.githubusercontent.com/assets/1223565/10561007/498e1212-7525-11e5-8252-81503b3d6184.png" alt="tmux and vim on macOS" width="100%">
             </td>
             <td>
                 <img src="https://cloud.githubusercontent.com/assets/1223565/10560956/557ca2de-7523-11e5-9000-fc1e189a95f5.png" alt="tmux and vim on Ubuntu" width="100%">
             </td>
         </tr>
         <tr align="center">
-            <td>OS X</td>
+            <td>macOS</td>
             <td>Ubuntu</td>
         </td>
     </tbody>
