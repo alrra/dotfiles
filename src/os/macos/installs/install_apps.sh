@@ -64,7 +64,7 @@ brew_install "Opera Developer" "opera-developer" "caskroom/versions" "cask"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# `Safari Technology Preview` requires OS X 10.11.4 or later.
+# `Safari Technology Preview` requires macOS 10.11.4 or later
 # https://github.com/alrra/dotfiles/issues/26
 
 if is_supported_version "$(get_os_version)" "10.11.4"; then

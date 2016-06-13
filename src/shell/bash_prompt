@@ -22,8 +22,8 @@ enable_color_support() {
 
     # Load OS specific color support
 
-    if [ "$os" == "osx" ]; then
-        source "$DOTFILES_DIR_PATH/shell/os_x/bash_colors"
+    if [ "$os" == "macos" ]; then
+        source "$DOTFILES_DIR_PATH/shell/macos/bash_colors"
     elif [ "$os" == 'ubuntu' ]; then
         source "$DOTFILES_DIR_PATH/shell/ubuntu/bash_colors"
     fi
@@ -200,7 +200,7 @@ set_prompts() {
     # e.g:
     #
     # The GNU `date` command has the `%N` interpreted sequence while
-    # other implementations don't (on OS X `gdate` can be used instead
+    # other implementations don't (on macOS `gdate` can be used instead
     # of the native `date` if the `coreutils` package has been installed)
     #
     # local dateCmd=""

@@ -41,7 +41,7 @@ change_default_bash_version() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Make OS X use the `Bash` version installed through `Homebrew`
+    # Make macOS use the `Bash` version installed through `Homebrew`
     # https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/chsh.1.html
 
     execute \
@@ -55,7 +55,7 @@ change_default_bash_version() {
 main() {
 
     # Install the latest version of `Bash` and set it as the default
-    # (OS X uses by default an older version of `Bash`)
+    # (macOS uses by default an older version of `Bash`)
 
     brew_install "Bash" "bash" \
         && change_default_bash_version
