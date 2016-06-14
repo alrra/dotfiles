@@ -17,8 +17,8 @@ understand [what it does](src/os/setup.sh). Seriously, **DON'T**!)
 
 | OS | Snippet |
 |:---:|:---|
-| macOS | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/src/os/setup.sh)"` |
-| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/src/os/setup.sh)"` |
+| `macOS` | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/master/src/os/setup.sh)"` |
+| `Ubuntu` | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/master/src/os/setup.sh)"` |
 
 That's it! :sparkles:
 
@@ -32,11 +32,11 @@ The setup process will:
   [`shell`](src/shell), and
   [`vim`](src/vim) files
 * Install applications / command-line tools for
-  [macOS](src/os/macos/installs/main.sh) /
-  [Ubuntu](src/os/ubuntu/installs/main.sh)
+  [`macOS`](src/os/macos/installs/main.sh) /
+  [`Ubuntu`](src/os/ubuntu/installs/main.sh)
 * Set custom
-  [macOS](src/os/macos/preferences/main.sh) /
-  [Ubuntu](src/os/ubuntu/preferences/main.sh) preferences
+  [`macOS`](src/os/macos/preferences/main.sh) /
+  [`Ubuntu`](src/os/ubuntu/preferences/main.sh) preferences
 * Install [`vim` plugins](src/vim/vim/plugins)
 
 
@@ -102,7 +102,7 @@ Output for `git log`:
     </tbody>
 </table>
 
-### tmux + vim
+### tmux & vim
 
 <table>
     <tbody>
