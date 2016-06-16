@@ -18,11 +18,7 @@ main() {
 
     print_warning "This may take awhile, so please be patient!\n"
 
-    if [ "$os" == "macos" ]; then
-        ./macos/installs/main.sh
-    elif [ "$os" == "ubuntu" ]; then
-        ./ubuntu/installs/main.sh
-    fi
+    "./$os/installs/main.sh"
 
 }
 

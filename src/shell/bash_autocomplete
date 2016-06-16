@@ -15,11 +15,7 @@ declare DOTFILES_DIR_PATH="$(dirname "$(dirname "$(readlink "${BASH_SOURCE[0]}")
 # Enable programmable completion features
 # http://tldp.org/LDP/abs/html/tabexpansion.html
 
-if [ "$os" == "macos" ]; then
-    . "$DOTFILES_DIR_PATH/shell/macos/bash_autocomplete"
-elif [ "$os" == "ubuntu" ]; then
-    . "$DOTFILES_DIR_PATH/shell/ubuntu/bash_autocomplete"
-fi
+. "$DOTFILES_DIR_PATH/shell/$os/bash_autocomplete"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -31,11 +31,7 @@ alias rm="rm -rf --"
 
 # Load OS specific aliases
 
-if [ "$os" == "macos" ]; then
-    . "$DOTFILES_DIR_PATH/shell/macos/bash_aliases"
-elif [ "$os" == "ubuntu" ]; then
-    . "$DOTFILES_DIR_PATH/shell/ubuntu/bash_aliases"
-fi
+. "$DOTFILES_DIR_PATH/shell/$os/bash_aliases"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
