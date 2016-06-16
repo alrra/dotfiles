@@ -6,7 +6,7 @@ enable_color_support() {
 
     declare DOTFILES_DIR_PATH="$(dirname "$(dirname "$(readlink "${BASH_SOURCE[0]}")")")"
 
-    source "$DOTFILES_DIR_PATH/os/utils.sh" \
+    . "$DOTFILES_DIR_PATH/os/utils.sh" \
         && declare os="$(get_os)"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -23,9 +23,9 @@ enable_color_support() {
     # Load OS specific color support
 
     if [ "$os" == "macos" ]; then
-        source "$DOTFILES_DIR_PATH/shell/macos/bash_colors"
+        . "$DOTFILES_DIR_PATH/shell/macos/bash_colors"
     elif [ "$os" == 'ubuntu' ]; then
-        source "$DOTFILES_DIR_PATH/shell/ubuntu/bash_colors"
+        . "$DOTFILES_DIR_PATH/shell/ubuntu/bash_colors"
     fi
 
 }

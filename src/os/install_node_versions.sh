@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && source "utils.sh"
+    && . "utils.sh"
 
 declare -r -a NODE_VERSIONS=(
     "node"
@@ -22,10 +22,10 @@ main() {
 export NVM_DIR=\"$NVM_DIRECTORY\"
 
 [ -f \"\$NVM_DIR/nvm.sh\" ] \\
-    && source \"\$NVM_DIR/nvm.sh\"
+    && . \"\$NVM_DIR/nvm.sh\"
 
 [ -f \"\$NVM_DIR/bash_completion\" ] \\
-    && source \"\$NVM_DIR/bash_completion\"
+    && . \"\$NVM_DIR/bash_completion\"
 "
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -50,7 +50,7 @@ export NVM_DIR=\"$NVM_DIRECTORY\"
         if [ $? -eq 0 ]; then
             execute \
                 "printf '%s' '$CONFIGS' >> $HOME/.bash.local \
-                    && source $HOME/.bash.local" \
+                    && . $HOME/.bash.local" \
                 "nvm (update ~/.bash.local)"
         fi
 
@@ -66,7 +66,7 @@ export NVM_DIR=\"$NVM_DIRECTORY\"
             "cd $NVM_DIRECTORY \
                 && git fetch --quiet origin \
                 && git checkout --quiet \$(git describe --abbrev=0 --tags) \
-                && source $NVM_DIRECTORY/nvm.sh" \
+                && . $NVM_DIRECTORY/nvm.sh" \
             "nvm (upgrade)"
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

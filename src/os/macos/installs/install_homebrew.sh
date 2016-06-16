@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && source "../../utils.sh" \
-    && source "./utils.sh"
+    && . "../../utils.sh" \
+    && . "./utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
