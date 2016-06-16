@@ -3,13 +3,13 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "utils.sh"
 
-declare -a DIRECTORIES=(
-    "$HOME/Downloads/torrents"
-)
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
+
+    declare -a DIRECTORIES=(
+        "$HOME/Downloads/torrents"
+    )
 
     for i in "${DIRECTORIES[@]}"; do
         mkd "$i"
