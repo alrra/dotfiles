@@ -5,19 +5,4 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-main() {
-
-    local os=""
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    os="$(get_os)" \
-        || print_error "failed to get the kernel name"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    "./$os/preferences/main.sh"
-
-}
-
-main
+"./$(get_os)/preferences/main.sh"
