@@ -124,7 +124,7 @@ download_utils() {
     tmpFile="$(mktemp /tmp/XXXXX)"
 
     download "$DOTFILES_UTILS_URL" "$tmpFile" \
-        && source "$tmpFile" \
+        && . "$tmpFile" \
         && rm -rf "$tmpFile" \
         && return 0
 
@@ -213,7 +213,7 @@ main() {
     # Load utils
 
     if [ -x "utils.sh" ]; then
-        source "utils.sh" || exit 1
+        . "utils.sh" || exit 1
     else
         download_utils || exit 1
     fi

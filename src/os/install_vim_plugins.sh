@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && source "utils.sh"
+    && . "utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -35,7 +35,7 @@ main() {
     # available, the `~/bash.local` file needs to be sourced
 
     if ! cmd_exists "npm"; then
-        source "$HOME/.bash.local"
+        . "$HOME/.bash.local"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
