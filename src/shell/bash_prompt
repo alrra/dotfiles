@@ -6,8 +6,7 @@ enable_color_support() {
 
     declare DOTFILES_DIR_PATH="$(dirname "$(dirname "$(readlink "${BASH_SOURCE[0]}")")")"
 
-    . "$DOTFILES_DIR_PATH/os/utils.sh" \
-        && declare os="$(get_os)"
+    . "$DOTFILES_DIR_PATH/os/utils.sh"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -22,7 +21,7 @@ enable_color_support() {
 
     # Load OS specific color support
 
-    . "$DOTFILES_DIR_PATH/shell/$os/bash_colors"
+    . "$DOTFILES_DIR_PATH/shell/$(get_os)/bash_colors"
 
 }
 
@@ -96,6 +95,7 @@ get_git_repository_details() {
         || git rev-parse --short HEAD 2> /dev/null \
         || printf " (unknown)" )" | tr -d "\n" )"
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     printf "%s" "$1$branchName$tmp"
 
