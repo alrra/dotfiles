@@ -22,12 +22,13 @@ main() {
         ! -path '../src/shell/inputrc' \
         ! -path '../src/shell/screenrc' \
         ! -path '../src/shell/tmux.conf' \
-        ! -path '../src/os/macos/preferences/set_custom_terminal_theme.applescript' \
-        ! -path '../src/os/macos/preferences/Solarized Dark.terminal' \
+        ! -path '../src/os/preferences/macos/set_terminal_theme.applescript' \
+        ! -path '../src/os/preferences/macos/Solarized Dark.terminal' \
         -exec shellcheck \
                 -e SC1090 \
                 -e SC1091 \
                 -e SC2155 \
+                -e SC2164 \
         {} +
 
     print_result $? "Run code through ShellCheck"
