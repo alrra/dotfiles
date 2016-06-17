@@ -7,19 +7,17 @@
 
 declare DOTFILES_DIR_PATH="$(dirname "$(dirname "$(readlink "${BASH_SOURCE[0]}")")")"
 
-. "$DOTFILES_DIR_PATH/os/utils.sh" \
-    && declare os="$(get_os)"
+. "$DOTFILES_DIR_PATH/os/utils.sh"
 
 # ----------------------------------------------------------------------
 
 # Enable programmable completion features
 # http://tldp.org/LDP/abs/html/tabexpansion.html
 
-. "$DOTFILES_DIR_PATH/shell/$os/bash_autocomplete"
+. "$DOTFILES_DIR_PATH/shell/$(get_os)/bash_autocomplete"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Cleanup
 
 unset DOTFILES_DIR_PATH
-unset os
