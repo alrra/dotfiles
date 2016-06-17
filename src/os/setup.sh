@@ -275,7 +275,7 @@ main() {
     ./install_applications.sh
     print_in_green "\n  ---\n\n"
 
-    ./install_node_versions.sh
+    ./install_node.sh
     print_in_green "\n  ---\n\n"
 
     ./install_npm_packages.sh
