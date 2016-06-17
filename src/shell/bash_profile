@@ -18,6 +18,8 @@ source_bash_files() {
                       # not be under version control
     )
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     for i in ${!FILES_TO_SOURCE[*]}; do
 
         file="$HOME/.${FILES_TO_SOURCE[$i]}"
