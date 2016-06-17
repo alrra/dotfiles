@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "utils.sh"
+    && . "../utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -73,6 +73,8 @@ export NVM_DIR=\"$NVM_DIRECTORY\"
         execute \
             "nvm install node" \
             "nvm (install: node)"
+
+        print_in_green "\n  ---\n\n"
 
     fi
 
