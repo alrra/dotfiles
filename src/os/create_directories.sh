@@ -11,6 +11,10 @@ main() {
         "$HOME/Downloads/torrents"
     )
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_info "Create directories"
+
     for i in "${DIRECTORIES[@]}"; do
         mkd "$i"
     done

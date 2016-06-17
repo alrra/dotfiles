@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "utils.sh"
+    && . "../utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -9,6 +9,14 @@ main() {
 
     declare -r VUNDLE_DIR="$HOME/.vim/plugins/Vundle.vim"
     declare -r VUNDLE_GIT_REPO_URL="https://github.com/gmarik/Vundle.vim.git"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_info "Install/Update Vim plugins"
+
+    if ! cmd_exists "vim"; then
+        exit 1
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -255,12 +255,9 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Create directories"
     ./create_directories.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    print_info "Create symbolic links"
 
     if ! $skipQuestions; then
         ./create_symbolic_links.sh
@@ -270,28 +267,17 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Install applications"
-
-    ./install_applications.sh
-    print_in_green "\n  ---\n\n"
-
-    ./install_node.sh
-    print_in_green "\n  ---\n\n"
-
-    ./install_npm_packages.sh
+    ./install/main.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Set preferences"
-
-    ./set_preferences.sh
+    ./preferences/main.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if cmd_exists "git"; then
 
         if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-            print_info "Initialize Git repository"
             ./initialize_git_repository.sh "$DOTFILES_ORIGIN"
         fi
 
@@ -313,16 +299,6 @@ main() {
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if cmd_exists "vim"; then
-
-        print_info "Install/Update Vim plugins"
-        ./install_vim_plugins.sh
-
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 
     if ! $skipQuestions; then
 
