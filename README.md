@@ -32,11 +32,11 @@ The setup process will:
   [`shell`](src/shell), and
   [`vim`](src/vim) files
 * Install applications / command-line tools for
-  [`macOS`](src/os/macos/installs/main.sh) /
-  [`Ubuntu`](src/os/ubuntu/installs/main.sh)
+  [`macOS`](src/os/install/macos) /
+  [`Ubuntu`](src/os/install/ubuntu)
 * Set custom
-  [`macOS`](src/os/macos/preferences/main.sh) /
-  [`Ubuntu`](src/os/ubuntu/preferences/main.sh) preferences
+  [`macOS`](src/os/preferences/macos) /
+  [`Ubuntu`](src/os/preferences/ubuntu) preferences
 * Install [`vim` plugins](src/vim/vim/plugins)
 
 
