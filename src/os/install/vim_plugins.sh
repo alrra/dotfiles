@@ -5,31 +5,12 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-main() {
+install_plugins() {
 
     declare -r VUNDLE_DIR="$HOME/.vim/plugins/Vundle.vim"
     declare -r VUNDLE_GIT_REPO_URL="https://github.com/gmarik/Vundle.vim.git"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    print_info "Install/Update Vim plugins"
-
-    if ! cmd_exists "vim"; then
-        exit 1
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Check if `Git` is installed
-
-    if ! cmd_exists "git"; then
-        print_error "Git is required, please install it!\n"
-        exit 1
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Install / Update vim plugins
 
     execute \
         "rm -rf '$VUNDLE_DIR' \
@@ -37,7 +18,9 @@ main() {
             && printf '\n' | vim +PluginInstall +qall" \
         "Install Vim plugins"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
+
+install_additional_things() {
 
     # In the case of fresh installs, in order for `npm` to be
     # available, the `~/bash.local` file needs to be sourced
@@ -49,11 +32,23 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Additional installs
+    # (required by some plugins)
 
     execute \
         "cd $HOME/.vim/plugins/tern_for_vim \
             && npm install" \
         "Install extra parts for 'tern_for_vim'"
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+main() {
+
+    print_info " Vim"
+
+    install_plugins
+    install_additional_things
 
 }
 

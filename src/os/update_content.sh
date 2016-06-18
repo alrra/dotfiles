@@ -6,11 +6,14 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 add_ssh_configs() {
+
     printf "%s\n" \
         "Host github.com" \
         "  IdentityFile $1" \
         "  LogLevel ERROR" >> ~/.ssh/config
+
     print_result $? "Add SSH configs"
+
 }
 
 copy_public_ssh_key_to_clipboard () {
@@ -32,9 +35,12 @@ copy_public_ssh_key_to_clipboard () {
 }
 
 generate_ssh_keys() {
+
     ask "Please provide an email address (email): " && printf "\n"
     ssh-keygen -t rsa -b 4096 -C "$(get_answer)" -f "$1"
+
     print_result $? "Generate SSH keys"
+
 }
 
 open_github_ssh_page() {
@@ -72,13 +78,9 @@ set_github_ssh_key() {
     print_info "Set up the SSH keys"
 
     generate_ssh_keys "$sshKeyFileName"
-
     add_ssh_configs "$sshKeyFileName"
-
     copy_public_ssh_key_to_clipboard "${sshKeyFileName}.pub"
-
     open_github_ssh_page
-
     test_ssh_connection \
         && rm "${sshKeyFileName}.pub"
 

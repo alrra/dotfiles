@@ -5,13 +5,31 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-declare -r -a NPM_PACKAGES=(
-    "babel-cli"
-    "jshint"
-    "svgo"
-)
+install_npm_package() {
+    execute "npm install --silent --global $1" "${2:-$1}"
+}
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+install_npm_packages() {
+
+    declare -r -a NPM_PACKAGES=(
+        "babel-cli"
+        "jshint"
+        "svgo"
+    )
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    for i in "${NPM_PACKAGES[@]}"; do
+        install_npm_package "$i"
+    done
+
+}
+
+update_npm() {
+    install_npm_package "npm" "npm (update)"
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
@@ -25,32 +43,12 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Check if `npm` is installed
+    print_info " npm"
 
-    if ! cmd_exists "npm"; then
-        print_error "npm is required, please install it!\n"
-        exit 1
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Ensure the most recent version of `npm` is installed
-
-    execute \
-        "npm install --silent --global npm" \
-        "npm (update)"
+    update_npm
 
     printf "\n"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Install the specified `npm` packages
-
-    for i in "${NPM_PACKAGES[@]}"; do
-        execute \
-            "npm install --silent --global $i" \
-            "$i"
-    done
+    install_npm_packages
 
 }
 
