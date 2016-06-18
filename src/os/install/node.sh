@@ -74,8 +74,6 @@ export NVM_DIR=\"$NVM_DIRECTORY\"
             "nvm install node" \
             "nvm (install: node)"
 
-        print_in_green "\n  ---\n\n"
-
     fi
 
 }
