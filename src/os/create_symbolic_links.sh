@@ -39,13 +39,8 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    while :; do
-        case $1 in
-            -y|--yes) skipQuestions=true; break;;
-                   *) break;;
-        esac
-        shift 1
-    done
+    skip_questions "$@" \
+        && skipQuestions=true
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
