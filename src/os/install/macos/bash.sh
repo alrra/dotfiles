@@ -6,21 +6,31 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-change_default_bash_version() {
+add_path_to_login_shells_list() {
 
-    local pathNewShell=""
+    declare -r NEW_SHELL_PATH="$1"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Try to get the path of the `Bash` version installed through
-    # `Homebrew`, and if something fails, don't continue any further
-
-    pathNewShell="$(brew --prefix 2> /dev/null)/bin/bash"
-
-    if [ $? -ne 0 ]; then
-        print_error "Bash (get shell path)"
-        return 1
+    if ! grep "$NEW_SHELL_PATH" < /etc/shells &> /dev/null; then
+        execute \
+            "printf '%s\n' '$NEW_SHELL_PATH' | sudo tee -a /etc/shells" \
+            "Bash (add '$NEW_SHELL_PATH' in '/etc/shells')"
     fi
+
+}
+
+change_default_bash() {
+
+    local newShellPath=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Try to get the path of the `Bash`
+    # version installed through `Homebrew`
+
+    newShellPath="$(get_homebrew_bash_path)" \
+        || return 1
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -34,20 +44,40 @@ change_default_bash_version() {
     #
     # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
 
-    if ! grep "$pathNewShell" < /etc/shells &> /dev/null; then
-        execute \
-            "printf '%s\n' '$pathNewShell' | sudo tee -a /etc/shells" \
-            "Bash (add '$pathNewShell' in '/etc/shells')"
-    fi
+    add_path_to_login_shells_list "$newShellPath"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Make macOS use the `Bash` version installed through `Homebrew`
-    # https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/chsh.1.html
+    # Set latest version of `Bash` as the default
+    # (macOS uses by default an older version of `Bash`)
+
+    change_login_shell "$newShellPath"
+
+}
+
+change_login_shell() {
 
     execute \
-        "sudo chsh -s '$pathNewShell'" \
+        "sudo chsh -s '$1'" \
         "Bash (use latest version)"
+
+}
+
+get_homebrew_bash_path() {
+
+    local path=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    path="$(brew --prefix 2> /dev/null)/bin/bash"
+
+    if [ $? -eq 0 ]; then
+        printf "%s" "$path"
+        return 0
+    else
+        print_error "Bash (get shell path)"
+        return 1
+    fi
 
 }
 
@@ -55,13 +85,10 @@ change_default_bash_version() {
 
 main() {
 
-    # Install the latest version of `Bash` and set it as the default
-    # (macOS uses by default an older version of `Bash`)
+    print_info " Bash"
 
     brew_install "Bash" "bash" \
-        && change_default_bash_version
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        && change_default_bash
 
     brew_install "Bash Completion 2" "bash-completion2" "homebrew/versions"
 
