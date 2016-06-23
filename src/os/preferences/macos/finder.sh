@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n  Finder\n\n"
+print_info " Finder"
 
 execute "defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true && \
          defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true && \
