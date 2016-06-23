@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n  Transmission\n\n"
+print_info " Transmission"
 
 execute "defaults write org.m0k.transmission DeleteOriginalTorrent -bool true" \
     "Delete the original torrent files"
