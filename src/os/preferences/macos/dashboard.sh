@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n  Dashboard\n\n"
+print_info " Dashboard"
 
 execute "defaults write com.apple.dashboard mcx-disabled -bool true" \
     "Disable Dashboard"
