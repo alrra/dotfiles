@@ -1,11 +1,5 @@
 #!/bin/bash
 
-declare DOTFILES_DIR_PATH="$(dirname "$(dirname "$(readlink "${BASH_SOURCE[0]}")")")"
-
-. "$DOTFILES_DIR_PATH/os/utils.sh"
-
-# ----------------------------------------------------------------------
-
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -30,10 +24,4 @@ alias rm="rm -rf --"
 
 # Load OS specific aliases
 
-. "$DOTFILES_DIR_PATH/shell/$(get_os)/bash_aliases"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Cleanup
-
-unset DOTFILES_DIR_PATH
+. "$(get_os)/bash_aliases"
