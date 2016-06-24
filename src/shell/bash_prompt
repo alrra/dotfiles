@@ -4,12 +4,6 @@
 
 enable_color_support() {
 
-    declare DOTFILES_DIR_PATH="$(dirname "$(dirname "$(readlink "${BASH_SOURCE[0]}")")")"
-
-    . "$DOTFILES_DIR_PATH/os/utils.sh"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     if [[ $COLORTERM == gnome-* && $TERM == xterm ]] \
         && infocmp gnome-256color &> /dev/null; then
         export TERM="gnome-256color"
@@ -21,7 +15,7 @@ enable_color_support() {
 
     # Load OS specific color support
 
-    . "$DOTFILES_DIR_PATH/shell/$(get_os)/bash_colors"
+    . "$(get_os)/bash_colors"
 
 }
 
