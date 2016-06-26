@@ -24,4 +24,4 @@ alias rm="rm -rf --"
 
 # Load OS specific aliases
 
-. "$(get_os)/bash_aliases"
+. "aliases/$(get_os)/bash_aliases"
