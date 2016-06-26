@@ -25,6 +25,9 @@ source_bash_files() {
     cd "$(dirname "$(readlink "${BASH_SOURCE[0]}")")" \
         && . "../os/utils.sh"
 
+    # shellcheck disable=SC2034
+    declare -r OS="$(get_os)"
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     for i in ${!FILES_TO_SOURCE[*]}; do
