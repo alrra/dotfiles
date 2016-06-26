@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# [!] Do not rename this file to `bash_completion`
+#     as it will create an infinite loop!
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 if [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
 
     # Use latest `bash-completion`
