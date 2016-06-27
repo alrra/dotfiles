@@ -13,6 +13,9 @@ execute "defaults write org.m0k.transmission DeleteOriginalTorrent -bool true" \
 execute "defaults write org.m0k.transmission DownloadAsk -bool false" \
     "Don’t prompt for confirmation before downloading"
 
+execute "defaults write org.m0k.transmission MagnetOpenAsk -bool false" \
+    "Don’t prompt for confirmation before downloading for magnet links"
+
 execute "defaults write org.m0k.transmission DownloadChoice -string 'Constant' && \
          defaults write org.m0k.transmission DownloadFolder -string '$HOME/Downloads'" \
     "Use '~/Downloads' to store complete downloads"
