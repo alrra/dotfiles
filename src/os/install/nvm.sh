@@ -38,7 +38,10 @@ install_latest_stable_node() {
     # Install the latest stable version of Node.JS
     # (this will also set it as the default)
 
-    execute "nvm install node" "nvm (install: node)"
+    execute \
+        ". $HOME/.bash.local \
+            && nvm install node" \
+        "nvm (install: node)"
 
 }
 
