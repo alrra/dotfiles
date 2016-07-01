@@ -22,20 +22,12 @@ install_plugins() {
 
 install_additional_things() {
 
-    # In the case of fresh installs, in order for `npm` to be
-    # available, the `~/bash.local` file needs to be sourced
-
-    if ! cmd_exists "npm"; then
-        . "$HOME/.bash.local"
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     # Additional installs
     # (required by some plugins)
 
     execute \
         "cd $HOME/.vim/plugins/tern_for_vim \
+            && . $HOME/.bash.local \
             && npm install" \
         "Install extra parts for 'tern_for_vim'"
 
