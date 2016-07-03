@@ -12,24 +12,32 @@ install_plugins() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # Install plugins
+
     execute \
         "rm -rf '$VUNDLE_DIR' \
             && git clone --quiet '$VUNDLE_GIT_REPO_URL' '$VUNDLE_DIR' \
             && printf '\n' | vim +PluginInstall +qall" \
-        "Install Vim plugins"
+        "Install plugins" \
+        || return 1
 
-}
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-install_additional_things() {
-
-    # Additional installs
-    # (required by some plugins)
+    # Install additional things required by some plugins
 
     execute \
         "cd $HOME/.vim/plugins/tern_for_vim \
             && . $HOME/.bash.local \
             && npm install" \
-        "Install extra parts for 'tern_for_vim'"
+        "Install plugins (extra installs for 'tern_for_vim')"
+
+}
+
+update_plugins() {
+
+    execute \
+        "vim +PluginUpdate +qall" \
+        "Update plugins"
 
 }
 
@@ -40,7 +48,7 @@ main() {
     print_info " Vim"
 
     install_plugins
-    install_additional_things
+    update_plugins
 
 }
 
