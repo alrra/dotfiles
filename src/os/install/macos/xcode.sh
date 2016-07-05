@@ -57,13 +57,9 @@ main() {
 
     print_info " XCode"
 
-    if ! is_xcode_installed; then
-        install_xcode
-        set_xcode_developer_directory
-        agree_with_xcode_licence
-    fi
-
-    print_result $? "XCode Command Line Tools"
+    install_xcode
+    set_xcode_developer_directory
+    agree_with_xcode_licence
 
 }
 
