@@ -8,12 +8,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 main() {
 
-    local os_arch=""
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    os_arch="$(get_os_arch)"
-
     update
     upgrade
 
@@ -107,24 +101,13 @@ main() {
 
     fi
 
-    # Opera stable based on Blink is only
-    # available for the 64-bit version of Ubuntu
+    # Automatically answer `Yes` to the `package configuration` prompt
+    # https://github.com/alrra/dotfiles/issues/17
 
-    if [ "$os_arch" == "64" ]; then
+    printf "opera-stable opera-stable/add-deb-source boolean true\n" \
+        | sudo debconf-set-selections
 
-        # Automatically answer `Yes` to the `package configuration` prompt
-        # https://github.com/alrra/dotfiles/issues/17
-
-        printf "opera-stable opera-stable/add-deb-source boolean true\n" \
-            | sudo debconf-set-selections
-
-        install_package "Opera" "opera-stable"
-
-    elif [ "$os_arch" == "32" ]; then
-
-        install_package "Opera" "opera"
-
-    fi
+    install_package "Opera" "opera-stable"
 
     printf "opera-beta opera-beta/add-deb-source boolean true\n" \
         | sudo debconf-set-selections
