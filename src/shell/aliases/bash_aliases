@@ -22,6 +22,6 @@ alias rm="rm -rf --"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Load OS specific aliases
+# Load OS specific aliases.
 
 . "aliases/$OS/bash_aliases"

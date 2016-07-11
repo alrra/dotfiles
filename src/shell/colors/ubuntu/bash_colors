@@ -2,34 +2,34 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Set LS_COLORS (GNU)
+# Set LS_COLORS (GNU).
 #
-#  - `ls` displays colors if the `--color` option is passed
+#  - `ls` displays colors if the `--color` option is passed.
 #
-#  - the actual colors are configured through the `LS_COLORS`
+#  - The actual colors are configured through the `LS_COLORS`
 #    environment variable (built-in defaults are used if this
-#    variable is not set)
+#    variable is not set).
 
 LS_COLORS=""
 
-LS_COLORS+="no=0;39:"   # global default
-LS_COLORS+="di=0;36:"   # directory
-LS_COLORS+="ex=0;32:"   # executable file
-LS_COLORS+="fi=0;39:"   # file
-LS_COLORS+="ec=:"       # non-filename text
-LS_COLORS+="mi=1;31:"   # non-existent file pointed to by a symlink
-LS_COLORS+="ln=target:" # symbolic link
-LS_COLORS+="or=31;01"   # symbolic link pointing to a non-existent file
+LS_COLORS+="no=0;39:"   # Global default
+LS_COLORS+="di=0;36:"   # Directory
+LS_COLORS+="ex=0;32:"   # Executable file
+LS_COLORS+="fi=0;39:"   # File
+LS_COLORS+="ec=:"       # Non-filename text
+LS_COLORS+="mi=1;31:"   # Non-existent file pointed to by a symlink
+LS_COLORS+="ln=target:" # Symbolic link
+LS_COLORS+="or=31;01"   # Symbolic link pointing to a non-existent file
 
 export LS_COLORS
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Enable color support
+# Enable color support.
 
 if [ -x /usr/bin/dircolors ]; then
 
-    if test -r ~/.dircolors; then
+    if test -r ~/.dircolorS; then
         eval "$(dircolors -b ~/.dircolors)"
     else
         eval "$(dircolors -b)"

@@ -24,7 +24,7 @@ add_to_source_list() {
 autoremove() {
 
     # Remove packages that were automatically installed to satisfy
-    # dependencies for other packages and are no longer needed
+    # dependencies for other packages and are no longer needed.
 
     execute \
         "sudo apt-get autoremove -qqy" \
@@ -53,7 +53,7 @@ package_is_installed() {
 
 update() {
 
-    # Resynchronize the package index files from their sources
+    # Resynchronize the package index files from their sources.
 
     execute \
         "sudo apt-get update -qqy" \
@@ -63,7 +63,7 @@ update() {
 
 upgrade() {
 
-    # Install the newest versions of all packages installed
+    # Install the newest versions of all packages installed.
 
     execute \
         "sudo apt-get upgrade -qqy" \

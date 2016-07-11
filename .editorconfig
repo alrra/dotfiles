@@ -1,5 +1,6 @@
 # For more information about the configurations used
-# in this file, please see the EditorConfig documentation:
+# in this file, please see the EditorConfig documentation.
+#
 # http://editorconfig.org
 
 root = true
@@ -18,7 +19,7 @@ trim_trailing_whitespace = true
 
 [*.md]
 
-# Markdown uses the trailing whitespaces
+# Markdown uses the trailing whitespaces.
 # https://daringfireball.net/projects/markdown/syntax#block
 
 trim_trailing_whitespace = false

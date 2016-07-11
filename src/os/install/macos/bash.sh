@@ -6,20 +6,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-add_path_to_login_shells_list() {
-
-    declare -r NEW_SHELL_PATH="$1"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if ! grep "$NEW_SHELL_PATH" < /etc/shells &> /dev/null; then
-        execute \
-            "printf '%s\n' '$NEW_SHELL_PATH' | sudo tee -a /etc/shells" \
-            "Bash (add '$NEW_SHELL_PATH' in '/etc/shells')"
-    fi
-
-}
-
 change_default_bash() {
 
     local newShellPath=""
@@ -27,7 +13,7 @@ change_default_bash() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Try to get the path of the `Bash`
-    # version installed through `Homebrew`
+    # version installed through `Homebrew`.
 
     newShellPath="$(get_homebrew_bash_path)" \
         || return 1
@@ -44,21 +30,20 @@ change_default_bash() {
     #
     # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
 
-    add_path_to_login_shells_list "$newShellPath"
+    if ! grep "$newShellPath" < /etc/shells &> /dev/null; then
+        execute \
+            "printf '%s\n' '$newShellPath' | sudo tee -a /etc/shells" \
+            "Bash (add '$newShellPath' in '/etc/shells')" \
+        || return 1
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Set latest version of `Bash` as the default
-    # (macOS uses by default an older version of `Bash`)
-
-    change_login_shell "$newShellPath"
-
-}
-
-change_login_shell() {
+    # (macOS uses by default an older version of `Bash`).
 
     execute \
-        "sudo chsh -s '$1'" \
+        "sudo chsh -s '$newShellPath'" \
         "Bash (use latest version)"
 
 }
@@ -85,7 +70,7 @@ get_homebrew_bash_path() {
 
 main() {
 
-    print_info " Bash"
+    print_in_purple "\n   Bash\n\n"
 
     brew_install "Bash" "bash" \
         && change_default_bash
