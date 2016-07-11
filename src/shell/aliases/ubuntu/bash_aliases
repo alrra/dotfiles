@@ -2,7 +2,13 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Advanced Packaging Tool
+# Lock screen.
+
+alias afk="gnome-screensaver-command --lock"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Shorter commands for the `Advanced Packaging Tool`
 
 alias apti="sudo apt-get install"
 alias aptr="sudo apt-get remove"
@@ -12,20 +18,20 @@ alias aptu="sudo apt-get update \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Empty Trash
+# Empty trash.
 
 alias empty-trash="rm -rf ~/.local/share/Trash/files/*"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Hide/Show desktop icons
+# Hide/Show desktop icons.
 
 alias hide-desktop-icons="gsettings set org.gnome.desktop.background show-desktop-icons false"
 alias show-desktop-icons="gsettings set org.gnome.desktop.background show-desktop-icons true"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Get local IP
+# Get local IP.
 
 alias local-ip="ifconfig \
                     | grep 'inet addr' \
@@ -35,19 +41,13 @@ alias local-ip="ifconfig \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Lock screen
-
-alias afk="gnome-screensaver-command --lock"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Open
+# Open from the terminal.
 
 alias o="xdg-open"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Update
+# Update applications and CLTs.
 
 alias u="sudo apt-get update \
             && sudo apt-get upgrade \

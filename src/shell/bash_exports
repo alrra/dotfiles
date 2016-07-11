@@ -1,49 +1,78 @@
 #!/bin/bash
 
-# Shell Variables
-# http://linux.die.net/man/1/bash
+# Bash Variables.
+# https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Make vim the default editor
+# Make `vim` the default editor.
+
 export EDITOR="vim"
 
-# Ignore commands that start with spaces and duplicates
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Ignore commands that start with spaces and duplicates.
+
 export HISTCONTROL=ignoreboth
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Increase the maximum number of lines of history
-# persisted in the Bash history file (default value is 500)
+# persisted in the history file (default value is 500).
+
 export HISTFILESIZE=10000
 
-# Don't add certain commands to the history file
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Don't add certain commands to the history file.
+
 export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
 
-# Increase the maximum number of commands recorded in the
-# command history (default value is 500)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Increase the maximum number of commands recorded
+# in the command history (default value is 500).
+
 export HISTSIZE=10000
 
-# Prefer US English and use UTF-8 encoding
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Prefer US English and use UTF-8 encoding.
+
 export LANG="en_US"
 export LC_ALL="en_US.UTF-8"
 
-# Use custom `less` colors for man pages
-# https://www.gnu.org/software/termutils/manual/termutils-2.0/html_chapter/tput_1.html
-export LESS_TERMCAP_md=$'\e[1;32m'   # begin bold mode
-export LESS_TERMCAP_me=$'\e[0m'      # end bold mode
-#export LESS_TERMCAP_us=$'\e[4;32m'   # begin underscore mode
-#export LESS_TERMCAP_ue=$'\e[0m'      # end underscore mode
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Don't clear the screen after quitting a man page
+# Use custom `less` colors for `man` pages.
+
+export LESS_TERMCAP_md=$'\e[1;32m'   # Begin bold mode.
+export LESS_TERMCAP_me=$'\e[0m'      # End bold mode.
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Don't clear the screen after quitting a `man` page.
+
 export MANPAGER="less -X"
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Increase the maximum number of lines of history persisted
-# in the `Node` REPL history file (default value is 1000)
-# https://github.com/nodejs/node/blob/a85f4b5ce5791caf8caa9b31970313c6183a5499/doc/api/repl.markdown#persistent-history
+# in the `Node` REPL history file (default value is 1000).
+#
+# https://github.com/nodejs/node/blob/c948877688ff2b6a37f2c88724b656aae495c7b2/doc/api/repl.md#persistent-history
+
 export NODE_REPL_HISTORY_SIZE=10000
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Make new shells get the history lines from all previous
-# shells instead of the default "last window closed" history
+# shells instead of the default "last window closed" history.
+
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-# Make Python use UTF-8 encoding for output to stdin/stdout/stderr
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
+
 export PYTHONIOENCODING="UTF-8"

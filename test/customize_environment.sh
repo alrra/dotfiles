@@ -15,7 +15,9 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Install `ShellCheck` (required for testing)
+    # Install `ShellCheck`
+    # (required for testing).
+
     sudo apt-get install -qqy shellcheck
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -24,7 +26,9 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then
 
 elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
 
-    # Install `ShellCheck` (required for testing)
+    # Install `ShellCheck`
+    # (required for testing).
+
     brew install shellcheck
 
 fi
@@ -32,6 +36,6 @@ fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # To better simulate a clean OS install, remove certain things
-# included by default by Travis CI
+# included by default by Travis CI.
 
 rm -rf "$NVM_DIR"

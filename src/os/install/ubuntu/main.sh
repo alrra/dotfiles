@@ -15,19 +15,26 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Tools for compiling/building software from source
+    # Install tools for compiling/building software from source.
+
     install_package "Build Essential" "build-essential"
 
-    # GnuPG archive keys of the Debian archive
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # GnuPG archive keys of the Debian archive.
+
     install_package "GnuPG archive keys" "debian-archive-keyring"
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Software which is not included by default
-    # in Ubuntu due to legal or copyright reasons
+    # in Ubuntu due to legal or copyright reasons.
+
     #install_package "Ubuntu Restricted Extras" "ubuntu-restricted-extras"
 
-    print_in_green "\n  ---\n\n"
-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_in_green "\n  ---\n\n"
 
     if ! package_is_installed "google-chrome-unstable"; then
 
@@ -101,7 +108,7 @@ main() {
 
     fi
 
-    # Automatically answer `Yes` to the `package configuration` prompt
+    # Automatically answer `Yes` to the `package configuration` prompt.
     # https://github.com/alrra/dotfiles/issues/17
 
     printf "opera-stable opera-stable/add-deb-source boolean true\n" \

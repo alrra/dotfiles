@@ -3,12 +3,13 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "../utils.sh"
 
+declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
+declare -r NVM_DIRECTORY="$HOME/.nvm"
+declare -r NVM_GIT_REPO_URL="https://github.com/creationix/nvm.git"
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 add_nvm_configs() {
-
-    declare -r LOCAL_CONFIG_FILE="$HOME/.bash.local"
-    declare -r NVM_DIRECTORY="$1"
 
     declare -r CONFIGS="
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -27,42 +28,36 @@ export NVM_DIR=\"$NVM_DIRECTORY\"
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     execute \
-        "printf '%s' '$CONFIGS' >> $LOCAL_CONFIG_FILE \
-            && . $LOCAL_CONFIG_FILE" \
-        "nvm (update $LOCAL_CONFIG_FILE)"
+        "printf '%s' '$CONFIGS' >> $LOCAL_SHELL_CONFIG_FILE \
+            && . $LOCAL_SHELL_CONFIG_FILE" \
+        "nvm (update $LOCAL_SHELL_CONFIG_FILE)"
 
 }
 
 install_latest_stable_node() {
 
-    # Install the latest stable version of Node.JS
-    # (this will also set it as the default)
+    # Install the latest stable version of Node
+    # (this will also set it as the default).
 
     execute \
-        ". $HOME/.bash.local \
+        ". $LOCAL_SHELL_CONFIG_FILE \
             && nvm install node" \
-        "nvm (install: node)"
-
+        "nvm (install latest Node)"
 }
 
 install_nvm() {
 
-    declare -r NVM_GIT_REPO_URL="https://github.com/creationix/nvm.git"
+    # Install `nvm` and add the necessary
+    # configs in the local shell config file.
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Install `nvm` and add the necessary configs to `~/.bash.local`
-
-    execute "git clone --quiet $NVM_GIT_REPO_URL $NVM_DIRECTORY" "nvm" \
-        && add_nvm_configs "$1"
+    execute \
+        "git clone --quiet $NVM_GIT_REPO_URL $NVM_DIRECTORY" \
+        "nvm (install)" \
+    && add_nvm_configs
 
 }
 
 update_nvm() {
-
-    declare -r NVM_DIRECTORY="$1"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     execute \
         "cd $NVM_DIRECTORY \
@@ -77,16 +72,12 @@ update_nvm() {
 
 main() {
 
-    declare -r NVM_DIRECTORY="$HOME/.nvm"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    print_info " nvm"
+    print_in_purple "\n   nvm\n\n"
 
     if [ ! -d "$NVM_DIRECTORY" ]; then
-        install_nvm "$NVM_DIRECTORY"
+        install_nvm
     else
-        update_nvm "$NVM_DIRECTORY"
+        update_nvm
     fi
 
     install_latest_stable_node

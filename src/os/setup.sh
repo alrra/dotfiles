@@ -49,6 +49,8 @@ download_dotfiles() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    print_in_purple "\n * Download and extract archive\n\n"
+
     tmpFile="$(mktemp /tmp/XXXXX)"
 
     download "$DOTFILES_TARBALL_URL" "$tmpFile"
@@ -98,14 +100,12 @@ download_dotfiles() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Extract archive in the `dotfiles` directory
+    # Extract archive in the `dotfiles` directory.
 
     extract "$tmpFile" "$dotfilesDirectory"
     print_result $? "Extract archive" "true"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Remove archive
 
     rm -rf "$tmpFile"
     print_result $? "Remove archive"
@@ -157,7 +157,7 @@ verify_os() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if the OS is `macOS` and
-    # it's above the required version
+    # it's above the required version.
 
     os_name="$(uname -s)"
 
@@ -174,7 +174,7 @@ verify_os() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if the OS is `Ubuntu` and
-    # it's above the required version
+    # it's above the required version.
 
     elif [ "$os_name" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
 
@@ -203,7 +203,7 @@ verify_os() {
 main() {
 
     # Ensure that the following actions
-    # are made relative to this file's path
+    # are made relative to this file's path.
 
     cd "$(dirname "${BASH_SOURCE[0]}")" \
         || exit 1
@@ -221,7 +221,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Ensure the OS is supported and
-    # it's above the required version
+    # it's above the required version.
 
     verify_os \
         || exit 1
@@ -237,14 +237,11 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Setup the `dotfiles` if needed
+    # Setup the `dotfiles` if needed.
 
     if ! cmd_exists "git" \
         || [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-
-        print_info "Download and extract archive"
         download_dotfiles
-
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -253,11 +250,7 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if ! $skipQuestions; then
-        ./create_symbolic_links.sh
-    else
-        ./create_symbolic_links.sh -y
-    fi
+    ./create_symbolic_links.sh "$@"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -278,16 +271,7 @@ main() {
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         if ! $skipQuestions; then
-
-            print_info "Update content"
-
-            ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
-            printf "\n"
-
-            if answer_is_yes; then
-                ./update_content.sh
-            fi
-
+            ./update_content.sh
         fi
 
     fi
@@ -295,16 +279,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if ! $skipQuestions; then
-
-        print_info "Restart"
-
-        ask_for_confirmation "Do you want to restart?"
-        printf "\n"
-
-        if answer_is_yes; then
-            ./restart.sh
-        fi
-
+        ./restart.sh
     fi
 
 }
