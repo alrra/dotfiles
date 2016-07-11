@@ -11,6 +11,7 @@
     g   = log --graph --pretty=custom               # Show custom graph
     l   = log --pretty=custom                       # Show custom log
     lc  = shortlog --summary --numbered             # List contributors
+    p   = push
     r   = rebase
     rlc = reset --hard HEAD~1                       # Remove last commit
     s   = status
