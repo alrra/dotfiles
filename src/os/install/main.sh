@@ -12,7 +12,7 @@ main() {
     "./$(get_os)/main.sh"
     ./nvm.sh
     ./npm.sh
-    ./vim_plugins.sh
+    ./vim.sh
 
 }
 
