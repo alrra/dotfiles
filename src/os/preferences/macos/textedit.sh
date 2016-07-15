@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_info " TextEdit"
+print_in_purple "\n  TextEdit\n\n"
 
 execute "defaults write com.apple.TextEdit PlainTextEncoding -int 4 && \
          defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4" \

@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_info " Terminal"
+print_in_purple "\n  Terminal\n\n"
 
 execute "defaults write com.apple.terminal FocusFollowsMouse -string true" \
     "Make the focus automatically follow the mouse"

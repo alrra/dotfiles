@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_info " Safari"
+print_in_purple "\n  Safari\n\n"
 
 execute "defaults write com.apple.Safari AutoOpenSafeDownloads -bool false" \
     "Disable opening 'safe' files automatically"

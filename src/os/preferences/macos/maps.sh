@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_info " Maps"
+print_in_purple "\n  Maps\n\n"
 
 execute "defaults write com.apple.Maps LastClosedWindowViewOptions '{
             localizeLabels = 1;   // show labels in English

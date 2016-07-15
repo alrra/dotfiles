@@ -98,14 +98,12 @@ download_dotfiles() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Extract archive in the `dotfiles` directory
+    # Extract archive in the `dotfiles` directory.
 
     extract "$tmpFile" "$dotfilesDirectory"
     print_result $? "Extract archive" "true"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Remove archive
 
     rm -rf "$tmpFile"
     print_result $? "Remove archive"
@@ -157,7 +155,7 @@ verify_os() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if the OS is `macOS` and
-    # it's above the required version
+    # it's above the required version.
 
     os_name="$(uname -s)"
 
@@ -174,7 +172,7 @@ verify_os() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if the OS is `Ubuntu` and
-    # it's above the required version
+    # it's above the required version.
 
     elif [ "$os_name" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
 
@@ -203,7 +201,7 @@ verify_os() {
 main() {
 
     # Ensure that the following actions
-    # are made relative to this file's path
+    # are made relative to this file's path.
 
     cd "$(dirname "${BASH_SOURCE[0]}")" \
         || exit 1
@@ -221,7 +219,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Ensure the OS is supported and
-    # it's above the required version
+    # it's above the required version.
 
     verify_os \
         || exit 1
@@ -237,12 +235,12 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Setup the `dotfiles` if needed
+    # Setup the `dotfiles` if needed.
 
     if ! cmd_exists "git" \
         || [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
 
-        print_info "Download and extract archive"
+        print_in_purple "\n Download and extract archive\n\n"
         download_dotfiles
 
     fi
@@ -251,19 +249,9 @@ main() {
 
     ./create_directories.sh
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if ! $skipQuestions; then
-        ./create_symbolic_links.sh
-    else
-        ./create_symbolic_links.sh -y
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    ./create_symbolic_links.sh "$@"
 
     ./install/main.sh
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ./preferences/main.sh
 
@@ -279,7 +267,7 @@ main() {
 
         if ! $skipQuestions; then
 
-            print_info "Update content"
+            print_in_purple "\n Update content\n\n"
 
             ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
             printf "\n"
@@ -296,7 +284,7 @@ main() {
 
     if ! $skipQuestions; then
 
-        print_info "Restart"
+        print_in_purple "\n Restart\n\n"
 
         ask_for_confirmation "Do you want to restart?"
         printf "\n"

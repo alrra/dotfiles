@@ -12,7 +12,7 @@ install_plugins() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Install plugins
+    # Install plugins.
 
     execute \
         "rm -rf '$VUNDLE_DIR' \
@@ -23,7 +23,7 @@ install_plugins() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Install additional things required by some plugins
+    # Install additional things required by some plugins.
 
     execute \
         ". $HOME/.bash.local \

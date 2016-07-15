@@ -11,8 +11,6 @@ create_directories() {
         "$HOME/Downloads/torrents"
     )
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     for i in "${DIRECTORIES[@]}"; do
         mkd "$i"
     done
@@ -22,7 +20,7 @@ create_directories() {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-    print_info "Create directories"
+    print_in_purple "\n Create directories\n\n"
     create_directories
 }
 

@@ -48,7 +48,7 @@ open_github_ssh_page() {
     declare -r GITHUB_SSH_URL="https://github.com/settings/ssh"
 
     # The order of the following checks matters
-    # as on Ubuntu there is also a utility called `open`
+    # as on Ubuntu there is also a utility called `open`.
 
     if cmd_exists "xdg-open"; then
         xdg-open "$GITHUB_SSH_URL"
@@ -67,7 +67,7 @@ set_github_ssh_key() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # If there is already a file with that
-    # name, generate another, unique, file name
+    # name, generate another, unique, file name.
 
     if [ -f "$sshKeyFileName" ]; then
         sshKeyFileName="$(mktemp -u "$HOME/.ssh/github_XXXXX")"
@@ -75,7 +75,7 @@ set_github_ssh_key() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_info "Set up the SSH keys"
+    print_in_purple " Set up the SSH keys\n"
 
     generate_ssh_keys "$sshKeyFileName"
     add_ssh_configs "$sshKeyFileName"
@@ -108,9 +108,14 @@ main() {
     if is_git_repository; then
 
         ssh -T git@github.com &> /dev/null
-        [ $? -ne 1 ] && set_github_ssh_key
 
-        # Update content and remove untracked files
+        [ $? -ne 1 ] \
+            && set_github_ssh_key
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        # Update content and remove untracked files.
+
         execute \
             "git fetch --all \
                 && git reset --hard origin/master \

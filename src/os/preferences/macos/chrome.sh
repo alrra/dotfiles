@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_info " Chrome"
+print_in_purple "\n  Chrome\n\n"
 
 execute "defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false" \
     "Disable backswipe"

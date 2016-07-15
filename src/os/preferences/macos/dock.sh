@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_info " Dock"
+print_in_purple "\n  Dock\n\n"
 
 execute "defaults write com.apple.dock autohide -bool true" \
     "Automatically hide/show the Dock"

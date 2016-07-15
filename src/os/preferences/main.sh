@@ -5,6 +5,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_info "Set preferences"
+print_in_purple "\n Preferences\n"
 
 "./$(get_os)/main.sh"

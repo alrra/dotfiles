@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_info " App Store"
+print_in_purple "\n  App Store\n\n"
 
 execute "defaults write com.apple.appstore ShowDebugMenu -bool true" \
     "Enable debug menu"

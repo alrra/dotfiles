@@ -19,11 +19,15 @@ ask_for_confirmation() {
 
 ask_for_sudo() {
 
-    # Ask for the administrator password upfront
+    # Ask for the administrator password upfront.
+
     sudo -v &> /dev/null
 
-    # Update existing `sudo` time stamp until this script has finished
+    # Update existing `sudo` time stamp
+    # until this script has finished.
+    #
     # https://gist.github.com/cowboy/3118588
+
     while true; do
         sudo -n true
         sleep 60
@@ -59,7 +63,7 @@ execute() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # If the current process is ended,
-    # also end all its subprocesses
+    # also end all its subprocesses.
 
     set_trap "EXIT" "kill_all_subprocesses"
 
@@ -76,21 +80,21 @@ execute() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Show a spinner if the commands
-    # require more time to complete
+    # require more time to complete.
 
     show_spinner "$cmdsPID" "$CMDS" "$MSG"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Wait for the commands to no longer be executing
-    # in the background, and then get their exit code
+    # in the background, and then get their exit code.
 
     wait "$cmdsPID" &> /dev/null
     exitCode=$?
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Print output based on what happened
+    # Print output based on what happened.
 
     print_result $exitCode "$MSG"
 
@@ -160,14 +164,14 @@ is_supported_version() {
     declare -a v2=(${2//./ })
     local i=""
 
-    # Fill empty positions in v1 with zeros
+    # Fill empty positions in v1 with zeros.
     for (( i=${#v1[@]}; i<${#v2[@]}; i++ )); do
         v1[i]=0
     done
 
     for (( i=0; i<${#v1[@]}; i++ )); do
 
-        # Fill empty positions in v2 with zeros
+        # Fill empty positions in v2 with zeros.
         if [[ -z ${v2[i]} ]]; then
             v2[i]=0
         fi
@@ -218,10 +222,6 @@ print_in_red() {
 
 print_in_yellow() {
     printf "\e[0;33m%b\e[0m" "$1"
-}
-
-print_info() {
-    print_in_purple "\n $1\n\n"
 }
 
 print_question() {
@@ -291,7 +291,7 @@ show_spinner() {
 
     # For commands that require sudo, if the password needs to be
     # provided, wait for the user to provide it before showing the
-    # actual spinner
+    # actual spinner.
     #
     # (this is kinda hacky, but yeah...)
 
@@ -304,7 +304,7 @@ show_spinner() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Display spinner while the commands are being executed
+    # Display spinner while the commands are being executed.
 
     while kill -0 "$PID" &>/dev/null; do
 
@@ -313,24 +313,24 @@ show_spinner() {
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        # Print frame text
+        # Print frame text.
 
         printf "%s" "$frameText"
         sleep 0.2
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        # Clear frame text
+        # Clear frame text.
 
         # Notes:
         #
         #  * After the content surpasses the initial terminal height
         #    (the content forces the scroll), `tput sc` (save the cursor
         #    position) and `tput rc` (restore the cursor position) will
-        #    no longer be reliable
+        #    no longer be reliable.
         #
         # * `tput ed` (clear to end of screen) seems to also not always
-        #    be reliable
+        #    be reliable.
         #
         # So, in order to work around the shortcomings described above,
         # the clearing of the previous printed content will have to be
@@ -338,7 +338,7 @@ show_spinner() {
 
         # The content may not fit into a single line so there is a
         # need to determine on how many lines it is printed on and
-        # clear every single one of those lines
+        # clear every single one of those lines.
 
         terminalWindowWidth=$(tput cols)
         frameTextLenght=${#frameText}
@@ -349,10 +349,10 @@ show_spinner() {
 
         for j in $(seq 1 $numberOfLinesToBeCleared); do
 
-            # Clear current line
+            # Clear current line.
 
-            tput el     # Clear to end of line
-            tput el1    # Clear to beginning of line
+            tput el     # Clear to end of line.
+            tput el1    # Clear to beginning of line.
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -367,7 +367,7 @@ show_spinner() {
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
             # Move up one line if the line containing the starting
-            # position of the content has not been reached
+            # position of the content has not been reached.
 
             if [ "$j" -lt "$numberOfLinesToBeCleared" ]; then
                 tput cuu1
