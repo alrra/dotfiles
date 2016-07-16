@@ -23,17 +23,17 @@ declare -r -a CURL_DEFAULT_OPTIONS=(
     --connect-timeout 30
     --header "Accept-Encoding: br, gzip, deflate, lzma, sdch"
     --header "Cache-Control: no-cache" # Prevent intermediate proxies
-                                       # from caching the response
+                                       # from caching the response.
 
     --location                         # If the page was moved to a
                                        # different location, redo the
-                                       # request
+                                       # request.
     --max-time 150
     --show-error
     --silent
     --user-agent "Mozilla/5.0 Gecko"   # Send a fake UA string for sites
                                        # that sniff it instead of using
-                                       # the Accept-Encoding header
+                                       # the Accept-Encoding header.
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -48,21 +48,23 @@ check_for_sdch() {
     declare i=""
     declare url="$2"
 
-    # Check if the server advertised any dictionaries
+    # Check if the server advertised any dictionaries.
+
     dicts="$( printf "%s" "$currentHeaders" |
               grep -i "Get-Dictionary:" |
               cut -d':' -f2 |
               sed s/,/\ /g )"
 
-    # If it does, check to see if it really supports SDCH
+    # If it does, check to see if it really supports SDCH.
+
     if [ -n "$dicts" ]; then
         for i in $dicts; do
 
             dict=""
 
-            # Check if the dictionary location is specified as a path,
-            # and if it is, construct it's URL from the host name of the
-            # referrer URL
+            # Check if the dictionary location is specified as
+            # a path, and if it is, construct it's URL from the
+            # host name of the referrer URL.
 
             [[ "$i" != http* ]] \
                 && dict="$( printf "%s" "$url" |
@@ -71,7 +73,7 @@ check_for_sdch() {
             dict="$dict$i"
 
             # Request the dictionaries from the server and
-            # construct the `Avail-Dictionary` header value
+            # construct the `Avail-Dictionary` header value.
             #
             # [ The user agent identifier for a dictionary is defined
             #   as the URL-safe base64 encoding (as described in RFC
@@ -90,7 +92,7 @@ check_for_sdch() {
         done
 
         # Redo the request (advertising the available dictionaries)
-        # and replace the old resulted headers with the new ones
+        # and replace the old resulted headers with the new ones.
 
         printf "%s" "$( curl "${CURL_DEFAULT_OPTIONS[@]}" \
                         -H "Avail-Dictionary: $availDicts" \
@@ -118,18 +120,18 @@ get_content_encoding() {
                     "$url" )" \
     && ( \
 
-        # Iterate over the headers of all redirects
+        # Iterate over the headers of all redirects.
         while [ -n "$headers" ]; do
 
-            # Get headers for the "current" URL
+            # Get headers for the "current" URL.
             currentHeaders="$( printf "%s" "$headers" | sed -n '1,/^HTTP/p' )"
 
-            # Remove the headers for the "current" URL
+            # Remove the headers for the "current" URL.
             headers="${headers/"$currentHeaders"/}"
 
             currentHeaders="$(check_for_sdch "$currentHeaders" "$url")"
 
-            # Get the value of the `Content-Encoding` header
+            # Get the value of the `Content-Encoding` header.
             encoding="$( printf "%s" "$currentHeaders" |
                          grep -i "Content-Encoding:" |
                          cut -d' ' -f2 |
@@ -137,7 +139,7 @@ get_content_encoding() {
                          tr -d "\n" |
                          sed 's/,$//' )"
 
-            # Print the output for the "current" URL
+            # Print the output for the "current" URL.
             [ -n "$encoding" ] && encoding="[$encoding]"
 
             if [ "$url" != "$1" ]; then
@@ -148,7 +150,8 @@ get_content_encoding() {
                 indent="    ↳ "
             fi
 
-            # Get the next URL from the series of redirects
+
+            # Get the next URL from the series of redirects.
             tmp="$url"
             url="$( printf "%s" "$currentHeaders" |
                     grep -i "Location" |
@@ -156,7 +159,7 @@ get_content_encoding() {
                     sed 's/^ *//' |
                     tr -d '\r' )"
 
-            # In case the `Location` header is specified as a path
+            # In case the `Location` header is specified as a path.
             [[ "$url" != http* ]] && url="$tmp$url"
 
         done
@@ -167,7 +170,7 @@ get_content_encoding() {
 
 main() {
 
-    # Check if `cURL` is installed
+    # Check if `cURL` is installed.
 
     if ! command -v "curl" &> /dev/null; then
         printf "cURL is required, please install it!\n"

@@ -53,18 +53,18 @@ create_heatmap_for_webpage() {
         --header "Accept-Encoding: gzip, deflate"
         --header "Cache-Control: no-cache" # Prevent intermediate
                                            # proxies from caching
-                                           # the response
+                                           # the response.
 
         --location                         # If the page was moved
                                            # to a different location,
-                                           # redo the request
+                                           # redo the request.
         --max-time 150
         --show-error
         --silent
         --user-agent "Mozilla/5.0 Gecko"   # Send a fake UA string
                                            # for sites that sniff
                                            # it instead of using the
-                                           # Accept-Encoding header
+                                           # Accept-Encoding header.
     )
 
     local tmpFile="$(create_tmp_file)"
@@ -73,7 +73,7 @@ create_heatmap_for_webpage() {
 
     # Try to get the compressed version of the page, and if the
     # page isn't served compressed, `create_heatmap_for_file` will
-    # take care of compressing it
+    # take care of compressing it.
 
     curl "${CURL_DEFAULT_OPTIONS[@]}" "$1" &> /dev/null 1> "$tmpFile" \
         && create_heatmap_for_file "$tmpFile" "$2"
@@ -117,8 +117,8 @@ get_script_path() {
 
 open_image() {
 
-    # The order of the following checks matters
-    # as on Ubuntu there is also a utility called `open`
+    # The order of the following checks matters as
+    # on Ubuntu there is also a utility called `open`.
 
     if cmd_exists "xdg-open"; then
         xdg-open "$1"
@@ -175,7 +175,7 @@ main() {
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         # Check if the current command
-        # line argument is a local file
+        # line argument is a local file.
 
         if [ -f "$1" ]; then
 
@@ -185,7 +185,7 @@ main() {
                 create_heatmap_for_png "$1" "$imageFile"
             fi
 
-        # If it's not, assume it is a URL
+        # If it's not, assume it is a URL.
 
         else
             create_heatmap_for_webpage "$1" "$imageFile"
@@ -199,7 +199,7 @@ main() {
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         # Opening too many images really
-        # quickly makes macOS' Preview crash
+        # quickly makes macOS' Preview crash.
 
         sleep 0.2
 

@@ -12,7 +12,7 @@
 # | Miscellaneous                                                      |
 # ----------------------------------------------------------------------
 
-# Node.js & npm
+# Node.js & npm.
 
 node_modules
 npm-debug.log

@@ -5,12 +5,16 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-if [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
+declare -r BASH_COMPLETION_PATH="$(brew --prefix 2> /dev/null)/share/bash-completion/bash_completion"
 
-    # Use latest `bash-completion`
-    . "$(brew --prefix)/share/bash-completion/bash_completion"
+if [ -f "$BASH_COMPLETION_PATH" ]; then
 
-    # Make Bash complete the `g` alias just like it does `git`
+    # Use the latest `bash-completion`.
+
+    . "$BASH_COMPLETION_PATH"
+
+    # Make Bash complete the `g` alias just like it does `git`.
+
     complete -o default -o nospace -F _git g
 
 fi

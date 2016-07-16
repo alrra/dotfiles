@@ -3,12 +3,19 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Set the default character encoding to UTF-8
+# Set the default character encoding to UTF-8.
+
 defutf8 on
 
-# Disable the startup message
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Disable the startup message.
+
 startup_message off
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Increase the maximum number of lines contained
-# in the scrollback buffer (defaults to 100)
+# in the scrollback buffer (defaults to 100).
+
 defscrollback 10000

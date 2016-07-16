@@ -32,7 +32,7 @@ clean_whiteboard_photos() {
 
 main() {
 
-    # Check if ImageMagick's convert command-line tool is installed
+    # Check if ImageMagick's convert command-line tool is installed.
 
     if ! command -v "convert" $> /dev/null; then
         printf "Please install ImageMagick's 'convert' command-line tool!"

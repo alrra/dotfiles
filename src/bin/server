@@ -6,8 +6,8 @@ cmd_exists() {
 
 open_url() {
 
-    # The order of the following checks matters
-    # as on Ubuntu there is also a utility called `open`
+    # The order of the following checks matters as
+    # on Ubuntu there is also a utility called `open`.
 
     if cmd_exists "xdg-open"; then
         xdg-open "$1"
@@ -28,7 +28,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Wait for the server to be available, and once
-    # it is, open its address in the default browser
+    # it is, open its address in the default browser.
 
     while [ $i -lt $MAX_NUMBER_OF_TRIES ]; do
         if [ "$(lsof -i -nP | grep "$port" | grep -i "python")" != "" ]; then
@@ -41,7 +41,7 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Start server
+    # Start server.
 
     "$(dirname "${BASH_SOURCE[0]}")/server.py" "$port"
 
