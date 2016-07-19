@@ -8,7 +8,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 install_plugins() {
 
     declare -r VUNDLE_DIR="$HOME/.vim/plugins/Vundle.vim"
-    declare -r VUNDLE_GIT_REPO_URL="https://github.com/gmarik/Vundle.vim.git"
+    declare -r VUNDLE_GIT_REPO_URL="https://github.com/VundleVim/Vundle.vim.git"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
