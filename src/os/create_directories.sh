@@ -20,7 +20,7 @@ create_directories() {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-    print_in_purple "\n Create directories\n\n"
+    print_in_purple "\n\n Create directories\n\n"
     create_directories
 }
 

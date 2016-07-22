@@ -85,7 +85,7 @@ create_symlinks() {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-    print_in_purple "\n Create symbolic links\n\n"
+    print_in_purple "\n\n Create symbolic links\n\n"
     create_symlinks "$@"
 }
 

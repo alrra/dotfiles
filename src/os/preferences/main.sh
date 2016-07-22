@@ -5,6 +5,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n Preferences\n"
+print_in_purple "\n\n Preferences\n"
 
 "./$(get_os)/main.sh"

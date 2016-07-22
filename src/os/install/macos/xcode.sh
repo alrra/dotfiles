@@ -57,7 +57,7 @@ set_xcode_developer_directory() {
 
 main() {
 
-    print_in_purple "\n  XCode\n\n"
+    print_in_purple "  XCode\n\n"
 
     install_xcode
     set_xcode_developer_directory
