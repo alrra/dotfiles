@@ -101,7 +101,7 @@ test_ssh_connection() {
 
 main() {
 
-    print_in_purple " Set up GitHub SSH keys\n\n"
+    print_in_purple "\n Set up GitHub SSH keys\n\n"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
