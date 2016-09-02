@@ -66,7 +66,8 @@ upgrade() {
     # Install the newest versions of all packages installed.
 
     execute \
-        "sudo apt-get upgrade -qqy" \
+        "export DEBIAN_FRONTEND=\"noninteractive\" \
+            && sudo apt-get -o Dpkg::Options::=\"--force-confnew\" upgrade -qqy" \
         "upgrade"
 
 }
