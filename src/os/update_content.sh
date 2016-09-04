@@ -19,11 +19,15 @@ main() {
 
         print_in_purple "\n Update content\n\n"
 
-        execute \
-            "git fetch --all \
-                && git reset --hard origin/master \
-                && git clean -fd" \
-            "Update content"
+        ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
+
+        if answer_is_yes; then
+            execute \
+                "git fetch --all \
+                    && git reset --hard origin/master \
+                    && git clean -fd" \
+                "Update content"
+        fi
 
     fi
 

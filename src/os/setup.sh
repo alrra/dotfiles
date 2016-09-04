@@ -266,16 +266,7 @@ main() {
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         if ! $skipQuestions; then
-
-            print_in_purple "\n\n Update content\n\n"
-
-            ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
-
-            if answer_is_yes; then
-                printf "\n"
-                ./update_content.sh
-            fi
-
+            ./update_content.sh
         fi
 
     fi
