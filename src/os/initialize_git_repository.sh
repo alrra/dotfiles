@@ -37,7 +37,7 @@ initialize_git_repository() {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-    print_in_purple "\n Initialize Git repository\n\n"
+    print_in_purple "\n • Initialize Git repository\n\n"
     initialize_git_repository "$1"
 }
 

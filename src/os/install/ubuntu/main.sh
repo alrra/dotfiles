@@ -6,14 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-main() {
-
-    update
-    upgrade
-
-    print_in_green "\n  ---\n\n"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+install_apps() {
 
     # Install tools for compiling/building software from source.
 
@@ -34,7 +27,7 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_in_green "\n  ---\n\n"
+    printf "\n"
 
     if ! package_is_installed "google-chrome-unstable"; then
 
@@ -154,15 +147,17 @@ main() {
 
     install_package "Zopfli" "zopfli"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
 
-    print_in_green "\n  ---\n\n"
+main() {
+
+    print_in_purple "   Miscellaneous\n\n"
+
     update
     upgrade
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    print_in_green "\n  ---\n\n"
+    printf "\n"
+    install_apps
+    printf "\n"
     autoremove
 
 }

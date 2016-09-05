@@ -7,7 +7,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 main() {
 
-    print_in_purple "\n\n * Restart\n\n"
+    print_in_purple "\n • Restart\n\n"
 
     ask_for_confirmation "Do you want to restart?"
     printf "\n"

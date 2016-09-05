@@ -28,7 +28,7 @@ autoremove() {
 
     execute \
         "sudo apt-get autoremove -qqy" \
-        "autoremove"
+        "APT (autoremove)"
 
 }
 
@@ -57,7 +57,7 @@ update() {
 
     execute \
         "sudo apt-get update -qqy" \
-        "update"
+        "APT (update)"
 
 }
 
@@ -68,6 +68,6 @@ upgrade() {
     execute \
         "export DEBIAN_FRONTEND=\"noninteractive\" \
             && sudo apt-get -o Dpkg::Options::=\"--force-confnew\" upgrade -qqy" \
-        "upgrade"
+        "APT (upgrade)"
 
 }

@@ -9,7 +9,7 @@ main() {
 
     ssh -T git@github.com &> /dev/null
 
-    if [ $? -ne 2 ]; then
+    if [ $? -ne 1 ]; then
         ./set_github_ssh_key.sh
     fi
 
@@ -17,7 +17,7 @@ main() {
 
     if [ $? -eq 0 ]; then
 
-        print_in_purple "\n\n * Update content\n\n"
+        print_in_purple "\n • Update content\n\n"
 
         ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
 

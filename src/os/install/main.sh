@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n\n * Installs\n\n"
+print_in_purple "\n • Installs\n\n"
 
 "./$(get_os)/main.sh"
 ./nvm.sh

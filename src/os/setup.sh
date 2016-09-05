@@ -49,7 +49,7 @@ download_dotfiles() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_in_purple "\n * Download and extract archive\n\n"
+    print_in_purple "\n • Download and extract archive\n\n"
 
     tmpFile="$(mktemp /tmp/XXXXX)"
 
