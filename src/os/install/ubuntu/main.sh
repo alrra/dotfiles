@@ -6,18 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-main() {
-
-    print_in_purple "\n   Miscellaneous\n\n"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    update
-    upgrade
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    printf "\n"
+install_apps() {
 
     # Install tools for compiling/building software from source.
 
@@ -158,17 +147,17 @@ main() {
 
     install_package "Zopfli" "zopfli"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
 
-    printf "\n"
+main() {
+
+    print_in_purple "   Miscellaneous\n\n"
 
     update
     upgrade
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     printf "\n"
-
+    install_apps
+    printf "\n"
     autoremove
 
 }
