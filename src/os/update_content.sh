@@ -22,11 +22,13 @@ main() {
         ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
 
         if answer_is_yes; then
-            execute \
-                "git fetch --all \
-                    && git reset --hard origin/master \
-                    && git clean -fd" \
-                "Update content"
+
+            git fetch --all 1> /dev/null \
+                && git reset --hard origin/master 1> /dev/null \
+                && git clean -fd 1> /dev/null
+
+            print_result $? "Update content"
+
         fi
 
     fi
