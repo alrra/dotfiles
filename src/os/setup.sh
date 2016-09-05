@@ -279,16 +279,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if ! $skipQuestions; then
-
-        print_in_purple "\n\n * Restart\n\n"
-
-        ask_for_confirmation "Do you want to restart?"
-        printf "\n"
-
-        if answer_is_yes; then
-            ./restart.sh
-        fi
-
+        ./restart.sh
     fi
 
 }
