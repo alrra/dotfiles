@@ -45,7 +45,7 @@ update_plugins() {
 
 main() {
 
-    print_in_purple "\n  Vim\n\n"
+    print_in_purple "\n   Vim\n\n"
 
     install_plugins
     update_plugins

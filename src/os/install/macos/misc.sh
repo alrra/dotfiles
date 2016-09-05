@@ -125,7 +125,7 @@ install_apps() {
 
 main() {
 
-    print_in_purple "\n  Miscellaneous\n\n"
+    print_in_purple "\n   Miscellaneous\n\n"
 
     install_apps
     printf "\n"

@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n  Keyboard\n\n"
+print_in_purple "\n   Keyboard\n\n"
 
 execute "defaults write NSGlobalDomain AppleKeyboardUIMode -int 3" \
     "Enable full keyboard access for all controls"

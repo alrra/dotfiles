@@ -199,7 +199,7 @@ mkd() {
 }
 
 print_error() {
-    print_in_red "  [✖] $1 $2\n"
+    print_in_red "   [✖] $1 $2\n"
 }
 
 print_error_stream() {
@@ -225,7 +225,7 @@ print_in_yellow() {
 }
 
 print_question() {
-    print_in_yellow "  [?] $1"
+    print_in_yellow "   [?] $1"
 }
 
 print_result() {
@@ -241,11 +241,11 @@ print_result() {
 }
 
 print_success() {
-    print_in_green "  [✔] $1\n"
+    print_in_green "   [✔] $1\n"
 }
 
 print_warning() {
-    print_in_yellow "  [!] $1\n"
+    print_in_yellow "   [!] $1\n"
 }
 
 set_trap() {
@@ -308,7 +308,7 @@ show_spinner() {
 
     while kill -0 "$PID" &>/dev/null; do
 
-        frameText="  [${FRAMES:i++%NUMBER_OR_FRAMES:1}] $MSG"
+        frameText="   [${FRAMES:i++%NUMBER_OR_FRAMES:1}] $MSG"
         numberOfLinesToBeCleared=1
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

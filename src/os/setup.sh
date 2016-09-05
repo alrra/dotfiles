@@ -49,6 +49,8 @@ download_dotfiles() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    print_in_purple "\n * Download and extract archive\n\n"
+
     tmpFile="$(mktemp /tmp/XXXXX)"
 
     download "$DOTFILES_TARBALL_URL" "$tmpFile"
@@ -239,19 +241,22 @@ main() {
 
     if ! cmd_exists "git" \
         || [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-
-        print_in_purple "\n Download and extract archive\n\n"
         download_dotfiles
-
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ./create_directories.sh
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     ./create_symbolic_links.sh "$@"
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     ./install/main.sh
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ./preferences/main.sh
 
@@ -275,7 +280,7 @@ main() {
 
     if ! $skipQuestions; then
 
-        print_in_purple "\n\n Restart\n\n"
+        print_in_purple "\n\n * Restart\n\n"
 
         ask_for_confirmation "Do you want to restart?"
         printf "\n"

@@ -72,7 +72,7 @@ update_nvm() {
 
 main() {
 
-    print_in_purple "\n  nvm\n\n"
+    print_in_purple "\n   nvm\n\n"
 
     if [ ! -d "$NVM_DIRECTORY" ]; then
         install_nvm
