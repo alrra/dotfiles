@@ -11,9 +11,9 @@ main() {
     update
     upgrade
 
-    print_in_green "\n  ---\n\n"
-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    printf "\n"
 
     # Install tools for compiling/building software from source.
 
@@ -34,7 +34,7 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_in_green "\n  ---\n\n"
+    printf "\n"
 
     if ! package_is_installed "google-chrome-unstable"; then
 
@@ -156,13 +156,15 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_in_green "\n  ---\n\n"
+    printf "\n"
+
     update
     upgrade
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_in_green "\n  ---\n\n"
+    printf "\n"
+
     autoremove
 
 }
