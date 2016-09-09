@@ -150,6 +150,7 @@ call vundle#begin("~/.vim/plugins")
     Plugin 'chrisbra/unicode.vim'
     Plugin 'editorconfig/editorconfig-vim'
     Plugin 'godlygeek/tabular'
+    Plugin 'isRuslan/vim-es6'
     Plugin 'jelera/vim-javascript-syntax'
     Plugin 'kien/ctrlp.vim'
     Plugin 'marijnh/tern_for_vim'
