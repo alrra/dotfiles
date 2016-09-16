@@ -65,6 +65,24 @@ brew_install() {
 
 }
 
+brew_prefix() {
+
+    local path=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    path="$(brew --prefix 2> /dev/null)"
+
+    if [ $? -eq 0 ]; then
+        printf "%s" "$path"
+        return 0
+    else
+        print_error "Homebrew (get prefix)"
+        return 1
+    fi
+
+}
+
 brew_tap() {
     brew tap "$1" &> /dev/null
 }
