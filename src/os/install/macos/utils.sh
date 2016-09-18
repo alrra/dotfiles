@@ -19,7 +19,7 @@ brew_cleanup() {
 
     execute \
         "brew cask cleanup" \
-        "homebrew (cask cleanup)"
+        "Homebrew (cask cleanup)"
 
 }
 
