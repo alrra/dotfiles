@@ -13,10 +13,10 @@ execute "defaults write NSGlobalDomain AppleKeyboardUIMode -int 3" \
 execute "defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false" \
     "Disable press-and-hold in favor of key repeat"
 
-execute "defaults write NSGlobalDomain 'InitialKeyRepeat_Level_Saved' -int 15" \
+execute "defaults write NSGlobalDomain 'InitialKeyRepeat_Level_Saved' -int 10" \
     "Set delay until repeat"
 
-execute "defaults write NSGlobalDomain KeyRepeat -int 2" \
+execute "defaults write NSGlobalDomain KeyRepeat -int 1" \
     "Set the key repeat rate to fast"
 
 execute "defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false" \
