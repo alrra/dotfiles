@@ -88,6 +88,7 @@ install_apps() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     brew_install "tmux" "tmux"
+    brew_install "tmux (pasteboard)" "reattach-to-user-namespace"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
