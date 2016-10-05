@@ -169,6 +169,7 @@ is_supported_version() {
         v1[i]=0
     done
 
+
     for (( i=0; i<${#v1[@]}; i++ )); do
 
         # Fill empty positions in v2 with zeros.
@@ -178,6 +179,8 @@ is_supported_version() {
 
         if (( 10#${v1[i]} < 10#${v2[i]} )); then
             return 1
+        elif (( 10#${v1[i]} > 10#${v2[i]} )); then
+            return 0
         fi
 
     done
