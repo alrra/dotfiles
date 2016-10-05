@@ -15,7 +15,7 @@ alias brewi="brew install"
 alias brewr="brew uninstall"
 alias brews="brew search"
 alias brewu="brew update \
-                && brew upgrade --all \
+                && brew upgrade \
                 && brew cleanup \
                 && brew cask cleanup"
 
@@ -74,7 +74,7 @@ alias o="open"
 
 alias u="sudo softwareupdate --install --all \
             && brew update \
-            && brew upgrade --all \
+            && brew upgrade \
             && brew cleanup \
             && npm install -g npm \
             && npm update -g"

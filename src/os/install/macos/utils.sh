@@ -98,7 +98,7 @@ brew_update() {
 brew_upgrade() {
 
     execute \
-        "brew upgrade --all" \
+        "brew upgrade" \
         "Homebrew (upgrade)"
 
 }
