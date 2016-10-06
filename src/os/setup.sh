@@ -237,12 +237,12 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Setup the `dotfiles` if needed.
+    # Check if this script was run directly (./<path>/setup.sh),
+    # and if not, it most likely means that the dotfiles were not
+    # yet set up, and they will need to be downloaded.
 
-    if ! cmd_exists "git" \
-        || [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-        download_dotfiles
-    fi
+    printf "%s" "${BASH_SOURCE[0]}" | grep "setup.sh" &> /dev/null \
+        || download_dotfiles
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
