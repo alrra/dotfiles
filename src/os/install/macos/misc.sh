@@ -41,6 +41,8 @@ install_apps() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     brew_install "GPG" "gpg"
+    brew_install "GPG Agent" "gpg-agent"
+    brew_install "Pinentry" "pinentry-mac"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
