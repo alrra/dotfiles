@@ -20,11 +20,12 @@ create_symlinks() {
         "shell/bashrc"
         "shell/curlrc"
         "shell/inputrc"
-        "shell/tmux.conf"
 
         "git/gitattributes"
         "git/gitconfig"
         "git/gitignore"
+
+        "tmux/tmux.conf"
 
         "vim/vim"
         "vim/vimrc"
