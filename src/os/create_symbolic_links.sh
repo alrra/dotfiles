@@ -20,7 +20,6 @@ create_symlinks() {
         "shell/bashrc"
         "shell/curlrc"
         "shell/inputrc"
-        "shell/screenrc"
         "shell/tmux.conf"
 
         "git/gitattributes"
