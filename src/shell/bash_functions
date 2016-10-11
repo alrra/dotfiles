@@ -2,36 +2,6 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Simple Calculator.
-
-? () {
-
-    local result=""
-
-    #                       ┌─ default (when --mathlib is used) is 20
-    result="$( printf "scale=10;%s\n" "$*" | bc --mathlib | tr -d "\\\n" )"
-    #                         remove the tailing "\" and "\n" ─┘
-    #                         (large numbers are printed on multiple lines)
-
-    if [[ "$result" == *.* ]]; then
-
-        # Improve the output for decimal numbers.
-
-        printf "%s" "$result" |
-        sed -e "s/^\./0./"          # Add "0" for cases like ".5".` \
-            -e "s/^-\./-0./"        # Add "0" for cases like "-.5".`\
-            -e "s/0*$//;s/\.$//"    # Remove tailing zeros.
-
-    else
-        printf "%s" "$result"
-    fi
-
-    printf "\n"
-
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Create data URI from a file.
 
 datauri() {
