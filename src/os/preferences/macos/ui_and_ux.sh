@@ -35,28 +35,28 @@ execute "defaults write com.apple.screensaver askForPassword -int 1 && \
          defaults write com.apple.screensaver askForPasswordDelay -int 0"\
     "Require password immediately after into sleep or screen saver mode"
 
-execute "defaults write NSGlobalDomain AppleFontSmoothing -int 2" \
+execute "defaults write -g AppleFontSmoothing -int 2" \
     "Enable subpixel font rendering on non-Apple LCDs"
 
-execute "defaults write NSGlobalDomain AppleShowScrollBars -string 'Always'" \
+execute "defaults write -g AppleShowScrollBars -string 'Always'" \
     "Always show scrollbars"
 
-execute "defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true" \
+execute "defaults write -g NSDisableAutomaticTermination -bool true" \
     "Disable automatic termination of inactive apps"
 
-execute "defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true" \
+execute "defaults write -g NSNavPanelExpandedStateForSaveMode -bool true" \
     "Expand save panel by default"
 
-execute "defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2" \
+execute "defaults write -g NSTableViewDefaultSizeMode -int 2" \
     "Set sidebar icon size to medium"
 
-execute "defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false" \
+execute "defaults write -g NSUseAnimatedFocusRing -bool false" \
     "Disable the over-the-top focus ring animation"
 
 execute "defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false" \
     "Disable resume system-wide"
 
-execute "defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true" \
+execute "defaults write -g PMPrintingExpandedStateForPrint -bool true" \
     "Expand print panel by default"
 
 execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'Laptop' && \
