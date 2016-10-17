@@ -7,11 +7,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_in_purple "\n   Language & Region\n\n"
 
-execute "defaults write NSGlobalDomain AppleLanguages -array 'en'" \
+execute "defaults write -g AppleLanguages -array 'en'" \
     "Set language"
 
-execute "defaults write NSGlobalDomain AppleMeasurementUnits -string 'Centimeters'" \
+execute "defaults write -g AppleMeasurementUnits -string 'Centimeters'" \
     "Set measurement units"
 
-execute "defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false" \
+execute "defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false" \
     "Disable auto-correct"
