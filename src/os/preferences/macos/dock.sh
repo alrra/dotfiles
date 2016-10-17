@@ -13,9 +13,6 @@ execute "defaults write com.apple.dock autohide -bool true" \
 execute "defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true" \
     "Enable spring loading for all Dock items"
 
-execute "defaults write com.apple.dock expose-animation-duration -float 0.2" \
-    "Speed up Mission Control animations"
-
 execute "defaults write com.apple.dock expose-group-by-app -bool false" \
     "Do not group windows by application in Mission Control"
 
