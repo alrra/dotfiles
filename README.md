@@ -168,7 +168,16 @@ __Note:__ Use `~/.gitconfig.local` to store sensitive information such
 as the `git` user credentials, e.g.:
 
 ```bash
+[commit]
+
+    # Sign commits using GPG.
+    # https://help.github.com/articles/signing-commits-using-gpg/
+
+    gpgsign = true
+
+
 [user]
+
     name = Cătălin Mariș
     email = alrra@example.com
     signingkey = XXXXXXXX
