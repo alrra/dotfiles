@@ -35,7 +35,7 @@ install_xcode() {
         "until is_xcode_installed; do \
             sleep 5; \
          done" \
-        "Xcode"
+        "Xcode.app"
 
 }
 
@@ -70,7 +70,7 @@ set_xcode_developer_directory() {
     # https://github.com/alrra/dotfiles/issues/13
 
     sudo xcode-select -switch "/Applications/Xcode.app/Contents/Developer" &> /dev/null
-    print_result $? "Make 'xcode-select' developer directory point to Xcode"
+    print_result $? "Make 'xcode-select' developer directory point to the appropriate directory from within Xcode.app"
 
 }
 
