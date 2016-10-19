@@ -13,6 +13,9 @@ execute "defaults write com.apple.terminal FocusFollowsMouse -string true" \
 execute "defaults write com.apple.terminal SecureKeyboardEntry -bool true" \
     "Enable 'Secure Keyboard Entry'"
 
+execute "defaults write com.apple.Terminal ShowLineMarks -int 0" \
+    "Hide line marks"
+
 execute "defaults write com.apple.terminal StringEncodings -array 4" \
     "Only use UTF-8"
 
