@@ -211,20 +211,27 @@ print_error_stream() {
     done
 }
 
+print_in_color() {
+    printf "%b" \
+        "$(tput setaf "$2" 2> /dev/null)" \
+        "$1" \
+        "$(tput sgr0 2> /dev/null)"
+}
+
 print_in_green() {
-    printf "\e[0;32m%b\e[0m" "$1"
+    print_in_color "$1" 2
 }
 
 print_in_purple() {
-    printf "\e[0;35m%b\e[0m" "$1"
+    print_in_color "$1" 5
 }
 
 print_in_red() {
-    printf "\e[0;31m%b\e[0m" "$1"
+    print_in_color "$1" 1
 }
 
 print_in_yellow() {
-    printf "\e[0;33m%b\e[0m" "$1"
+    print_in_color "$1" 3
 }
 
 print_question() {
