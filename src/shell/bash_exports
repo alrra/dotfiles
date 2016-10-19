@@ -46,8 +46,8 @@ export LC_ALL="en_US.UTF-8"
 
 # Use custom `less` colors for `man` pages.
 
-export LESS_TERMCAP_md=$'\e[1;32m'   # Begin bold mode.
-export LESS_TERMCAP_me=$'\e[0m'      # End bold mode.
+export LESS_TERMCAP_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
+export LESS_TERMCAP_me="$(tput sgr0 2> /dev/null)"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
