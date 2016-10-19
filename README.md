@@ -1,6 +1,4 @@
-# [Cătălin](https://github.com/alrra)’s dotfiles
-
-[![Build Status](https://travis-ci.org/alrra/dotfiles.svg?branch=master)](https://travis-ci.org/alrra/dotfiles)
+# [Cătălin](https://github.com/alrra)’s dotfiles [![Build Status](https://travis-ci.org/alrra/dotfiles.svg?branch=master)](https://travis-ci.org/alrra/dotfiles)
 
 These are the base dotfiles that I start with when I set up a
 new environment. For more specific local needs I use the `.local`
@@ -131,26 +129,25 @@ requirements by using the following files:
 
 #### `~/.bash.local`
 
-If the `~/.bash.local` file exists, it will be automatically sourced
-after all the other [`bash` related files](src/shell), thus, allowing
+The `~/.bash.local` file it will be automatically sourced after
+all the other [`bash` related files](src/shell), thus, allowing
 its content to add to or overwrite the existing aliases, settings,
 PATH, etc.
 
 Here is a very simple example of a `~/.bash.local` file:
 
 ```bash
-
 #!/bin/bash
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Set local aliases
+# Set local aliases.
 
 alias starwars="telnet towel.blinkenlights.nl"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Set PATH additions
+# Set PATH additions.
 
 PATH="$PATH:$HOME/projects/dotfiles/src/bin"
 
@@ -160,12 +157,12 @@ export PATH
 
 #### `~/.gitconfig.local`
 
-If the `~/.gitconfig.local` file exists, it will be automatically
-included after the configurations from `~/.gitconfig`, thus, allowing
-its content to overwrite or add to the existing `git` configurations.
+The `~/.gitconfig.local` file it will be automatically included
+after the configurations from `~/.gitconfig`, thus, allowing its
+content to overwrite or add to the existing `git` configurations.
 
-__Note:__ Use `~/.gitconfig.local` to store sensitive information such
-as the `git` user credentials, e.g.:
+__Note:__ Use `~/.gitconfig.local` to store sensitive information
+such as the `git` user credentials, e.g.:
 
 ```bash
 [commit]
@@ -185,8 +182,8 @@ as the `git` user credentials, e.g.:
 
 #### `~/.vimrc.local`
 
-If the `~/.vimrc.local` file exists, it will be automatically sourced
-after `~/.vimrc`, thus, allowing its content to add or overwrite the
+The `~/.vimrc.local` file it will be automatically sourced after
+`~/.vimrc`, thus, allowing its content to add or overwrite the
 settings from `~/.vimrc`.
 
 

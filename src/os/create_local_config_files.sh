@@ -35,7 +35,9 @@ create_gitconfig_local() {
 
     # gpgsign = true
 
+
 [user]
+
     name =
     email =
     # signingkey =" \
