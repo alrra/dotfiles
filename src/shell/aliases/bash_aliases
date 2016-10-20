@@ -17,7 +17,7 @@ alias ll="ls -l"
 alias m="man"
 alias map="xargs -n1"
 alias n="npm"
-alias path='printf "%b\n" "${PATH//:/\\n}" | sort --ignore-case'
+alias path='printf "%b\n" "${PATH//:/\\n}"'
 alias q="exit"
 alias rm="rm -rf --"
 
