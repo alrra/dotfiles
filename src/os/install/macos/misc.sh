@@ -106,10 +106,6 @@ install_apps() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    brew_install "VirtualBox" "virtualbox" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     brew_install "VLC" "vlc" "caskroom/cask" "cask"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

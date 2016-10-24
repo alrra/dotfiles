@@ -133,10 +133,6 @@ install_apps() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "VirtualBox" "virtualbox"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     install_package "VLC" "vlc"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
