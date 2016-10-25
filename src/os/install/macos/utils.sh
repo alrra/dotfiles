@@ -72,9 +72,7 @@ brew_prefix() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    path="$(brew --prefix 2> /dev/null)"
-
-    if [ $? -eq 0 ]; then
+    if path="$(brew --prefix 2> /dev/null)"; then
         printf "%s" "$path"
         return 0
     else
