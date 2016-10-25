@@ -12,9 +12,7 @@ get_homebrew_git_config_file_path() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    path="$(brew --repository 2> /dev/null)/.git/config"
-
-    if [ $? -eq 0 ]; then
+    if path="$(brew --repository 2> /dev/null)/.git/config"; then
         printf "%s" "$path"
         return 0
     else
