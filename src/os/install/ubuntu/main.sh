@@ -25,9 +25,13 @@ install_apps() {
 
     #install_package "Ubuntu Restricted Extras" "ubuntu-restricted-extras"
 
+    printf "\n"
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    printf "\n"
+    install_package "Brotli" "brotli"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if ! package_is_installed "google-chrome-unstable"; then
 
