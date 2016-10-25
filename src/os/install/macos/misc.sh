@@ -32,7 +32,7 @@ install_apps() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    brew_install "Flash" "flash" "caskroom/cask" "cask"
+    brew_install "Flash" "flash-npapi" "caskroom/cask" "cask"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
