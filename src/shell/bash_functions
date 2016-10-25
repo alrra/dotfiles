@@ -55,7 +55,7 @@ gz() {
             printf " ─────────────────────────────\n"
             printf " reduction:       %12s [%s%%]\n\n" \
                         "$( hrfs $((originalSize - gzippedSize)) )" \
-                        "$( printf "%s %s" "$originalSize $gzippedSize" | \
+                        "$( printf "%s" "$originalSize $gzippedSize" | \
                             awk '{ printf "%.1f", 100 - $2 * 100 / $1 }' | \
                             sed -e "s/0*$//;s/\.$//" )"
                             #              └─ remove tailing zeros
