@@ -166,6 +166,7 @@ call vundle#begin("~/.vim/plugins")
     Plugin 'shougo/neosnippet'
     Plugin 'shougo/neosnippet-snippets'
     Plugin 'shutnik/jshint2.vim'
+    Plugin 'suan/vim-instant-markdown'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-fugitive'
@@ -215,6 +216,17 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven
         \ guibg=#073642
         \ ctermbg=DarkMagenta
+
+
+" ----------------------------------------------------------------------
+" | Plugins - Instant Markdown                                         |
+" ----------------------------------------------------------------------
+
+" Do not automatically launch the preview
+" window when the markdown file is open.
+" https://github.com/suan/vim-instant-markdown#ginstant_markdown_autostart
+
+let g:instant_markdown_autostart = 0
 
 
 " ----------------------------------------------------------------------
