@@ -106,6 +106,10 @@ install_apps() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    brew_install "Visual Studio Code" "visual-studio-code" "caskroom/cask" "cask"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     brew_install "Vim" "vim --with-override-system-vi"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
