@@ -48,16 +48,6 @@ alias show-desktop-icons="defaults write com.apple.finder CreateDesktop -bool tr
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Hide/Show hidden files in Finder.
-
-alias hide-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool false \
-                            && killall Finder"
-
-alias show-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool true \
-                            && killall Finder"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Get local IP.
 
 alias local-ip="ipconfig getifaddr en1"
