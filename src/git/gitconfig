@@ -16,6 +16,7 @@
     rlc = reset --hard HEAD~1               # Remove last commit.
     s   = status
     ulc = reset --soft HEAD~1               # Undo last commit.
+    w   = instaweb --httpd=webrick          # Start web-based visualizer.
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
