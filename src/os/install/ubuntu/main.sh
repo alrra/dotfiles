@@ -64,7 +64,7 @@ install_apps() {
             || print_error "Firefox Nightly (add PPA)"
 
         update &> /dev/null \
-            || print_error "Firefox Nightly (resync package index files)" \
+            || print_error "Firefox Nightly (resync package index files)"
 
     fi
 
@@ -101,7 +101,7 @@ install_apps() {
             || print_error "Opera (add to package resource list)"
 
         update &> /dev/null \
-            || print_error "Opera (resync package index files)" \
+            || print_error "Opera (resync package index files)"
 
     fi
 
@@ -142,6 +142,23 @@ install_apps() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     install_package "xclip" "xclip"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if ! package_is_installed "yarn"; then
+
+        add_key "https://dl.yarnpkg.com/debian/pubkey.gpg" \
+            || print_error "Yarn (add key)"
+
+        add_to_source_list "https://dl.yarnpkg.com/debian/ stable main" "yarn.list" \
+            || print_error "Yarn (add to package resource list)"
+
+        update &> /dev/null \
+            || print_error "Yarn (resync package index files)"
+
+    fi
+
+    install_package "Yarn" "yarn"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
