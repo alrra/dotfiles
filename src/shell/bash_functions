@@ -138,7 +138,7 @@ qh() {
 # Search for text within the current directory.
 
 qt() {
-    grep -ir --color=always "$*" . | less -RX
+    grep -ir --color=always "$*" --exclude-dir=".git" . | less -RX
     #     │└─ search all files under each directory, recursively
     #     └─ ignore case
 }
