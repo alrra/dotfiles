@@ -20,6 +20,11 @@ matrix:
     - os: osx
       osx_image: xcode8.1
 
+notifications:
+  email:
+    on_failure: always
+    on_success: never
+
 script:
   - ./test/main.sh
 
