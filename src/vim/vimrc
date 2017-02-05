@@ -158,6 +158,7 @@ call vundle#begin("~/.vim/plugins")
     Plugin 'mattn/webapi-vim'
     Plugin 'mhinz/vim-signify'
     Plugin 'moll/vim-node'
+    Plugin 'mtscout6/syntastic-local-eslint.vim'
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'raimondi/delimitmate'
     Plugin 'scrooloose/nerdtree'
@@ -273,10 +274,9 @@ let g:signify_disable_by_default=1
 " ----------------------------------------------------------------------
 
 " Inform Syntastic which checkers to use based on file types.
-" https://github.com/scrooloose/syntastic#3-faq
+" https://github.com/scrooloose/syntastic#faq
 
-let g:syntastic_html_checkers = [ "jshint" ]
-let g:syntastic_javascript_checkers = [ "jshint" ]
+let g:syntastic_javascript_checkers = [ 'eslint' ]
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -567,7 +567,7 @@ nmap <leader>tl :call ToggleLimits()<CR>
 
 " [,ts] Toggle Syntastic.
 
-nmap <leader>ts :SyntasticToggleMode<CR>
+nmap <leader>ts :SyntasticToggleMode \| w<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
