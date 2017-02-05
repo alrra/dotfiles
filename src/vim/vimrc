@@ -156,6 +156,7 @@ call vundle#begin("~/.vim/plugins")
     Plugin 'marijnh/tern_for_vim'
     Plugin 'mattn/emmet-vim'
     Plugin 'mattn/webapi-vim'
+    Plugin 'moll/vim-node'
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'raimondi/delimitmate'
     Plugin 'scrooloose/nerdtree'
