@@ -156,6 +156,7 @@ call vundle#begin("~/.vim/plugins")
     Plugin 'marijnh/tern_for_vim'
     Plugin 'mattn/emmet-vim'
     Plugin 'mattn/webapi-vim'
+    Plugin 'mhinz/vim-signify'
     Plugin 'moll/vim-node'
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'raimondi/delimitmate'
@@ -255,6 +256,16 @@ let g:neocomplcache_enable_at_startup=1
 " Make `<TAB>` autocomplete.
 
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+" ----------------------------------------------------------------------
+" | Plugins - Signify                                                  |
+" ----------------------------------------------------------------------
+
+" Disable Signify by default.
+" https://github.com/mhinz/vim-signify
+
+let g:signify_disable_by_default=1
 
 
 " ----------------------------------------------------------------------
@@ -502,6 +513,12 @@ nmap <leader>cr 0yt=A<C-r>=<C-r>"<CR><Esc>
 " [,cs] Clear search.
 
 map <leader>cs <Esc>:noh<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" [,gd] Toggle Git differences.
+
+map <leader>gd :SignifyToggle<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
