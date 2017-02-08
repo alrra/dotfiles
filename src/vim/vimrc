@@ -254,9 +254,15 @@ let g:neocomplcache_enable_at_startup=1
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" Make `<TAB>` autocomplete.
+" Make `Tab` autocomplete.
 
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" Make `Shift+Tab` insert `Tab` character.
+
+inoremap <S-TAB> <C-V><TAB>
 
 
 " ----------------------------------------------------------------------
