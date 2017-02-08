@@ -258,6 +258,10 @@ let g:neocomplcache_enable_at_startup=1
 
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
+" Make `<S-TAB>` insert a literal tab (for Makefiles, etc.).
+
+inoremap <S-TAB> <C-V><TAB>
+
 
 " ----------------------------------------------------------------------
 " | Plugins - Signify                                                  |
