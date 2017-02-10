@@ -60,10 +60,10 @@ execute "defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bo
 execute "defaults write -g PMPrintingExpandedStateForPrint -bool true" \
     "Expand print panel by default"
 
-execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'Laptop' && \
-         sudo scutil --set ComputerName 'laptop' && \
-         sudo scutil --set HostName 'laptop' && \
-         sudo scutil --set LocalHostName 'laptop'" \
+execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'tardis' && \
+         sudo scutil --set ComputerName 'tardis' && \
+         sudo scutil --set HostName 'tardis' && \
+         sudo scutil --set LocalHostName 'tardis'" \
     "Set computer name"
 
 execute "sudo systemsetup -setrestartfreeze on" \
