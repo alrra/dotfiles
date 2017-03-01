@@ -8,6 +8,7 @@
     cp  = cherry-pick
     d   = diff
     dc  = diff --cached
+    f   = fetch
     g   = log --graph --pretty=custom       # Show custom graph.
     l   = log --pretty=custom               # Show custom log.
     lc  = shortlog --summary --numbered     # List contributors.
