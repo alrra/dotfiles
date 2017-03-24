@@ -7,12 +7,16 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_in_purple "\n   UI & UX\n\n"
 
+
 execute "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true && \
          defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true" \
    "Avoid creating '.DS_Store' files on network or USB volumes"
 
 execute "defaults write com.apple.menuextra.battery ShowPercent -string 'NO'" \
     "Hide battery percentage from the menu bar"
+
+execute "sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true" \
+    "Show language menu in the top right corner of the boot screen"
 
 execute "defaults write com.apple.CrashReporter UseUNC 1" \
     "Make crash reports appear as notifications"
