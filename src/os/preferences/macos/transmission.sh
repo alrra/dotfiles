@@ -16,6 +16,9 @@ execute "defaults write org.m0k.transmission DownloadAsk -bool false" \
 execute "defaults write org.m0k.transmission MagnetOpenAsk -bool false" \
     "Don’t prompt for confirmation before downloading for magnet links"
 
+execute "defaults write org.m0k.transmission CheckRemoveDownloading -bool true" \
+    "Don’t prompt for confirmation before removing non-downloading active transfers"
+
 execute "defaults write org.m0k.transmission DownloadChoice -string 'Constant' && \
          defaults write org.m0k.transmission DownloadFolder -string '$HOME/Downloads'" \
     "Use '~/Downloads' to store complete downloads"
@@ -29,5 +32,8 @@ execute "defaults write org.m0k.transmission WarningDonate -bool false" \
 
 execute "defaults write org.m0k.transmission WarningLegal -bool false" \
     "Hide the legal disclaimer"
+
+execute "defaults write org.m0k.transmission RandomPort -bool true" \
+    "Randomize port on launch"
 
 killall "Transmission" &> /dev/null
