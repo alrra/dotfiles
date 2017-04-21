@@ -1,10 +1,8 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "../utils.sh"
+    && . "./utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n • Installs\n\n"
-
-"./$(get_os)/main.sh"
+install_package "GNOME Vim" "vim-gnome"
