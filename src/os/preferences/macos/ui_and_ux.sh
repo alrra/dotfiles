@@ -43,8 +43,8 @@ execute "defaults write com.apple.screensaver askForPassword -int 1 && \
 execute "defaults write -g AppleFontSmoothing -int 2" \
     "Enable subpixel font rendering on non-Apple LCDs"
 
-execute "defaults write -g AppleShowScrollBars -string 'Always'" \
-    "Always show scrollbars"
+execute "defaults write -g AppleShowScrollBars -string 'WhenScrolling'" \
+    "Show scrollbars when scrolling"
 
 execute "defaults write -g NSDisableAutomaticTermination -bool true" \
     "Disable automatic termination of inactive apps"

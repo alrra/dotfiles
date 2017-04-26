@@ -34,11 +34,11 @@ execute "defaults write com.apple.finder NewWindowTarget -string 'PfDe' && \
          defaults write com.apple.finder NewWindowTargetPath -string 'file://$HOME/Desktop/'" \
     "Set 'Desktop' as the default location for new Finder windows"
 
-execute "defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true && \
-         defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true && \
-         defaults write com.apple.finder ShowMountedServersOnDesktop -bool true && \
-         defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true" \
-    "Show icons for hard drives, servers, and removable media on the desktop"
+execute "defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false && \
+         defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false && \
+         defaults write com.apple.finder ShowMountedServersOnDesktop -bool false && \
+         defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false" \
+    "Hide icons for hard drives, servers, and removable media on the desktop"
 
 execute "defaults write com.apple.finder ShowRecentTags -bool false" \
     "Do not show recent tags"
@@ -46,16 +46,16 @@ execute "defaults write com.apple.finder ShowRecentTags -bool false" \
 execute "defaults write -g AppleShowAllExtensions -bool true" \
     "Show all filename extensions"
 
-execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:iconSize 72' ~/Library/Preferences/com.apple.finder.plist && \
-         /usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:iconSize 72' ~/Library/Preferences/com.apple.finder.plist" \
+execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:iconSize 32' ~/Library/Preferences/com.apple.finder.plist && \
+         /usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:iconSize 32' ~/Library/Preferences/com.apple.finder.plist" \
     "Set icon size"
 
 execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:gridSpacing 1' ~/Library/Preferences/com.apple.finder.plist && \
          /usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:gridSpacing 1' ~/Library/Preferences/com.apple.finder.plist" \
     "Set icon grid spacing size"
 
-execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:textSize 13' ~/Library/Preferences/com.apple.finder.plist && \
-         /usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:textSize 13' ~/Library/Preferences/com.apple.finder.plist" \
+execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:textSize 10' ~/Library/Preferences/com.apple.finder.plist && \
+         /usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:textSize 10' ~/Library/Preferences/com.apple.finder.plist" \
     "Set icon label text size"
 
 execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:labelOnBottom true' ~/Library/Preferences/com.apple.finder.plist && \

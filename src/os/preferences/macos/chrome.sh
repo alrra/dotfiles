@@ -7,8 +7,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_in_purple "\n   Chrome\n\n"
 
-execute "defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false" \
-    "Disable backswipe"
+execute "defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true" \
+    "Enable backswipe"
 
 execute "defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true" \
     "Expand print dialog by default"

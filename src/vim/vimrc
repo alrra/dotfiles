@@ -160,7 +160,8 @@ call plug#begin("~/.vim/plugins")
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
   Plug 'wellle/targets.vim'
-
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " ----------------------------------------------------------------------
@@ -181,14 +182,10 @@ let NERDTreeShowHidden=1
 
 " Redefine trigger key for Emmet.
 " http://docs.emmet.io/cheat-sheet/
-
 let g:user_emmet_leader_key="<C-E>"
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Load custom Emmet snippets.
 " http://docs.emmet.io/customization/snippets/
-
 let g:user_emmet_settings = webapi#json#decode(join(readfile(expand("~/.vim/snippets/emmet.json")), "\n"))
 
 
@@ -217,7 +214,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven
 " Do not automatically launch the preview
 " window when the markdown file is open.
 " https://github.com/suan/vim-instant-markdown#ginstant_markdown_autostart
-
 let g:instant_markdown_autostart = 0
 
 
