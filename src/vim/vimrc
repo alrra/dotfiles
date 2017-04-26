@@ -35,7 +35,6 @@ set cpoptions+=$               " When making a change, don't
                                " put a `$` sign at the end of
                                " the changed text.
 
-set colorcolumn=73             " Highlight certain column(s).
 set cursorline                 " Highlight the current line.
 set directory=~/.vim/swaps     " Set directory for swap files.
 set encoding=utf-8 nobomb      " Use UTF-8 without BOM.
@@ -92,9 +91,9 @@ set synmaxcol=2500             " Limit syntax highlighting (this
                                " avoids the very slow redrawing
                                " when files contain long lines).
 
-set tabstop=4                  " ┐
-set softtabstop=4              " │ Set global <TAB> settings.
-set shiftwidth=4               " │
+set tabstop=2                  " ┐
+set softtabstop=2              " │ Set global <TAB> settings.
+set shiftwidth=2               " │
 set expandtab                  " ┘
 
 set ttyfast                    " Enable fast terminal connection.
@@ -120,72 +119,61 @@ set winminheight=0             " Allow windows to be squashed.
 " | Plugins                                                            |
 " ----------------------------------------------------------------------
 
-" Use Vundle to manage the Vim plugins.
-" https://github.com/VundleVim/Vundle.vim
+" Use vim-plug to manage the Vim plugins.
+" https://github.com/junegunn/vim-plug
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" Disable file type detection
-" (this is required by Vundle).
+call plug#begin("~/.vim/plugins")
 
-filetype off
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'majutsushi/tagbar'
+  Plug 'ap/vim-css-color'
+  Plug 'chrisbra/unicode.vim'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'godlygeek/tabular'
+  Plug 'isRuslan/vim-es6'
+  Plug 'jelera/vim-javascript-syntax'
+  Plug 'kien/ctrlp.vim'
+  Plug 'marijnh/tern_for_vim'
+  Plug 'mattn/emmet-vim'
+  Plug 'mattn/webapi-vim'
+  Plug 'mhinz/vim-signify'
+  Plug 'moll/vim-node'
+  Plug 'mtscout6/syntastic-local-eslint.vim'
+  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'raimondi/delimitmate'
+  Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/syntastic'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'shougo/neocomplcache.vim'
+  Plug 'shougo/neosnippet'
+  Plug 'shougo/neosnippet-snippets'
+  Plug 'shutnik/jshint2.vim'
+  Plug 'suan/vim-instant-markdown'
+  Plug 'tomtom/tcomment_vim'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'wellle/targets.vim'
 
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+call plug#end()
 
-" Include Vundle in the runtime path.
+" ----------------------------------------------------------------------
+" | Plugins - vim-airline                                              |
+" ----------------------------------------------------------------------
+let g:airline_powerline_fonts = 1
+let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled=1
 
-set runtimepath+=~/.vim/plugins/Vundle.vim
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Initialize Vundle and specify the path
-" where the plugins should be installed.
-
-call vundle#begin("~/.vim/plugins")
-
-    Plugin 'VundleVim/Vundle.vim'
-
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'ap/vim-css-color'
-    Plugin 'chrisbra/unicode.vim'
-    Plugin 'editorconfig/editorconfig-vim'
-    Plugin 'godlygeek/tabular'
-    Plugin 'isRuslan/vim-es6'
-    Plugin 'jelera/vim-javascript-syntax'
-    Plugin 'kien/ctrlp.vim'
-    Plugin 'marijnh/tern_for_vim'
-    Plugin 'mattn/emmet-vim'
-    Plugin 'mattn/webapi-vim'
-    Plugin 'mhinz/vim-signify'
-    Plugin 'moll/vim-node'
-    Plugin 'mtscout6/syntastic-local-eslint.vim'
-    Plugin 'nathanaelkane/vim-indent-guides'
-    Plugin 'raimondi/delimitmate'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/syntastic'
-    Plugin 'sheerun/vim-polyglot'
-    Plugin 'shougo/neocomplcache.vim'
-    Plugin 'shougo/neosnippet'
-    Plugin 'shougo/neosnippet-snippets'
-    Plugin 'shutnik/jshint2.vim'
-    Plugin 'suan/vim-instant-markdown'
-    Plugin 'tomtom/tcomment_vim'
-    Plugin 'tpope/vim-commentary'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'tpope/vim-repeat'
-    Plugin 'tpope/vim-surround'
-    Plugin 'tpope/vim-unimpaired'
-    Plugin 'wellle/targets.vim'
-
-call vundle#end()
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Re-enable file type detection
-" (disabling it was required by Vundle).
-
-filetype on
-
+" ----------------------------------------------------------------------
+" | Plugins - Nerdtree                                                 |
+" ----------------------------------------------------------------------
+let NERDTreeShowHidden=1
 
 " ----------------------------------------------------------------------
 " | Plugins - Emmet                                                    |
