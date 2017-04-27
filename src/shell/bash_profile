@@ -53,6 +53,7 @@ zpath="$(brew --prefix)/etc/profile.d/z.sh"
 [[ $- = *i* ]] && [[ -s $zpath ]] && source $zpath
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 
 PATH="$PATH:$HOME/projects/dotfiles/src/bin:$HOME/.yarn/bin"
 
@@ -66,3 +67,4 @@ unset -f source_bash_files
 # and time of the last login, the message of the day, etc.).
 
 clear
+export PATH="/usr/local/sbin:$PATH"

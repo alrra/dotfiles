@@ -123,6 +123,13 @@ set winminheight=0             " Allow windows to be squashed.
 " https://github.com/junegunn/vim-plug
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" Autoinstall vim-plug {{{
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+" }}}
 
 call plug#begin("~/.vim/plugins")
 
@@ -130,13 +137,10 @@ call plug#begin("~/.vim/plugins")
   Plug 'vim-airline/vim-airline-themes'
   Plug 'altercation/vim-colors-solarized'
   Plug 'majutsushi/tagbar'
-  Plug 'ap/vim-css-color'
-  Plug 'chrisbra/unicode.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'godlygeek/tabular'
   Plug 'isRuslan/vim-es6'
-  Plug 'jelera/vim-javascript-syntax'
-  Plug 'kien/ctrlp.vim'
+  Plug 'pangloss/vim-javascript'
   Plug 'marijnh/tern_for_vim'
   Plug 'mattn/emmet-vim'
   Plug 'mattn/webapi-vim'
@@ -144,24 +148,20 @@ call plug#begin("~/.vim/plugins")
   Plug 'moll/vim-node'
   Plug 'mtscout6/syntastic-local-eslint.vim'
   Plug 'nathanaelkane/vim-indent-guides'
-  Plug 'raimondi/delimitmate'
   Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/syntastic'
   Plug 'sheerun/vim-polyglot'
   Plug 'shougo/neocomplcache.vim'
   Plug 'shougo/neosnippet'
   Plug 'shougo/neosnippet-snippets'
-  Plug 'shutnik/jshint2.vim'
-  Plug 'suan/vim-instant-markdown'
-  Plug 'tomtom/tcomment_vim'
-  Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
-  Plug 'wellle/targets.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " ----------------------------------------------------------------------
@@ -174,7 +174,18 @@ let g:airline#extensions#tabline#enabled=1
 " ----------------------------------------------------------------------
 " | Plugins - Nerdtree                                                 |
 " ----------------------------------------------------------------------
-let NERDTreeShowHidden=1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeHijackNetrw = 0
+let g:NERDTreeWinSize = 31
+let g:NERDTreeChDirMode = 2
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeCascadeOpenSingleChildDir = 1
+
+" ----------------------------------------------------------------------
+" | Plugins - fzf                                                      |
+" ----------------------------------------------------------------------
 
 " ----------------------------------------------------------------------
 " | Plugins - Emmet                                                    |
@@ -196,16 +207,11 @@ let g:user_emmet_settings = webapi#json#decode(join(readfile(expand("~/.vim/snip
 " Set custom indent colors.
 " https://github.com/nathanaelkane/vim-indent-guides#setting-custom-indent-colors
 
-let g:indent_guides_auto_colors = 0
-
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd
-        \ guibg=#00323D
-        \ ctermbg=Magenta
-
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven
-        \ guibg=#073642
-        \ ctermbg=DarkMagenta
-
+let g:indent_guides_default_mapping = 0
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_start_level = 2
+let g:indent_guides_exclude_filetypes = ['help', 'startify', 'man', 'rogue']
+let g:indent_guides_guide_size = 1
 
 " ----------------------------------------------------------------------
 " | Plugins - Instant Markdown                                         |
