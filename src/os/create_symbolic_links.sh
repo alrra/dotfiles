@@ -20,7 +20,7 @@ create_symlinks() {
         "shell/bashrc"
         "shell/curlrc"
         "shell/inputrc"
-
+        "shell/hushlogin"
         "git/gitattributes"
         "git/gitconfig"
         "git/gitignore"

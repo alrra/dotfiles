@@ -18,7 +18,9 @@ print_in_purple "\n Setup virtual environments\n\n"
 # Install virtual environments globally
 # It fails to install virtualenv if PIP_REQUIRE_VIRTUALENV was true
 export PIP_REQUIRE_VIRTUALENV=false
+print_in_purple "\n Install virtualenv\n\n"
 pip install virtualenv
+print_in_purple "\n Install virtualenvwrapper\n\n"
 pip install virtualenvwrapper
 
 print_in_purple "\n Setting up Python 2 virtual environment\n\n"

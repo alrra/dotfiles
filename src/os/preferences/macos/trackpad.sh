@@ -7,11 +7,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_in_purple "\n   Trackpad\n\n"
 
-execute "defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true && \
-         defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1 && \
-         defaults write -g com.apple.mouse.tapBehavior -int 1 && \
-         defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1" \
-    "Enable 'Tap to click'"
+execute "defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool false && \
+         defaults write com.apple.AppleMultitouchTrackpad Clicking -int 0 && \
+         defaults write -g com.apple.mouse.tapBehavior -int 0 && \
+         defaults -currentHost write -g com.apple.mouse.tapBehavior -int 0" \
+    "Disable 'Tap to click'"
 
 execute "defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true && \
          defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1 && \

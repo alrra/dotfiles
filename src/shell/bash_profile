@@ -55,16 +55,10 @@ zpath="$(brew --prefix)/etc/profile.d/z.sh"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 
-PATH="$PATH:$HOME/projects/dotfiles/src/bin:$HOME/.yarn/bin"
+# Only load Liquid Prompt in interactive shells, not from a script or from scp
+[[ $- = *i* ]] && source ~/projects/liquidprompt/liquidprompt
 
+PATH="$PATH:/usr/local/sbin:$HOME/projects/dotfiles/src/bin:$HOME/.yarn/bin"
 export PATH
 
 unset -f source_bash_files
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Clear system messages (system copyright notice, the date
-# and time of the last login, the message of the day, etc.).
-
-clear
-export PATH="/usr/local/sbin:$PATH"
