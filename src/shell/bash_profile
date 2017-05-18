@@ -53,7 +53,7 @@ zpath="$(brew --prefix)/etc/profile.d/z.sh"
 [[ $- = *i* ]] && [[ -s $zpath ]] && source $zpath
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
+# [ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 
 # Only load Liquid Prompt in interactive shells, not from a script or from scp
 [[ $- = *i* ]] && source ~/projects/liquidprompt/liquidprompt

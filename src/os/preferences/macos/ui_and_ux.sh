@@ -7,6 +7,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_in_purple "\n   UI & UX\n\n"
 
+execute "defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool true" \
+  "Enable menu bar transparency"
+
+#execute "launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist" \
+#  "Disable Notification Center and remove the menu bar icon"
 
 execute "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true && \
          defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true" \
@@ -64,26 +69,27 @@ execute "defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bo
 execute "defaults write -g PMPrintingExpandedStateForPrint -bool true" \
     "Expand print panel by default"
 
-execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'Laptop' && \
-         sudo scutil --set ComputerName 'laptop' && \
-         sudo scutil --set HostName 'laptop' && \
-         sudo scutil --set LocalHostName 'laptop'" \
+execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string '1734021-C02RTAHFG8WP' && \
+         sudo scutil --set ComputerName '1734021-C02RTAHFG8WP' && \
+         sudo scutil --set HostName '1734021-C02RTAHFG8WP' && \
+         sudo scutil --set LocalHostName '1734021-C02RTAHFG8WP'" \
     "Set computer name"
 
 execute "sudo systemsetup -setrestartfreeze on" \
     "Restart automatically if the computer freezes"
 
-execute "sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0 && \
+execute "sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 1 && \
          sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist && \
          sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist" \
-    "Turn Bluetooth off"
+    "Turn Bluetooth on"
 
 execute "for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
             sudo defaults write \"\${domain}\" dontAutoLoad -array \
                 '/System/Library/CoreServices/Menu Extras/TimeMachine.menu' \
-                '/System/Library/CoreServices/Menu Extras/Volume.menu'
+
          done \
             && sudo defaults write com.apple.systemuiserver menuExtras -array \
+                '/System/Library/CoreServices/Menu Extras/Volume.menu' \
                 '/System/Library/CoreServices/Menu Extras/Bluetooth.menu' \
                 '/System/Library/CoreServices/Menu Extras/AirPort.menu' \
                 '/System/Library/CoreServices/Menu Extras/Battery.menu' \
