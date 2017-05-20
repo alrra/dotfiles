@@ -12,8 +12,10 @@ alias c="clear"
 alias ch="history -c && > ~/.bash_history"
 alias e="vim --"
 alias g="git"
+alias gs="git s"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ll="ls -l"
+alias lll="ls -lola"
 alias m="man"
 alias map="xargs -n1"
 alias n="npm"
@@ -21,6 +23,11 @@ alias path='printf "%b\n" "${PATH//:/\\n}"'
 alias q="exit"
 alias rm="rm -rf --"
 alias t="tmux"
+
+alias ni='npm install'
+alias nig='sudo npm install -g'
+alias np='npm publish'
+alias nr='npm run'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
