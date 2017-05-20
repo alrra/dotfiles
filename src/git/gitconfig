@@ -107,8 +107,8 @@
     abbrev = 12
     attributesfile = ~/.gitattributes
     autocrlf = input
-    editor = vim
     excludesfile = ~/.gitignore
+    editor = subl -w
 
 [diff "bin"]
 
@@ -150,3 +150,5 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
+[commit]
+    template = /Users/christopher/.gitmessage.txt
