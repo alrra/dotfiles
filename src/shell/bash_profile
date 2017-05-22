@@ -56,3 +56,14 @@ unset -f source_bash_files
 # and time of the last login, the message of the day, etc.).
 
 clear
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+export WORKON_HOME=~/.ve
+export PROJECT_HOME=~/workspace
+eval "$(pyenv init -)"
+pyenv virtualenvwrapper_lazy
+
+eval "$(thefuck --alias)"
+
+clear
