@@ -142,3 +142,14 @@ qt() {
     #     │└─ search all files under each directory, recursively
     #     └─ ignore case
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Making git clone less tedious
+# (from @zerorocha's tweet: https://twitter.com/zenorocha/status/865957056854900739 > https://t.co/GGdCpeLhcE).
+# Instead of `git clone git@github.com:org/repo.git` do:
+# `clone org repo`
+
+clone() {
+    git clone git@github.com:$1/$2.git
+}
