@@ -151,4 +151,4 @@
 
     path = ~/.gitconfig.local
 [commit]
-    template = /Users/christopher/.gitmessage.txt
+    template = ~/.gitmessage.txt
