@@ -3,21 +3,21 @@
     a   = commit --amend
     br  = branch
     c   = commit
-    ca  = !git add -A && git commit         # Commit all changes.
+    ca  = !git add -A && git commit             # Commit all changes.
     co  = checkout
     cp  = cherry-pick
     d   = diff
     dc  = diff --cached
     f   = fetch
-    g   = log --graph --pretty=custom       # Show custom graph.
-    l   = log --pretty=custom               # Show custom log.
-    lc  = shortlog --summary --numbered     # List contributors.
+    g   = log --graph --pretty=custom           # Show custom graph.
+    l   = log --pretty=custom                   # Show custom log.
+    lc  = shortlog --email --numbered --summary # List contributors.
     p   = push
     r   = rebase
-    rlc = reset --hard HEAD~1               # Remove last commit.
+    rlc = reset --hard HEAD~1                   # Remove last commit.
     s   = status
-    ulc = reset --soft HEAD~1               # Undo last commit.
-    w   = instaweb --httpd=webrick          # Start web-based visualizer.
+    ulc = reset --soft HEAD~1                   # Undo last commit.
+    w   = instaweb --httpd=webrick              # Start web-based visualizer.
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
