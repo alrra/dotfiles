@@ -81,6 +81,7 @@
         git tag -d "$1" &> /dev/null; \
         git tag $1; \
     }; f"
+	unstage = reset --
 
 
 [color "branch"]
