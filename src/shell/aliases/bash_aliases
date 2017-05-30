@@ -30,6 +30,9 @@ alias nig='sudo npm install -g'
 alias np='npm publish'
 alias nr='npm run'
 
+alias hdi='hide-desktop-icons'
+alias sdi='show-desktop-icons'
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Load OS specific aliases.
