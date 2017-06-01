@@ -151,5 +151,22 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
+
 [commit]
+
+    # Template for the commit message
+    #
+    # Sources:
+    # - https://chris.beams.io/posts/git-commit/
+    # - http://365git.tumblr.com/post/3308646748/writing-git-commit-messages
+    # - http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
     template = ~/.gitmessage.txt
+
+[help]
+
+    # help.autocorrect is actually an integer which represents tenths of a second.
+    # So if you set it to 50, Git will give you 5 seconds to change your mind_ 
+    # before executing the autocorrected command.
+
+	autocorrect = 1
