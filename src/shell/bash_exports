@@ -5,9 +5,9 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Make `vim` the default editor.
+# Make `Sublime Text` the default editor.
 
-export EDITOR="vim"
+export EDITOR="subl"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
