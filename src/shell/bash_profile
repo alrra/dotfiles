@@ -52,6 +52,14 @@ unset -f source_bash_files
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Update path to include shared binaries
+if [[ ":$PATH:" != *":$/usr/local/sbin:"* ]]; then
+    PATH=$PATH:/usr/local/sbin
+    export PATH
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Clear system messages (system copyright notice, the date
 # and time of the last login, the message of the day, etc.).
 
