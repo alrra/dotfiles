@@ -35,6 +35,12 @@ alias sdi='show-desktop-icons'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Python/Django
+
+alias manage='python $(cat $(echo $VIRTUAL_ENV/.project))/manage.py'
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Load OS specific aliases.
 
 . "aliases/$OS/bash_aliases"
