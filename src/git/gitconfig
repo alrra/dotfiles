@@ -1,6 +1,6 @@
 [alias]
 
-    a   = commit --amend
+    am   = commit --amend
     br  = branch
     c   = commit
     ca  = !git add -A && git commit         # Commit all changes.
