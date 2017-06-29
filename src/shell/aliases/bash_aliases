@@ -38,6 +38,13 @@ alias sdi='show-desktop-icons'
 # Python/Django
 
 alias manage='python $(cat $(echo $VIRTUAL_ENV/.project))/manage.py'
+alias test='python $(cat $(echo $VIRTUAL_ENV/.project))/manage.py test'
+alias runserver='python $(cat $(echo $VIRTUAL_ENV/.project))/manage.py runserver'
+alias makemigrations='python $(cat $(echo $VIRTUAL_ENV/.project))/manage.py makemigrations'
+alias migrate='python $(cat $(echo $VIRTUAL_ENV/.project))/manage.py migrate'
+alias shell='python $(cat $(echo $VIRTUAL_ENV/.project))/manage.py shell'
+alias shellp='python $(cat $(echo $VIRTUAL_ENV/.project))/manage.py shell_plus'
+alias createsuperuser='python $(cat $(echo $VIRTUAL_ENV/.project))/manage.py createsuperuser'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
