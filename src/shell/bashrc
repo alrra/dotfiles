@@ -2,3 +2,5 @@
 
 [ -n "$PS1" ] \
     && . ~/.bash_profile
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

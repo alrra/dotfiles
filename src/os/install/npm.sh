@@ -30,7 +30,6 @@ main() {
 
     install_npm_package "Instant-markdown" "instant-markdown-d"
     install_npm_package "Babel" "babel-cli"
-    install_npm_package "JSHint" "jshint"
     install_npm_package "Gulp" "gulp-cli"
     install_npm_package "Babel ESLint" "babel-eslint"
     install_npm_package "Fancy Diff" "diff-so-fancy"
@@ -51,9 +50,7 @@ main() {
     install_npm_package "WhatToDo" "whattodo"
     install_npm_package "WiFi Password" "wifi-password-cli"
     install_npm_package "Fast" "fast-cli"
-    install_npm_package "Firebase Tools" "firebase-tools"
     install_npm_package "Fabulous Kill" "fkill-cli"
-    install_npm_package "Express Generator" "express-generator"
 }
 
 main

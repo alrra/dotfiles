@@ -162,6 +162,7 @@ call plug#begin("~/.vim/plugins")
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'airblade/vim-gitgutter'
+  Plug 'dracula/vim'
 call plug#end()
 
 " ----------------------------------------------------------------------
@@ -473,7 +474,7 @@ if !has("gui_running")
     let g:solarized_visibility = "high"
 endif
 
-colorscheme solarized          " Use custom color scheme.
+colorscheme dracula " Use custom color scheme.
 
 
 " ----------------------------------------------------------------------
