@@ -52,8 +52,7 @@ source_bash_files
 zpath="$(brew --prefix)/etc/profile.d/z.sh"
 [[ $- = *i* ]] && [[ -s $zpath ]] && source $zpath
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# [ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Only load Liquid Prompt in interactive shells, not from a script or from scp
 [[ $- = *i* ]] && source ~/projects/liquidprompt/liquidprompt
@@ -62,3 +61,4 @@ PATH="$PATH:/usr/local/sbin:$HOME/projects/dotfiles/src/bin:$HOME/.yarn/bin"
 export PATH
 
 unset -f source_bash_files
+

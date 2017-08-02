@@ -62,7 +62,7 @@ alias o="open"
 
 # Update applications and CLTs.
 
-alias u="sudo softwareupdate --install --all \
+alias u="sudo softwareupdate --iva \
             && brew update \
             && brew upgrade \
             && brew cleanup \
