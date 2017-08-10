@@ -26,6 +26,30 @@ function hs.window.middle(win)
   win:setFrame(f)
 end
 
+function hs.window.middleTwoThirds(win)
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:fullFrame()
+
+  f.x = max.x + (max.w * .165)
+  f.w = max.w * .66
+  f.y = max.y
+  f.h = max.h
+  win:setFrame(f)
+end
+
+function hs.window.middleThird(win)
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:fullFrame()
+
+  f.x = max.x + (max.w * .33)
+  f.w = max.w * .33
+  f.y = max.y
+  f.h = max.h
+  win:setFrame(f)
+end
+
 function hs.window.right(win)
   local f = win:frame()
   local screen = win:screen()
@@ -163,6 +187,18 @@ function hs.window.downLeft(win)
   win:setFrame(f)
 end
 
+function hs.window.downLeft25(win)
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:fullFrame()
+
+  f.x = max.x
+  f.y = max.y + (max.h * .75)
+  f.w = max.w * .25
+  f.h = max.h * .25
+  win:setFrame(f)
+end
+
 function hs.window.downRight(win)
   local f = win:frame()
   local screen = win:screen()
@@ -172,6 +208,19 @@ function hs.window.downRight(win)
   f.y = max.y + (max.h / 2)
   f.w = max.w/2
   f.h = max.h/2
+
+  win:setFrame(f)
+end
+
+function hs.window.downRight25(win)
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:fullFrame()
+
+  f.x = max.x + (max.w * .75)
+  f.y = max.y + (max.h * .75)
+  f.w = max.w * .25
+  f.h = max.h * .25
 
   win:setFrame(f)
 end
@@ -327,10 +376,10 @@ hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'l', function()
   hs.window.focusedWindow():right()
 end)
 hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'i', function()
-  hs.window.focusedWindow():up()
+  hs.window.focusedWindow():middleTwoThirds()
 end)
 hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, ',', function()
-  hs.window.focusedWindow():down()
+  hs.window.focusedWindow():middleThird()
 end)
 hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'm', function()
   hs.window.focusedWindow():left30()
@@ -374,7 +423,21 @@ end)
 hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'right', function()
   hs.window.focusedWindow():moveOneScreenEast()
 end)
-
 hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'left', function()
   hs.window.focusedWindow():moveOneScreenWest()
+end)
+hs.hotkey.bind({'ctrl', 'cmd'}, 'i', function()
+  hs.window.focusedWindow():up()
+end)
+hs.hotkey.bind({'ctrl', 'cmd'}, ',', function()
+  hs.window.focusedWindow():down()
+end)
+hs.hotkey.bind({'ctrl', 'cmd'}, 'm', function()
+  hs.window.focusedWindow():downLeft25()
+end)
+hs.hotkey.bind({'ctrl', 'cmd'}, '.', function()
+  hs.window.focusedWindow():downRight25()
+end)
+hs.hotkey.bind({'ctrl', 'cmd', 'alt'}, 'return', function()
+  hs.window.focusedWindow():maximize()
 end)
