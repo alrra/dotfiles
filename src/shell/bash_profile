@@ -60,5 +60,7 @@ zpath="$(brew --prefix)/etc/profile.d/z.sh"
 PATH="$PATH:/usr/local/sbin:$HOME/projects/dotfiles/src/bin:$HOME/.yarn/bin"
 export PATH
 
+eval "$(chef shell-init bash)"
+
 unset -f source_bash_files
 
