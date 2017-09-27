@@ -10,6 +10,7 @@
     dc  = diff --cached
     f   = fetch
     g   = log --graph --pretty=custom           # Show custom graph.
+    git = !exec git                             # Allow `$ git git git...`
     l   = log --pretty=custom                   # Show custom log.
     lc  = shortlog --email --numbered --summary # List contributors.
     p   = push
