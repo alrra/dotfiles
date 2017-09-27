@@ -430,15 +430,10 @@ if has("autocmd")
 
     augroup strip_trailing_whitespaces
 
-        " List of file types that use the trailing whitespaces:
-        "
-        "  * Markdown
-        "    https://daringfireball.net/projects/markdown/syntax#block
+        " List of file types for which the trailing whitespaces
+        " should not be removed:
 
-        let excludedFileTypes = [
-            \ "markdown",
-            \ "mkd.markdown"
-        \]
+        let excludedFileTypes = []
 
         " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
