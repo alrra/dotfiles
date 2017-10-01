@@ -1,8 +1,12 @@
 [alias]
 
+    a = add
     am   = commit --amend
+    ap = add -p                             # Patch
     br  = branch
     c   = commit
+    cv = commit --verbose
+    cav = commit -a --verbose
     ca  = !git add -A && git commit         # Commit all changes.
     co  = checkout
     cp  = cherry-pick
@@ -17,6 +21,95 @@
     s   = status
     ulc = reset --soft HEAD~1               # Undo last commit.
     w   = instaweb --httpd=webrick          # Start web-based visualizer.
+
+    st = status -sb
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
+    cl = clone
+    diff = diff --word-diff
+
+    # list branches sorted by last modified
+    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
+    # list aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+
+    ###### http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/ ######
+
+    # List commits in short form, with colors and branch/tag annotations.
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+
+    # List commits showing changed files
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+
+    # List with no colors if you need to chain the out put with Unix pipes
+    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+
+    # List oneline commits showing dates
+    lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
+    # List oneline commits showing relative dates
+    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+
+    # default look for short git log
+    le = log --oneline --decorate
+
+    # See all the commits related to a file, with the diff of the changes
+    filelog = log -u                        # or fl = log -u
+
+    # Show modified files in last commit
+    dl = "!git ll -1"
+
+    # Show a diff last commit
+    dlc = diff --cached HEAD^
+
+    ## Finding files and content inside files (grep)
+
+    ### Find a file path in codebase:
+    f = "!git ls-files | grep -i"           # Usage: git f <search term>
+
+    ### Search/grep your entire codebase for a string
+    grep = grep -Ii                         # or gr = grep -Ii / Usage: git grep <search term>
+
+    ### Grep from root folder
+    gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+
+    ## Rename [branch] to done-[branch]
+    done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
+
+    ## Show the last tag
+    lasttag = describe --tags --abbrev=0
+
+    ## List remotes
+    rem="!git config -l | grep remote.*url | tail -n +2"
+
+    ## Initial empty commit
+    empty = "!git commit -am\"[empty] Initial commit\" --allow-empty"
+
+    ## Undo from here http://megakemp.com/2016/08/25/git-undo/
+    undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+
+    ###### https://haacked.com/archive/2014/07/28/github-flow-aliases/ ######
+    
+    cob = checkout -b
+    ec = config --global -e                 # Edit gitconfig
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+    save = !git add -A && git commit -m 'SAVEPOINT'                                     # Adds all changes including untracked files and creates a commit.
+    wip = commit -am "WIP"                                                              # Commits only tracked changes.
+    undom = reset HEAD~1 --mixed                                                         # Resets the previous commit, but keeps all the changes from that commit in the working directory.
+    amend = commit -a --amend                                                           # Modify the previous commit.
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard    # Commits everything in the working directory and then does a hard reset to remove that commit.
+
+    # Clean everything up on my local machine.
+    # This alias does the following:
+    # 1. Switches to master (though you can specify a different default branch)
+    # 2. Runs git up to bring master up to speed with the origin
+    # 3. Deletes all branches already merged into master using another alias, git bclean
+    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+
+    bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
