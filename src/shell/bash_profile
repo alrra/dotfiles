@@ -66,4 +66,6 @@ pyenv virtualenvwrapper_lazy
 
 eval "$(thefuck --alias)"
 
+export PATH="/usr/local/opt/libiconv/bin:$PATH"
+
 clear
