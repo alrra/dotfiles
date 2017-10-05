@@ -175,6 +175,7 @@
         git tag $1; \
     }; f"
 	unstage = reset --
+	pom = push origin master
 
 
 [color "branch"]
