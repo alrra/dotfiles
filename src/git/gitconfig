@@ -203,7 +203,7 @@
     attributesfile = ~/.gitattributes
     autocrlf = input
     excludesfile = ~/.gitignore
-    editor = subl -w
+    editor = code -w
 
 [diff "bin"]
 
