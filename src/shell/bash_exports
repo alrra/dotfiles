@@ -7,7 +7,7 @@
 
 # Make `Sublime Text` the default editor.
 
-export EDITOR="subl"
+export EDITOR="code"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
