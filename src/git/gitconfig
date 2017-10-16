@@ -205,6 +205,12 @@
     excludesfile = ~/.gitignore
     editor = code -w
 
+[diff]
+    tool = vscode
+
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
 [diff "bin"]
 
     # Use `hexdump` to diff binary files.
