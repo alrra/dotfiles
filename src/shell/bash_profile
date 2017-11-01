@@ -57,10 +57,11 @@ zpath="$(brew --prefix)/etc/profile.d/z.sh"
 # Only load Liquid Prompt in interactive shells, not from a script or from scp
 [[ $- = *i* ]] && source ~/projects/liquidprompt/liquidprompt
 
-PATH="$PATH:/usr/local/sbin:$HOME/projects/dotfiles/src/bin:$HOME/.yarn/bin"
+PATH="$PATH:/Users/steve/Library/Python/3.6/bin:/usr/local/sbin:$HOME/projects/dotfiles/src/bin:$HOME/.yarn/bin:$HOME/.jenv/bin"
 export PATH
 
-eval "$(chef shell-init bash)"
+# eval "$(chef shell-init bash)"
+
+eval "$(jenv init -)"
 
 unset -f source_bash_files
-

@@ -144,6 +144,11 @@
 	email = steve.daly@ge.com
 	name = Steve Daly
 
+[http]
+	proxy = http://iss-americas-pitc-cincinnatiz.proxy.corporate.ge.com:80
+[https]
+	proxy = http://iss-americas-pitc-cincinnatiz.proxy.corporate.ge.com:80
+
 [include]
 
     # Load local configs.
@@ -154,5 +159,3 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
-
-# Simple change...

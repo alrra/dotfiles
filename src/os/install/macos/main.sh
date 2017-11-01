@@ -22,7 +22,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 ./misc_tools.sh
 ./multimedia.sh
 ./../npm.sh
-./python.sh
 ./tmux.sh
 ./utilities.sh
 ./video_tools.sh

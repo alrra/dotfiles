@@ -39,5 +39,6 @@ end
 -- require('keyboard.panes')
 -- require('keyboard.super')
 require('windows')
+--require('audio')
 
 hs.notify.new({title='Hammerspoon', informativeText='Ready to rock 🤘'}):send()

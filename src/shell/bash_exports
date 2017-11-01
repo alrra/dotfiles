@@ -71,8 +71,6 @@ export NODE_REPL_HISTORY_SIZE=10000
 
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
-
-export PYTHONIOENCODING="UTF-8"
+export http_proxy=http://PITC-Zscaler-Americas-Alpharetta3PR.proxy.corporate.ge.com:80
+export https_proxy=http://PITC-Zscaler-Americas-Alpharetta3PR.proxy.corporate.ge.com:80
+export no_proxy=localhost,127.0.0.1,*.ge.com,.ge.com

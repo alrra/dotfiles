@@ -11,7 +11,6 @@ print_in_purple "\n   Development Tools\n\n"
 brew_install "yarn" "yarn"
 brew_install "bower" "bower"
 
-brew_install "Atom" "atom" "caskroom/cask" "cask"
 brew_install "Visual Studio Code" "visual-studio-code" "caskroom/cask" "cask"
 brew_install "Kaleidoscope" "kaleidoscope" "caskroom/cask" "cask"
 brew_install "Docker" "docker" "caskroom/cask" "cask"

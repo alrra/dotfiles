@@ -1,0 +1,3 @@
+cafile=/Users/steve/ge/GE_External_Root_CA_2_1.crt
+strict-ssl false=true
+registry=http://registry.npmjs.org/
