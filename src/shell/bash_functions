@@ -122,6 +122,23 @@ mkd() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Process phone images.
+
+ppi() {
+    command -v "convert" &> /dev/null \
+        || exit 0;
+
+    declare q="${1:-*.jpg}"
+
+    for i in $q; do
+        imgName="${i%.*}.png"
+        convert "$i" -resize 50% "$imgName" \
+            && printf "* %s\n" "$imgName"
+    done
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Search history.
 
 qh() {
