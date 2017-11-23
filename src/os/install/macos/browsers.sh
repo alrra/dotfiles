@@ -41,5 +41,3 @@ if is_supported_version "$(get_os_version)" "10.11.4"; then
     printf "\n"
     brew_install "Safari Technology Preview" "safari-technology-preview" "caskroom/versions" "cask"
 fi
-
-brew_install "WebKit" "webkit-nightly" "caskroom/versions" "cask"
