@@ -40,4 +40,7 @@ execute "defaults write com.apple.Safari SuppressSearchSuggestions -bool true &&
 execute "defaults write -g WebKitDeveloperExtras -bool true" \
     "Add a context menu item for showing the 'Web Inspector' in web views"
 
+execute "defaults write com.apple.Safari WebKitInitialTimedLayoutDelay 0.25" \
+    "Disable the standard delay in rendering a web page."
+
 killall "Safari" &> /dev/null
