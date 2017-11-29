@@ -167,7 +167,6 @@ call vundle#begin("~/.vim/plugins")
     Plugin 'shougo/neocomplcache.vim'
     Plugin 'shougo/neosnippet'
     Plugin 'shougo/neosnippet-snippets'
-    Plugin 'shutnik/jshint2.vim'
     Plugin 'suan/vim-instant-markdown'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-commentary'
@@ -520,13 +519,6 @@ map <leader>cs <Esc>:noh<CR>
 " [,gd] Toggle Git differences.
 
 map <leader>gd :SignifyToggle<CR>
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" [,h ] JSHint the code.
-" https://github.com/Shutnik/jshint2.vim
-
-nmap <leader>h :JSHint<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
