@@ -76,3 +76,13 @@ alias u="sudo softwareupdate --install --all \
 alias show-hidden-files="defaults write com.apple.finder AppleShowAllFiles YES"
 
 alias hide-hidden-files="defaults write com.apple.finder AppleShowAllFiles NO"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Disable/Enable Dropshadow on screenshots
+
+alias hide-drop-shadow="defaults write com.apple.screencapture disable-shadow -bool true \
+                            && killall SystemUIServer"
+
+alias show-drop-shadow="defaults write com.apple.screencapture disable-shadow -bool false \
+                            && killall SystemUIServer"

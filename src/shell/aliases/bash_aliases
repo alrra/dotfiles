@@ -12,6 +12,7 @@ alias c="clear"
 alias ch="history -c && > ~/.bash_history"
 alias e="subl"
 alias g="git" 
+alias git="hub"
 # alias gs="git s"
 # alias gc="git commit"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -32,6 +33,10 @@ alias nr='npm run'
 
 alias hdi='hide-desktop-icons'
 alias sdi='show-desktop-icons'
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+alias w='workon'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

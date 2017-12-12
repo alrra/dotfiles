@@ -65,7 +65,13 @@ eval "$(pyenv init -)"
 pyenv virtualenvwrapper_lazy
 
 eval "$(thefuck --alias)"
+eval "$(hub alias -s)"
+
+if [ -f ~/hub.bash_completion ]; then
+  . ~/hub.bash_completion
+fi
 
 export PATH="/usr/local/opt/libiconv/bin:$PATH"
-
+export PATH="/usr/local/php5/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 clear
