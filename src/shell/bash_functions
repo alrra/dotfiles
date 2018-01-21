@@ -128,12 +128,27 @@ ppi() {
     command -v "convert" &> /dev/null \
         || exit 0;
 
-    declare q="${1:-*.jpg}"
+    declare query="${1:-*.jpg}"
+    declare geometry="${2:-50%}"
 
-    for i in $q; do
+    for i in "$query"; do
         imgName="${i%.*}.png"
-        convert "$i" -resize 50% "$imgName" \
-            && printf "* %s\n" "$imgName"
+        convert "$i" \
+            -colorspace RGB \
+            +sigmoidal-contrast 11.6933 \
+            -define filter:filter=Sinc \
+            -define filter:window=Jinc \
+            -define filter:lobes=3 \
+            -sigmoidal-contrast 11.6933 \
+            -colorspace sRGB \
+            -background transparent \
+            -gravity center \
+            -resize "$geometry" \
+            +append \
+            "$imgName" \
+        && printf "* %s (%s)\n" \
+            "$imgName" \
+            "$geometry"
     done
 }
 
