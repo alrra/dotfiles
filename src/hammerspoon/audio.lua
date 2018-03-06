@@ -20,10 +20,14 @@ end
 
 local builtIn = hs.audiodevice.findOutputByName('Built-in Output')
 local schiit = hs.audiodevice.findOutputByName('Speaker-Schiit USB Audio Device')
+local displayPort = hs.audiodevice.findOutputByName('DisplayPort')
 
 if schiit then
   log.df("Setting output to Schiit...")
   schiit:setDefaultOutputDevice()
+elseif displayPort then
+  log.df("Setting output to DisplayPort...")
+  displayPort:setDefaultOutputDevice()
 else
   log.df("Setting output to Built-in...")
   builtIn:setDefaultOutputDevice()
