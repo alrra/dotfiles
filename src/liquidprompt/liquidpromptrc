@@ -61,7 +61,7 @@ LP_USER_ALWAYS=1
 # Display the percentages of load/batteries along with their
 # corresponding marks. Set to 0 to only print the colored marks.
 # Defaults to 1 (display percentages)
-LP_PERCENTS_ALWAYS=1
+LP_PERCENTS_ALWAYS=0
 
 # Use the permissions feature and display a red ':' before the prompt to show
 # when you don't have write permission to the current directory.
@@ -78,11 +78,11 @@ LP_ENABLE_JOBS=1
 
 # Enable the load feature.
 # Recommended value is 1
-LP_ENABLE_LOAD=1
+LP_ENABLE_LOAD=0
 
 # Enable the battery feature.
 # Recommended value is 1
-LP_ENABLE_BATT=1
+LP_ENABLE_BATT=0
 
 # Enable the 'sudo credentials' feature.
 # Be warned that this may pollute the syslog if you don't have sudo
@@ -99,19 +99,19 @@ LP_ENABLE_GIT=1
 
 # Enable the Subversion special features.
 # Recommended value is 1
-LP_ENABLE_SVN=1
+LP_ENABLE_SVN=0
 
 # Enable the Mercurial special features.
 # Recommended value is 1
-LP_ENABLE_HG=1
+LP_ENABLE_HG=0
 
 # Enable the Fossil special features.
 # Recommended value is 1
-LP_ENABLE_FOSSIL=1
+LP_ENABLE_FOSSIL=0
 
 # Enable the Bazaar special features.
 # Recommanded value is 1
-LP_ENABLE_BZR=1
+LP_ENABLE_BZR=0
 
 # Show time of when the current prompt was displayed. (Must be enabled and
 # disabled in the config file and not after liquidprompt has already been
@@ -135,7 +135,7 @@ LP_ENABLE_VIRTUALENV=1
 LP_ENABLE_SCLS=1
 
 # Show average system temperature
-LP_ENABLE_TEMP=1
+LP_ENABLE_TEMP=0
 
 # When showing the time, use an analog clock instead of numeric values.
 # The analog clock is "accurate" to the nearest half hour.
@@ -161,5 +161,7 @@ LP_ENABLE_SSH_COLORS=0
 # Specify a list of complete and colon (":") separated paths in which, all vcs
 # will be disabled
 LP_DISABLED_VCS_PATH=""
+
+LP_DEBUG_TIME=1
 
 # vim: set et sts=4 sw=4 tw=120 ft=sh:
