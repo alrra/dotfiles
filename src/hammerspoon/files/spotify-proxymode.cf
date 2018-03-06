@@ -1,0 +1,20 @@
+body common control
+{
+     bundlesequence => { "edit_spotify_prefs" };
+     inputs => { "$(sys.libdir)/files.cf" };
+}
+
+bundle agent edit_spotify_prefs
+{
+ vars:
+   "home" string => getenv("HOME", 65535);
+   "spotify_prefs" string => "$(home)/Library/Application Support/Spotify/prefs";
+  PROXY::
+   "proxy_mode" string => "2";
+  NOPROXY::
+   "proxy_mode" string => "1";
+ files:
+   "$(spotify_prefs)"
+     create => "true",
+     edit_line => replace_or_add("network.proxy.mode=.*", "network.proxy.mode=$(proxy_mode)");
+}

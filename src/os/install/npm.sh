@@ -51,6 +51,7 @@ main() {
     install_npm_package "WiFi Password" "wifi-password-cli"
     install_npm_package "Fast" "fast-cli"
     install_npm_package "Fabulous Kill" "fkill-cli"
+    install_npm_package "Git Quick Stats" "git-quick-stats"
 }
 
 main

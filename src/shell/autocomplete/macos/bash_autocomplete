@@ -37,3 +37,9 @@ _complete_ssh_hosts ()
         return 0
 }
 complete -F _complete_ssh_hosts ssh
+
+if [ -d ~/.bash_completion.d ]; then
+  for file in ~/.bash_completion.d/*; do
+    . $file
+  done
+fi

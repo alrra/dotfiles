@@ -28,6 +28,7 @@ create_symlinks() {
         "vim/vim"
         "vim/vimrc"
         "liquidprompt/liquidpromptrc"
+        "shell/autocomplete/bash_completion.d"
 
     )
 

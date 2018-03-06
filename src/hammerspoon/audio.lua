@@ -8,12 +8,24 @@ hs.audiodevice.watcher.setCallback(audiowatch)
 hs.audiodevice.watcher.start()
 
 function audiodevwatch(dev_uid, event_name, event_scope, event_element)
-  log.df("Audiodevwatch args: %s, %s, %s, %s", dev_uid, event_name, event_scope, event_element)
   local device = hs.audiodevice.findDeviceByUID(dev_uid)
   log.df("Current device: %s", device);
+  log.df("Audiodevwatch args: %s, %s, %s, %s", dev_uid, event_name, event_scope, event_element)
 end
 
 for i,dev in ipairs(hs.audiodevice.allOutputDevices()) do
   dev:watcherCallback(audiodevwatch):watcherStart()
   log.df("Setting up watcher for audio device %s", dev:name())
 end
+
+local builtIn = hs.audiodevice.findOutputByName('Built-in Output')
+local schiit = hs.audiodevice.findOutputByName('Speaker-Schiit USB Audio Device')
+
+if schiit then
+  log.df("Setting output to Schiit...")
+  schiit:setDefaultOutputDevice()
+else
+  log.df("Setting output to Built-in...")
+  builtIn:setDefaultOutputDevice()
+end
+

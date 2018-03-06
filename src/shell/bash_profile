@@ -12,7 +12,6 @@ source_bash_files() {
         "bash_exports"
         "bash_functions"
         "bash_options"
-        "bash_prompt"
         "bash.local"  # For local settings that should
                       # not be under version control.
     )
@@ -50,18 +49,32 @@ source_bash_files() {
 source_bash_files
 # z beats cd most of the time. `brew install z`
 zpath="$(brew --prefix)/etc/profile.d/z.sh"
-[[ $- = *i* ]] && [[ -s $zpath ]] && source $zpath
+[[ $- == *i* ]] && [[ -f $zpath ]] && source $zpath
 
-# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Setup fzf
+# ---------
+#if [[ ! "$PATH" = */usr/local/opt/fzf/bin* ]]; then
+#  export PATH="$PATH:/usr/local/opt/fzf/bin"
+#fi
+# Auto-completion
+# ---------------
+#[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.bash" 2> /dev/null
+# Key bindings
+# ------------
+#source "/usr/local/opt/fzf/shell/key-bindings.bash"
+
+#[[ $- == *i* ]] && [[ -f "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh 2> /dev/null
+#complete -C '~/.virtualenvs/python3/bin/aws_completer' aws
+#workon python3
 
 # Only load Liquid Prompt in interactive shells, not from a script or from scp
-[[ $- = *i* ]] && source ~/projects/liquidprompt/liquidprompt
+[[ $- == *i* ]] && source ~/projects/liquidprompt/liquidprompt
 
-PATH="$PATH:/Users/steve/Library/Python/3.6/bin:/usr/local/sbin:$HOME/projects/dotfiles/src/bin:$HOME/.yarn/bin:$HOME/.jenv/bin"
-export PATH
-
-# eval "$(chef shell-init bash)"
-
-eval "$(jenv init -)"
+# $PATH set by /etc/paths and /etc/paths.d
+export PATH=$PATH:/usr/local/sbin:$HOME/projects/dotfiles/src/bin:/usr/local/anaconda3/bin
 
 unset -f source_bash_files
+# Setting PATH for Python 3.6
+# The original version is saved in .bash_profile.pysave
+#PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+#export PATH
