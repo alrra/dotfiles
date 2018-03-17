@@ -26,6 +26,7 @@ brew_cleanup() {
 brew_install() {
 
     declare -r CMD="$4"
+    declare -r CMD_ARGUMENTS="$5"
     declare -r FORMULA="$2"
     declare -r FORMULA_READABLE_NAME="$1"
     declare -r TAP_VALUE="$3"
@@ -60,7 +61,7 @@ brew_install() {
         print_success "$FORMULA_READABLE_NAME"
     else
         execute \
-            "brew $CMD install $FORMULA" \
+            "brew $CMD install $FORMULA $CMD_ARGUMENTS" \
             "$FORMULA_READABLE_NAME"
     fi
 
