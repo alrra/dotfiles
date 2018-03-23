@@ -1,0 +1,284 @@
+[
+  {
+    "Constant" : [
+
+    ],
+    "submodules" : [
+
+    ],
+    "Function" : [
+
+    ],
+    "Variable" : [
+      {
+        "name" : "auto_reload_config",
+        "stripped_doc" : [
+          "If true, automatically reload Hammerspoon config when any `.lua` files inside `hs.configdir` changes"
+        ],
+        "doc" : "If true, automatically reload Hammerspoon config when any `.lua` files inside `hs.configdir` changes",
+        "def" : "Hammer.auto_reload_config",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer.auto_reload_config",
+        "type" : "Variable",
+        "returns" : [
+
+        ],
+        "desc" : "If true, automatically reload Hammerspoon config when any `.lua` files inside `hs.configdir` changes",
+        "parameters" : [
+
+        ]
+      },
+      {
+        "name" : "install_cli",
+        "stripped_doc" : [
+          "If true, install the `hs` command line tool"
+        ],
+        "doc" : "If true, install the `hs` command line tool",
+        "def" : "Hammer.install_cli",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer.install_cli",
+        "type" : "Variable",
+        "returns" : [
+
+        ],
+        "desc" : "If true, install the `hs` command line tool",
+        "parameters" : [
+
+        ]
+      }
+    ],
+    "stripped_doc" : [
+
+    ],
+    "Deprecated" : [
+
+    ],
+    "type" : "Module",
+    "desc" : "Automate some Hammerspoon configuration tasks",
+    "Constructor" : [
+
+    ],
+    "items" : [
+      {
+        "name" : "auto_reload_config",
+        "stripped_doc" : [
+          "If true, automatically reload Hammerspoon config when any `.lua` files inside `hs.configdir` changes"
+        ],
+        "doc" : "If true, automatically reload Hammerspoon config when any `.lua` files inside `hs.configdir` changes",
+        "def" : "Hammer.auto_reload_config",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer.auto_reload_config",
+        "type" : "Variable",
+        "returns" : [
+
+        ],
+        "desc" : "If true, automatically reload Hammerspoon config when any `.lua` files inside `hs.configdir` changes",
+        "parameters" : [
+
+        ]
+      },
+      {
+        "name" : "install_cli",
+        "stripped_doc" : [
+          "If true, install the `hs` command line tool"
+        ],
+        "doc" : "If true, install the `hs` command line tool",
+        "def" : "Hammer.install_cli",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer.install_cli",
+        "type" : "Variable",
+        "returns" : [
+
+        ],
+        "desc" : "If true, install the `hs` command line tool",
+        "parameters" : [
+
+        ]
+      },
+      {
+        "name" : "autoReloadConfig",
+        "stripped_doc" : [
+          "Reload config only if any of the Lua files in `files` have changed"
+        ],
+        "doc" : "Reload config only if any of the Lua files in `files` have changed",
+        "def" : "Hammer:autoReloadConfig(files)",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer:autoReloadConfig(files)",
+        "type" : "Method",
+        "returns" : [
+
+        ],
+        "desc" : "Reload config only if any of the Lua files in `files` have changed",
+        "parameters" : [
+
+        ]
+      },
+      {
+        "name" : "bindHotkeys",
+        "stripped_doc" : [
+          "Binds hotkeys for Hammer",
+          ""
+        ],
+        "doc" : "Binds hotkeys for Hammer\n\nParameters:\n * mapping - A table containing hotkey objifier\/key details for the following items:\n  * config_reload - Manually trigger a config reload",
+        "def" : "Hammer:bindHotkeys(mapping)",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer:bindHotkeys(mapping)",
+        "type" : "Method",
+        "returns" : [
+
+        ],
+        "desc" : "Binds hotkeys for Hammer",
+        "parameters" : [
+          " * mapping - A table containing hotkey objifier\/key details for the following items:",
+          "  * config_reload - Manually trigger a config reload"
+        ]
+      },
+      {
+        "name" : "reloadConfig",
+        "stripped_doc" : [
+          "Manually reload configuration (wrapper around `hs.reload`)"
+        ],
+        "doc" : "Manually reload configuration (wrapper around `hs.reload`)",
+        "def" : "Hammer:reloadConfig()",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer:reloadConfig()",
+        "type" : "Method",
+        "returns" : [
+
+        ],
+        "desc" : "Manually reload configuration (wrapper around `hs.reload`)",
+        "parameters" : [
+
+        ]
+      },
+      {
+        "name" : "start",
+        "stripped_doc" : [
+          "Start the Spoon. At the moment this includes:",
+          " * Set up the file watcher for auto-config-reload"
+        ],
+        "doc" : "Start the Spoon. At the moment this includes:\n * Set up the file watcher for auto-config-reload",
+        "def" : "Hammer:start()",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer:start()",
+        "type" : "Method",
+        "returns" : [
+
+        ],
+        "desc" : "Start the Spoon. At the moment this includes:",
+        "parameters" : [
+
+        ]
+      }
+    ],
+    "Field" : [
+
+    ],
+    "Command" : [
+
+    ],
+    "Method" : [
+      {
+        "name" : "reloadConfig",
+        "stripped_doc" : [
+          "Manually reload configuration (wrapper around `hs.reload`)"
+        ],
+        "doc" : "Manually reload configuration (wrapper around `hs.reload`)",
+        "def" : "Hammer:reloadConfig()",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer:reloadConfig()",
+        "type" : "Method",
+        "returns" : [
+
+        ],
+        "desc" : "Manually reload configuration (wrapper around `hs.reload`)",
+        "parameters" : [
+
+        ]
+      },
+      {
+        "name" : "autoReloadConfig",
+        "stripped_doc" : [
+          "Reload config only if any of the Lua files in `files` have changed"
+        ],
+        "doc" : "Reload config only if any of the Lua files in `files` have changed",
+        "def" : "Hammer:autoReloadConfig(files)",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer:autoReloadConfig(files)",
+        "type" : "Method",
+        "returns" : [
+
+        ],
+        "desc" : "Reload config only if any of the Lua files in `files` have changed",
+        "parameters" : [
+
+        ]
+      },
+      {
+        "name" : "bindHotkeys",
+        "stripped_doc" : [
+          "Binds hotkeys for Hammer",
+          ""
+        ],
+        "doc" : "Binds hotkeys for Hammer\n\nParameters:\n * mapping - A table containing hotkey objifier\/key details for the following items:\n  * config_reload - Manually trigger a config reload",
+        "def" : "Hammer:bindHotkeys(mapping)",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer:bindHotkeys(mapping)",
+        "type" : "Method",
+        "returns" : [
+
+        ],
+        "desc" : "Binds hotkeys for Hammer",
+        "parameters" : [
+          " * mapping - A table containing hotkey objifier\/key details for the following items:",
+          "  * config_reload - Manually trigger a config reload"
+        ]
+      },
+      {
+        "name" : "start",
+        "stripped_doc" : [
+          "Start the Spoon. At the moment this includes:",
+          " * Set up the file watcher for auto-config-reload"
+        ],
+        "doc" : "Start the Spoon. At the moment this includes:\n * Set up the file watcher for auto-config-reload",
+        "def" : "Hammer:start()",
+        "notes" : [
+
+        ],
+        "signature" : "Hammer:start()",
+        "type" : "Method",
+        "returns" : [
+
+        ],
+        "desc" : "Start the Spoon. At the moment this includes:",
+        "parameters" : [
+
+        ]
+      }
+    ],
+    "doc" : "Automate some Hammerspoon configuration tasks\n\nDownload: [https:\/\/github.com\/Hammerspoon\/Spoons\/raw\/master\/Spoons\/Hammer.spoon.zip](https:\/\/github.com\/Hammerspoon\/Spoons\/raw\/master\/Spoons\/Hammer.spoon.zip)",
+    "name" : "Hammer"
+  }
+]

@@ -11,20 +11,35 @@
 require("hs.ipc")
 local log = hs.logger.new('init.lua', 'debug')
 
-log.d("Install CLI...")
-hs.ipc.cliInstall()
+hyper = {"cmd","alt","ctrl"}
+shift_hyper = {"cmd","alt","ctrl","shift"}
 
-hs.hotkey.bindSpec({{"ctrl", "cmd", "alt"}, "`"},
-  function()
-    log.d("Reloading config...")
-    hs.reload()
-  end)
+col = hs.drawing.color.x11
 
-hs.hotkey.bindSpec({{"ctrl", "cmd", "alt"}, "y"},
-  function()
-    log.d("Display console...")
-    hs.toggleConsole()
-  end)
+hs.loadSpoon("SpoonInstall")
+
+log.d("Collecting spoons...")
+
+spoon.SpoonInstall.repos.zzspoons = {
+  url = "https://github.com/spdaly/Spoons",
+  desc = "spdaly's spoon repository",
+}
+
+spoon.SpoonInstall.use_syncinstall = true
+
+Install=spoon.SpoonInstall
+
+Install:andUse("Hammer",
+               {
+                 repo = 'spoons',
+                 config = { auto_reload_config = false },
+                 hotkeys = {
+                   config_reload = {hyper, "`"},
+                   toggle_console = {hyper, "y"}
+                 },
+                 start = true
+               }
+)
 
 
 keyUpDown = function(modifiers, key)
@@ -62,57 +77,58 @@ end
 require('windows')
 require('audio')
 
-
-workSSID = "BLUESSO"
-lastSSID = hs.wifi.currentNetwork()
-
-function ssidChangedCallback()
-  newSSID = hs.wifi.currentNetwork()
-
-  log.df("Current SSID: %s", newSSID);
-
-  if newSSID == workSSID and lastSSID ~= workSSID then
-    log.df("Joined ")
-  elseif newSSID ~= wordSSID and lastSSID == workSSID then
-    -- We just departed our home WiFi network
-    hs.audiodevice.defaultOutputDevice():setVolume(0)
+function reconfigSpotifyProxy(proxy)
+  local spotify = hs.appfinder.appFromName("Spotify")
+  local lastapp = nil
+  if spotify then
+    log.d("Shutdown Spotify...")
+    lastapp = hs.application.frontmostApplication()
+    spotify:kill()
+    hs.timer.usleep(40000)
   end
-
-  lastSSID = newSSID
+  hs.notify.show(string.format("Reconfiguring %sSpotify", ((spotify~=nil) and "and restarting " or "")), string.format("Proxy %s", (proxy and "enabled" or "disabled")), "")
+  if proxy then
+    log.d("Turn on Spotify proxy...")
+    cmd = "sed -i -e \"s/network.proxy.mode=1/network.proxy.mode=2/\" ~/Library/Application\\ Support/Spotify/prefs"
+  else
+    log.d("Turn off Spotify proxy...")
+    cmd = "sed -i -e \"s/network.proxy.mode=2/network.proxy.mode=1/\" ~/Library/Application\\ Support/Spotify/prefs"
+  end
+  output, status, t, rc = hs.execute(cmd)
+  if spotify and lastapp then
+    hs.timer.doAfter(3,
+                     function()
+                       if not hs.application.launchOrFocus("Spotify") then
+                         hs.notify.show("Error launching Spotify", "", "")
+                       end
+                       if lastapp then
+                         hs.timer.doAfter(0.5, hs.fnutils.partial(lastapp.activate, lastapp))
+                       end
+    end)
+  end
 end
 
-function reloadConfig(files)
-  doReload = false
-  for _,file in pairs(files) do
-    if file:sub(-4) == ".lua" then
-      doReload = true
-    end
-  end
-  if doReload then
-    hs.reload()
-  end
-end
-myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
+Install:andUse("WiFiTransitions",
+               {
+                 config = {
+                   actions = {
+                     { -- Test action just to see the SSID transitions
+                        fn = function(_, _, prev_ssid, new_ssid)
+                           hs.notify.show("SSID change", string.format("From '%s' to '%s'", prev_ssid, new_ssid), "")
+                        end
+                     },
+                     { -- Enable proxy in Spotify and Adium config when joining corp network
+                       to = "BLUESSO",
+                       fn = {hs.fnutils.partial(reconfigSpotifyProxy, true)}
+                     },
+                     { -- Disable proxy in Spotify and Adium config when leaving corp network
+                       from = "BLUESSO",
+                       fn = {hs.fnutils.partial(reconfigSpotifyProxy, false)}
+                     },
+                   }
+                 },
+                 start = true,
+               }
+)
+
 hs.notify.new({title='Hammerspoon', informativeText='Ready to rock 🤘'}):send()
-
-wifiWatcher = nil
-workSSID = "BLUESSO"
-lastSSID = hs.wifi.currentNetwork()
-log.df("SSID: %s", lastSSID)
-
-function ssidChangedCallback()
-  newSSID = hs.wifi.currentNetwork()
-  log.df("SSID changed to: %s", newSSID);
-  if newSSID == workSSID and lastSSID ~= workSSID then
-    -- Setup proxy information
-
-
-  elseif newSSID ~= workSSID and lastSSID == workSSID then
-    hs.audiodevice.defaultOutputDevice():setVolume(0)
-  end
-  lastSSID = newSSID
-  hs.notify.new({title='Hammerspoon', informativeText='SSID: '..newSSID }):send()
-end
-
-wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback)
-wifiWatcher:start()

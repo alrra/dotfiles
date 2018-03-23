@@ -73,8 +73,12 @@ zpath="$(brew --prefix)/etc/profile.d/z.sh"
 # $PATH set by /etc/paths and /etc/paths.d
 export PATH=$PATH:/usr/local/sbin:$HOME/projects/dotfiles/src/bin:/usr/local/anaconda3/bin
 
-unset -f source_bash_files
 # Setting PATH for Python 3.6
 # The original version is saved in .bash_profile.pysave
 #PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 #export PATH
+
+# Init jenv
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+
+unset -f source_bash_files

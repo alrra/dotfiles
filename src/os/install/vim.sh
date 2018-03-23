@@ -51,8 +51,8 @@ main() {
 
     printf "\n"
 
-    install_plugins
-    update_plugins
+    # install_plugins
+    # update_plugins
 
 }
 

@@ -5,4 +5,4 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-brew_install "Vim" "vim --with-override-system-vi --with-lua"
+brew_install "Vim" "vim --with-override-system-vi --with-python --with-lua --with-luajit"

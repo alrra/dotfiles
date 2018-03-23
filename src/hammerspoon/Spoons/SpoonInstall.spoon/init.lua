@@ -250,7 +250,7 @@ function obj:_installSpoonFromZipURLgetCallback(urlparts, callback, status, body
                   success=true
                end
             else
-               self.logger.ef("The downloaded zip file %s is invalid - it should contain exactly one spoon. Leaving it in place for your examination.", outfile) 
+               self.logger.ef("The downloaded zip file %s is invalid - it should contain exactly one spoon. Leaving it in place for your examination.", outfile)
             end
          end
       end

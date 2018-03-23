@@ -70,7 +70,7 @@ LP_ENABLE_PERM=1
 
 # Enable the proxy detection feature.
 # Recommended value is 1
-LP_ENABLE_PROXY=1
+LP_ENABLE_PROXY=0
 
 # Enable the jobs feature.
 # Recommended value is 1
@@ -95,7 +95,7 @@ LP_ENABLE_VCS_ROOT=0
 
 # Enable the Git special features.
 # Recommended value is 1
-LP_ENABLE_GIT=1
+LP_ENABLE_GIT=0
 
 # Enable the Subversion special features.
 # Recommended value is 1
@@ -162,6 +162,6 @@ LP_ENABLE_SSH_COLORS=0
 # will be disabled
 LP_DISABLED_VCS_PATH=""
 
-LP_DEBUG_TIME=1
+#LP_DEBUG_TIME=1
 
 # vim: set et sts=4 sw=4 tw=120 ft=sh:

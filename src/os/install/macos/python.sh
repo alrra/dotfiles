@@ -8,7 +8,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_in_purple "\n   Python\n\n"
 
-brew_install "python3" "python3"
+brew_install "python" "python"
 
 # Install virtual environments globally
 # It fails to install virtualenv if PIP_REQUIRE_VIRTUALENV was true
@@ -19,7 +19,7 @@ pip install virtualenvwrapper
 export WORKON_HOME=~/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
-mkvirtualenv --python=/usr/local/bin/python3 python3
+mkvirtualenv --python=/usr/local/bin/python python3
 workon python3
 
 pip install boto
