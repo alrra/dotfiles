@@ -1,3 +1,5 @@
+[tmux Reference](https://github.com/gpakosz/.tmux)
+
 # [Cătălin](https://github.com/alrra)’s dotfiles [![Build Status](https://travis-ci.org/alrra/dotfiles.svg?branch=master)](https://travis-ci.org/alrra/dotfiles)
 
 These are the base dotfiles that I start with when I set up a
