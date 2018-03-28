@@ -15,7 +15,6 @@
     lc  = shortlog --email --numbered --summary # List contributors.
     p   = push
     r   = rebase
-    rlc = reset --hard HEAD~1                   # Remove last commit.
     s   = status
     ulc = reset --soft HEAD~1                   # Undo last commit.
     w   = instaweb --httpd=webrick              # Start web-based visualizer.
@@ -82,6 +81,15 @@
     retag = "!f() { \
         git tag -d "$1" &> /dev/null; \
         git tag $1; \
+    }; f"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Remove last commits (by default it removes the last commit).
+
+    rlc = "!f() { \
+        declare n=\"${1:-1}\"; \
+        git reset --hard \"HEAD~$n\"; \
     }; f"
 
 
