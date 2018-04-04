@@ -74,8 +74,8 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # export http_proxy=http://PITC-Zscaler-Americas-Alpharetta3PR.proxy.corporate.ge.com:80
 # export https_proxy=http://PITC-Zscaler-Americas-Alpharetta3PR.proxy.corporate.ge.com:80
 
-export  http_proxy="http://iss-americas-pitc-cincinnatiz.proxy.corporate.ge.com:80"
-export https_proxy="http://iss-americas-pitc-cincinnatiz.proxy.corporate.ge.com:80" 
+export http_proxy="http://iss-americas-pitc-cincinnatiz.proxy.corporate.ge.com:80"
+export https_proxy="http://iss-americas-pitc-cincinnatiz.proxy.corporate.ge.com:80"
 export no_proxy=localhost,127.0.0.1,*.ge.com,.ge.com
 
 export WORKON_HOME=~/.virtualenvs
