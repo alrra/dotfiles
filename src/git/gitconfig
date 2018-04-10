@@ -16,7 +16,6 @@
     p   = push
     r   = rebase
     s   = status
-    ulc = reset --soft HEAD~1                   # Undo last commit.
     w   = instaweb --httpd=webrick              # Start web-based visualizer.
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -90,6 +89,15 @@
     rlc = "!f() { \
         declare n=\"${1:-1}\"; \
         git reset --hard \"HEAD~$n\"; \
+    }; f"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Undo last commits (by default it undoes the last commit).
+
+    ulc = "!f() { \
+        declare n=\"${1:-1}\"; \
+        git reset --soft \"HEAD~$n\"; \
     }; f"
 
 
