@@ -1,9 +1,8 @@
-# [Cătălin](https://github.com/alrra)’s dotfiles [![Build Status](https://travis-ci.org/alrra/dotfiles.svg?branch=master)](https://travis-ci.org/alrra/dotfiles)
+# [Cătălin](https://github.com/alrra)’s dotfiles
 
 These are the base dotfiles that I start with when I set up a
 new environment. For more specific local needs I use the `.local`
 files described in the [`Local Settings`](#local-settings) section.
-
 
 ## Setup
 
@@ -37,7 +36,6 @@ The setup process will:
   [`Ubuntu`](src/os/preferences/ubuntu) preferences
 * Install [`vim` plugins](src/vim/vim/plugins)
 
-
 Setup process in action:
 
 <table>
@@ -56,7 +54,6 @@ Setup process in action:
         </td>
     </tbody>
 </table>
-
 
 ## Screenshots
 
@@ -118,7 +115,6 @@ Output for `git log`:
         </td>
     </tbody>
 </table>
-
 
 ## Customize
 
@@ -186,13 +182,11 @@ The `~/.vimrc.local` file it will be automatically sourced after
 `~/.vimrc`, thus, allowing its content to add or overwrite the
 settings from `~/.vimrc`.
 
-
 ### Forks
 
 If you decide to fork this project, don't forget to substitute my
 username with your own in the [`setup` snippets](#setup) and [in the
 `setup` script](https://github.com/alrra/dotfiles/blob/1503cf23ef23f6e31342b140bcd246625160b94f/src/os/setup.sh#L3).
-
 
 ## Update
 
@@ -200,14 +194,12 @@ To update the dotfiles you can either run the [`setup`
 script](src/os/setup.sh) or, if you want to just update one particular
 part, run the appropriate [`os` script](src/os).
 
-
 ## Acknowledgements
 
 Inspiration and code was taken from many sources, including:
 
 * [Mathias Bynens'](https://github.com/mathiasbynens)
   [dotfiles](https://github.com/mathiasbynens/dotfiles)
-
 
 ## License
 
