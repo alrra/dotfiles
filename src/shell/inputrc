@@ -20,3 +20,9 @@ set completion-ignore-case on
 # Auto list TAB completions.
 
 set show-all-if-ambiguous off
+
+# Searching files via partial match
+## arrow up
+"\e[A":history-search-backward 
+## arrow down
+"\e[B":history-search-forward
