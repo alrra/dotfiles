@@ -5,6 +5,22 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# If there are multiple matches for completion,
+# make TAB cycle through them.
+
+TAB: menu-complete
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Searching files via partial match.
+
+# ↑
+"\e[A":history-search-backward
+# ↓
+"\e[B":history-search-forward
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Disable beeping and window flashing.
 
 set bell-style none
@@ -17,6 +33,13 @@ set completion-ignore-case on
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Auto list TAB completions.
+# Perform partial completion on the first Tab press, and
+# only start cycling full results on the second Tab press.
 
-set show-all-if-ambiguous off
+set menu-complete-display-prefix on
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Display a list of the matching files
+
+set show-all-if-ambiguous on
