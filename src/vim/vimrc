@@ -534,6 +534,12 @@ nmap <leader>n :call ToggleRelativeLineNumbers()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+" [,sh] Show hex dump.
+
+nmap <leader>sh :%!xxd<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,sr] Strip carriage returns.
 
 nmap <leader>sr :%s/\r//g<CR>
