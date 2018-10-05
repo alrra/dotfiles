@@ -13,13 +13,13 @@ brew_install "python" "python"
 # Install virtual environments globally
 # It fails to install virtualenv if PIP_REQUIRE_VIRTUALENV was true
 export PIP_REQUIRE_VIRTUALENV=false
-pip install virtualenv
-pip install virtualenvwrapper
+pip3 install virtualenv
+pip3 install virtualenvwrapper
 
 export WORKON_HOME=~/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
-mkvirtualenv --python=/usr/local/bin/python python3
+mkvirtualenv --python=/usr/local/bin/python3 python3
 workon python3
 
 pip install boto

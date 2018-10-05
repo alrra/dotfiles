@@ -18,9 +18,7 @@ col = hs.drawing.color.x11
 
 hs.loadSpoon("SpoonInstall")
 
-log.d("Collecting spoons...")
-
-spoon.SpoonInstall.repos.zzspoons = {
+spoon.SpoonInstall.repos.spoons = {
   url = "https://github.com/spdaly/Spoons",
   desc = "spdaly's spoon repository",
 }
@@ -28,19 +26,6 @@ spoon.SpoonInstall.repos.zzspoons = {
 spoon.SpoonInstall.use_syncinstall = true
 
 Install=spoon.SpoonInstall
-
-Install:andUse("Hammer",
-               {
-                 repo = 'spoons',
-                 config = { auto_reload_config = false },
-                 hotkeys = {
-                   config_reload = {hyper, "`"},
-                   toggle_console = {hyper, "y"}
-                 },
-                 start = true
-               }
-)
-
 
 keyUpDown = function(modifiers, key)
   -- Un-comment & reload config to log each keystroke that we're triggering
@@ -74,8 +59,30 @@ end
 -- require('keyboard.microphone')
 -- require('keyboard.panes')
 -- require('keyboard.super')
-require('windows')
+-- require('windows')
 require('audio')
+
+function toggleHTTPProxy(proxy)
+  if proxy then
+    hs.notify.show("Disabling HTTP proxies")
+    -- TODO Refactor these into better patterns or into multiple sed scripts per sed run
+    cmd = 'sed -i \'\' \'/^export http_proxy/s/^/#/\' bash_exports'
+    output, status, t, rc = hs.execute(cmd)
+    log.d(output)
+    cmd = 'sed -i \'\' \'/^export https_proxy/s/^/#/\' bash_exports'
+    output, status, t, rc = hs.execute(cmd)
+    cmd = 'sed -i \'\' \'/^export no_proxy/s/^/#/\' bash_exports'
+    output, status, t, rc = hs.execute(cmd)
+  else
+    cmd = 'sed -i \'\' \'/^#export http_proxy/s/^//\' bash_exports'
+    output, status, t, rc = hs.execute(cmd)
+    cmd = 'sed -i \'\' \'/^#export https_proxy/s/^//\' bash_exports'
+    output, status, t, rc = hs.execute(cmd)
+    cmd = 'sed -i \'\' \'/^#export no_proxy/s/^//\' bash_exports'
+    output, status, t, rc = hs.execute(cmd)
+  end
+end
+
 
 function reconfigSpotifyProxy(proxy)
   local spotify = hs.appfinder.appFromName("Spotify")
@@ -119,11 +126,13 @@ Install:andUse("WiFiTransitions",
                      },
                      { -- Enable proxy in Spotify and Adium config when joining corp network
                        to = "BLUESSO",
-                       fn = {hs.fnutils.partial(reconfigSpotifyProxy, true)}
+                       fn = {hs.fnutils.partial(reconfigSpotifyProxy, true),
+                        hs.fnutils.partial(toggleHTTPProxy, true)}
                      },
                      { -- Disable proxy in Spotify and Adium config when leaving corp network
                        from = "BLUESSO",
-                       fn = {hs.fnutils.partial(reconfigSpotifyProxy, false)}
+                       fn = {hs.fnutils.partial(reconfigSpotifyProxy, false),
+                        hs.fnutils.partial(toggleHTTPProxy, false)}
                      },
                    }
                  },

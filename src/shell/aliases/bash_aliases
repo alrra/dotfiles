@@ -22,6 +22,12 @@ alias q="exit"
 alias rm="rm -rf --"
 alias t="tmux"
 
+
+alias cagol='source /usr/local/bin/cago.sh list'
+alias cagor='source /usr/local/bin/cago.sh refresh'
+alias cagos='source /usr/local/bin/cago.sh switch'
+alias cagou='source /usr/local/bin/cago.sh unset'
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Load OS specific aliases.

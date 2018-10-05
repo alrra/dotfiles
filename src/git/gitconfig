@@ -1,89 +1,24 @@
 [alias]
 
-    a   = commit --amend
-    br  = branch
-    c   = commit
-    ca  = !git add -A && git commit             # Commit all changes.
-    co  = checkout
-    cp  = cherry-pick
-    d   = diff
-    dc  = diff --cached
-    f   = fetch
-    g   = log --graph --pretty=custom           # Show custom graph.
-    git = !exec git                             # Allow `$ git git git...`
-    l   = log --pretty=custom                   # Show custom log.
-    lc  = shortlog --email --numbered --summary # List contributors.
-    p   = push
-    r   = rebase
-    rlc = reset --hard HEAD~1                   # Remove last commit.
-    s   = status
-    ulc = reset --soft HEAD~1                   # Undo last commit.
-    w   = instaweb --httpd=webrick              # Start web-based visualizer.
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Find commits by source code.
-
-    cc = "!f() { \
-        git log --pretty=custom --decorate --date=short -S\"$1\"; \
-    }; f"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Find commits by commit message.
-
-    cm = "!f() { \
-        git log --pretty=custom --decorate --date=short --grep=\"$1\"; \
-    }; f"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Credit an author on the latest commit.
-
-    credit = "!f() { \
-        if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
-            git commit --amend --author \"$1 <$2>\" -C HEAD; \
-        fi \
-    }; f"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # List remote branches.
-
-    lrb = "!f() { \
-        remote="${1:-origin}"; \
-        git ls-remote --heads "$remote"; \
-    }; f"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Merge GitHub pull request on top of the current branch or,
-    # if a branch name is specified, on top of the specified branch.
-
-    mpr = "!f() { \
-        declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
-        declare branch=\"${2:-$currentBranch}\"; \
-        if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-            git fetch origin refs/pull/$1/head:pr/$1 && \
-            git checkout -B $branch && \
-            git rebase $branch pr/$1 && \
-            git checkout -B $branch && \
-            git merge pr/$1 && \
-            git branch -D pr/$1 && \
-            git commit --amend -m \"$(git log -1 --pretty=%B)\n\nClose #$1\"; \
-        fi \
-    }; f"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Remove the tag with the specified tag name if
-    # exists and tag the latest commit with that name.
-
-    retag = "!f() { \
-        git tag -d "$1" &> /dev/null; \
-        git tag $1; \
-    }; f"
-
+    a = commit --amend
+    br = branch
+    c = commit
+    ca = !git add -A && git commit # Commit all changes.
+    co = checkout
+    cp = cherry-pick
+    d = diff
+    dc = diff --cached
+    f = fetch
+    g = log --graph --pretty=custom # Show custom graph.
+    git = !exec git # Allow `$ git git git...`
+    l = log --pretty=custom # Show custom log.
+    lc = shortlog --email --numbered --summary # List contributors.
+    p = push
+    r = rebase
+    rlc = reset --hard HEAD~1 # Remove last commit.
+    s = status
+    ulc = reset --soft HEAD~1 # Undo last commit.
+    w = instaweb --httpd=webrick # Start web-based visualizer.
 
 [color "branch"]
 
@@ -114,7 +49,7 @@
     attributesfile = ~/.gitattributes
     autocrlf = input
     editor = vim
-    excludesfile = ~/.gitignore
+	excludesfile = /Users/steve/.gitignore
 
 [diff]
 
@@ -133,7 +68,7 @@
 
 [pretty]
 
-    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+    custom = %C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)
     #                     │        │            │            │             └─ author name
     #                     │        │            │            └─ message
     #                     │        │            └─ date (relative)
@@ -154,13 +89,13 @@
   # https://github.com/git/git/blob/90f7b16b3adc78d4bbabbd426fb69aa78c714f71/Documentation/config.txt#L2847-L2855
 
   useConfigOnly = true
-	email = steve.daly@ge.com
+	email = spdaly@gmail.com
 	name = Steve Daly
 
 [http]
-    # proxy = http://iss-americas-pitc-cincinnatiz.proxy.corporate.ge.com:80
+#    proxy = http://PITC-Zscaler-Americas-Cincinnati3PR.proxy.corporate.ge.com:80
 [https]
-    # proxy = http://iss-americas-pitc-cincinnatiz.proxy.corporate.ge.com:80
+#    proxy = https://PITC-Zscaler-Americas-Cincinnati3PR.proxy.corporate.ge.com:80
 
 [include]
 
@@ -172,3 +107,15 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
+[mergetool]
+	keepBackup = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/steve/.stCommitMsg
+[gc]
+	autoDetach = false

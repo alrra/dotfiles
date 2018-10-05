@@ -63,15 +63,15 @@ zpath="$(brew --prefix)/etc/profile.d/z.sh"
 # ------------
 #source "/usr/local/opt/fzf/shell/key-bindings.bash"
 
-#[[ $- == *i* ]] && [[ -f "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh 2> /dev/null
-#complete -C '~/.virtualenvs/python3/bin/aws_completer' aws
-#workon python3
+[[ $- == *i* ]] && [[ -f "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh 2> /dev/null
+complete -C '~/.virtualenvs/python3/bin/aws_completer' aws
+workon python3
 
 # Only load Liquid Prompt in interactive shells, not from a script or from scp
 [[ $- == *i* ]] && source ~/projects/liquidprompt/liquidprompt
 
 # $PATH set by /etc/paths and /etc/paths.d
-export PATH=$PATH:/usr/local/sbin:$HOME/projects/dotfiles/src/bin:/usr/local/anaconda3/bin
+export PATH=$PATH:/usr/local/sbin:$HOME/projects/dotfiles/src/bin
 
 # Setting PATH for Python 3.6
 # The original version is saved in .bash_profile.pysave
@@ -81,4 +81,19 @@ export PATH=$PATH:/usr/local/sbin:$HOME/projects/dotfiles/src/bin:/usr/local/ana
 # Init jenv
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
-unset -f source_bash_files
+unset -f source_bash_files# added by Anaconda3 5.3.0 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
