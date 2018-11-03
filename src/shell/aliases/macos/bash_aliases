@@ -16,8 +16,7 @@ alias brewr="brew uninstall"
 alias brews="brew search"
 alias brewu="brew update \
                 && brew upgrade \
-                && brew cleanup \
-                && brew cask cleanup"
+                && brew cleanup"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
