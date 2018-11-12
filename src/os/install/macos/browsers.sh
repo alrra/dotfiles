@@ -21,8 +21,8 @@ brew_install "Chromium" "chromium" "caskroom/cask" "cask"
 printf "\n"
 
 brew_install "Firefox" "firefox" "caskroom/cask" "cask"
-brew_install "Firefox Developer" "firefoxdeveloperedition" "caskroom/versions" "cask"
-brew_install "Firefox Nightly" "firefoxnightly" "caskroom/versions" "cask"
+brew_install "Firefox Developer" "firefox-developer-edition" "caskroom/versions" "cask"
+brew_install "Firefox Nightly" "firefox-nightly" "caskroom/versions" "cask"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
