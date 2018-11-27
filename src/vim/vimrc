@@ -120,71 +120,57 @@ set winminheight=0             " Allow windows to be squashed.
 " | Plugins                                                            |
 " ----------------------------------------------------------------------
 
-" Use Vundle to manage the Vim plugins.
-" https://github.com/VundleVim/Vundle.vim
+" Use `minpac` to manage the Vim plugins.
+" https://github.com/k-takata/minpac
+
+function! InitPlugins() abort
+
+    packadd minpac
+
+    call minpac#init()
+    call minpac#add('k-takata/minpac', { 'type': 'opt' })
+
+    call minpac#add('altercation/vim-colors-solarized')
+    call minpac#add('ap/vim-css-color')
+    call minpac#add('chrisbra/unicode.vim')
+    call minpac#add('editorconfig/editorconfig-vim')
+    call minpac#add('godlygeek/tabular')
+    call minpac#add('isRuslan/vim-es6')
+    call minpac#add('jelera/vim-javascript-syntax')
+    call minpac#add('kien/ctrlp.vim')
+    call minpac#add('marijnh/tern_for_vim', { 'do': ':silent ! cd $HOME/.vim/pack/minpac/start/tern_for_vim && npm i &> /dev/null' })
+    call minpac#add('mattn/emmet-vim')
+    call minpac#add('mattn/webapi-vim')
+    call minpac#add('mhinz/vim-signify')
+    call minpac#add('moll/vim-node')
+    call minpac#add('mtscout6/syntastic-local-eslint.vim')
+    call minpac#add('nathanaelkane/vim-indent-guides')
+    call minpac#add('raimondi/delimitmate')
+    call minpac#add('scrooloose/nerdtree')
+    call minpac#add('scrooloose/syntastic')
+    call minpac#add('sheerun/vim-polyglot')
+    call minpac#add('shougo/neocomplcache.vim')
+    call minpac#add('shougo/neosnippet')
+    call minpac#add('shougo/neosnippet-snippets')
+    call minpac#add('suan/vim-instant-markdown')
+    call minpac#add('tomtom/tcomment_vim')
+    call minpac#add('tpope/vim-commentary')
+    call minpac#add('tpope/vim-fugitive')
+    call minpac#add('tpope/vim-repeat')
+    call minpac#add('tpope/vim-surround')
+    call minpac#add('tpope/vim-unimpaired')
+    call minpac#add('wellle/targets.vim')
+
+endfunction
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" Disable file type detection
-" (this is required by Vundle).
+" Define custom commands for managing plugins.
 
-filetype off
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Include Vundle in the runtime path.
-
-set runtimepath+=~/.vim/plugins/Vundle.vim
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Initialize Vundle and specify the path
-" where the plugins should be installed.
-
-call vundle#begin("~/.vim/plugins")
-
-    Plugin 'VundleVim/Vundle.vim'
-
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'ap/vim-css-color'
-    Plugin 'chrisbra/unicode.vim'
-    Plugin 'editorconfig/editorconfig-vim'
-    Plugin 'godlygeek/tabular'
-    Plugin 'isRuslan/vim-es6'
-    Plugin 'jelera/vim-javascript-syntax'
-    Plugin 'kien/ctrlp.vim'
-    Plugin 'marijnh/tern_for_vim'
-    Plugin 'mattn/emmet-vim'
-    Plugin 'mattn/webapi-vim'
-    Plugin 'mhinz/vim-signify'
-    Plugin 'moll/vim-node'
-    Plugin 'mtscout6/syntastic-local-eslint.vim'
-    Plugin 'nathanaelkane/vim-indent-guides'
-    Plugin 'raimondi/delimitmate'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/syntastic'
-    Plugin 'sheerun/vim-polyglot'
-    Plugin 'shougo/neocomplcache.vim'
-    Plugin 'shougo/neosnippet'
-    Plugin 'shougo/neosnippet-snippets'
-    Plugin 'suan/vim-instant-markdown'
-    Plugin 'tomtom/tcomment_vim'
-    Plugin 'tpope/vim-commentary'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'tpope/vim-repeat'
-    Plugin 'tpope/vim-surround'
-    Plugin 'tpope/vim-unimpaired'
-    Plugin 'wellle/targets.vim'
-
-call vundle#end()
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Re-enable file type detection
-" (disabling it was required by Vundle).
-
-filetype on
-
+command! PluginsClean   call InitPlugins() | call minpac#clean()
+command! PluginsSetup   call InitPlugins() | call minpac#update('', {'do': 'quit'})
+command! PluginsStatus  call InitPlugins() | call minpac#status()
+command! PluginsUpdate  call InitPlugins() | call minpac#update('', {'do': 'call minpac#status()'})
 
 " ----------------------------------------------------------------------
 " | Plugins - Emmet                                                    |
@@ -200,7 +186,9 @@ let g:user_emmet_leader_key="<C-E>"
 " Load custom Emmet snippets.
 " http://docs.emmet.io/customization/snippets/
 
-let g:user_emmet_settings = webapi#json#decode(join(readfile(expand("~/.vim/snippets/emmet.json")), "\n"))
+if exists('webapi#json')
+    let g:user_emmet_settings = webapi#json#decode(join(readfile(expand("~/.vim/snippets/emmet.json")), "\n"))
+endif
 
 
 " ----------------------------------------------------------------------
@@ -468,7 +456,7 @@ set background=dark            " Use colors that look good
 " Set custom configurations for when the
 " Solarized theme is used from Vim's Terminal mode.
 "
-" http://ethanschoonover.com/solarized/vim-colors-solarized#advanced-configuration
+" https://github.com/altercation/vim-colors-solarized
 
 if !has("gui_running")
     let g:solarized_contrast = "high"
@@ -477,8 +465,7 @@ if !has("gui_running")
     let g:solarized_visibility = "high"
 endif
 
-colorscheme solarized          " Use custom color scheme.
-
+silent! colorscheme solarized  " Use custom color scheme.
 
 " ----------------------------------------------------------------------
 " | Key Mappings                                                       |
