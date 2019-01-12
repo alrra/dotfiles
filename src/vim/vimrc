@@ -153,6 +153,7 @@ function! InitPlugins() abort
     call minpac#add('shougo/neosnippet')
     call minpac#add('shougo/neosnippet-snippets')
     call minpac#add('suan/vim-instant-markdown')
+    call minpac#add('thiagoalessio/rainbow_levels.vim')
     call minpac#add('tomtom/tcomment_vim')
     call minpac#add('tpope/vim-commentary')
     call minpac#add('tpope/vim-fugitive')
@@ -250,7 +251,6 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " Make `Shift+Tab` insert `Tab` character.
 
 inoremap <S-TAB> <C-V><TAB>
-
 
 " ----------------------------------------------------------------------
 " | Plugins - Signify                                                  |
@@ -518,6 +518,12 @@ nmap <leader>l :set list!<CR>
 " [,n ] Toggle `set relativenumber`.
 
 nmap <leader>n :call ToggleRelativeLineNumbers()<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" [,rl ] Toggle `RainbowLevels`.
+
+map <leader>rl :RainbowLevelsToggle<cr>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
