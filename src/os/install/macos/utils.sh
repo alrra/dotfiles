@@ -5,20 +5,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-brew_cleanup() {
-
-    # By default Homebrew does not uninstall older versions
-    # of formulas so, in order to remove them, `brew cleanup`
-    # needs to be used.
-    #
-    # https://github.com/Homebrew/brew/blob/496fff643f352b0943095e2b96dbc5e0f565db61/share/doc/homebrew/FAQ.md#how-do-i-uninstall-old-versions-of-a-formula
-
-    execute \
-        "brew cleanup" \
-        "Homebrew (cleanup)"
-
-}
-
 brew_install() {
 
     declare -r CMD="$4"
