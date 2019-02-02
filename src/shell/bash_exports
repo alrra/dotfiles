@@ -37,15 +37,6 @@ export HISTSIZE=10000
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Make `Homebrew` run `brew cleanup` periodically and for trigger
-# individual formula cleanup on reinstall, install or upgrade.
-#
-# [!] These will become default behaviours in v2.0.0.
-
-export HOMEBREW_INSTALL_CLEANUP="true"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Prefer US English and use UTF-8 encoding.
 
 export LANG="en_US"
