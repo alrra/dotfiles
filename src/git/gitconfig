@@ -91,12 +91,6 @@
   useConfigOnly = true
 	email = spdaly@gmail.com
 	name = Steve Daly
-
-[http]
-#    proxy = http://PITC-Zscaler-Americas-Cincinnati3PR.proxy.corporate.ge.com:80
-[https]
-#    proxy = https://PITC-Zscaler-Americas-Cincinnati3PR.proxy.corporate.ge.com:80
-
 [include]
 
     # Load local configs.
@@ -107,15 +101,3 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
-[mergetool]
-	keepBackup = true
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[commit]
-	template = /Users/steve/.stCommitMsg
-[gc]
-	autoDetach = false

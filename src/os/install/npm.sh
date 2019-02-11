@@ -28,9 +28,7 @@ main() {
 
     printf "\n"
 
-    install_npm_package "Instant-markdown" "instant-markdown-d"
     install_npm_package "Babel" "babel-cli"
-    install_npm_package "Gulp" "gulp-cli"
     install_npm_package "Babel ESLint" "babel-eslint"
     install_npm_package "Fancy Diff" "diff-so-fancy"
     install_npm_package "ESLint" "eslint"
@@ -46,7 +44,6 @@ main() {
     install_npm_package "TLDR" "tldr"
     install_npm_package "VMD" "vmd"
     install_npm_package "VTOP" "vtop"
-    install_npm_package "Wallpaper" "wallpaper-cli"
     install_npm_package "WhatToDo" "whattodo"
     install_npm_package "WiFi Password" "wifi-password-cli"
     install_npm_package "Fast" "fast-cli"
