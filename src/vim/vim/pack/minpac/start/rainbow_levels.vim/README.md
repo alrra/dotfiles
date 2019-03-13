@@ -1,4 +1,4 @@
-<img src="https://thiagoalessio.ams3.digitaloceanspaces.com/rainbow_levels/logo.png" alt="rainbow_levels.vim" align="right" width="150px"/>
+<img src="https://raw.githubusercontent.com/thiagoalessio/rainbow_levels.vim/gh-pages/readme-images/logo.png" alt="rainbow_levels.vim" align="right" width="150px"/>
 
 # Rainbow Levels
 
@@ -52,7 +52,7 @@ and also the [User-Contributed Themes][user_themes] page for inspiration.
 
 #### Jellybeans Rainbow
 
-<img align="right" width="45%" title="Jellybeans Rainbow" src="https://thiagoalessio.ams3.digitaloceanspaces.com/rainbow_levels/example-jellybeans.png"/>
+<img align="right" width="45%" title="Jellybeans Rainbow" src="https://raw.githubusercontent.com/thiagoalessio/rainbow_levels.vim/gh-pages/readme-images/example-jellybeans.png"/>
 
 Using groups defined by [Jellybeans][] colorscheme in a "rainbow" sequence.
 
@@ -72,7 +72,7 @@ hi! link RainbowLevel8 Comment
 
 #### Background Only
 
-<img align="right" width="45%" title="Background Only" src="https://thiagoalessio.ams3.digitaloceanspaces.com/rainbow_levels/example-background.png"/>
+<img align="right" width="45%" title="Background Only" src="https://raw.githubusercontent.com/thiagoalessio/rainbow_levels.vim/gh-pages/readme-images/example-background.png"/>
 
 Want to keep syntax highlight? No problem! You can change only the background
 colors instead.
@@ -93,7 +93,7 @@ hi! RainbowLevel8 ctermbg=232 guibg=#080808
 
 #### Cycle colors
 
-<img align="right" width="45%" title="Cycle colors" src="https://thiagoalessio.ams3.digitaloceanspaces.com/rainbow_levels/example-cycle.png"/>
+<img align="right" width="45%" title="Cycle colors" src="https://raw.githubusercontent.com/thiagoalessio/rainbow_levels.vim/gh-pages/readme-images/example-cycle.png"/>
 
 Using a loop to automate the tedious work of defining all highlight groups.
 
@@ -108,7 +108,7 @@ endfor
 
 #### Level Alert
 
-<img align="right" width="45%" title="Level Alert" src="https://thiagoalessio.ams3.digitaloceanspaces.com/rainbow_levels/example-alert.png"/>
+<img align="right" width="45%" title="Level Alert" src="https://raw.githubusercontent.com/thiagoalessio/rainbow_levels.vim/gh-pages/readme-images/example-alert.png"/>
 
 Nothing shows up until a certain threshold, warning you that the code is going
 too deep.
@@ -168,7 +168,7 @@ rainbow_levels.vim is released under the [MIT License][].
 [gitter]: https://gitter.im/thiagoalessio/rainbow_levels.vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 [twitter_badge]: https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter
 [tweet_intent]: https://twitter.com/intent/tweet?text=rainbow_levels.vim%3A%20A%20different%20approach%20to%20code%20highlighting.&url=https://github.com/thiagoalessio/rainbow_levels.vim&hashtags=vim
-[Rainbow Levels Screenshot]: https://thiagoalessio.ams3.digitaloceanspaces.com/rainbow_levels/screenshot.png?v=0.6.0
+[Rainbow Levels Screenshot]: https://raw.githubusercontent.com/thiagoalessio/rainbow_levels.vim/gh-pages/readme-images/screenshot.png
 [Jellybeans]: https://github.com/nanotech/jellybeans.vim
 [user_themes]: https://github.com/thiagoalessio/rainbow_levels.vim/wiki/User-Contributed-Themes
 [ohthehugemanatee]: https://github.com/ohthehugemanatee
