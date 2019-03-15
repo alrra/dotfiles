@@ -32,6 +32,9 @@ execute "defaults write com.apple.screencapture disable-shadow -bool true" \
 execute "defaults write com.apple.screencapture location -string '$HOME/Desktop'" \
     "Save screenshots to the Desktop"
 
+execute "defaults write com.apple.screencapture show-thumbnail -bool false" \
+    "Do not show thumbnail"
+
 execute "defaults write com.apple.screencapture type -string 'png'" \
     "Save screenshots as PNGs"
 
