@@ -47,17 +47,13 @@
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Credit a co-author on the latest commit.
+    #
     # https://help.github.com/en/articles/creating-a-commit-with-multiple-authors
+    # https://help.github.com/en/articles/creating-a-commit-on-behalf-of-an-organization
 
     credit-co-author = "!f() { \
         if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
-            declare currentCommitMessage=\"$(git log -1 --pretty=%B)\"; \
-            declare coAuthoredAdded=\"$(git log -1 --grep=\"Co-authored-by:\")\"; \
-            declare newCommitMessage=\"$currentCommitMessage\"; \
-            if [ -z \"$coAuthoredAdded\" ]; then \
-                newCommitMessage+=\"\n\"; \
-            fi; \
-            git commit --amend --no-edit -m \"${newCommitMessage}\nCo-authored-by: $1 <$2>\"; \
+            GIT_EDITOR=\"git interpret-trailers --in-place --trailer='Co-authored-by: $1 <$2>'\" git commit --amend; \
         fi \
     }; f"
 
