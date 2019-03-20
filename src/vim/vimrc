@@ -152,7 +152,6 @@ function! InitPlugins() abort
     call minpac#add('shougo/neocomplcache.vim')
     call minpac#add('shougo/neosnippet')
     call minpac#add('shougo/neosnippet-snippets')
-    call minpac#add('suan/vim-instant-markdown')
     call minpac#add('thiagoalessio/rainbow_levels.vim')
     call minpac#add('tomtom/tcomment_vim')
     call minpac#add('tpope/vim-commentary')
@@ -208,17 +207,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven
         \ guibg=#073642
         \ ctermbg=DarkMagenta
-
-
-" ----------------------------------------------------------------------
-" | Plugins - Instant Markdown                                         |
-" ----------------------------------------------------------------------
-
-" Do not automatically launch the preview
-" window when the markdown file is open.
-" https://github.com/suan/vim-instant-markdown#ginstant_markdown_autostart
-
-let g:instant_markdown_autostart = 0
 
 
 " ----------------------------------------------------------------------
