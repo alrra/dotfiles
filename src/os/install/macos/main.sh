@@ -9,11 +9,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 ./xcode.sh
 ./homebrew.sh
 ./bash.sh
-./../nvm.sh
 
+./git.sh
+./../nvm.sh
 ./browsers.sh
 ./compression_tools.sh
-./git.sh
 ./gpg.sh
 ./image_tools.sh
 ./misc.sh
