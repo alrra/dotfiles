@@ -6,8 +6,8 @@
     ca  = !git add -A && git commit             # Commit all changes.
     co  = checkout
     cp  = cherry-pick
-    d   = diff
-    dc  = diff --cached
+    d   = diff -- . ':!*package-lock.json' ':!*yarn.lock'
+    dc  = diff --cached -- . ':!*package-lock.json' ':!*yarn.lock'
     f   = fetch
     g   = log --graph --pretty=custom           # Show custom graph.
     git = !exec git                             # Allow `$ git git git...`
