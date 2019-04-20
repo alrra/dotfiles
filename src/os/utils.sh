@@ -125,8 +125,9 @@ get_os() {
 
     if [ "$kernelName" == "Darwin" ]; then
         os="macos"
-    elif [ "$kernelName" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
-        os="ubuntu"
+    elif [ "$kernelName" == "Linux" ] && \
+         [ -e "/etc/os-release" ]; then
+        os="$(. /etc/os-release; printf "%s" "$ID")"
     else
         os="$kernelName"
     fi
@@ -146,8 +147,8 @@ get_os_version() {
 
     if [ "$os" == "macos" ]; then
         version="$(sw_vers -productVersion)"
-    elif [ "$os" == "ubuntu" ]; then
-        version="$(lsb_release -d | cut -f2 | cut -d' ' -f2)"
+    elif [ -e "/etc/os-release" ]; then
+        version="$(. /etc/os-release; printf "%s" "$VERSION_ID")"
     fi
 
     printf "%s" "$version"
