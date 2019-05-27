@@ -12,6 +12,3 @@ execute "defaults write -g AppleLanguages -array 'en'" \
 
 execute "defaults write -g AppleMeasurementUnits -string 'Centimeters'" \
     "Set measurement units"
-
-execute "defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false" \
-    "Disable auto-correct"
