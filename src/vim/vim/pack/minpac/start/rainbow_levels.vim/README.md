@@ -154,7 +154,8 @@ Please report any bugs you may find on the GitHub issue tracker:
 
 rainbow_levels.vim is released under the [MIT License][].
 
-<h2></h2><p align="center"><sub>Made with <sub><a href="#"><img src="https://thiagoalessio.ams3.digitaloceanspaces.com/heart.svg" alt="love" width="14px"/></a></sub> in Berlin</sub></p>
+
+<h2></h2><p align="center"><sub>Made with <sub><a href="#"><img src="https://thiagoalessio.github.io/rainbow_levels.vim/readme-images/heart.svg" alt="love" width="14px"/></a></sub> in Berlin</sub></p>
 
 [circleci_badge]: https://circleci.com/gh/thiagoalessio/rainbow_levels.vim/tree/master.svg?style=shield
 [circleci]: https://circleci.com/gh/thiagoalessio/workflows/rainbow_levels.vim/tree/master
