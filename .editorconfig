@@ -17,15 +17,6 @@ trim_trailing_whitespace = true
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-[*.md]
-
-# Markdown uses the trailing whitespaces.
-# https://daringfireball.net/projects/markdown/syntax#block
-
-trim_trailing_whitespace = false
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 [.travis.yml]
 
 indent_size = 2
