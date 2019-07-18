@@ -8,4 +8,4 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_in_purple "\n  GPG\n\n"
 
-brew_install "GPG Suite" "gpg-suite" "caskroom/cask" "cask
+brew_install "GPG Suite" "gpg-suite" "caskroom/cask" "cask"
