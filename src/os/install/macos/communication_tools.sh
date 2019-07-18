@@ -6,7 +6,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   Compression Tools\n\n"
+print_in_purple "\n   Communication Tools\n\n"
 
-brew_install "Brotli" "brotli"
-brew_install "Zopfli" "zopfli"
+brew_install "Discord" "discord"
+brew_install "Slack" "slack"
+

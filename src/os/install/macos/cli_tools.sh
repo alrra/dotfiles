@@ -6,8 +6,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   Video Tools\n\n"
+print_in_purple "\n   CLI Tools\n\n"
 
-brew_install "AtomicParsley" "atomicparsley"
-brew_install "FFmpeg" "ffmpeg"
-brew_install "youtube-dl" "youtube-dl"
+brew_install "Mackup" "mackup"
