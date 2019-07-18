@@ -159,57 +159,8 @@ endif
 " | Plugins                                                            |
 " ----------------------------------------------------------------------
 
-" Use `minpac` to manage the Vim plugins.
-" https://github.com/k-takata/minpac
-
-function! InitPlugins() abort
-
-    packadd minpac
-
-    call minpac#init()
-    call minpac#add('k-takata/minpac', { 'type': 'opt' })
-
-    call minpac#add('altercation/vim-colors-solarized')
-    call minpac#add('ap/vim-css-color')
-    call minpac#add('chrisbra/unicode.vim')
-    call minpac#add('editorconfig/editorconfig-vim')
-    call minpac#add('godlygeek/tabular')
-    call minpac#add('isRuslan/vim-es6')
-    call minpac#add('jelera/vim-javascript-syntax')
-    call minpac#add('kien/ctrlp.vim')
-    call minpac#add('marijnh/tern_for_vim', { 'do': ':silent ! cd $HOME/.vim/pack/minpac/start/tern_for_vim && npm i &> /dev/null' })
-    call minpac#add('mattn/emmet-vim')
-    call minpac#add('mattn/webapi-vim')
-    call minpac#add('mhinz/vim-signify')
-    call minpac#add('moll/vim-node')
-    call minpac#add('mtscout6/syntastic-local-eslint.vim')
-    call minpac#add('nathanaelkane/vim-indent-guides')
-    call minpac#add('raimondi/delimitmate')
-    call minpac#add('scrooloose/nerdtree')
-    call minpac#add('scrooloose/syntastic')
-    call minpac#add('sheerun/vim-polyglot')
-    call minpac#add('shougo/neocomplcache.vim')
-    call minpac#add('shougo/neosnippet')
-    call minpac#add('shougo/neosnippet-snippets')
-    call minpac#add('thiagoalessio/rainbow_levels.vim')
-    call minpac#add('tomtom/tcomment_vim')
-    call minpac#add('tpope/vim-commentary')
-    call minpac#add('tpope/vim-fugitive')
-    call minpac#add('tpope/vim-repeat')
-    call minpac#add('tpope/vim-surround')
-    call minpac#add('tpope/vim-unimpaired')
-    call minpac#add('wellle/targets.vim')
-
-endfunction
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Define custom commands for managing plugins.
-
-command! PluginsClean   call InitPlugins() | call minpac#clean()
-command! PluginsSetup   call InitPlugins() | call minpac#update('', {'do': 'quit'})
-command! PluginsStatus  call InitPlugins() | call minpac#status()
-command! PluginsUpdate  call InitPlugins() | call minpac#update('', {'do': 'call minpac#status()'})
+" Use `vim-plug` to manage the Vim plugins.
+" https://github.com/junegunn/vim-plug
 
 " ----------------------------------------------------------------------
 " | Plugins - Emmet                                                    |
@@ -265,19 +216,19 @@ let g:vim_markdown_folding_disabled=1
 " Enable `neocomplcache` by default.
 " https://github.com/Shougo/neocomplcache.vim#installation
 
-let g:neocomplcache_enable_at_startup=1
+" let g:neocomplcache_enable_at_startup=1
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Make `Tab` autocomplete.
 
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Make `Shift+Tab` insert `Tab` character.
 
-inoremap <S-TAB> <C-V><TAB>
+" inoremap <S-TAB> <C-V><TAB>
 
 " ----------------------------------------------------------------------
 " | Plugins - Signify                                                  |
@@ -500,7 +451,7 @@ silent! colorscheme solarized  " Use custom color scheme.
 
 " Use a different mapleader (default is "\").
 
-let mapleader = ","
+let mapleader = " "
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
