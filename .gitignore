@@ -1,0 +1,5 @@
+# Do not commit installed Vim package
+
+src/vim/vim/bundle
+src/vim/vim/autoload
+vim/undos/*

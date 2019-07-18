@@ -1,9 +1,0 @@
-Execute (toggle when is off):
-  call rainbow_levels#off()
-  call rainbow_levels#toggle()
-  Assert rainbow_levels#is_on()
-
-Execute (toggle when is on):
-  call rainbow_levels#on()
-  call rainbow_levels#toggle()
-  Assert !rainbow_levels#is_on()
