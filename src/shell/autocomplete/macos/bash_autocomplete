@@ -7,7 +7,7 @@
 
 declare -r BASH_COMPLETION_PATH="$(brew --prefix 2> /dev/null)/etc/profile.d/bash_completion.sh"
 
-if which brew &> /dev/null &&
+if command -v brew &> /dev/null &&
    [ -r "$BASH_COMPLETION_PATH" ]; then
 
 	# Ensure existing `bash-completion@1` continues to work.
