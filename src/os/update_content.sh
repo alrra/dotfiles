@@ -7,11 +7,17 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 main() {
 
-    ssh -T git@github.com &> /dev/null
+    ask_for_confirmation "Do you want to set Github SSH key?"
 
-    if [ $? -ne 1 ]; then
-        ./set_github_ssh_key.sh \
-            || return 1
+    if answer_is_yes; then
+
+        ssh -T git@github.com &> /dev/null
+
+        if [ $? -ne 1 ]; then
+            ./set_github_ssh_key.sh \
+                || return 1
+        fi 
+    
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
