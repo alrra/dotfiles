@@ -25,10 +25,13 @@ create_symlinks() {
         "git/gitconfig"
         "git/gitignore"
 
+        "mackup/mackup.cfg"
+
         "tmux/tmux.conf"
 
         "vim/vim"
         "vim/vimrc"
+        "vim/vimrc.bundles"
 
     )
 
