@@ -6,7 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   tmux\n\n"
+print_in_purple "\n   Tmux\n\n"
 
 brew_install "tmux" "tmux"
 brew_install "tmux (pasteboard)" "reattach-to-user-namespace"
