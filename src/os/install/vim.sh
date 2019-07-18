@@ -27,7 +27,7 @@ install_plugins() {
     declare -r VIM_PLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     declare -r VIM_BUNDLES_FILE="$HOME/.vimrc.bundles"
 
-    if [ -e $VIM_PLUG_PATH ]; then
+    if [ -e "$VIM_PLUG_PATH" ]; then
         vim -E -s +PlugUpgrade +qa
     else
         execute \
@@ -36,7 +36,7 @@ install_plugins() {
             || return 1
     fi
 
-    if [ -e $VIM_BUNDLES_FILE ]; then
+    if [ -e "$VIM_BUNDLES_FILE" ]; then
         execute \
             "vim -u $VIM_BUNDLES_FILE +PlugUpdate +PlugClean! +qa" \
             "Install plugins" \

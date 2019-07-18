@@ -131,7 +131,7 @@ ppi() {
     declare query="${1:-*.jpg}"
     declare geometry="${2:-50%}"
 
-    for i in "$query"; do
+    for i in $query; do
 
         if [[ "$(echo ${i##*.} | tr '[:upper:]' '[:lower:]')" != "png" ]]; then
             imgName="${i%.*}.png"
