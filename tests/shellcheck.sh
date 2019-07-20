@@ -13,9 +13,9 @@ main() {
     #  (from: https://twitter.com/astarasikov/status/568825996532707330)
 
     find \
-        ../test \
         ../src/os \
         ../src/shell \
+        ../tests \
         -type f \
         ! -path '../src/shell/curlrc' \
         ! -path '../src/shell/inputrc' \
