@@ -2,3 +2,15 @@
 # https://git-scm.com/docs/gitattributes#_end_of_line_conversion
 
 * text=auto
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Exclude the following files when generating an archive
+# https://git-scm.com/book/en/Customizing-Git-Git-Attributes#Exporting-Your-Repository
+
+.editorconfig export-ignore
+.gitattributes export-ignore
+.github export-ignore
+.travis.yml export-ignore
+src/vim/vim/pack/* export-ignore
+tests export-ignore
