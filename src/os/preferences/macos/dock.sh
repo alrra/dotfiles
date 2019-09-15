@@ -41,6 +41,9 @@ execute "defaults write com.apple.dock persistent-apps -array && \
 execute "defaults write com.apple.dock show-process-indicators -bool true" \
     "Show indicator lights for open applications"
 
+execute "defaults write com.apple.dock show-recents -bool false" \
+    "Do not show recent applications in Dock"
+
 execute "defaults write com.apple.dock showhidden -bool true" \
     "Make icons of hidden applications translucent"
 
