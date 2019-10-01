@@ -10,13 +10,13 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Shorter commands for `Homebrew`.
 
-alias brewd="brew doctor"
-alias brewi="brew install"
-alias brewr="brew uninstall"
-alias brews="brew search"
-alias brewu="brew update \
-                && brew upgrade \
-                && brew cleanup"
+alias brewd="brew doctor" \
+brewi="brew install" \
+brewr="brew uninstall"
+brews="brew search" \
+brewu="brew update \
+		&& brew upgrade \
+		&& brew cleanup"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -40,9 +40,8 @@ alias empty-trash="sudo rm -frv /Volumes/*/.Trashes; \
 # Hide/Show desktop icons.
 
 alias hide-desktop-icons="defaults write com.apple.finder CreateDesktop -bool false \
-                            && killall Finder"
-
-alias show-desktop-icons="defaults write com.apple.finder CreateDesktop -bool true \
+                            && killall Finder" \
+show-desktop-icons="defaults write com.apple.finder CreateDesktop -bool true \
                             && killall Finder"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

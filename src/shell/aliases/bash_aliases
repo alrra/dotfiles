@@ -1,27 +1,27 @@
 #!/bin/bash
 
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias cd..="cd .."
+alias ..="cd .." \
+...="cd ../.." \
+....="cd ../../.." \
+cd..="cd .."
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-alias :q="exit"
-alias c="clear"
-alias ch="history -c && > ~/.bash_history"
-alias e="vim --"
-alias g="git"
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias ll="ls -l"
-alias m="man"
-alias map="xargs -n1"
-alias n="npm"
-alias path='printf "%b\n" "${PATH//:/\\n}"'
-alias q="exit"
-alias rm="rm -rf --"
-alias t="tmux"
-alias y="yarn"
+alias :q="exit" \
+c="clear" \
+ch="history -c && > ~/.bash_history" \
+e="vim --" \
+g="git" \
+ip="dig +short myip.opendns.com @resolver1.opendns.com" \
+ll="ls -l" \
+m="man" \
+map="xargs -n1" \
+n="npm" \
+path='printf "%b\n" "${PATH//:/\\n}"' \
+q="exit" \
+rm="rm -rf --" \
+t="tmux" \
+y="yarn"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
