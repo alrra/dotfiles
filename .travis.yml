@@ -17,9 +17,7 @@ before_install:
         brew install shellcheck
       fi
 
-language: generic
-
-matrix:
+jobs:
   include:
 
     - os: linux
@@ -28,10 +26,16 @@ matrix:
     - os: osx
       osx_image: xcode11
 
+language: shell
+
 notifications:
   email:
     on_failure: always
     on_success: never
 
+os: linux
+
 script:
   - ./tests/shellcheck.sh
+
+version: ~> 1.0
