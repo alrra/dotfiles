@@ -1,4 +1,5 @@
-# [Cătălin](https://github.com/alrra)’s dotfiles
+[Cătălin](https://github.com/alrra)’s dotfiles
+==============================================
 
 [![Build Status](https://github.com/alrra/dotfiles/workflows/test/badge.svg)](https://github.com/alrra/dotfiles/actions)
 
@@ -6,7 +7,8 @@ These are the base dotfiles that I start with when I set up a
 new environment. For more specific local needs I use the `.local`
 files described in the [`Local Settings`](#local-settings) section.
 
-## Table of Contents
+Table of Contents
+-----------------
 
 * [🔧 Setup](#setup)
 * [💄 Customize](#customize)
@@ -17,16 +19,17 @@ files described in the [`Local Settings`](#local-settings) section.
     * [⌨️  `~/.vimrc.local`](#vimrclocal)
 * [↕️  Update](#update)
 * [📸 Screenshots](#screenshots)
-  * [🔁 `git`](#git)
-  * [⌨️  `tmux` & `vim`](#tmux--vim)
+  * [🔁 `Git`](#git)
+  * [⌨️  `tmux` & `Vim`](#tmux--vim)
 * [📄 License](#license)
 
-## Setup
+Setup
+-----
 
 To set up the `dotfiles` just run the appropriate snippet in the
 terminal:
 
-(:warning: **DO NOT** run the `setup` snippet if you do not fully
+(⚠️  **DO NOT** run the `setup` snippet if you do not fully
 understand [what it does][setup]. Seriously, **DON'T**!)
 
 | OS | Snippet |
@@ -55,24 +58,12 @@ The setup process will:
 
 Setup process in action:
 
-<table>
-    <tbody>
-        <tr>
-            <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/19314446/cd89a592-90a2-11e6-948d-9d75247088ba.gif" alt="Setup process on Ubuntu" width="100%">
-            </td>
-            <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/19048636/e23e347a-89af-11e6-853c-98616b75b6ae.gif" alt="Setup process on Ubuntu" width="100%">
-            </td>
-        </tr>
-        <tr align="center">
-            <td>macOS</td>
-            <td>Ubuntu</td>
-        </td>
-    </tbody>
-</table>
+| ![Setup process on macOS](https://cloud.githubusercontent.com/assets/1223565/19314446/cd89a592-90a2-11e6-948d-9d75247088ba.gif) | ![Setup process on Ubuntu](https://cloud.githubusercontent.com/assets/1223565/19048636/e23e347a-89af-11e6-853c-98616b75b6ae.gif) |
+|:---:|:---:|
+| `macOS` | `Ubuntu` |
 
-## Customize
+Customize
+---------
 
 ### Local Settings
 
@@ -111,10 +102,10 @@ export PATH
 
 The `~/.gitconfig.local` file it will be automatically included
 after the configurations from `~/.gitconfig`, thus, allowing its
-content to overwrite or add to the existing `git` configurations.
+content to overwrite or add to the existing `Git` configurations.
 
 __Note:__ Use `~/.gitconfig.local` to store sensitive information
-such as the `git` user credentials, e.g.:
+such as the `Git` user credentials, e.g.:
 
 ```bash
 [commit]
@@ -123,7 +114,6 @@ such as the `git` user credentials, e.g.:
     # https://help.github.com/articles/signing-commits-using-gpg/
 
     gpgsign = true
-
 
 [user]
 
@@ -144,74 +134,39 @@ If you decide to fork this project, do not forget to substitute
 my username with your own in the [`setup` snippets](#setup) and
 [in the `setup` script][setup line]
 
-## Update
+Update
+------
 
 To update the dotfiles you can either run the [`setup` script][setup]
 or, if you want to just update one particular part, run the appropriate
 [`os` script](src/os).
 
-## Screenshots
+Screenshots
+-----------
 
 ### Git
 
-Output for `git status`:
+Output for `Git status`:
 
-<table>
-    <tbody>
-        <tr>
-            <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/10561038/f9f11a28-7525-11e5-8e1d-a304ad3557f9.png" alt="Output for Git status on macOS" width="100%">
-            </td>
-            <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/8397636/3708d218-1ddb-11e5-9d40-21c6871271b9.png" alt="Output for Git status on Ubuntu" width="100%">
-            </td>
-        </tr>
-        <tr align="center">
-            <td>macOS</td>
-            <td>Ubuntu</td>
-        </td>
-    </tbody>
-</table>
+| ![Output for Git status on macOS](https://cloud.githubusercontent.com/assets/1223565/10561038/f9f11a28-7525-11e5-8e1d-a304ad3557f9.png) | ![Output for Git status on Ubuntu](https://cloud.githubusercontent.com/assets/1223565/8397636/3708d218-1ddb-11e5-9d40-21c6871271b9.png) |
+|:---:|:---:|
+| `macOS` | `Ubuntu` |
 
-Output for `git log`:
+Output for `Git log`:
 
-<table>
-    <tbody>
-        <tr>
-            <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/10560966/e4ec08a6-7523-11e5-8941-4e12f6550a63.png" alt="Output for Git status on macOS" width="100%">
-            </td>
-            <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/10560955/4b5e1300-7523-11e5-9e96-95ea67de9474.png" alt="Output for Git log on Ubuntu" width="100%">
-            </td>
-        </tr>
-        <tr align="center">
-            <td>macOS</td>
-            <td>Ubuntu</td>
-        </td>
-    </tbody>
-</table>
+| ![Output for Git status on macOS](https://cloud.githubusercontent.com/assets/1223565/10560966/e4ec08a6-7523-11e5-8941-4e12f6550a63.png) | ![Output for Git log on Ubuntu](https://cloud.githubusercontent.com/assets/1223565/10560955/4b5e1300-7523-11e5-9e96-95ea67de9474.png) |
+|:---:|:---:|
+| `macOS` | `Ubuntu` |
 
-### tmux & vim
+### tmux & Vim
 
-<table>
-    <tbody>
-        <tr>
-            <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/10561007/498e1212-7525-11e5-8252-81503b3d6184.png" alt="tmux and vim on macOS" width="100%">
-            </td>
-            <td>
-                <img src="https://cloud.githubusercontent.com/assets/1223565/10560956/557ca2de-7523-11e5-9000-fc1e189a95f5.png" alt="tmux and vim on Ubuntu" width="100%">
-            </td>
-        </tr>
-        <tr align="center">
-            <td>macOS</td>
-            <td>Ubuntu</td>
-        </td>
-    </tbody>
-</table>
+| ![tmux and Vim on macOS](https://cloud.githubusercontent.com/assets/1223565/10561007/498e1212-7525-11e5-8252-81503b3d6184.png) |
+![tmux and Vim on Ubuntu](https://cloud.githubusercontent.com/assets/1223565/10560956/557ca2de-7523-11e5-9000-fc1e189a95f5.png) |
+|:---:|:---:|
+| `macOS` | `Ubuntu` |
 
-## License
+License
+-------
 
 The code is available under the [MIT license][license].
 
