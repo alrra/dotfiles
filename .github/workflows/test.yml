@@ -1,0 +1,35 @@
+# For more information about the configurations used
+# in this file, please see the GitHub actions documentation.
+#
+# https://help.github.com/en/github/automating-your-workflow-with-github-actions/
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+jobs:
+
+  macOS:
+    runs-on: macOS-latest
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: brew install shellcheck
+
+      - name: Run tests
+        run: ./tests/shellcheck.sh
+
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Run tests
+        run: ./tests/shellcheck.sh
+
+name: test
+
+on: push
