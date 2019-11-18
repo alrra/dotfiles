@@ -6,7 +6,6 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 jobs:
-
   macOS:
     runs-on: macOS-latest
     steps:
@@ -20,16 +19,6 @@ jobs:
       - name: Run tests
         run: ./tests/shellcheck.sh
 
-  ubuntu:
-    runs-on: ubuntu-latest
-    steps:
-
-      - name: Checkout repository
-        uses: actions/checkout@v1
-
-      - name: Run tests
-        run: ./tests/shellcheck.sh
-
-name: test
+name: macOS
 
 on: push
