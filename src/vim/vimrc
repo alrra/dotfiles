@@ -172,6 +172,7 @@ function! InitPlugins() abort
     call minpac#add('altercation/vim-colors-solarized')
     call minpac#add('ap/vim-css-color')
     call minpac#add('chrisbra/unicode.vim')
+    call minpac#add('chrisbra/vim-xml-runtime')
     call minpac#add('editorconfig/editorconfig-vim')
     call minpac#add('godlygeek/tabular')
     call minpac#add('isRuslan/vim-es6')
@@ -322,6 +323,20 @@ function! GetGitBranchName()
     endif
 
     return branchName
+
+endfunction
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+function! PrettyPrint()
+
+    if ( &filetype == 'json' && (has('python3') || has('python')) )
+        %!python -m json.tool
+        norm! ggVG==
+    elseif ( &filetype == 'svg' || &filetype == 'xml' )
+        set formatexpr=xmlformat#Format()
+        norm! Vgq
+    endif
 
 endfunction
 
@@ -545,6 +560,12 @@ nmap <leader>l :set list!<CR>
 " [,n ] Toggle `set relativenumber`.
 
 nmap <leader>n :call ToggleRelativeLineNumbers()<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" [,pp] Pretty print
+
+map <Leader>pp :call PrettyPrint()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
