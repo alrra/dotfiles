@@ -36,6 +36,29 @@ delete-files() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Execute Vim macro
+
+evm() {
+
+    local numberOfTimes="${*: -1}"
+    local files
+
+    if [[ "$numberOfTimes" =~ ^[0-9]+$ ]]; then
+        files=("${@:1:$#-1}")
+    else
+        numberOfTimes="1"
+        files=("$@")
+    fi
+
+    for file in "${files[@]}"; do
+        printf "* %s\n" "$file"
+        vim -c "norm! $numberOfTimes@q" -c "wq" "$file"
+    done
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Get gzip information (gzipped file size + reduction size).
 
 gz() {
