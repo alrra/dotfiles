@@ -23,4 +23,5 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 ./tmux.sh
 ./video_tools.sh
 ./../vim.sh
+./vscode.sh
 ./web_font_tools.sh
