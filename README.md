@@ -1,7 +1,5 @@
-[Cătălin][repo]’s dotfiles
+[Cătălin][repo]’s dotfiles [![Build Status][ci badge]][ci link]
 ==========================
-
-[![Build Status][ci badge]][ci link]
 
 These are the base dotfiles that I start with when I set up a new
 environment. For more specific local needs I use the `*.local` files
@@ -73,7 +71,7 @@ to add to or overwrite the existing aliases, settings, `PATH`, etc.
 
 Here is a very simple example of a `~/.bash.local` file:
 
-```bash
+```shell
 #!/bin/bash
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -101,7 +99,7 @@ to overwrite or add to the existing `Git` configurations.
 __Note:__ Use `~/.gitconfig.local` to store sensitive information
 such as the `Git` user credentials, e.g.:
 
-```bash
+```shell
 [commit]
 
     # Sign commits using GPG.
