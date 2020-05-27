@@ -24,7 +24,7 @@ create_gitconfig_work() {
 [user]
 
     name =
-    email = celtra
+    email = 
     # signingkey =" \
         >> "$FILE_PATH"
     fi

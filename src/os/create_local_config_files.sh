@@ -39,7 +39,7 @@ create_gitconfig_local() {
 [user]
 
     name =
-    email = local
+    email = 
     # signingkey =" \
         >> "$FILE_PATH"
     fi

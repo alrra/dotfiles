@@ -4,6 +4,8 @@
 
 source_bash_files() {
 
+    . /usr/share/autojump/autojump.sh
+
     declare -r CURRENT_DIRECTORY="$(pwd)"
 
     declare -r -a FILES_TO_SOURCE=(

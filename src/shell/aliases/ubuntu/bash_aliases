@@ -53,3 +53,24 @@ alias u="sudo apt-get update \
             && sudo apt-get upgrade \
             && npm install -g npm \
             && npm upgrade -g"
+
+# work
+
+alias dc="sudo docker-compose"
+alias dum="dc up -d hub cache deviceinfo tracker ads video video-unit-segment-merger video-unit-segment-exporter video-stream-transform-creator compiler custom-feed-importer metadata-creator batch-creatives-maintainer"
+alias ds="dc stop"
+alias drv="dc stop video video-stream-transform-creator; dc up -d video video-stream-transform-creator"
+alias dre="dc stop video-unit-segment-merger video-unit-segment-exporter; dc up -d video-unit-segment-merger video-unit-segment-exporter"
+alias dlv="dc logs -t --follow --tail 50 video-unit-segment-merger video-unit-segment-exporter video video-stream-transform-creator custom-feed-importer"
+alias dlah="dc logs -t --follow --tail 50 ads hub | grep -vE 'Varnish HealthCheck|ODBC connection time:|Kinesis persistent queue size:|\"GET /api/health/metrics HTTP/1.0\" 200|hot-update.json HTTP/1.0'"
+alias dlh="dc logs -t --follow --tail 1000 hub | grep -vE 'Varnish HealthCheck|ODBC connection time:|Kinesis persistent queue size:|\"GET /api/health/metrics HTTP/1.0\" 200|hot-update.json HTTP/1.0|geoip.mab|/health/metrics|/activity|reportHostMetric metric|/api/notifications|Compiled creative'"
+alias drab="dc run --rm admin-task exec bash"
+alias dgrunt="dc run --rm admin-task exec bash -c \"cd server/tools && node_modules/grunt-cli/bin/grunt watch\""
+alias dcompile="dc run --rm admin-task exec bash -c \"client/dashboard/bin/compile -d -app=dashboard\""
+alias drat="dc run --rm admin-task"
+alias drabm="dc run -v ~/docker-tmp:/tmp/mab-test --rm admin-task exec bash"
+alias draa="drab -c \"./services/ads/bin/build\""
+# alias dram="dc down \
+                # && sudo docker volume rm mab_build-artifacts \
+                # && sudo docker rm -f $(sudo docker ps -aq --filter volume=mab_build-artifacts)"
+alias draq="drat upgrade-sns-topics; drat upgrade-sqs-queues"

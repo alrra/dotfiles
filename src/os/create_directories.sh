@@ -9,7 +9,7 @@ create_directories() {
 
     declare -a DIRECTORIES=(
         "$HOME/Work"
-        "$HOME/Work/docker/mab"
+        "$HOME/Work/docker/env"
         "$HOME/private"
         "$HOME/.aws"
     )

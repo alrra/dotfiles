@@ -142,7 +142,7 @@
     abbrev = 12
     attributesfile = ~/.gitattributes
     autocrlf = input
-    editor = vim
+    editor = code
     excludesfile = ~/.gitignore
 
 [diff]
@@ -190,17 +190,14 @@
     #
     # See also: https://github.com/blazvizjak/dotfiles#gitconfiglocal
 
-[include]
-
-    # Load local configs.
-    # https://git-scm.com/docs/git-config#_includes
-    #
-    # [!] The following needs to remain at the end of this file in
-    #     order to allow any of the above configs to be overwritten
-    #     by the local ones
-
-    path = ~/.gitconfig.local
+[includeIf "gitdir:~/private/**"]
+  	path = ~/.gitconfig.local
 
 [includeIf "gitdir:~/Work/**"]
+  	path = ~/.gitconfig.work
 
-    path = ~/.gitconfig.work
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
