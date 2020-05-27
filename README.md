@@ -39,7 +39,7 @@ That's it! ✨
 The setup process will:
 
 * Download the dotfiles on your computer
-  (by default it will suggest `~/Work/dotfiles`).
+  (by default it will suggest `~/private/dotfiles`).
 * Create some additional [directories][dirs].
 * [Symlink][symlink] the [`git`][git], [`shell`][shell],
   and [`vim`][vim] files.
@@ -84,7 +84,7 @@ alias g="git"
 
 # Set PATH additions.
 
-PATH="$PATH:$HOME/Work/dotfiles/src/bin"
+PATH="$PATH:$HOME/private/dotfiles/src/bin"
 
 export PATH
 

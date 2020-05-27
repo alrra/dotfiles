@@ -8,7 +8,7 @@ declare -r DOTFILES_UTILS_URL="https://raw.githubusercontent.com/$GITHUB_REPOSIT
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-declare dotfilesDirectory="$HOME/Work/dotfiles"
+declare dotfilesDirectory="$HOME/private/dotfiles"
 declare skipQuestions=false
 
 # ----------------------------------------------------------------------
@@ -250,6 +250,11 @@ main() {
 
     ./create_local_config_files.sh
 
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    ./create_work_config_files.sh
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ./install/main.sh
@@ -269,6 +274,7 @@ main() {
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         if ! $skipQuestions; then
+            # dont update from dotfiles
             ./update_content.sh
         fi
 

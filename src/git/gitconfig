@@ -200,3 +200,7 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
+
+[includeIf "gitdir:~/Work/**"]
+
+    path = ~/.gitconfig.work

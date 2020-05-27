@@ -39,7 +39,7 @@ create_gitconfig_local() {
 [user]
 
     name =
-    email =
+    email = local
     # signingkey =" \
         >> "$FILE_PATH"
     fi
@@ -70,8 +70,6 @@ main() {
 
     create_bash_local
     create_gitconfig_local
-    create_vimrc_local
-
 }
 
 main

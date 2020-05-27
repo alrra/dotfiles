@@ -19,7 +19,7 @@ upgrade
 ./misc.sh
 ./misc_tools.sh
 ./../npm.sh
-./tmux.sh
-./../vim.sh
+./lastpass.sh
+./work.sh
 
 ./cleanup.sh
