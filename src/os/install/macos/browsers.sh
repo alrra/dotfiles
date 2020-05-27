@@ -33,7 +33,7 @@ brew_install "Flash" "flash-npapi" "homebrew/cask" "cask"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # `Safari Technology Preview` requires macOS 10.11.4 or la
-# https://github.com/alrra/dotfiles/issues
+# https://github.com/blazvizjak/dotfiles/issues
 
 if is_supported_version "$(get_os_version)" "10.11.4"; then
     printf "\n"

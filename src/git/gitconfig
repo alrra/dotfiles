@@ -188,7 +188,7 @@
     # credentials (`name` / `email`), or things such as the `signingkey`
     # in this file, add them in `~/.gitconfig.local`!
     #
-    # See also: https://github.com/alrra/dotfiles#gitconfiglocal
+    # See also: https://github.com/blazvizjak/dotfiles#gitconfiglocal
 
 [include]
 

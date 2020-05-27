@@ -76,6 +76,6 @@ killall "Finder" &> /dev/null
 # so in order for things to get properly set using `PlistBuddy`,
 # the `cfprefsd` process also needs to be killed.
 #
-# https://github.com/alrra/dotfiles/commit/035dda057ddc6013ba21db3d2c30eeb51ba8f200
+# https://github.com/blazvizjak/dotfiles/commit/035dda057ddc6013ba21db3d2c30eeb51ba8f200
 
 killall "cfprefsd" &> /dev/null
