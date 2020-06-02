@@ -105,13 +105,13 @@ such as the `Git` user credentials, e.g.:
     # Sign commits using GPG.
     # https://help.github.com/articles/signing-commits-using-gpg/
 
-    gpgsign = true
+    gpgSign = true
 
 [user]
 
     name = Cătălin Mariș
     email = account@example.com
-    signingkey = XXXXXXXX
+    signingKey = XXXXXXXX
 ```
 
 #### `~/.vimrc.local`
