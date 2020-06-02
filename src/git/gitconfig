@@ -140,10 +140,10 @@
 [core]
 
     abbrev = 12
-    attributesfile = ~/.gitattributes
+    attributesFile = ~/.gitattributes
     autocrlf = input
     editor = vim
-    excludesfile = ~/.gitignore
+    excludesFile = ~/.gitignore
 
 [diff]
 
