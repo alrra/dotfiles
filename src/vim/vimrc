@@ -154,6 +154,8 @@ if has('windows')
     set winminheight=0              " Allow windows to be squashed.
 endif
 
+" Prevent `Q` in `normal` mode from entering `Ex` mode.
+nmap Q <Nop>
 
 " ----------------------------------------------------------------------
 " | Plugins                                                            |
