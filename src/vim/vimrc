@@ -73,6 +73,7 @@ set listchars+=eol:↴                " │ represent invisible characters.
 set listchars+=nbsp:_               " ┘
 
 set magic                           " Enable extended regexp.
+" set mouse+=a                        " Enable mouse support.
 set mousehide                       " Hide mouse pointer while typing.
 set noerrorbells                    " Disable error bells.
 
