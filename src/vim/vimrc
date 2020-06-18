@@ -692,7 +692,7 @@ set statusline+=\ (%P)\        " Percent through file
 
 " Example result:
 "
-"  [1] [master] [vim/vimrc][vim][unix:utf-8]            17,238/381 (59%)
+"  [1] [main] [vim/vimrc][vim][unix:utf-8]            17,238/381 (59%)
 
 
 " ----------------------------------------------------------------------
