@@ -1,11 +1,13 @@
 # Automatically normalize line endings for all text-based files.
+#
 # https://git-scm.com/docs/gitattributes#_end_of_line_conversion
 
 * text=auto
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Exclude the following files when generating an archive
+#
 # https://git-scm.com/book/en/Customizing-Git-Git-Attributes#Exporting-Your-Repository
 
 .editorconfig export-ignore
@@ -13,3 +15,16 @@
 .github export-ignore
 src/vim/vim/pack/* export-ignore
 tests export-ignore
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Override the language definitions for the following files to
+# ensure that GitHub not only correctly syntax highlights them
+# but also generates better language statistics.
+#
+# https://github.com/github/linguist
+
+src/git/gitattributes   linguist-language=gitattributes
+src/git/gitconfig       linguist-language=gitconfig
+src/git/gitignore       linguist-language=gitignore
+src/tmux/tmux.conf      linguist-language=sh
