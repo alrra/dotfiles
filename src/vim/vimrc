@@ -191,7 +191,7 @@ function! InitPlugins() abort
     call minpac#add('raimondi/delimitmate')
     call minpac#add('scrooloose/nerdtree')
     call minpac#add('scrooloose/syntastic')
-    call minpac#add('sheerun/vim-polyglot')
+    call minpac#add('sheerun/vim-polyglot', {'type': 'opt'})
     call minpac#add('shougo/neocomplcache.vim')
     call minpac#add('shougo/neosnippet')
     call minpac#add('shougo/neosnippet-snippets')
