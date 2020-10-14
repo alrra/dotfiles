@@ -41,9 +41,3 @@ if ! package_is_installed "firefox-trunk"; then
 fi
 
 install_package "Firefox Nightly" "firefox-trunk"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-printf "\n"
-
-install_package "Flash" "flashplugin-installer"
