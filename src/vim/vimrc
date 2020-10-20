@@ -590,9 +590,9 @@ nmap <leader>sr :%s/\r//g<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" [,ss] Strip trailing whitespace.
+" [,sw] Strip trailing whitespace.
 
-nmap <leader>ss :call StripTrailingWhitespaces()<CR>
+nmap <leader>sw :call StripTrailingWhitespaces()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
