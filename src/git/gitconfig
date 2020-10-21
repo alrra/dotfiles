@@ -82,7 +82,7 @@
             git checkout -B $branch && \
             git merge pr/$1 && \
             git branch -D pr/$1 && \
-            git commit --amend -m \"$(git log -1 --pretty=%B)\n\nClose #$1\"; \
+            git commit --amend -m \"$(git log -1 --pretty=%B)\n\nClose: #$1\"; \
         fi \
     }; f"
 
