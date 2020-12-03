@@ -1,25 +1,23 @@
 [alias]
 
-    a   = commit --amend
-    br  = branch
-    c   = commit
-    ca  = !git add -A && git commit             # Commit all changes.
-    co  = checkout
-    cp  = cherry-pick
-    d   = diff -- . ':!*package-lock.json' ':!*yarn.lock'
-    dc  = diff --cached -- . ':!*package-lock.json' ':!*yarn.lock'
-    f   = fetch
-    g   = log --graph --pretty=custom           # Show custom graph.
-    git = !exec git                             # Allow `$ git git git...`
-    l   = log --pretty=custom                   # Show custom log.
-    lc  = shortlog --email --numbered --summary # List contributors.
-    p   = push
-    r   = rebase
-    s   = status
-    u   = commit --amend --no-edit              # Update
-    w   = instaweb --httpd=webrick              # Start web-based visualizer.
+    a = commit --amend
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    br = branch
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    c = commit
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Commit all changes.
+
+    ca = !git add --all && git commit
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 
     # Find commits by source code.
 
@@ -34,6 +32,14 @@
     cm = "!f() { \
         git log --pretty=custom --decorate --date=short --grep=\"$1\"; \
     }; f"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    co = checkout
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    cp = cherry-pick
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -57,6 +63,42 @@
             GIT_EDITOR=\"git interpret-trailers --in-place --trailer='Co-authored-by: $1 <$2>'\" git commit --amend; \
         fi \
     }; f"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    d = diff -- . ':!*package-lock.json' ':!*yarn.lock'
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    dc = diff --cached -- . ':!*package-lock.json' ':!*yarn.lock'
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    f = fetch
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Show custom text-based graphical log of the commit history.
+
+    g = log --graph --pretty=custom
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Allow `$ git git git...`
+
+    git = !exec git
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Show custom log of the commit history.
+
+    l = log --pretty=custom
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # List contributors.
+
+    lc = shortlog --email --numbered --summary
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -88,6 +130,14 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    p = push
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    r = rebase
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Remove the tag with the specified tag name if
     # exists and tag the latest commit with that name.
 
@@ -107,6 +157,21 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    s = status
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Update the content of the last commit by including all
+    # staged changes.
+    #
+    # Note: "Update" is used loosely. Git doesn't actually
+    # update the last commit, but instead, creates a new commit
+    # based on the last commit and replaces it.
+
+    u = commit --amend --no-edit
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Undo last commits (by default it undoes the last commit).
 
     ulc = "!f() { \
@@ -114,6 +179,11 @@
         git reset --soft \"HEAD~$n\"; \
     }; f"
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Start web-based visualizer.
+
+    w = instaweb --httpd=webrick
 
 [color "branch"]
 
