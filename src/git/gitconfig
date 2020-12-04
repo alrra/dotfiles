@@ -1,9 +1,5 @@
 [alias]
 
-    a = commit --amend
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     br = branch
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -178,6 +174,14 @@
         declare n=\"${1:-1}\"; \
         git reset --soft \"HEAD~$n\"; \
     }; f"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Update the content of the last commit by including all
+    # staged changes as well as allow the user to change its
+    # commit message.
+
+    um = commit --amend
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
