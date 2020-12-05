@@ -168,6 +168,13 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # Update the content of the last commit by including all
+    # local changes.
+
+    ua = !git add --all && git commit --amend --no-edit
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Undo last commits (by default it undoes the last commit).
 
     ulc = "!f() { \
