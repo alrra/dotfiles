@@ -427,6 +427,18 @@ if has("autocmd")
 
     " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    " Correctly recognize files.
+
+    augroup correctly_recognize_files
+
+        autocmd!
+        autocmd BufEnter  gitconfig       :setlocal filetype=gitconfig
+        autocmd BufEnter .gitconfig.local :setlocal filetype=gitconfig
+
+    augroup END
+
+    " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     " Use relative line numbers.
     " http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
 
