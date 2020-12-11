@@ -115,8 +115,8 @@
     # if a branch name is specified, on top of the specified branch.
 
     mpr = "!f() { \
-        declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
-        declare branch=\"${2:-$currentBranch}\"; \
+        currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
+        branch=\"${2:-$currentBranch}\"; \
         if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
             git fetch origin refs/pull/$1/head:pr/$1 && \
             git checkout -B $branch && \
@@ -151,7 +151,7 @@
     # Remove last commits (by default it removes the last commit).
 
     rlc = "!f() { \
-        declare n=\"${1:-1}\"; \
+        n=\"${1:-1}\"; \
         git reset --hard \"HEAD~$n\"; \
     }; f"
 
@@ -182,7 +182,7 @@
     # Undo last commits (by default it undoes the last commit).
 
     ulc = "!f() { \
-        declare n=\"${1:-1}\"; \
+        n=\"${1:-1}\"; \
         git reset --soft \"HEAD~$n\"; \
     }; f"
 
