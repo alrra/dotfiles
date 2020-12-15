@@ -15,7 +15,7 @@ enable_color_support() {
 
     # Load OS specific color support.
 
-    . "colors/$OS/bash_colors"
+    . "$OS/bash_colors"
 
 }
 

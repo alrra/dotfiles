@@ -9,8 +9,8 @@ create_symlinks() {
 
     declare -a FILES_TO_SYMLINK=(
 
-        "shell/aliases/bash_aliases"
-        "shell/autocomplete/$(get_os)/bash_autocomplete"
+        "shell/bash_aliases"
+        "shell/bash_autocomplete"
         "shell/bash_exports"
         "shell/bash_functions"
         "shell/bash_logout"

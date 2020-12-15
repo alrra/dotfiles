@@ -41,6 +41,6 @@ alias y="yarn"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Load OS specific aliases.
+# Load OS specific configs.
 
-. "aliases/$OS/bash_aliases"
+. "$OS/bash_aliases"
