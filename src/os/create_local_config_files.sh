@@ -11,9 +11,26 @@ create_bash_local() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
-        printf "%s\n\n" "#!/bin/bash" >> "$FILE_PATH"
-    fi
+   if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+
+        DOTFILES_BIN_DIR="$(dirname "$(pwd)")/bin/"
+
+        printf "%s\n" \
+"#!/bin/bash
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Set PATH additions.
+
+PATH=\"$DOTFILES_BIN_DIR:\$PATH\"
+
+export PATH
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" \
+        >> "$FILE_PATH"
+   fi
 
     print_result $? "$FILE_PATH"
 
