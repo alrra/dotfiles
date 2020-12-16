@@ -77,18 +77,17 @@ Here is an example:
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Set local aliases.
-
-alias g="git"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Set PATH additions.
 
-PATH="$PATH:$HOME/projects/dotfiles/src/bin"
+PATH="/Users/alrra/projects/dotfiles/src/bin/:$PATH"
 
 export PATH
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Set local aliases.
+
+alias g="git"
 ```
 
 #### `~/.gitconfig.local`
