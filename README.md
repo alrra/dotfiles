@@ -1,5 +1,7 @@
-[Cătălin][repo]’s dotfiles [![Build Status][ci badge]][ci link]
+[Cătălin][repo]’s dotfiles
 ==========================
+
+[![CI status for macOS][ci badge macos]][ci link macos] [![CI status for Ubuntu][ci badge ubuntu]][ci link ubuntu]
 
 These are the base dotfiles that I start with when I set up a new
 environment. For more specific local needs I use the `*.local` files
@@ -181,8 +183,10 @@ The code is available under the [MIT license][license].
 
 <!-- Link labels: -->
 
-[ci badge]: https://github.com/alrra/dotfiles/workflows/test/badge.svg
-[ci link]: https://github.com/alrra/dotfiles/actions
+[ci badge macos]: https://github.com/alrra/dotfiles/workflows/macOS/badge.svg
+[ci badge ubuntu]: https://github.com/alrra/dotfiles/workflows/Ubuntu/badge.svg
+[ci link macos]: https://github.com/alrra/dotfiles/actions?query=workflow%3AmacOS
+[ci link ubuntu]: https://github.com/alrra/dotfiles/actions?query=workflow%3AUbuntu
 [dirs]: src/os/create_directories.sh
 [fork]: https://help.github.com/en/github/getting-started-with-github/fork-a-repo
 [git log macos]: https://user-images.githubusercontent.com/1223565/101947419-51072f00-3ba5-11eb-9e8e-fea987ac97c2.png
