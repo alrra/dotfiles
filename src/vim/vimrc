@@ -345,6 +345,14 @@ endfunction
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+function! StripBOM()
+    if has('multi_byte')
+        set nobomb
+    endif
+endfunction
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 function! StripTrailingWhitespaces()
 
     " Save last search and cursor position.
@@ -479,23 +487,24 @@ if has("autocmd")
 
     " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    " Automatically strip the trailing
-    " whitespaces when files are saved.
+    " Automatically strip whitespaces when files are saved.
 
-    augroup strip_trailing_whitespaces
+    augroup strip_whitespaces
 
-        " List of file types for which the trailing whitespaces
+        " List of file types for which the whitespaces
         " should not be removed:
 
         let excludedFileTypes = []
 
         " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        " Only strip the trailing whitespaces if
-        " the file type is not in the excluded list.
+        " Only strip the whitespaces if the file type is not
+        " in the excluded list.
 
         autocmd!
-        autocmd BufWritePre * if index(excludedFileTypes, &ft) < 0 | :call StripTrailingWhitespaces()
+        autocmd BufWritePre * if index(excludedFileTypes, &ft) < 0 |
+            \ :call StripBOM() |
+            \ :call StripTrailingWhitespaces()
 
     augroup END
 
@@ -594,6 +603,12 @@ map <Leader>pp :call PrettyPrint()<CR>
 " [,rl ] Toggle `RainbowLevels`.
 
 map <leader>rl :RainbowLevelsToggle<cr>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" [,sb] Strip BOM (Byte Order Mark).
+
+nmap <leader>sb :call StripBOM()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
