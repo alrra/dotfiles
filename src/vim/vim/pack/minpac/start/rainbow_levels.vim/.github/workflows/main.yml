@@ -1,31 +1,44 @@
-name: CI
+name: Tests
 
 on:
-  push:
-    branches:
-    - master
-  pull_request:
-    branches:
-    - master
+- push
+- pull_request
 
 jobs:
   test:
-    name: Test
+    name: Tests
     runs-on: ubuntu-latest
-    container: thiagoalessio/vader-vim
+
     steps:
-    - uses: actions/checkout@v1
-    - name: Running tests with code coverage
+    - name: Checkout code
+      uses: actions/checkout@v1
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '2.7'
+
+    - name: Install dependencies
+      run: sudo apt-get -y install vim && pip install covimerage
+
+    - name: Install vader.vim
+      run: git clone https://github.com/junegunn/vader.vim.git ./vader.vim
+
+    - name: Configure vim
       run: |
         cat > ~/.vimrc <<VIMRC
         filetype off
-        set rtp+=/vader.vim
+        set rtp+=$(pwd)/vader.vim
         set rtp+=.
         set rtp+=after
         filetype plugin indent on
         VIMRC
-        covimerage run vim -c 'Vader! test/*' >/dev/null
-    - name: Submitting code coverage report
-      run: covimerage xml --omit */default_colors/* && codecov
-      env:
-         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+    - name: Run tests with code coverage
+      run: covimerage run vim -c 'Vader! test/*'
+
+    - name: Generate code coverage report
+      run: covimerage xml --omit */default_colors/*
+
+    - name: Submit code coverage report
+      run: bash <(curl -s https://codecov.io/bash)
