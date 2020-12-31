@@ -7,7 +7,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 install_plugin() {
-    execute "code --install-extension $1" "$2 (plugin)"
+    execute "code --install-extension $2" "$1 (plugin)"
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -15,14 +15,14 @@ install_plugin() {
 print_in_purple "\n   Visual Studio Code\n\n"                                :
 
 # Install VSCode
-brew_install "Visual Studio Code" "visual-studio-code" "homebrew/cask" "cask"
+brew_install "Visual Studio Code" "visual-studio-code" "--cask"
 
 printf "\n"
 
 # Install the VSCode plugins
-install_plugin "DavidAnson.vscode-markdownlint" "MarkdownLint"
-install_plugin "EditorConfig.EditorConfig" "EditorConfig"
-install_plugin "vscodevim.vim" "Vim"
+install_plugin "MarkdownLint" "DavidAnson.vscode-markdownlint"
+install_plugin "EditorConfig" "EditorConfig.EditorConfig"
+install_plugin "Vim" "vscodevim.vim"
 
 # Close VSCode
 osascript -e 'quit app "Visual Studio Code"'
