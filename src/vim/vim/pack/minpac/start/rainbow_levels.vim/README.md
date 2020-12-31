@@ -4,12 +4,11 @@
 
 A different approach to code highlighting.
 
-[![Circle CI][circleci_badge]][circleci]
+[![CI][ci_badge]][ci]
 [![Code Coverage][codecov_badge]][codecov]
 [![Version][version_badge]][vim_org]
 [![Docs][docs_badge]][docs]
 [![Join the chat][gitter_badge]][gitter]
-[![Tweet][twitter_badge]][tweet_intent]
 
 This plugin highlights code by indentation level instead of language syntax.
 <br/>
@@ -157,18 +156,16 @@ rainbow_levels.vim is released under the [MIT License][].
 
 <h2></h2><p align="center"><sub>Made with <sub><a href="#"><img src="https://thiagoalessio.github.io/rainbow_levels.vim/readme-images/heart.svg" alt="love" width="14px"/></a></sub> in Berlin</sub></p>
 
-[circleci_badge]: https://circleci.com/gh/thiagoalessio/rainbow_levels.vim/tree/master.svg?style=shield
-[circleci]: https://circleci.com/gh/thiagoalessio/workflows/rainbow_levels.vim/tree/master
-[codecov_badge]: https://codecov.io/gh/thiagoalessio/rainbow_levels.vim/branch/master/graph/badge.svg
+[ci_badge]: https://github.com/thiagoalessio/rainbow_levels.vim/workflows/Tests/badge.svg?event=push
+[ci]: https://github.com/thiagoalessio/rainbow_levels.vim/actions?query=workflow%3ATests
+[codecov_badge]: https://codecov.io/gh/thiagoalessio/rainbow_levels.vim/branch/main/graph/badge.svg
 [codecov]: https://codecov.io/gh/thiagoalessio/rainbow_levels.vim
 [version_badge]: https://img.shields.io/badge/version-0.8.0-FF00CC.svg
 [docs_badge]: https://img.shields.io/badge/docs-%3Ah%20RainbowLevels-blue.svg
-[docs]: https://github.com/thiagoalessio/rainbow_levels.vim/blob/master/doc/rainbow_levels.txt
+[docs]: https://github.com/thiagoalessio/rainbow_levels.vim/blob/main/doc/rainbow_levels.txt
 [vim_org]: http://www.vim.org/scripts/script.php?script_id=5629
 [gitter_badge]: https://badges.gitter.im/thiagoalessio/rainbow_levels.vim.svg
 [gitter]: https://gitter.im/thiagoalessio/rainbow_levels.vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-[twitter_badge]: https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter
-[tweet_intent]: https://twitter.com/intent/tweet?text=rainbow_levels.vim%3A%20A%20different%20approach%20to%20code%20highlighting.&url=https://github.com/thiagoalessio/rainbow_levels.vim&hashtags=vim
 [Rainbow Levels Screenshot]: https://raw.githubusercontent.com/thiagoalessio/rainbow_levels.vim/gh-pages/readme-images/screenshot.png
 [Jellybeans]: https://github.com/nanotech/jellybeans.vim
 [user_themes]: https://github.com/thiagoalessio/rainbow_levels.vim/wiki/User-Contributed-Themes
@@ -178,4 +175,4 @@ rainbow_levels.vim is released under the [MIT License][].
 [lucascaton]: https://www.lucascaton.com.br
 [shoemakerdr]: https://github.com/shoemakerdr
 [inkarkat]: https://github.com/inkarkat
-[MIT License]: https://github.com/thiagoalessio/rainbow_levels.vim/blob/master/MIT-LICENSE
+[MIT License]: https://github.com/thiagoalessio/rainbow_levels.vim/blob/main/MIT-LICENSE
