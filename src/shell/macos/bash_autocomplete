@@ -25,7 +25,7 @@ if command -v brew &> /dev/null &&
 
     # Make Bash complete the `g` alias just like it does `git`.
 
-    complete -o default -o nospace -F _git g
+    complete -o default -o nospace -F __git_wrap__git_main g
 
 elif [ -f /etc/bash_completion ]; then
     source /etc/bash_completion;
