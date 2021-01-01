@@ -22,7 +22,7 @@
     # Find commits by source code.
 
     cc = "!f() { \
-        git log --pretty=custom --decorate --date=short -S\"$1\"; \
+        git log --date=short --decorate --pretty=custom -S\"$1\"; \
     }; f"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -30,7 +30,7 @@
     # Find commits by commit message.
 
     cm = "!f() { \
-        git log --pretty=custom --decorate --date=short --grep=\"$1\"; \
+        git log --date=short --decorate --pretty=custom --grep=\"$1\"; \
     }; f"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -47,7 +47,7 @@
 
     credit = "!f() { \
         if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
-            git commit --amend --author \"$1 <$2>\" -C HEAD; \
+            git commit --amend --author \"$1 <$2>\" --no-edit --reuse-message=HEAD; \
         fi \
     }; f"
 
@@ -105,8 +105,8 @@
     # List remote branches.
 
     lrb = "!f() { \
-        remote="${1:-origin}"; \
-        git ls-remote --heads "$remote"; \
+        remote=\"${1:-origin}\"; \
+        git ls-remote --heads \"$remote\"; \
     }; f"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -115,16 +115,17 @@
     # if a branch name is specified, on top of the specified branch.
 
     mpr = "!f() { \
-        currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
-        branch=\"${2:-$currentBranch}\"; \
+        current_branch=\"$(git symbolic-ref --short HEAD)\"; \
+        branch=\"${2:-$current_branch}\"; \
+        \
         if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
             git fetch origin refs/pull/$1/head:pr/$1 && \
-            git checkout -B $branch && \
-            git rebase $branch pr/$1 && \
-            git checkout -B $branch && \
+            git checkout -B \"$branch\" && \
+            git rebase \"$branch\" pr/$1 && \
+            git checkout -B \"$branch\" && \
             git merge pr/$1 && \
-            git branch -D pr/$1 && \
-            git commit --amend -m \"$(git log -1 --pretty=%B)\n\nClose: #$1\"; \
+            git branch --delete --force pr/$1 && \
+            git commit --amend --message=\"$(git log -1 --pretty=%B)\n\nClose: #$1\"; \
         fi \
     }; f"
 
@@ -142,8 +143,8 @@
     # exists and tag the latest commit with that name.
 
     retag = "!f() { \
-        git tag -d "$1" &> /dev/null; \
-        git tag $1; \
+        git tag --delete \"$1\" &> /dev/null; \
+        git tag \"$1\"; \
     }; f"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -151,8 +152,8 @@
     # Remove last commits (by default it removes the last commit).
 
     rlc = "!f() { \
-        n=\"${1:-1}\"; \
-        git reset --hard \"HEAD~$n\"; \
+        number_of_commits=\"${1:-1}\"; \
+        git reset --hard \"HEAD~$number_of_commits\"; \
     }; f"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -182,8 +183,8 @@
     # Undo last commits (by default it undoes the last commit).
 
     ulc = "!f() { \
-        n=\"${1:-1}\"; \
-        git reset --soft \"HEAD~$n\"; \
+        number_of_commits=\"${1:-1}\"; \
+        git reset --soft \"HEAD~$number_of_commits\"; \
     }; f"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -244,7 +245,7 @@
 
     # Use `hexdump` to diff binary files.
 
-    textconv = hexdump -v -C
+    textconv = hexdump --canonical --no-squeezing
 
 [help]
 
