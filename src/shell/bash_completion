@@ -4,4 +4,4 @@
 
 # Load OS specific configs.
 
-. "$OS/bash_autocomplete"
+. "$OS/bash_completion"
