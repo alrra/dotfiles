@@ -33,7 +33,7 @@ And you can use them in a variety of ways, for example:
 map <leader>l :RainbowLevelsToggle<cr>
 
 " Or automatically turning it on for certain file types:
-au FileType javascript,python,php,xml,yaml :RainbowLevelsOn
+autocmd Filetype * if index(['javascript', 'python', 'php', 'xml', 'yaml'], &ft) | call rainbow_levels#on() | else | call rainbow_levels#off() | endif
 ```
 
 ## Customization
