@@ -5,6 +5,15 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Stop the macOS Terminal from showing a warning
+# message when Zsh is not the default shell.
+#
+# https://support.apple.com/en-us/HT208050
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Make `vim` the default editor.
 
 export EDITOR="vim"
