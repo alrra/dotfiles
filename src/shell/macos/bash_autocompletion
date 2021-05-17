@@ -26,5 +26,5 @@ if command -v brew &> /dev/null; then
     fi
 
 elif [ -f /etc/bash_completion ]; then
-    source /etc/bash_completion;
+    . /etc/bash_completion;
 fi

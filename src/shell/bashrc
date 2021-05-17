@@ -1,4 +1,4 @@
 #!/bin/bash
 
 [ -n "$PS1" ] \
-    && . ~/.bash_profile
+    && . "$HOME/.bash_profile"

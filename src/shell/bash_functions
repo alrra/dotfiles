@@ -7,9 +7,10 @@
 clone() {
 
     git clone "$1" \
-        || return;
+        || return
 
-    cd "$(basename "${1%.*}")"
+    cd "$(basename "${1%.*}")" \
+        || return
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
