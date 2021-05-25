@@ -31,16 +31,6 @@ alias show-desktop-icons="gsettings set org.gnome.desktop.background show-deskto
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Get local IP.
-
-alias local-ip="ifconfig \
-                    | grep 'inet addr' \
-                    | grep -v '127.0.0.1' \
-                    | cut -d: -f2 \
-                    | cut -d' ' -f1"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Open from the terminal.
 
 alias o="xdg-open"
