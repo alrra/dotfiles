@@ -1,7 +1,7 @@
 # For more information about the configurations used
-# in this file, please see the GitHub actions documentation.
+# in this file, please see the GitHub Actions documentation.
 #
-# https://help.github.com/en/github/automating-your-workflow-with-github-actions/
+# https://docs.github.com/en/actions
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -13,8 +13,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
-      - name: Run tests
+      - name: Lint
         run: ./tests/shellcheck.sh
+
+      - name: Check links
+        run: ./tests/check_links.sh
 
 name: Ubuntu
 
