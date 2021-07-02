@@ -4,7 +4,7 @@
 
 # Lock screen.
 
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias afk="osascript -e 'tell application \"System Events\" to sleep'"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
