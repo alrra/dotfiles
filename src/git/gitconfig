@@ -18,23 +18,6 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-
-    # Find commits by source code.
-
-    cc = "!f() { \
-        git log --date=short --decorate --pretty=custom -S\"$1\"; \
-    }; f"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Find commits by commit message.
-
-    cm = "!f() { \
-        git log --date=short --decorate --pretty=custom --grep=\"$1\"; \
-    }; f"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     co = checkout
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -159,6 +142,22 @@
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     s = status
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Search commits by source code.
+
+    sc = "!f() { \
+        git log --date=short --decorate --pretty=custom -S\"$1\"; \
+    }; f"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Seach commits by commit message.
+
+    sm = "!f() { \
+        git log --date=short --decorate --pretty=custom --grep=\"$1\"; \
+    }; f"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
