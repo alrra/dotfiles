@@ -20,8 +20,9 @@ brew_install "Visual Studio Code" "visual-studio-code" "--cask"
 printf "\n"
 
 # Install the VSCode plugins
-install_plugin "MarkdownLint" "DavidAnson.vscode-markdownlint"
 install_plugin "EditorConfig" "EditorConfig.EditorConfig"
+install_plugin "File Icons" "vscode-icons-team.vscode-icons"
+install_plugin "MarkdownLint" "DavidAnson.vscode-markdownlint"
 install_plugin "Vim" "vscodevim.vim"
 
 # Close VSCode
