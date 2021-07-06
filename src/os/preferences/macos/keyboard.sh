@@ -33,3 +33,6 @@ execute "defaults write -g NSAutomaticDashSubstitutionEnabled -bool false" \
 
 execute "defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false" \
     "Disable smart quotes"
+
+execute "defaults write com.apple.HIToolbox AppleFnUsageType -int 2" \
+    "Remap the emoji picker to the Fn key"
