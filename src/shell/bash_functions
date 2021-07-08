@@ -163,7 +163,7 @@ ppp() {
 
 # Search history.
 
-qh() {
+h() {
     #           ┌─ enable colors for pipe
     #           │  ("--color=auto" enables colors only if
     #           │  the output is in the terminal)
