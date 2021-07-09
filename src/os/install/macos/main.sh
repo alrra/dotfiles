@@ -19,7 +19,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 ./misc.sh
 ./misc_tools.sh
 ./../npm.sh
-./quick_look.sh
 ./tmux.sh
 ./video_tools.sh
 ./../vim.sh
