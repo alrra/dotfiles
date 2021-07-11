@@ -178,8 +178,8 @@ The code is available under the [MIT license][license].
 [git output macos]: https://user-images.githubusercontent.com/1223565/101947419-51072f00-3ba5-11eb-9e8e-fea987ac97c2.png
 [git output ubuntu]: https://user-images.githubusercontent.com/1223565/101947417-506e9880-3ba5-11eb-805c-0732602c34b3.png
 [git]: src/git
-[install macos]: src/os/install/macos
-[install ubuntu]: src/os/install/ubuntu
+[install macos]: src/os/installs/macos
+[install ubuntu]: src/os/installs/ubuntu
 [license]: LICENSE.txt
 [preferences macos]: src/os/preferences/macos
 [preferences ubuntu]: src/os/preferences/ubuntu
@@ -194,4 +194,4 @@ The code is available under the [MIT license][license].
 [vim plugins]: src/vim/vim/pack/minpac/start
 [vim ubuntu]: https://user-images.githubusercontent.com/1223565/101947424-519fc580-3ba5-11eb-83b1-e4c3573315a3.png
 [vim]: src/vim
-[vscode plugins]: src/os/install/macos/vscode.sh
+[vscode plugins]: src/os/installs/macos/vscode.sh

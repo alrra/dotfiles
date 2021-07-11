@@ -19,7 +19,7 @@ check_links() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     for file in $MARKDOWN_FILES; do
-        npx markdown-link-check --quiet --retry "$file" \
+        npx markdown-link-check@3.8.7 --quiet --retry "$file" \
             || exitCode=1
     done
 
