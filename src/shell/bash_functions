@@ -16,23 +16,23 @@ clone() {
 
     # Check if there are dependencies to be installed.
 
-    if [ -f "package.json" ]; then
+    if [ ! -f "package.json" ]; then
+        return
+    fi
 
-        # Check if the project uses Yarn.
+    # Check if the project uses Yarn.
 
-        if [ -f "yarn.lock" ] && command -v "yarn" $> /dev/null; then
-            printf "\n"
-            yarn install
-            return
-        fi
+    if [ -f "yarn.lock" ] && command -v "yarn" $> /dev/null; then
+        printf "\n"
+        yarn install
+        return
+    fi
 
-        # If not, assume it uses npm.
+    # If not, assume it uses npm.
 
-        if command -v "npm" $> /dev/null; then
-            printf "\n"
-            npm install
-        fi
-
+    if command -v "npm" $> /dev/null; then
+        printf "\n"
+        npm install
     fi
 
 }
@@ -45,20 +45,21 @@ datauri() {
 
     local mimeType=""
 
-    if [ -f "$1" ]; then
-        mimeType=$(file -b --mime-type "$1")
-        #                └─ do not prepend the filename to the output
-
-        if [[ $mimeType == text/* ]]; then
-            mimeType="$mimeType;charset=utf-8"
-        fi
-
-        printf "data:%s;base64,%s" \
-                    "$mimeType" \
-                    "$(openssl base64 -in "$1" | tr -d "\n")"
-    else
+    if [ ! -f "$1" ]; then
         printf "%s is not a file.\n" "$1"
+        return
     fi
+
+    mimeType=$(file --brief --mime-type "$1")
+    #               └─ do not prepend the filename to the output
+
+    if [[ $mimeType == text/* ]]; then
+        mimeType="$mimeType;charset=utf-8"
+    fi
+
+    printf "data:%s;base64,%s" \
+        "$mimeType" \
+        "$(openssl base64 -in "$1" | tr -d "\n")"
 
 }
 
@@ -89,7 +90,10 @@ evm() {
 
     for file in "${files[@]}"; do
         printf "* %s\n" "$file"
-        vim -c "norm! $numberOfTimes@q" -c "wq" "$file"
+        vim \
+            -c "norm! $numberOfTimes@q" \
+            -c "wq" \
+            "$file"
     done
 
 }
@@ -103,8 +107,8 @@ ppp() {
     # Check if ImageMagick's convert command-line tool is installed.
 
     if ! command -v "convert" $> /dev/null; then
-        printf "Please install ImageMagick's 'convert' command-line tool!"
-        exit;
+        printf "ImageMagick's 'convert' command-line tool is not installed!"
+        exit
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -127,7 +131,9 @@ ppp() {
     fi
 
     if [ "$option" == "resize" ]; then
-        convert "$photo" \
+
+        convert \
+            "$photo" \
             -colorspace RGB \
             +sigmoidal-contrast 11.6933 \
             -define filter:filter=Sinc \
@@ -141,13 +147,14 @@ ppp() {
             +append \
             "$newPhotoName" \
         && printf "* %s (%s)\n" \
-            "$newPhotoName" \
-            "$geometry"
+                "$newPhotoName" \
+                "$geometry"
 
         return
     fi
 
-    convert "$photo" \
+    convert \
+        "$photo" \
         -morphology Convolve DoG:10,10,0 \
         -negate \
         -normalize \
@@ -155,7 +162,7 @@ ppp() {
         -channel RBG \
         -level 10%,91%,0.1 \
         "$newPhotoName" \
-        && printf "* %s\n" "$newPhotoName"
+    && printf "* %s\n" "$newPhotoName"
 
 }
 
@@ -164,12 +171,13 @@ ppp() {
 # Search history.
 
 h() {
-    #           ┌─ enable colors for pipe
-    #           │  ("--color=auto" enables colors only if
-    #           │  the output is in the terminal)
-    grep --color=always "$*" "$HISTFILE" |       less -RX
-    # display ANSI color escape sequences in raw form ─┘│
-    #       don't clear the screen after quitting less ─┘
+    #           ┌─ Enable colors for pipe.
+    #           │  ("--color=auto" enables colors only
+    #           │   if the output is in the terminal.)
+    grep --color=always "$*" "$HISTFILE" \
+        | less --no-init --raw-control-chars
+          #    │         └─ Display ANSI color escape sequences in raw form.
+          #    └─ Don't clear the screen after quitting less.
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -177,7 +185,13 @@ h() {
 # Search for text within the current directory.
 
 s() {
-    grep -ir --color=always "$*" --exclude-dir=".git" --exclude-dir="node_modules" . | less -RX
-    #     │└─ search all files under each directory, recursively
-    #     └─ ignore case
+    grep --color=always "$*" \
+         --exclude-dir=".git" \
+         --exclude-dir="node_modules" \
+         --ignore-case \
+         --recursive \
+         . \
+        | less --no-init --raw-control-chars
+          #    │         └─ Display ANSI color escape sequences in raw form.
+          #    └─ Don't clear the screen after quitting less.
 }
