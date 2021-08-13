@@ -1,0 +1,9 @@
+{
+    "header-style": {
+        "style": "setext_with_atx"
+    },
+    "line_length": {
+        "code_blocks": false,
+        "tables": false
+    }
+}

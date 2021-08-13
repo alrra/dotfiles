@@ -5,7 +5,21 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-check_links() {
+# Executes provided function on each found Markdown file.
+#
+# $1: Function to be executed.
+#
+# Returns with an exit status of 0 if the provided function
+# succeeded for all Markdown files, 1 otherwise.
+
+check_markdown_files() {
+
+    if ! cmd_exists "npx"; then
+        print_error "'npx' command is not available."
+        return 1
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     local MARKDOWN_FILES=$( \
         find .. \
@@ -19,23 +33,10 @@ check_links() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     for file in $MARKDOWN_FILES; do
-        npx markdown-link-check@3.8.7 --quiet --retry "$file" \
+        "$1" "$file" \
             || exitCode=1
     done
 
     return $exitCode
 
 }
-
-main() {
-
-    if ! cmd_exists "npx"; then
-        print_error "'npx' command is not available."
-        return 1
-    fi
-
-    check_links
-
-}
-
-main

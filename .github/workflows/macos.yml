@@ -16,11 +16,14 @@ jobs:
       - name: Install dependencies
         run: brew install shellcheck
 
-      - name: Lint
-        run: ./tests/shellcheck.sh
+      - name: Lint shell files
+        run: ./tests/lint_shell_files.sh
 
-      - name: Check links
-        run: ./tests/check_links.sh
+      - name: Lint Markdown files
+        run: ./tests/lint_markdown_files.sh
+
+      - name: Check links from Markdown file
+        run: ./tests/check_links_from_markdown_files.sh
 
 name: macOS
 
