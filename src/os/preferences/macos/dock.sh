@@ -50,4 +50,16 @@ execute "defaults write com.apple.dock showhidden -bool true" \
 execute "defaults write com.apple.dock tilesize -int 60" \
     "Set icon size"
 
+execute "defaults write com.apple.dock wvous-tr-corner -int 0" \
+    "Disable top right hot corner"
+
+execute "defaults write com.apple.dock wvous-tl-corner -int 0" \
+    "Disable top left hot corner"
+
+execute "defaults write com.apple.dock wvous-bl-corner -int 0" \
+    "Disable bottom left hot corner"
+
+execute "defaults write com.apple.dock wvous-br-corner -int 0" \
+    "Disable bottom right hot corner"
+
 killall "Dock" &> /dev/null
