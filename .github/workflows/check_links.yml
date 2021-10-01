@@ -11,7 +11,7 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Check links
         run: ./tests/check_links_from_markdown_files.sh

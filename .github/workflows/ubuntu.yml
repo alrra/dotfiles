@@ -11,7 +11,7 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Lint shell files
         run: ./tests/lint_shell_files.sh
