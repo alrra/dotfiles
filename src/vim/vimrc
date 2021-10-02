@@ -183,7 +183,7 @@ function! InitPlugins() abort
     call minpac#add('kien/ctrlp.vim')
     call minpac#add('marijnh/tern_for_vim', { 'do': ':silent ! cd $HOME/.vim/pack/minpac/start/tern_for_vim && npm i &> /dev/null' })
     call minpac#add('mattn/emmet-vim')
-    call minpac#add('mattn/webapi-vim')
+    call minpac#add('mattn/webapi-vim', { 'type': 'opt' })
     call minpac#add('mhinz/vim-signify')
     call minpac#add('moll/vim-node')
     call minpac#add('mtscout6/syntastic-local-eslint.vim')
@@ -191,7 +191,7 @@ function! InitPlugins() abort
     call minpac#add('raimondi/delimitmate')
     call minpac#add('scrooloose/nerdtree')
     call minpac#add('scrooloose/syntastic')
-    call minpac#add('sheerun/vim-polyglot', {'type': 'opt'})
+    call minpac#add('sheerun/vim-polyglot', { 'type': 'opt' })
     call minpac#add('shougo/neocomplcache.vim')
     call minpac#add('shougo/neosnippet')
     call minpac#add('shougo/neosnippet-snippets')
@@ -206,6 +206,8 @@ function! InitPlugins() abort
 
 endfunction
 
+packadd webapi-vim
+
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Define custom commands for managing plugins.
@@ -219,17 +221,16 @@ command! PluginsUpdate  call InitPlugins() | call minpac#update('', { 'do': 'cal
 " | Plugins - Emmet                                                    |
 " ----------------------------------------------------------------------
 
-" Redefine trigger key for Emmet.
-" http://docs.emmet.io/cheat-sheet/
+" Redefine trigger key.
+let g:user_emmet_leader_key=","
 
-let g:user_emmet_leader_key="<C-E>"
+" Only enable normal mode functions.
+let g:user_emmet_mode='a'
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" Load custom Emmet snippets.
-" http://docs.emmet.io/customization/snippets/
-
-if exists('webapi#json')
+" Load custom snippets.
+if &runtimepath =~ 'webapi-vim'
     let g:user_emmet_settings = webapi#json#decode(join(readfile(expand("~/.vim/snippets/emmet.json")), "\n"))
 endif
 
