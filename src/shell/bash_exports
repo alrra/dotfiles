@@ -75,10 +75,30 @@ export NODE_REPL_HISTORY_SIZE=10000
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Make new shells get the history lines from all previous
+# If not set, make new shells get the history lines from all previous
 # shells instead of the default "last window closed" history.
 
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+if ! printf "%s" "$PROMPT_COMMAND" | grep "history -a" &> /dev/null; then
+    export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+fi
+
+# Remove `update_terminal_cwd` from the `PROMPT_COMMAND`
+# environment variable if it doesn't exist in the current shell.
+#
+# On macOS `update_terminal_cwd` is added to the `PROMPT_COMMAND`
+# environment variable however, `/etc/bashrc_Apple_Terminal`
+# that contains the shell function definition is only executed
+# for `Terminal.app`. Other terminals (e.g.: VS Code's terminal)
+# will not have the shell function, hence, they will show the
+#
+#    bash: update_terminal_cwd: command not found
+#
+# error everytime the prompt is displayed.
+
+if  printf "%s" "$PROMPT_COMMAND" | grep "update_terminal_cwd" &> /dev/null &&
+    ! command -v update_terminal_cwd &> /dev/null; then
+    export PROMPT_COMMAND="$(printf "%s" "$PROMPT_COMMAND" | sed 's/\(.*\)update_terminal_cwd;*\(.*\)/\1\2/g')"
+fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
