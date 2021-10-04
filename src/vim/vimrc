@@ -206,7 +206,7 @@ function! InitPlugins() abort
 
 endfunction
 
-packadd webapi-vim
+silent! packadd webapi-vim
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

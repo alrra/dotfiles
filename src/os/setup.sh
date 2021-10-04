@@ -22,19 +22,23 @@ download() {
 
     if command -v "curl" &> /dev/null; then
 
-        curl -LsSo "$output" "$url" &> /dev/null
-        #     │││└─ write output to file
-        #     ││└─ show error messages
-        #     │└─ don't show the progress meter
-        #     └─ follow redirects
+        curl \
+            --location \
+            --silent \
+            --show-error \
+            --output "$output" \
+            "$url" \
+                &> /dev/null
 
         return $?
 
     elif command -v "wget" &> /dev/null; then
 
-        wget -qO "$output" "$url" &> /dev/null
-        #     │└─ write output to file
-        #     └─ don't show output
+        wget \
+            --quiet \
+            --output-document="$output" \
+            "$url" \
+                &> /dev/null
 
         return $?
     fi
@@ -76,7 +80,7 @@ download_dotfiles() {
         while [ -e "$dotfilesDirectory" ]; do
             ask_for_confirmation "'$dotfilesDirectory' already exists, do you want to overwrite it?"
             if answer_is_yes; then
-                rm -rf "$dotfilesDirectory"
+                rm --force --recursive "$dotfilesDirectory"
                 break
             else
                 dotfilesDirectory=""
@@ -91,11 +95,11 @@ download_dotfiles() {
 
     else
 
-        rm -rf "$dotfilesDirectory" &> /dev/null
+        rm --force --recursive "$dotfilesDirectory" &> /dev/null
 
     fi
 
-    mkdir -p "$dotfilesDirectory"
+    mkdir --parents "$dotfilesDirectory"
     print_result $? "Create '$dotfilesDirectory'" "true"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -107,7 +111,7 @@ download_dotfiles() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    rm -rf "$tmpFile"
+    rm --force --recursive "$tmpFile"
     print_result $? "Remove archive"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -125,7 +129,7 @@ download_utils() {
 
     download "$DOTFILES_UTILS_URL" "$tmpFile" \
         && . "$tmpFile" \
-        && rm -rf "$tmpFile" \
+        && rm --force --recursive "$tmpFile" \
         && return 0
 
    return 1
@@ -138,7 +142,14 @@ extract() {
     local outputDir="$2"
 
     if command -v "tar" &> /dev/null; then
-        tar -zxf "$archive" --strip-components 1 -C "$outputDir"
+
+        tar \
+            --extract \
+            --gzip \
+            --file "$archive" \
+            --strip-components 1 \
+            --directory "$outputDir"
+
         return $?
     fi
 
