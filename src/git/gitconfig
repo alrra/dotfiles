@@ -248,13 +248,10 @@
 
 [help]
 
-    # If a command is mistyped, make Git automatically run
-    # the command it thinks the user wanted to type while also
-    # giving the user some time to prevent it from doing so.
-    #
-    # https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_help_autocorrect
+    # If a command is mistyped, make Git automatically
+    # run the command it thinks the user wanted to type.
 
-    autocorrect = 20
+    autoCorrect = immediate
 
 [init]
 
