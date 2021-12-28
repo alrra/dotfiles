@@ -180,7 +180,7 @@ function! InitPlugins() abort
     call minpac#add('godlygeek/tabular')
     call minpac#add('isRuslan/vim-es6')
     call minpac#add('jelera/vim-javascript-syntax')
-    call minpac#add('kien/ctrlp.vim')
+    call minpac#add('ctrlpvim/ctrlp.vim')
     call minpac#add('marijnh/tern_for_vim', { 'do': ':silent ! cd $HOME/.vim/pack/minpac/start/tern_for_vim && npm i &> /dev/null' })
     call minpac#add('mattn/emmet-vim')
     call minpac#add('mattn/webapi-vim', { 'type': 'opt' })
