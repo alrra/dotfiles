@@ -14,7 +14,7 @@ alias brewd="brew doctor"
 alias brewi="brew install"
 alias brewr="brew uninstall"
 alias brews="brew search"
-alias brewu="brew update \
+alias brewu="brew update --quiet \
                 && brew upgrade \
                 && brew cleanup"
 
