@@ -6,7 +6,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 check_links() {
-    npx markdown-link-check@^3 --quiet --retry "$file"
+    npx markdown-link-check@^3 \
+        --config markdown-link-check.json \
+        --quiet \
+        --retry \
+        "$file"
 }
 
 check_markdown_files check_links
