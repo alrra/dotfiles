@@ -14,13 +14,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Lint shell files
-        run: ./tests/lint_shell_files.sh
+        run: ./scripts/lint/shell.sh
 
       - name: Lint Markdown files
-        run: ./tests/lint_markdown_files.sh
+        run: ./scripts/lint/markdown.sh
 
       - name: Check links from Markdown file
-        run: ./tests/check_links_from_markdown_files.sh
+        run: ./scripts/check_links/markdown.sh
 
 name: Ubuntu
 

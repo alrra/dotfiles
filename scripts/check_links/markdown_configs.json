@@ -1,7 +1,9 @@
 {
     "httpHeaders": [
         {
-            "urls": ["https://help.github.com"],
+            "urls": [
+                "https://help.github.com"
+            ],
             "headers": {
                 "Accept-Encoding": "br, gzip, deflate"
             }

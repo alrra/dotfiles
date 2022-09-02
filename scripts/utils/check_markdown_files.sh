@@ -1,31 +1,31 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "../src/os/utils.sh"
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Executes provided function on each found Markdown file.
 #
-# $1: Function to be executed.
+# $1: Path from which to start searching for Markdown files.
+# $2: Function to be executed.
 #
-# Returns with an exit status of 0 if the provided function
-# succeeded for all Markdown files, 1 otherwise.
+# Returns with an exit status of:
+#
+#  * 0 if the provided function succeeded for all Markdown files
+#  * 1 otherwise.
 
 check_markdown_files() {
 
-    if ! cmd_exists "npx"; then
-        print_error "'npx' command is not available."
+    if ! command -v "npx" &> /dev/null; then
+        printf "'npx' command is not available."
         return 1
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     local MARKDOWN_FILES=$( \
-        find .. \
+        find "$1" \
             -name "*.md" \
-            -not -path "../node_modules/*" \
-            -not -path "../src/vim/vim/*"
+            -not -path "**/node_modules/*" \
+            -not -path "**/vim/vim/*"
     );
 
     local exitCode=0
@@ -33,7 +33,7 @@ check_markdown_files() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     for file in $MARKDOWN_FILES; do
-        "$1" "$file" \
+        "$2" "$file" \
             || exitCode=1
     done
 

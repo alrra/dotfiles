@@ -13,8 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Check links
-        run: ./tests/check_links_from_markdown_files.sh
+      - name: Check links from Markdown file
+        run: ./scripts/check_links/markdown.sh
 
 name: Check links
 
