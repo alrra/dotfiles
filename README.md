@@ -43,7 +43,6 @@ The setup process will:
 
 * Download the dotfiles on your computer
   (by default it will suggest `~/projects/dotfiles`).
-* Create some additional [directories][dirs].
 * [Symlink][symlink] the [Git], [shell], [tmux],
   and [Vim] related files.
 * Install applications / command-line tools for
