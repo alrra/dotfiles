@@ -2,8 +2,11 @@
     "header-style": {
         "style": "setext_with_atx"
     },
-    "line_length": {
+    "line-length": {
         "code_blocks": false,
         "tables": false
+    },
+    "strong-style": {
+        "style": "underscore"
     }
 }

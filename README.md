@@ -29,8 +29,8 @@ Setup
 
 To set up the dotfiles run the appropriate snippet in the terminal:
 
-(⚠️  **DO NOT** run the `setup` script if you do not fully understand
-[what it does][setup]. Seriously, **DON'T**!)
+(⚠️  __DO NOT__ run the `setup` script if you do not fully understand
+[what it does][setup]. Seriously, __DON'T__!)
 
 | OS | Snippet |
 |:---|:---|
@@ -187,7 +187,6 @@ The code is available under the [MIT license][license].
 [ci badge ubuntu]: https://github.com/alrra/dotfiles/workflows/Ubuntu/badge.svg
 [ci link macos]: https://github.com/alrra/dotfiles/actions?query=workflow%3AmacOS
 [ci link ubuntu]: https://github.com/alrra/dotfiles/actions?query=workflow%3AUbuntu
-[dirs]: src/os/create_directories.sh
 [fork]: https://help.github.com/en/github/getting-started-with-github/fork-a-repo
 [git log macos]: https://user-images.githubusercontent.com/1223565/101947422-519fc580-3ba5-11eb-90bc-1438072a45e1.png
 [git log ubuntu]: https://user-images.githubusercontent.com/1223565/101947420-51072f00-3ba5-11eb-9061-efb30ace1c21.png
