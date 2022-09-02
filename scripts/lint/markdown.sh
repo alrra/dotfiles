@@ -12,8 +12,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../.." \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 lint() (
-    npx markdownlint-cli@^0.29 \
-        --fix "$1"
+    npx markdownlint-cli@^0.32 \
+        --fix \
+        "$1"
 )
 
 check_markdown_files \
