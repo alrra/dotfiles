@@ -12,4 +12,5 @@ brew_install "ShellCheck" "shellcheck"
 
 if [ -d "$HOME/.nvm" ]; then
     brew_install "Yarn" "yarn"
+    brew_install "pnpm" "pnpm"
 fi

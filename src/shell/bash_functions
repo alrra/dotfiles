@@ -28,6 +28,14 @@ clone() {
         return
     fi
 
+    # Check if the project uses pnpm.
+
+    if [ -f "pnpm-lock.yaml" ] && command -v "pnpm" $> /dev/null; then
+        printf "\n"
+        pnpm install
+        return
+    fi
+
     # If not, assume it uses npm.
 
     if command -v "npm" $> /dev/null; then

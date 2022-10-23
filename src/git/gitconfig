@@ -49,11 +49,11 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    d = diff -- . ':!*package-lock.json' ':!*yarn.lock'
+    d = diff -- . ':!*package-lock.json' ':!*yarn.lock' ':!*pnpm-lock.yaml'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    dc = diff --cached -- . ':!*package-lock.json' ':!*yarn.lock'
+    dc = diff --cached -- . ':!*package-lock.json' ':!*yarn.lock' ':!*pnpm-lock.yaml'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
