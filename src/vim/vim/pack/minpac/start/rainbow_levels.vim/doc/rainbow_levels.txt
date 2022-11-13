@@ -11,7 +11,6 @@ CUSTOMIZATION ............................... |RainbowLevelsCustomization|
 	Example: Cycle colors ................... |RainbowLevelsExampleCycle|
 	Example: Level Alert .................... |RainbowLevelsExampleAlert|
 SPECIAL THANKS .............................. |RainbowLevelsChangelog|
-WHERE TO GET HELP ........................... |RainbowLevelsContributing|
 BUGS ........................................ |RainbowLevelsBugs|
 LICENSE ..................................... |RainbowLevelsLicense|
 
@@ -122,11 +121,6 @@ SPECIAL THANKS                                    *RainbowLevelsSpecialThanks*
 
 * Ingo Karkat for identifying and fixing several issues present on the initial
   implementation.
-
-==============================================================================
-WHERE TO GET HELP                                *RainbowLevelsWhereToGetHelp*
-
-Join the chat at https://gitter.im/thiagoalessio/rainbow_levels.vim
 
 ==============================================================================
 BUGS                                                       *RainbowLevelsBugs*

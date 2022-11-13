@@ -8,7 +8,6 @@ A different approach to code highlighting.
 [![Code Coverage][codecov_badge]][codecov]
 [![Version][version_badge]][vim_org]
 [![Docs][docs_badge]][docs]
-[![Join the chat][gitter_badge]][gitter]
 
 This plugin highlights code by indentation level instead of language syntax.
 <br/>
@@ -140,10 +139,6 @@ endfor
 * [Ingo Karkat][inkarkat] for identifying and **fixing** several issues
   present on the initial implementation.
 
-## Where to get help
-
-Join the chat at <https://gitter.im/thiagoalessio/rainbow_levels.vim>
-
 ## Bugs
 
 Please report any bugs you may find on the GitHub issue tracker:
@@ -164,8 +159,6 @@ rainbow_levels.vim is released under the [MIT License][].
 [docs_badge]: https://img.shields.io/badge/docs-%3Ah%20RainbowLevels-blue.svg
 [docs]: https://github.com/thiagoalessio/rainbow_levels.vim/blob/main/doc/rainbow_levels.txt
 [vim_org]: http://www.vim.org/scripts/script.php?script_id=5629
-[gitter_badge]: https://badges.gitter.im/thiagoalessio/rainbow_levels.vim.svg
-[gitter]: https://gitter.im/thiagoalessio/rainbow_levels.vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 [Rainbow Levels Screenshot]: https://raw.githubusercontent.com/thiagoalessio/rainbow_levels.vim/gh-pages/readme-images/screenshot.png
 [Jellybeans]: https://github.com/nanotech/jellybeans.vim
 [user_themes]: https://github.com/thiagoalessio/rainbow_levels.vim/wiki/User-Contributed-Themes
