@@ -13,6 +13,7 @@ create_symlinks() {
         "shell/bash_autocompletion"
         "shell/bash_exports"
         "shell/bash_functions"
+        "shell/bash_init"
         "shell/bash_logout"
         "shell/bash_options"
         "shell/bash_profile"

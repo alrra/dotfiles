@@ -16,7 +16,7 @@ get_homebrew_git_config_file_path() {
         printf "%s" "$path"
         return 0
     else
-        print_error "Homebrew (get config file path)"
+        print_error "Get config file path"
         return 1
     fi
 
@@ -30,7 +30,7 @@ install_homebrew() {
         #  └─ simulate the ENTER keypress
     fi
 
-    print_result $? "Homebrew"
+    print_result $? "Install"
 
 }
 
@@ -52,36 +52,21 @@ opt_out_of_analytics() {
 
     if [ "$(git config --file="$path" --get homebrew.analyticsdisabled)" != "true" ]; then
         git config --file="$path" --replace-all homebrew.analyticsdisabled true &> /dev/null
-        print_result $? "Homebrew (opt-out of analytics)"
+        print_result $? "Opt-out of analytics"
     fi
 
 }
 
-opt_out_of_auto_update() {
+update() {
+    execute \
+        "brew update" \
+        "Update"
+}
 
-    declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # If needed, add the necessary configs in the
-    # local shell configuration file.
-
-    if ! grep "HOMEBREW_NO_AUTO_UPDATE" < "$LOCAL_SHELL_CONFIG_FILE" &> /dev/null; then
-
-        declare -r CONFIGS="
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Configure Homebrew to not auto-update before running commands
-# such as: \`brew install\`, \`brew upgrade\`, and \`brew tap\`.
-#
-# https://docs.brew.sh/Manpage#environment
-
-export HOMEBREW_NO_AUTO_UPDATE=1
-"
-        execute \
-            "printf '%s' '$CONFIGS' >> $LOCAL_SHELL_CONFIG_FILE" \
-            "Homebrew (opt-out of auto-updating before running certain commands)"
-    fi
+upgrade() {
+    execute \
+        "brew upgrade" \
+        "Upgrade"
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -93,10 +78,8 @@ main() {
     install_homebrew
     opt_out_of_analytics
 
-    brew_update
-    brew_upgrade
-
-    opt_out_of_auto_update
+    update
+    upgrade
 }
 
 main

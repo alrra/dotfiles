@@ -24,11 +24,7 @@ create_bash_local() {
 
 PATH=\"$DOTFILES_BIN_DIR:\$PATH\"
 
-export PATH
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" \
+export PATH" \
         >> "$FILE_PATH"
    fi
 

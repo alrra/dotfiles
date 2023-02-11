@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# If needed, add Homebrew to the PATH.
+
+if ! command -v brew &> /dev/null && \
+  [[ -f /opt/homebrew/bin/brew ]] && \
+  [[ $(sysctl -n machdep.cpu.brand_string) == Apple\ M* ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Configure Homebrew to not auto-update before running commands
+# such as: `brew install`, `brew upgrade`, and `brew tap`.
+#
+# https://docs.brew.sh/Manpage#environment
+
+export HOMEBREW_NO_AUTO_UPDATE=1
