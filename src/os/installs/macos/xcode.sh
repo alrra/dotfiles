@@ -35,7 +35,7 @@ install_xcode() {
         "until is_xcode_installed; do \
             sleep 5; \
          done" \
-        "Xcode.app"
+        "Install Xcode.app"
 
 }
 
@@ -54,7 +54,7 @@ install_xcode_command_line_tools() {
         "until are_xcode_command_line_tools_installed; do \
             sleep 5; \
          done" \
-        "Xcode Command Line Tools"
+        "Install Xcode Command Line Tools"
 
 }
 

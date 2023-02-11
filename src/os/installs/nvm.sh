@@ -30,7 +30,7 @@ export NVM_DIR=\"$NVM_DIRECTORY\"
     execute \
         "printf '%s' '$CONFIGS' >> $LOCAL_SHELL_CONFIG_FILE \
             && . $LOCAL_SHELL_CONFIG_FILE" \
-        "nvm (update $LOCAL_SHELL_CONFIG_FILE)"
+        "Update $LOCAL_SHELL_CONFIG_FILE"
 
 }
 
@@ -52,7 +52,7 @@ install_nvm() {
 
     execute \
         "git clone --quiet $NVM_GIT_REPO_URL $NVM_DIRECTORY" \
-        "nvm (install)" \
+        "Install" \
     && add_nvm_configs
 
 }
@@ -64,7 +64,7 @@ update_nvm() {
             && git fetch --quiet origin \
             && git checkout --quiet \$(git describe --abbrev=0 --tags) \
             && . $NVM_DIRECTORY/nvm.sh" \
-        "nvm (upgrade)"
+        "Upgrade"
 
 }
 
