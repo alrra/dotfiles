@@ -577,6 +577,13 @@ map <leader>gd :SignifyToggle<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+" [,ffu] Convert file to use Unix line endings.
+" See also: https://vim.fandom.com/wiki/File_format
+
+map <leader>ffu :edit ++fileformat=dos <bar> :setlocal fileformat=unix <bar> :write!<CR><CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,h ] Show hex dump.
 
 nmap <leader>h :%!xxd<CR>
@@ -610,12 +617,6 @@ map <leader>rl :RainbowLevelsToggle<cr>
 " [,sb] Strip BOM (Byte Order Mark).
 
 nmap <leader>sb :call StripBOM()<CR>
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" [,sr] Strip carriage returns.
-
-nmap <leader>sr :%s/\r//g<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
