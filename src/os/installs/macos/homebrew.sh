@@ -6,7 +6,40 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-get_homebrew_git_config_file_path() {
+add_to_path() {
+
+    # Check if `brew` is available.
+
+    if command -v brew &> /dev/null; then
+        return
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # If not, add it to the PATH.
+
+    HARDWARE="$(uname -m)"
+    prefix=""
+
+    if [ "$HARDWARE" == "arm64" ]; then
+        prefix="/opt/homebrew"
+    elif [ "$HARDWARE" == "x86_64" ]; then
+        prefix="/usr/local"
+    else
+        print_error "Homebrew is only supported on Intel and ARM processors!"
+    fi
+
+    PATH="$prefix/bin:$PATH"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Inform the user about the availability of `brew`.
+
+    command -v brew &> /dev/null
+    print_result $? "Add to PATH"
+}
+
+get_git_config_file_path() {
 
     local path=""
 
@@ -22,7 +55,7 @@ get_homebrew_git_config_file_path() {
 
 }
 
-install_homebrew() {
+install() {
 
     if ! cmd_exists "brew"; then
         ask_for_sudo
@@ -42,7 +75,7 @@ opt_out_of_analytics() {
 
     # Try to get the path of the `Homebrew` git config file.
 
-    path="$(get_homebrew_git_config_file_path)" \
+    path="$(get_git_config_file_path)" \
         || return 1
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -75,7 +108,8 @@ main() {
 
     print_in_purple "\n   Homebrew\n\n"
 
-    install_homebrew
+    install
+    add_to_path
     opt_out_of_analytics
 
     update

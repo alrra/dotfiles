@@ -2,13 +2,23 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# If needed, add Homebrew to the PATH.
+# Set up Homebrew.
 
-if ! command -v brew &> /dev/null && \
-  [[ -f /opt/homebrew/bin/brew ]] && \
-  [[ $(sysctl -n machdep.cpu.brand_string) == Apple\ M* ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+set_homebrew() {
+    HARDWARE="$(uname -m)"
+    prefix=""
+
+    if [ "$HARDWARE" == "arm64" ]; then
+        prefix="/opt/homebrew"
+    elif [ "$HARDWARE" == "x86_64" ]; then
+        prefix="/usr/local"
+    fi
+
+    eval "$($prefix/bin/brew shellenv)"
+}
+
+set_homebrew
+unset -f set_homebrew
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
