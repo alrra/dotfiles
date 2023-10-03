@@ -1,4 +1,4 @@
-[Cătălin][repo]’s dotfiles
+[Chriss][repo]’s dotfiles
 ==========================
 
 [![CI status for macOS][ci badge macos]][ci link macos]
@@ -34,8 +34,8 @@ To set up the dotfiles run the appropriate snippet in the terminal:
 
 | OS | Snippet |
 |:---|:---|
-| macOS | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/main/src/os/setup.sh)"` |
-| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/main/src/os/setup.sh)"` |
+| macOS | `bash -c "$(curl -LsS https://raw.github.com/soscler/dotfiles/main/src/os/setup.sh)"` |
+| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/soscler/dotfiles/main/src/os/setup.sh)"` |
 
 That's it! ✨
 
@@ -105,7 +105,7 @@ Here is an example:
 
 # Set PATH additions.
 
-PATH="/Users/alrra/projects/dotfiles/src/bin/:$PATH"
+PATH="/Users/soscler/projects/dotfiles/src/bin/:$PATH"
 
 export PATH
 
@@ -184,10 +184,10 @@ The code is available under the [MIT license][license].
 
 <!-- Link labels: -->
 
-[ci badge macos]: https://github.com/alrra/dotfiles/workflows/macOS/badge.svg
-[ci badge ubuntu]: https://github.com/alrra/dotfiles/workflows/Ubuntu/badge.svg
-[ci link macos]: https://github.com/alrra/dotfiles/actions?query=workflow%3AmacOS
-[ci link ubuntu]: https://github.com/alrra/dotfiles/actions?query=workflow%3AUbuntu
+[ci badge macos]: https://github.com/soscler/dotfiles/workflows/macOS/badge.svg
+[ci badge ubuntu]: https://github.com/soscler/dotfiles/workflows/Ubuntu/badge.svg
+[ci link macos]: https://github.com/soscler/dotfiles/actions?query=workflow%3AmacOS
+[ci link ubuntu]: https://github.com/soscler/dotfiles/actions?query=workflow%3AUbuntu
 [fork]: https://help.github.com/en/github/getting-started-with-github/fork-a-repo
 [git log macos]: https://user-images.githubusercontent.com/1223565/101947422-519fc580-3ba5-11eb-90bc-1438072a45e1.png
 [git log ubuntu]: https://user-images.githubusercontent.com/1223565/101947420-51072f00-3ba5-11eb-9061-efb30ace1c21.png
@@ -199,8 +199,8 @@ The code is available under the [MIT license][license].
 [license]: LICENSE.txt
 [preferences macos]: src/os/preferences/macos
 [preferences ubuntu]: src/os/preferences/ubuntu
-[repo]: https://github.com/alrra
-[setup script]: https://github.com/alrra/dotfiles/blob/main/src/os/setup.sh#L3
+[repo]: https://github.com/soscler
+[setup script]: https://github.com/soscler/dotfiles/blob/main/src/os/setup.sh#L3
 [setup]: src/os/setup.sh
 [shell]: src/shell
 [symlink]: src/os/create_symbolic_links.sh
