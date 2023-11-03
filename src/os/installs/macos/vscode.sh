@@ -12,7 +12,7 @@ install_plugin() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   Visual Studio Code\n\n"                                :
+print_in_purple "\n   Visual Studio Code\n\n"
 
 # Install VSCode
 brew_install "Visual Studio Code" "visual-studio-code" "--cask"
