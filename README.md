@@ -29,8 +29,9 @@ Setup
 
 To set up the dotfiles run the appropriate snippet in the terminal:
 
-(⚠️  __DO NOT__ run the `setup` script if you do not fully understand
-[what it does][setup]. Seriously, __DON'T__!)
+> [!CAUTION]
+> __DO NOT__ run the `setup` script if you do not fully understand
+> [what it does][setup]. Seriously, __DON'T__!
 
 | OS | Snippet |
 |:---|:---|
