@@ -381,9 +381,9 @@ silent! packadd webapi-vim
 " Define custom commands for managing plugins.
 
 command! PluginsClean   call InitPlugins() | call minpac#clean()
-command! PluginsSetup   call InitPlugins() | call minpac#update('', { 'do': 'quit! | quit!' })
+command! PluginsSetup   call InitPlugins() | call minpac#update('', { 'do': 'qall' })
 command! PluginsStatus  call InitPlugins() | call minpac#status()
-command! PluginsUpdate  call InitPlugins() | call minpac#update('', { 'do': 'call minpac#status() | quit! | quit!' })
+command! PluginsUpdate  call InitPlugins() | call minpac#update('', { 'do': 'call minpac#status() | qall' })
 
 " ----------------------------------------------------------------------
 " | Plugins - Emmet                                                    |
