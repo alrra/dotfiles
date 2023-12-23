@@ -166,9 +166,9 @@ rename-media-files() (
                 -type f \
                 -depth 1 \
                 -print \
-            | while read -r f; do
-                rename_file "$f"
-            done
+            | while read -r file; do
+                rename_file "$file"
+              done
         elif [ -f "$filePath" ]; then
             rename_file "$filePath"
         fi
@@ -196,7 +196,7 @@ resize-image() {
 
     # Check if ImageMagick's convert command-line tool is installed.
 
-    if ! command -v "convert" $> /dev/null; then
+    if ! command -v "convert" &> /dev/null; then
         printf "ImageMagick's 'convert' command-line tool is not installed!"
         exit
     fi
