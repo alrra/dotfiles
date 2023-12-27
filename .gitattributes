@@ -13,8 +13,8 @@
 .editorconfig export-ignore
 .gitattributes export-ignore
 .github export-ignore
+scripts export-ignore
 src/vim/vim/pack/* export-ignore
-tests export-ignore
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
