@@ -30,7 +30,7 @@ Setup
 To set up the dotfiles run the appropriate snippet in the terminal:
 
 > [!CAUTION]
-> __DO NOT__ run the `setup` script if you do not fully understand
+> __DO NOT__ run the setup script if you do not fully understand
 > [what it does][setup]. Seriously, __DON'T__!
 
 | OS | Snippet |
@@ -136,7 +136,7 @@ such as the Git user credentials, e.g.:
 
 [user]
 
-    name = Cătălin Mariș
+    name = Your Name
     email = account@example.com
     signingKey = XXXXXXXX
 ```
@@ -168,15 +168,15 @@ nnoremap <Up>    :echoe "Use k"<CR>
 ### Forks
 
 If you decide to [fork] this project, do not forget to substitute
-my username with your own in the [`setup` snippets](#setup) and
-[in the `setup` script][setup script].
+my username with your own in the [setup snippets](#setup) and [in
+the setup script][setup script].
 
 Update
 ------
 
-To update the dotfiles you can either run the [`setup` script][setup]
+To update the dotfiles you can either run the [setup script][setup]
 or, if you want to update one particular part, run the appropriate
-[`os` script](src/os).
+[os script](src/os).
 
 License
 -------
