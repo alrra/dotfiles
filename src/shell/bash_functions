@@ -136,14 +136,15 @@ optimize-pdfs() (
     )
 
     optimize-pdf() (
-        filePath="$(dirname "${1%/}")"
-        fileName="_$(printf "%s" "$(basename "$1")" | tr '[:upper:]' '[:lower:]')"
+        local filePath="$(dirname "${1%/}")"
+        local fileName="_$(printf "%s" "$(basename "$1")" | tr '[:upper:]' '[:lower:]')"
 
-        optimizedFilePath="$filePath/$fileName"
+        local optimizedFilePath="$filePath/$fileName"
 
         printf "* %s\n" "$1"
 
         pdfcpu optimize "$1" "$optimizedFilePath" &> /dev/null
+        local exitCode=$?
 
         # If something went wrong (i.e. pdfcpu didn't create
         # the optimized file or exited with a non-zero status)
@@ -154,8 +155,7 @@ optimize-pdfs() (
             return
         fi
 
-        # shellcheck disable=SC2181
-        if [ $? -ne 0 ] || \
+        if [ $exitCode -ne 0 ] || \
            [ "$(get-file-size "$1")" -le "$(get-file-size "$optimizedFilePath")" ];
         then
             rm -rf "$optimizedFilePath"
