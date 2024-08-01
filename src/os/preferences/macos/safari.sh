@@ -18,6 +18,10 @@ execute "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdenti
          defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true" \
     "Enable the 'Develop' menu and the 'Web Inspector'"
 
+execute "defaults write com.apple.Safari EnableEnhancedPrivacyInPrivateBrowsing -bool true &&
+         defaults write com.apple.Safari EnableEnhancedPrivacyInRegularBrowsing -bool true " \
+    "Use advanced tracking and fingerprinting protection in all browsing."
+
 execute "defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false" \
     "Set search type to 'Contains' instead of 'Starts With'"
 
