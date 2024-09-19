@@ -12,10 +12,10 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 ./git.sh
 ./../volta.sh
-./browsers.sh
-./compression_tools.sh
-./gpg.sh
-./image_tools.sh
+# ./browsers.sh
+# ./compression_tools.sh
+# ./gpg.sh
+# ./image_tools.sh
 ./misc.sh
 ./misc_tools.sh
 ./../npm.sh

@@ -1,10 +1,5 @@
 #!/bin/bash
 
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias cd..="cd .."
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 alias cp="cp -iv"
@@ -28,20 +23,67 @@ alias c="clear"
 alias ch="history -c && > ~/.bash_history"
 alias d="cd ~/Desktop"
 alias e="vim --"
-alias g="git"
+# alias g="git"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias ll="ls -l"
 alias m="man"
 alias map="xargs -n1"
 alias n="npm"
-alias p="cd ~/projects"
+alias p="cd ~/Projects"
 alias path='printf "%b\n" "${PATH//:/\\n}"'
 alias q="exit"
 alias t="tmux"
-alias y="yarn"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Load OS specific configs.
+
+# alias ls='ls -GFh'
+alias ll="ls -la"
+alias cd..="cd .."
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+alias .......="cd ../../../../../.."
+alias st="git status"
+alias h="cd ~"
+alias br="git branch"
+alias df="git diff"
+alias ff="find . -type f -name"
+alias fh="find ~ -type f -name"
+alias fr="find / -type f -name"
+alias grep="grep --color=always --exclude-dir={.git,node_modules}"
+alias search="find . -type f -print0 | xargs -0 grep -i"
+alias status="git status"
+alias add="git add ."
+alias st="status"
+alias cm="git commit -m "
+alias cma="git commit -a -m "
+alias continue="git add . && git rebase --continue"
+alias abort="git rebase --abort"
+alias amend="git commit -a --amend"
+alias gpo="git push origin"
+alias co="git checkout"
+alias ft="ff '*' | xargs grep -i"
+alias glog='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --topo-order'
+alias startdb="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/log/pg_log start"
+alias stopdb="pg_ctl -D /usr/local/var/postgres stop"
+alias startredis='redis-server /usr/local/etc/redis.conf'
+# alias z='tar -cvzf'
+# alias uz='tar -xvf'
+alias stash='git stash'
+alias pop='git stash pop'
+alias setutc='sudo ln -sf /usr/share/zoneinfo/UTC /etc/localtime'
+alias dbr='git branch -D'
+alias pr='gh pr create'
+alias dbreset='knex migrate:rollback && knex migrate:latest && knex seed:run'
+alias fixtransmission="launchctl setenv TR_CURL_SSL_VERIFY 1"
+alias cleanse-music='find . -iname "*.cue" -print0 | xargs -0 rm && find . -iname "*.log" -print0 | xargs -0 rm && find . -iname "*.m3u" -print0 | xargs -0 rm && find . -iname "*.txt" -print0 | xargs -0 rm'
+alias gpu="git push upstream"
+alias nvm="~/.nvm/nvm-exec"
+alias ucm="git reset HEAD~ --soft && git reset"
+alias updatehosts="sudo python3 ~/Projects/hosts/updateHostsFile.py -a -r -e fakenews gambling"
+alias weather="curl wttr.in/94117"
 
 . "$OS/bash_aliases"

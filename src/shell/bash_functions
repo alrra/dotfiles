@@ -277,3 +277,75 @@ s() {
           #    │         └─ Display ANSI color escape sequences in raw form.
           #    └─ Don't clear the screen after quitting less.
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Additions from old-dotfiles
+
+function gv()
+{
+  if [ -z "$2" ]
+  then
+    grep -r -n5 $1 .
+  else
+    grep -r -n$2 $1 .
+  fi
+}
+
+function g()
+{
+ grep -r -n0 -s $1 .
+}
+
+function up()
+{
+  git fetch upstream
+  STASH_OUTPUT="$(git stash)"
+  git rebase $1 upstream/master
+  if [ "$STASH_OUTPUT" != "No local changes to save" ]; then
+    git stash pop
+  fi
+  git submodule update
+}
+
+function oup()
+{
+  git fetch origin
+  STASH_OUTPUT="$(git stash)"
+  git rebase $1 origin/master
+  if [ "$STASH_OUTPUT" != "No local changes to save" ]; then
+    git stash pop
+  fi
+  git submodule update
+}
+
+function upi()
+{
+  git fetch upstream
+  STASH_OUTPUT="$(git stash)"
+  git rebase $1 upstream/master -i
+  if [ "$STASH_OUTPUT" != "No local changes to save" ]; then
+    git stash pop
+  fi
+}
+
+function oupi()
+{
+  git fetch origin
+  STASH_OUTPUT="$(git stash)"
+  git rebase $1 origin/main -i
+  if [ "$STASH_OUTPUT" != "No local changes to save" ]; then
+    git stash pop
+  fi
+}
+
+function vidcompress()
+{
+  ffmpeg -y -i $1 -c:v libx264 -preset fast -crf 18 -profile:v baseline -level 3.0 -pix_fmt yuv420p $2
+}
+
+function runpde()
+{
+    EXEC_PATH="$(pwd)"
+    processing-java --sketch=$EXEC_PATH --output=$EXEC_PATH/build-temp --force --run
+}
