@@ -17,8 +17,8 @@ set_homebrew() {
     eval "$($prefix/bin/brew shellenv)"
 }
 
-set_homebrew
-unset -f set_homebrew
+# set_homebrew
+# unset -f set_homebrew
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

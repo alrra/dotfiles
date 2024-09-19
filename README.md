@@ -30,10 +30,23 @@ To set up the dotfiles run the appropriate snippet in the terminal:
 > __DO NOT__ run the setup script if you do not fully understand
 > [what it does][setup]. Seriously, __DON'T__!
 
+Install ohmyzsh and p10k first:
+
+`sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+
+`git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k`
+
+Now install the dotfiles.
+
 | OS | Snippet |
 |:---|:---|
 | macOS | `bash -c "$(curl -LsS https://raw.github.com/octobeard/dotfiles/main/src/os/setup.sh)"` |
 | Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/octobeard/dotfiles/main/src/os/setup.sh)"` |
+
+Lastly, configure p10k:
+
+`p10k configure`
+
 
 That's it! ✨
 

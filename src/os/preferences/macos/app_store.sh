@@ -19,7 +19,7 @@ execute "defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool tru
 execute "defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1" \
     "Download newly available updates in background"
 
-execute "defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1" \
-    "Install System data files and security updates"
+# execute "defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1" \
+#     "Install System data files and security updates"
 
 killall "App Store" &> /dev/null

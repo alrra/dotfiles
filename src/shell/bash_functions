@@ -63,17 +63,17 @@ evm() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Search history.
+# # Search history.
 
-h() {
-    #           ┌─ Enable colors for pipe.
-    #           │  ("--color=auto" enables colors only
-    #           │   if the output is in the terminal.)
-    grep --color=always "$*" "$HISTFILE" \
-        | less --no-init --raw-control-chars
-          #    │         └─ Display ANSI color escape sequences in raw form.
-          #    └─ Don't clear the screen after quitting less.
-}
+# h() {
+#     #           ┌─ Enable colors for pipe.
+#     #           │  ("--color=auto" enables colors only
+#     #           │   if the output is in the terminal.)
+#     grep --color=always "$*" "$HISTFILE" \
+#         | less --no-init --raw-control-chars
+#           #    │         └─ Display ANSI color escape sequences in raw form.
+#           #    └─ Don't clear the screen after quitting less.
+# }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
