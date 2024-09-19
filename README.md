@@ -1,4 +1,4 @@
-# [Cătălin][repo]’s dotfiles
+# [Octobeard][repo]’s dotfiles
 
 [![CI status for macOS][ci badge macos]][ci link macos]
 [![CI status for Ubuntu][ci badge ubuntu]][ci link ubuntu]
@@ -32,8 +32,8 @@ To set up the dotfiles run the appropriate snippet in the terminal:
 
 | OS | Snippet |
 |:---|:---|
-| macOS | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/main/src/os/setup.sh)"` |
-| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/alrra/dotfiles/main/src/os/setup.sh)"` |
+| macOS | `bash -c "$(curl -LsS https://raw.github.com/octobeard/dotfiles/main/src/os/setup.sh)"` |
+| Ubuntu | `bash -c "$(wget -qO - https://raw.github.com/octobeard/dotfiles/main/src/os/setup.sh)"` |
 
 That's it! ✨
 
