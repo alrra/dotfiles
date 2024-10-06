@@ -273,6 +273,74 @@ resize-image() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Resize video.
+#
+# Create a new video based on the specified video resized by the
+# specified amount.
+#
+# $1: Path to the original video file.
+# $2: Resolution (default is '1920:1080').
+# $3: Start time (default is '00:00:00').
+# $4: Constant Rate Factor (default is '25').
+#
+# Usage examples:
+#
+#   * resize-video ./path/to/video.mp4 "1080:1920" "00:00:01.500" "23"
+
+resize-video() {
+
+    # Check if the `ffmpeg` command-line tool is installed.
+
+    if ! command -v "ffmpeg" &> /dev/null; then
+        printf "'ffmpeg' is not installed\n"
+        return
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Check if the file is a video file.
+
+    if [ "$(file --mime-type --brief "$1" | cut -d'/' -f1)" != "video" ]; then
+        printf "'%s' is not a video file.\n" "$1"
+        return
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    declare fileName="$(basename "$1")"
+    declare filePath="$(dirname "${1%/}")"
+    declare scale="${2:-1920:1080}"
+    declare startTime=${3:-00:00:00}
+    declare crf=${4:-25}
+
+    declare outputFileName="$filePath/_${fileName%.*}.mp4"
+
+
+    # The options used below try to offer a good balance between
+    # cross-platform interoperability, quality, and file size.
+
+    ffmpeg \
+        -i "$1" \
+        -ss "$startTime" \
+        -acodec aac \
+        -ac 2 \
+        -strict -2 \
+        -crf "$crf" \
+        -nostdin \
+        -preset veryslow \
+        -vcodec libx264 \
+        -vf "scale=${scale},setsar=1,format=yuv420p" \
+        -y \
+        "$outputFileName" \
+    && printf "* %s / %s / %s\n" \
+            "$outputFileName" \
+            "$scale" \
+            "$startTime"
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Search for text within the current directory.
 
 s() {
