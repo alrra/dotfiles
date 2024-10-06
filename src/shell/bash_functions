@@ -219,7 +219,7 @@ rename-media-files() (
 # specified amount.
 #
 # $1: Path to the original image.
-# $2: Resize value (default is 50%).
+# $2: Resize value (default is '50%').
 #     See also: https://imagemagick.org/script/command-line-processing.php#geometry
 #
 # Usage examples:
@@ -229,11 +229,20 @@ rename-media-files() (
 
 resize-image() {
 
-    # Check if ImageMagick's magick command-line tool is installed.
+    # Check if ImageMagick's `magick` command-line tool is installed.
 
     if ! command -v "magick" &> /dev/null; then
-        printf "ImageMagick's 'magick' command-line tool is not installed!"
-        exit
+        printf "ImageMagick's 'magick' command-line tool is not installed!\n"
+        return
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Check if the file is an image file.
+
+    if [ "$(file --mime-type --brief "$1" | cut -d'/' -f1)" != "image" ]; then
+        printf "'%s' is not an image file.\n" "$1"
+        return
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
