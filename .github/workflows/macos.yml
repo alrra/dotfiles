@@ -23,7 +23,7 @@ jobs:
         run: ./scripts/lint/markdown.sh
 
       - name: Check links from Markdown file
-        run: ./scripts/check_links/markdown.sh
+        run: ./scripts/check_links/index.sh
 
 name: macOS
 

@@ -13,7 +13,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../.." \
 
 check_links() (
     npx markdown-link-check@3.12.2 \
-        --config ./scripts/check_links/markdown_configs.json \
+        --config ./scripts/check_links/configs.json \
         --quiet \
         --retry \
             "$1"
