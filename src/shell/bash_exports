@@ -66,6 +66,15 @@ export MANPAGER="less -X"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Enable the module compile cache for the Node.js instance.
+#
+# https://nodejs.org/api/cli.html#node_compile_cachedir
+# https://nodejs.org/en/blog/release/v22.1.0#module-implement-node_compile_cache-for-automatic-on-disk-code-caching
+
+export NODE_COMPILE_CACHE="$HOME/.cache/node_compile_cache"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Increase the maximum number of lines of history persisted
 # in the `Node` REPL history file (default value is 1000).
 #
