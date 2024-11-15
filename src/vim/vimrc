@@ -755,7 +755,10 @@ map <leader>gd :SignifyToggle<cr>
 " [,ffu] Convert file to use Unix line endings.
 " See also: https://vim.fandom.com/wiki/File_format
 
-map <leader>ffu :edit ++fileformat=dos <bar> :setlocal fileformat=unix <bar> :write!<cr><cr>
+map <leader>ffu :edit ++fileformat=dos
+        \ <bar> :setlocal fileformat=unix
+        \ <bar> :write! ++encoding=utf-8 <cr><cr>
+        \ <bar> :edit! <cr><cr>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
