@@ -173,8 +173,19 @@ rename-media-files() (
         #   * IMG_1234.PNG => 2020-05-05 05.05.05.png
 
         if [[ "$fileName" =~ ^img_[0-9]+ ]]; then
-           mv -f "$1" "$filePath/$(stat -f %SB -t "%Y-%m-%d %H.%M.%S" "$1").$fileExtension"
-           return
+            newFileName="$(stat -f %SB -t "%Y-%m-%d %H.%M.%S" "$1")"
+
+            # Handle the cases where multiple files have the same
+            # creation date.
+
+            index="$(find "$filePath" -maxdepth 1 -name "${newFileName}*" | wc -l |  tr -d ' ')"
+
+            if [ "$index" -gt 0 ]; then
+                newFileName="$newFileName $index"
+            fi
+
+            mv "$1" "$filePath/$newFileName.$fileExtension"
+            return
         fi
 
         # Other
