@@ -292,7 +292,7 @@ resize-image() {
 # $1: Path to the original video file.
 # $2: Resolution (default is '1920:1080').
 # $3: Start time (default is '00:00:00').
-# $4: Constant Rate Factor (default is '25').
+# $4: Constant Rate Factor (default is '23').
 #
 # Usage examples:
 #
@@ -322,7 +322,7 @@ resize-video() {
     declare filePath="$(dirname "${1%/}")"
     declare scale="${2:-1920:1080}"
     declare startTime=${3:-00:00:00}
-    declare crf=${4:-25}
+    declare crf=${4:-23}
 
     declare outputFileName="$filePath/_${fileName%.*}.mp4"
 
