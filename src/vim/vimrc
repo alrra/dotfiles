@@ -344,7 +344,6 @@ function! InitPlugins() abort
     call minpac#add('ap/vim-css-color')
     call minpac#add('chrisbra/unicode.vim')
     call minpac#add('chrisbra/vim-xml-runtime')
-    call minpac#add('editorconfig/editorconfig-vim')
     call minpac#add('godlygeek/tabular')
     call minpac#add('isRuslan/vim-es6')
     call minpac#add('jelera/vim-javascript-syntax')
