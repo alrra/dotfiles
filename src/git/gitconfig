@@ -243,6 +243,16 @@
 
     textconv = hexdump --canonical --no-squeezing
 
+[fetch]
+
+    # Write a commit-graph after every `git fetch`
+    # command that downloads a pack-file from a remote.
+    #
+    # For big repositories this helps speed up many
+    # Git commands, especially log related operations.
+
+    writeCommitGraph = true
+
 [help]
 
     # If a command is mistyped, make Git automatically
