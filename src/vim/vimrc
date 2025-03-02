@@ -359,9 +359,6 @@ function! InitPlugins() abort
     call minpac#add('scrooloose/nerdtree')
     call minpac#add('scrooloose/syntastic')
     call minpac#add('sheerun/vim-polyglot', { 'type': 'opt' })
-    call minpac#add('shougo/neocomplcache.vim')
-    call minpac#add('shougo/neosnippet')
-    call minpac#add('shougo/neosnippet-snippets')
     call minpac#add('thiagoalessio/rainbow_levels.vim')
     call minpac#add('tomtom/tcomment_vim')
     call minpac#add('tpope/vim-commentary')
@@ -431,16 +428,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven
 " https://github.com/plasticboy/vim-markdown#disable-folding
 
 let g:vim_markdown_folding_disabled=1
-
-
-" ----------------------------------------------------------------------
-" | Plugins - NeoComplCache                                            |
-" ----------------------------------------------------------------------
-
-" Enable `neocomplcache` by default.
-" https://github.com/Shougo/neocomplcache.vim#installation
-
-let g:neocomplcache_enable_at_startup=1
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
