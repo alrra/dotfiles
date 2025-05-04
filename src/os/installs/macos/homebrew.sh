@@ -19,24 +19,17 @@ add_to_path() {
     # If not, add it to the PATH.
 
     HARDWARE="$(uname -m)"
-    prefix=""
+    brewPrefix=""
 
     if [ "$HARDWARE" == "arm64" ]; then
-        prefix="/opt/homebrew"
+        brewPrefix="/opt/homebrew"
     elif [ "$HARDWARE" == "x86_64" ]; then
-        prefix="/usr/local"
+        brewPrefix="/usr/local"
     else
         print_error "Homebrew is only supported on Intel and ARM processors!"
     fi
 
-    PATH="$prefix/bin:$PATH"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Inform the user about the availability of `brew`.
-
-    command -v brew &> /dev/null
-    print_result $? "Add to PATH"
+    update_local_shell_configs "export PATH=\"$brewPrefix/bin:\$PATH\" # Homebrew"
 }
 
 get_git_config_file_path() {

@@ -8,6 +8,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 ./xcode.sh
 ./homebrew.sh
+
+reload_local_shell_configs
 ./bash.sh
 
 ./git.sh

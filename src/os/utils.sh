@@ -1,5 +1,7 @@
 #!/bin/bash
 
+declare LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
+
 answer_is_yes() {
     [[ "$REPLY" =~ ^[Yy]$ ]] \
         && return 0 \
@@ -262,6 +264,10 @@ print_warning() {
     print_in_yellow "   [!] $1\n"
 }
 
+reload_local_shell_configs() {
+    . "$LOCAL_SHELL_CONFIG_FILE"
+}
+
 set_trap() {
 
     trap -p "$1" | grep "$2" &> /dev/null \
@@ -352,4 +358,16 @@ show_spinner() {
 
     done
 
+}
+
+update_local_shell_configs() {
+    declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
+
+    if ! grep "$1" < "$LOCAL_SHELL_CONFIG_FILE" &> /dev/null; then
+        execute \
+            "printf '%s\n' '$1' >> $LOCAL_SHELL_CONFIG_FILE" \
+            "Update '$LOCAL_SHELL_CONFIG_FILE'"
+    fi
+
+    reload_local_shell_configs
 }
