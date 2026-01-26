@@ -7,7 +7,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 install_plugin() {
-    execute "code --install-extension $2" "$1 plugin"
+    execute "codium --install-extension $2" "$1 plugin"
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -15,7 +15,7 @@ install_plugin() {
 print_in_purple "\n   Visual Studio Code\n\n"
 
 # Install VSCode
-brew_install "Visual Studio Code" "visual-studio-code" "--cask"
+brew_install "Visual Studio Code" "vscodium" "--cask"
 
 printf "\n"
 

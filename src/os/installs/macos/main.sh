@@ -24,5 +24,5 @@ reload_local_shell_configs
 ./tmux.sh
 ./video_tools.sh
 ./../vim.sh
-./vscode.sh
+./vscodium.sh
 ./web_font_tools.sh

@@ -48,7 +48,7 @@ The setup process will:
 * Set custom [macOS][preferences macos] /
   [Ubuntu][preferences ubuntu] preferences.
 * Install the [Vim][vim plugins] and
-  [VS Code][vscode plugins] plugins.
+  [VS Codium][VSCodium plugins] plugins.
 
 Setup process in action:
 
@@ -203,4 +203,4 @@ The code is available under the [MIT license][license].
 [vim plugins]: src/vim/vim/pack/minpac/start
 [vim ubuntu]: https://user-images.githubusercontent.com/1223565/101947424-519fc580-3ba5-11eb-83b1-e4c3573315a3.png
 [Vim]: src/vim
-[vscode plugins]: src/os/installs/macos/vscode.sh
+[vscodium plugins]: src/os/installs/macos/vscodium.sh
