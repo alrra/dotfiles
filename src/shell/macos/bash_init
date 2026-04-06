@@ -8,9 +8,9 @@ set_homebrew() {
     HARDWARE="$(uname -m)"
     prefix=""
 
-    if [ "$HARDWARE" == "arm64" ]; then
+    if [ "$HARDWARE" = "arm64" ]; then
         prefix="/opt/homebrew"
-    elif [ "$HARDWARE" == "x86_64" ]; then
+    elif [ "$HARDWARE" = "x86_64" ]; then
         prefix="/usr/local"
     fi
 

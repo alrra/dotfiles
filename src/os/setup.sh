@@ -170,7 +170,7 @@ verify_os() {
     # Check if the OS is `macOS` and
     # it's above the required version.
 
-    if [ "$os_name" == "macos" ]; then
+    if [ "$os_name" = "macos" ]; then
 
         if is_supported_version "$os_version" "$MINIMUM_MACOS_VERSION"; then
             return 0
@@ -183,7 +183,7 @@ verify_os() {
     # Check if the OS is `Ubuntu` and
     # it's above the required version.
 
-    elif [ "$os_name" == "ubuntu" ]; then
+    elif [ "$os_name" = "ubuntu" ]; then
 
         if is_supported_version "$os_version" "$MINIMUM_UBUNTU_VERSION"; then
             return 0

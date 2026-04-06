@@ -43,7 +43,7 @@ get_git_repository_details() {
     # Check if in `.git/` directory (some of the following
     # checks don't make sense/won't work in the `.git` directory).
 
-    [ "$(git rev-parse --is-inside-git-dir)" == "true" ] \
+    [ "$(git rev-parse --is-inside-git-dir)" = "true" ] \
         && return
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

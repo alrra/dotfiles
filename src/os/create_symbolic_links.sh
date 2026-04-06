@@ -56,7 +56,7 @@ create_symlinks() {
                 "ln -fs $sourceFile $targetFile" \
                 "$targetFile → $sourceFile"
 
-        elif [ "$(readlink "$targetFile")" == "$sourceFile" ]; then
+        elif [ "$(readlink "$targetFile")" = "$sourceFile" ]; then
             print_success "$targetFile → $sourceFile"
         else
 

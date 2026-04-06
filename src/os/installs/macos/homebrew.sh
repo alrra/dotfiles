@@ -18,12 +18,12 @@ add_to_path() {
 
     # If not, add it to the PATH.
 
-    HARDWARE="$(uname -m)"
-    brewPrefix=""
+    local HARDWARE="$(uname -m)"
+    local brewPrefix=""
 
-    if [ "$HARDWARE" == "arm64" ]; then
+    if [ "$HARDWARE" = "arm64" ]; then
         brewPrefix="/opt/homebrew"
-    elif [ "$HARDWARE" == "x86_64" ]; then
+    elif [ "$HARDWARE" = "x86_64" ]; then
         brewPrefix="/usr/local"
     else
         print_error "Homebrew is only supported on Intel and ARM processors!"
