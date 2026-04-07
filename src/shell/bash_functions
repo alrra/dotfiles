@@ -5,25 +5,21 @@
 # Create data URI from a file.
 
 datauri() {
-
-    local mimeType=""
-
     if [ ! -f "$1" ]; then
         printf "%s is not a file.\n" "$1"
         return
     fi
 
-    mimeType=$(file --brief --mime-type "$1")
-    #               └─ do not prepend the filename to the output
+    local mimeType=$(file --brief --mime-type "$1")
+    #                     └─ do not prepend the filename to the output
 
-    if [[ $mimeType == text/* ]]; then
+    if [[ "$mimeType" == text/* ]]; then
         mimeType="$mimeType;charset=utf-8"
     fi
 
     printf "data:%s;base64,%s" \
         "$mimeType" \
         "$(openssl base64 -in "$1" | tr -d "\n")"
-
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -40,7 +36,6 @@ delete-files() {
 # Execute Vim macro
 
 evm() {
-
     local numberOfTimes="${*: -1}"
     local files
 
@@ -58,7 +53,6 @@ evm() {
             -c "wq" \
             "$file"
     done
-
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -161,12 +155,10 @@ optimize-pdfs() (
 #   rename-media-files path/to/some/directory path/to/some/file ...
 
 rename-media-files() (
-
     rename_file() (
-
-        filePath="$(dirname "${1%/}")"
-        fileName="$(printf "%s" "$(basename "$1")" | tr '[:upper:]' '[:lower:]')"
-        fileExtension="${fileName##*.}"
+        local filePath="$(dirname "${1%/}")"
+        local fileName="$(printf "%s" "$(basename "$1")" | tr '[:upper:]' '[:lower:]')"
+        local fileExtension="${fileName##*.}"
 
         # iOS
         #
@@ -219,7 +211,6 @@ rename-media-files() (
             rename_file "$filePath"
         fi
     done
-
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -258,9 +249,9 @@ resize-image() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    declare path="$(dirname "$1")"
-    declare fileName="$(basename "$1")"
-    declare geometry="${2:-50%}"
+    local path="$(dirname "$1")"
+    local fileName="$(basename "$1")"
+    local geometry="${2:-50%}"
 
     magick \
         "$1" \
@@ -318,13 +309,13 @@ resize-video() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    declare fileName="$(basename "$1")"
-    declare filePath="$(dirname "${1%/}")"
-    declare scale="${2:-1920:1080}"
-    declare startTime=${3:-00:00:00}
-    declare crf=${4:-23}
+    local fileName="$(basename "$1")"
+    local filePath="$(dirname "${1%/}")"
+    local scale="${2:-"1920:1080"}"
+    local startTime=${3:-"00:00:00"}
+    local crf=${4:-"23"}
 
-    declare outputFileName="$filePath/_${fileName%.*}.mp4"
+    local outputFileName="$filePath/_${fileName%.*}.mp4"
 
 
     # The options used below try to offer a good balance between

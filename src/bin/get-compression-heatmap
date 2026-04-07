@@ -29,7 +29,6 @@ compress_file() {
 }
 
 create_heatmap_for_file() {
-
     local tmpFile="$1"
 
     if [ "$(get_file_mime_type "$1")" != "application/x-gzip" ]; then
@@ -47,8 +46,7 @@ create_heatmap_for_png() {
 }
 
 create_heatmap_for_webpage() {
-
-    declare -r -a CURL_DEFAULT_OPTIONS=(
+    local -r -a CURL_DEFAULT_OPTIONS=(
         --connect-timeout 30
         --header "Accept-Encoding: gzip, deflate"
         --header "Cache-Control: no-cache" # Prevent intermediate
@@ -93,8 +91,7 @@ get_image_name() {
 }
 
 get_script_path() {
-
-    declare -r os_name="$(uname -s)"
+    local -r os_name="$(uname -s)"
     local path="$1"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -112,11 +109,9 @@ get_script_path() {
     fi
 
     printf "%s" "$(dirname "${BASH_SOURCE[0]}")/$path"
-
 }
 
 open_image() {
-
     # The order of the following checks matters as
     # on Ubuntu there is also a utility called `open`.
 
@@ -125,7 +120,6 @@ open_image() {
     elif cmd_exists "open"; then
         open "$1"
     fi
-
 }
 
 print_error() {
@@ -133,7 +127,6 @@ print_error() {
 }
 
 print_result() {
-
     if [ "$1" -eq 0 ]; then
         print_success "$2"
     else
@@ -141,7 +134,6 @@ print_result() {
     fi
 
     return "$1"
-
 }
 
 print_success() {
@@ -151,7 +143,6 @@ print_success() {
 # ----------------------------------------------------------------------
 
 main() {
-
     # Check if `cURL` is installed
 
     if ! cmd_exists "curl"; then
@@ -169,8 +160,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     while [ $# -ne 0 ]; do
-
-        imageFile="$(get_image_name "$1")"
+        local imageFile="$(get_image_name "$1")"
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -206,9 +196,7 @@ main() {
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         shift
-
     done
-
 }
 
 main "$@"

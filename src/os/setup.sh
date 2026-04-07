@@ -16,12 +16,10 @@ declare skipQuestions=false
 # ----------------------------------------------------------------------
 
 download() {
-
     local url="$1"
     local output="$2"
 
     if command -v "curl" &> /dev/null; then
-
         curl \
             --location \
             --silent \
@@ -29,26 +27,20 @@ download() {
             --output "$output" \
             "$url" \
                 &> /dev/null
-
         return $?
-
     elif command -v "wget" &> /dev/null; then
-
         wget \
             --quiet \
             --output-document="$output" \
             "$url" \
                 &> /dev/null
-
         return $?
     fi
 
     return 1
-
 }
 
 download_dotfiles() {
-
     local tmpFile=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -64,7 +56,6 @@ download_dotfiles() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if ! $skipQuestions; then
-
         ask_for_confirmation "Do you want to store the dotfiles in '$dotfilesDirectory'?"
 
         if ! answer_is_yes; then
@@ -92,11 +83,8 @@ download_dotfiles() {
         done
 
         printf "\n"
-
     else
-
         rm -rf "$dotfilesDirectory" &> /dev/null
-
     fi
 
     mkdir -p "$dotfilesDirectory"
@@ -118,11 +106,9 @@ download_dotfiles() {
 
     cd "$dotfilesDirectory/src/os" \
         || return 1
-
 }
 
 download_utils() {
-
     local tmpFile=""
 
     tmpFile="$(mktemp /tmp/XXXXX)"
@@ -133,16 +119,13 @@ download_utils() {
         && return 0
 
    return 1
-
 }
 
 extract() {
-
     local archive="$1"
     local outputDir="$2"
 
     if command -v "tar" &> /dev/null; then
-
         tar \
             --extract \
             --gzip \
@@ -154,13 +137,11 @@ extract() {
     fi
 
     return 1
-
 }
 
 verify_os() {
-
-    declare -r MINIMUM_MACOS_VERSION="10.14"
-    declare -r MINIMUM_UBUNTU_VERSION="24.04"
+    local -r MINIMUM_MACOS_VERSION="10.14"
+    local -r MINIMUM_UBUNTU_VERSION="24.04"
 
     local os_name="$(get_os)"
     local os_version="$(get_os_version)"
@@ -198,7 +179,6 @@ verify_os() {
     fi
 
     return 1
-
 }
 
 # ----------------------------------------------------------------------
@@ -206,7 +186,6 @@ verify_os() {
 # ----------------------------------------------------------------------
 
 main() {
-
     # Ensure that the following actions
     # are made relative to this file's path.
 
@@ -268,7 +247,6 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if cmd_exists "git"; then
-
         if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
             ./initialize_git_repository.sh "$DOTFILES_ORIGIN"
         fi
@@ -278,7 +256,6 @@ main() {
         if ! $skipQuestions; then
             ./update_content.sh
         fi
-
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -286,7 +263,6 @@ main() {
     if ! $skipQuestions; then
         ./restart.sh
     fi
-
 }
 
 main "$@"

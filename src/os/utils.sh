@@ -20,7 +20,6 @@ ask_for_confirmation() {
 }
 
 ask_for_sudo() {
-
     # Ask for the administrator password upfront.
 
     sudo -v &> /dev/null
@@ -35,7 +34,6 @@ ask_for_sudo() {
         sleep 60
         kill -0 "$$" || exit
     done &> /dev/null &
-
 }
 
 cmd_exists() {
@@ -43,18 +41,15 @@ cmd_exists() {
 }
 
 kill_all_subprocesses() {
-
     local i=""
 
     for i in $(jobs -p); do
         kill "$i"
         wait "$i" &> /dev/null
     done
-
 }
 
 execute() {
-
     local -r CMDS="$1"
     local -r MSG="${2:-$1}"
     local -r TMP_FILE="$(mktemp /tmp/XXXXX)"
@@ -110,7 +105,6 @@ execute() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     return $exitCode
-
 }
 
 get_answer() {
@@ -118,7 +112,6 @@ get_answer() {
 }
 
 get_os() {
-
     local os=""
     local kernelName=""
 
@@ -136,11 +129,9 @@ get_os() {
     fi
 
     printf "%s" "$os"
-
 }
 
 get_os_version() {
-
     local os=""
     local version=""
 
@@ -155,7 +146,6 @@ get_os_version() {
     fi
 
     printf "%s" "$version"
-
 }
 
 is_git_repository() {
@@ -163,11 +153,10 @@ is_git_repository() {
 }
 
 is_supported_version() {
-
     # shellcheck disable=SC2206
-    declare -a v1=(${1//./ })
+    local -a v1=(${1//./ })
     # shellcheck disable=SC2206
-    declare -a v2=(${2//./ })
+    local -a v2=(${2//./ })
     local i=""
 
     # Fill empty positions in v1 with zeros.
@@ -175,9 +164,7 @@ is_supported_version() {
         v1[i]=0
     done
 
-
     for (( i=0; i<${#v1[@]}; i++ )); do
-
         # Fill empty positions in v2 with zeros.
         if [[ -z ${v2[i]} ]]; then
             v2[i]=0
@@ -188,9 +175,7 @@ is_supported_version() {
         elif (( 10#${v1[i]} > 10#${v2[i]} )); then
             return 0
         fi
-
     done
-
 }
 
 mkd() {
@@ -245,7 +230,6 @@ print_question() {
 }
 
 print_result() {
-
     if [ "$1" -eq 0 ]; then
         print_success "$2"
     else
@@ -253,7 +237,6 @@ print_result() {
     fi
 
     return "$1"
-
 }
 
 print_success() {
@@ -269,14 +252,11 @@ reload_local_shell_configs() {
 }
 
 set_trap() {
-
     trap -p "$1" | grep "$2" &> /dev/null \
         || trap '$2' "$1"
-
 }
 
 skip_questions() {
-
      while :; do
         case $1 in
             -y|--yes) return 0;;
@@ -286,11 +266,9 @@ skip_questions() {
     done
 
     return 1
-
 }
 
 show_spinner() {
-
     local -r FRAMES='/-\|'
 
     # shellcheck disable=SC2034
@@ -323,7 +301,6 @@ show_spinner() {
     # Display spinner while the commands are being executed.
 
     while kill -0 "$PID" &>/dev/null; do
-
         frameText="   [${FRAMES:i++%NUMBER_OR_FRAMES:1}] $MSG"
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -339,9 +316,7 @@ show_spinner() {
         # Clear frame text.
 
         tput rc
-
     done
-
 }
 
 update_local_shell_configs() {

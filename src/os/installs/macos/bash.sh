@@ -43,20 +43,17 @@ change_default_bash() {
 
     chsh -s "$newShellPath" &> /dev/null
     print_result $? "Make OS use the latest version of Bash"
-
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-
     print_in_purple "\n   Bash\n\n"
 
     brew_install "Bash" "bash" \
         && change_default_bash
 
     brew_install "Bash Completion 2" "bash-completion@2"
-
 }
 
 main

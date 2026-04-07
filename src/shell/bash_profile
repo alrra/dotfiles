@@ -3,9 +3,9 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 source_bash_files() {
-    declare -r CURRENT_DIRECTORY="$(pwd)"
+    local -r CURRENT_DIRECTORY="$(pwd)"
 
-    declare -r -a FILES_TO_SOURCE=(
+    local -r -a FILES_TO_SOURCE=(
         "bash_init"
 
         "bash_aliases"
@@ -28,7 +28,7 @@ source_bash_files() {
         && . "../os/utils.sh"
 
     # shellcheck disable=SC2034
-    declare -r OS="$(get_os)"
+    local -r OS="$(get_os)"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -44,7 +44,6 @@ source_bash_files() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     cd "$CURRENT_DIRECTORY"
-
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

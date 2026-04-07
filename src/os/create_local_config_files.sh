@@ -6,14 +6,12 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 create_bash_local() {
-
-    declare -r FILE_PATH="$HOME/.bash.local"
+    local -r FILE_PATH="$HOME/.bash.local"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-   if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
-
-        DOTFILES_BIN_DIR="$(dirname "$(pwd)")/bin/"
+    if [ ! -e "$FILE_PATH" ]; then
+        local -r DOTFILES_BIN_DIR="$(dirname "$(pwd)")/bin/"
 
         printf "%s\n" \
 "#!/bin/bash
@@ -26,20 +24,18 @@ PATH=\"$DOTFILES_BIN_DIR:\$PATH\"
 
 export PATH" \
         >> "$FILE_PATH"
-   fi
+    fi
 
     print_result $? "$FILE_PATH"
 
 }
 
 create_gitconfig_local() {
-
-    declare -r FILE_PATH="$HOME/.gitconfig.local"
+    local -r FILE_PATH="$HOME/.gitconfig.local"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
-
+    if [ ! -e "$FILE_PATH" ]; then
         printf "%s\n" \
 "[commit]
 
@@ -47,7 +43,6 @@ create_gitconfig_local() {
     # https://help.github.com/articles/signing-commits-using-gpg/
 
     # gpgsign = true
-
 
 [user]
 
@@ -58,12 +53,10 @@ create_gitconfig_local() {
     fi
 
     print_result $? "$FILE_PATH"
-
 }
 
 create_vimrc_local() {
-
-    declare -r FILE_PATH="$HOME/.vimrc.local"
+    local -r FILE_PATH="$HOME/.vimrc.local"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -72,19 +65,16 @@ create_vimrc_local() {
     fi
 
     print_result $? "$FILE_PATH"
-
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-
     print_in_purple "\n • Create local config files\n\n"
 
     create_bash_local
     create_gitconfig_local
     create_vimrc_local
-
 }
 
 main

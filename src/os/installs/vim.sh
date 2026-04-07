@@ -6,10 +6,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 install_plugins() {
-
-    declare -r VIM_PACK_DIR="$HOME/.vim/pack"
-    declare -r MINPAC_DIR="$VIM_PACK_DIR/minpac/opt/minpac"
-    declare -r MINPAC_GIT_REPO_URL="https://github.com/k-takata/minpac.git"
+    local -r VIM_PACK_DIR="$HOME/.vim/pack"
+    local -r MINPAC_DIR="$VIM_PACK_DIR/minpac/opt/minpac"
+    local -r MINPAC_GIT_REPO_URL="https://github.com/k-takata/minpac.git"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -22,18 +21,15 @@ install_plugins() {
         || return 1
 
     vim +PluginsSetup
-
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-
     print_in_purple "\n   Vim\n\n"
 
     "./$(get_os)/vim.sh"
     install_plugins
-
 }
 
 main

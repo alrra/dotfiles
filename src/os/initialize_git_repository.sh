@@ -6,8 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 initialize_git_repository() {
-
-    declare -r GIT_ORIGIN="$1"
+    local -r GIT_ORIGIN="$1"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -29,9 +28,7 @@ initialize_git_repository() {
         execute \
             "git init && git remote add origin $GIT_ORIGIN" \
             "Initialize the Git repository"
-
     fi
-
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -39,7 +39,7 @@ execute "defaults write com.apple.screencapture type -string 'png'" \
     "Save screenshots as PNGs"
 
 execute "defaults write com.apple.screensaver askForPassword -int 1 && \
-         defaults write com.apple.screensaver askForPasswordDelay -int 0"\
+         defaults write com.apple.screensaver askForPasswordDelay -int 0" \
     "Require password immediately after into sleep or screen saver mode"
 
 execute "defaults write -g AppleFontSmoothing -int 2" \

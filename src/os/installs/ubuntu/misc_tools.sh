@@ -13,7 +13,6 @@ install_package "ShellCheck" "shellcheck"
 install_package "xclip" "xclip"
 
 if ! package_is_installed "yarn"; then
-
     add_key "https://dl.yarnpkg.com/debian/pubkey.gpg" \
         || print_error "Yarn (add key)"
 
@@ -22,7 +21,6 @@ if ! package_is_installed "yarn"; then
 
     update &> /dev/null \
         || print_error "Yarn (resync package index files)"
-
 fi
 
 install_package "Yarn" "yarn" "--no-install-recommends"

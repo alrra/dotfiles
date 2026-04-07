@@ -21,25 +21,21 @@ install() {
 }
 
 install_node() {
-
     # Install Node.js LTS.
     # Note: This will also set it as the default.
 
     execute "volta install node" \
         "Install Node.js LTS"
-
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-
     print_in_purple "\n   Volta\n\n"
 
     install
     add_configs
     install_node
-
 }
 
 main

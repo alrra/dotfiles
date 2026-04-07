@@ -5,8 +5,8 @@
 # Set up Homebrew.
 
 set_homebrew() {
-    HARDWARE="$(uname -m)"
-    prefix=""
+    local HARDWARE="$(uname -m)"
+    local prefix=""
 
     if [ "$HARDWARE" = "arm64" ]; then
         prefix="/opt/homebrew"

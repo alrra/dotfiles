@@ -7,7 +7,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 add_to_path() {
-
     # Check if `brew` is available.
 
     if command -v brew &> /dev/null; then
@@ -33,7 +32,6 @@ add_to_path() {
 }
 
 get_git_config_file_path() {
-
     local path=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -45,11 +43,9 @@ get_git_config_file_path() {
         print_error "Get config file path"
         return 1
     fi
-
 }
 
 install() {
-
     if ! cmd_exists "brew"; then
         ask_for_sudo
         printf "\n" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &> /dev/null
@@ -57,11 +53,9 @@ install() {
     fi
 
     print_result $? "Install"
-
 }
 
 opt_out_of_analytics() {
-
     local path=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -80,7 +74,6 @@ opt_out_of_analytics() {
         git config --file="$path" --replace-all homebrew.analyticsdisabled true &> /dev/null
         print_result $? "Opt-out of analytics"
     fi
-
 }
 
 update() {
@@ -98,7 +91,6 @@ upgrade() {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-
     print_in_purple "\n   Homebrew\n\n"
 
     install

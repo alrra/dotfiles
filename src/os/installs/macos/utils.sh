@@ -6,11 +6,10 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 brew_install() {
-
-    declare -r ARGUMENTS="$3"
-    declare -r FORMULA="$2"
-    declare -r FORMULA_READABLE_NAME="$1"
-    declare -r TAP_VALUE="$4"
+    local -r ARGUMENTS="$3"
+    local -r FORMULA="$2"
+    local -r FORMULA_READABLE_NAME="$1"
+    local -r TAP_VALUE="$4"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -45,11 +44,9 @@ brew_install() {
             "brew install $FORMULA $ARGUMENTS" \
             "$FORMULA_READABLE_NAME"
     fi
-
 }
 
 brew_prefix() {
-
     local path=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -61,7 +58,6 @@ brew_prefix() {
         print_error "Homebrew (get prefix)"
         return 1
     fi
-
 }
 
 brew_tap() {
@@ -69,17 +65,13 @@ brew_tap() {
 }
 
 brew_update() {
-
     execute \
         "brew update" \
         "Homebrew (update)"
-
 }
 
 brew_upgrade() {
-
     execute \
         "brew upgrade" \
         "Homebrew (upgrade)"
-
 }
