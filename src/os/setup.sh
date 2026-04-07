@@ -140,7 +140,7 @@ extract() {
 }
 
 verify_os() {
-    local -r MINIMUM_MACOS_VERSION="10.14"
+    local -r MINIMUM_MACOS_VERSION="26.0"
     local -r MINIMUM_UBUNTU_VERSION="24.04"
 
     local os_name="$(get_os)"
