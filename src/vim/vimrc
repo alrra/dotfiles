@@ -266,12 +266,6 @@ set expandtab
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" Enable fast terminal connection.
-
-set ttyfast
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 if has('persistent_undo')
 
     " Set directory for undo files.
