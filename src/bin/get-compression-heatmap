@@ -104,7 +104,7 @@ get_script_path() {
         if [ "$(uname -m)" == "x86_64" ]; then
             path="${path}-64"
         else
-            path="${path}-31"
+            path="${path}-32"
         fi
     fi
 
