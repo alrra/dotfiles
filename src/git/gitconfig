@@ -191,12 +191,6 @@
 
     um = commit --amend
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Start web-based visualizer.
-
-    w = instaweb --httpd=webrick
-
 [color "branch"]
 
     current = green bold
