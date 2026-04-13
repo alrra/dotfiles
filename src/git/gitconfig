@@ -101,8 +101,8 @@
         current_branch=\"$(git symbolic-ref --short HEAD)\"; \
         branch=\"${2:-$current_branch}\"; \
         \
-        if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-            git fetch origin refs/pull/$1/head:pr/$1 && \
+        if [[ \"$1\" =~ ^[0-9]+$ ]]; then \
+            git fetch origin \"refs/pull/$1/head:pr/$1\" && \
             git checkout -B \"$branch\" && \
             git rebase pr/$1 && \
             git branch --delete --force pr/$1; \
