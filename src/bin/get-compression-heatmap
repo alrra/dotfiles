@@ -25,7 +25,7 @@ cmd_exists() {
 }
 
 compress_file() {
-    cat "$1" | tee >(gzip > "$2") &> /dev/null
+    gzip < "$1" > "$2"
 }
 
 create_heatmap_for_file() {
@@ -96,12 +96,12 @@ get_script_path() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ "$os_name" == "Darwin" ]; then
+    if [ "$os_name" = "Darwin" ]; then
         path="$path/macos"
-    elif [ "$os_name" == "Linux" ]; then
+    elif [ "$os_name" = "Linux" ]; then
         path="$path/linux"
 
-        if [ "$(uname -m)" == "x86_64" ]; then
+        if [ "$(uname -m)" = "x86_64" ]; then
             path="${path}-64"
         else
             path="${path}-32"

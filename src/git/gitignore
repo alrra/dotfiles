@@ -12,8 +12,8 @@
 # | Miscellaneous                                                      |
 # ----------------------------------------------------------------------
 
-# Node.js, npm, and yarn.
-
+.env
+.env.local
 node_modules
 npm-debug.log*
 yarn-debug.log*
