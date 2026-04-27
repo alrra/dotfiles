@@ -119,7 +119,7 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Remove the tag with the specified tag name if
+    # Remove the tag with the specified tag name if it
     # exists and tag the latest commit with that name.
 
     retag = "!f() { \
@@ -186,7 +186,7 @@
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Update the content of the last commit by including all
-    # staged changes as well as allow the user to change its
+    # staged changes as well as allowing the user to change its
     # commit message.
 
     um = commit --amend
@@ -309,6 +309,6 @@
     #
     # [!] The following needs to remain at the end of this file in
     #     order to allow any of the above configs to be overwritten
-    #     by the local ones
+    #     by the local ones.
 
     path = ~/.gitconfig.local

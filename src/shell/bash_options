@@ -49,7 +49,7 @@ shopt -s extglob
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Append to the history file rather then overwriting it.
+# Append to the history file rather than overwriting it.
 
 shopt -s histappend
 

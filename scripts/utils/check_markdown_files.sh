@@ -9,7 +9,7 @@
 #
 # Returns with an exit status of:
 #
-#  * 0 if the provided function succeeded for all Markdown files
+#  * 0 if the provided function succeeded for all Markdown files.
 #  * 1 otherwise.
 
 check_markdown_files() {

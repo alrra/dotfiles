@@ -271,8 +271,7 @@ skip_questions() {
 show_spinner() {
     local -r FRAMES='/-\|'
 
-    # shellcheck disable=SC2034
-    local -r NUMBER_OR_FRAMES=${#FRAMES}
+    local -r NUMBER_OF_FRAMES=${#FRAMES}
 
     local -r CMDS="$2"
     local -r MSG="$3"
@@ -301,7 +300,7 @@ show_spinner() {
     # Display spinner while the commands are being executed.
 
     while kill -0 "$PID" &>/dev/null; do
-        frameText="   [${FRAMES:i++%NUMBER_OR_FRAMES:1}] $MSG"
+        frameText="   [${FRAMES:i++%NUMBER_OF_FRAMES:1}] $MSG"
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

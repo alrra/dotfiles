@@ -2,7 +2,7 @@
 " | General Settings                                                   |
 " ----------------------------------------------------------------------
 
-" Don't make Vim vi-compatibile.
+" Don't make Vim vi-compatible.
 
 set nocompatible
 
@@ -172,7 +172,7 @@ set nomodeline
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" Kept the cursor on the same column.
+" Keep the cursor on the same column.
 
 set nostartofline
 
@@ -872,7 +872,7 @@ set statusline+=:
 set statusline+=%{strlen(&fenc)?&fenc:'none'}   " File encoding
 set statusline+=]
 set statusline+=%=                              " Left/Right separator
-set statusline+=%c                              " File encoding
+set statusline+=%c                              " Column number
 set statusline+=,
 set statusline+=%l                              " Current line number
 set statusline+=/

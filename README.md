@@ -48,7 +48,7 @@ The setup process will:
 * Set custom [macOS][preferences macos] /
   [Ubuntu][preferences ubuntu] preferences.
 * Install the [Vim][vim plugins] and
-  [VS Codium][VSCodium plugins] plugins.
+  [VSCodium][VSCodium plugins] plugins.
 
 Setup process in action:
 

@@ -27,7 +27,7 @@ alias clear-dns-cache="sudo dscacheutil -flushcache; \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Empty the trash, the main HDD and on all mounted volumes,
+# Empty the trash on the main HDD and on all mounted volumes,
 # and clear Apple’s system logs to improve shell startup speed.
 
 alias empty-trash="sudo rm -frv /Volumes/*/.Trashes; \

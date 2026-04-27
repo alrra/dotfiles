@@ -5,12 +5,12 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-agree_with_xcode_licence() {
+agree_with_xcode_license() {
     # Automatically agree to the terms of the `Xcode` license.
     # https://github.com/alrra/dotfiles/issues/10
 
     sudo xcodebuild -license accept &> /dev/null
-    print_result $? "Agree to the terms of the Xcode licence"
+    print_result $? "Agree to the terms of the Xcode license"
 }
 
 are_xcode_command_line_tools_installed() {
@@ -74,7 +74,7 @@ main() {
     install_xcode_command_line_tools
     install_xcode
     set_xcode_developer_directory
-    agree_with_xcode_licence
+    agree_with_xcode_license
 }
 
 main

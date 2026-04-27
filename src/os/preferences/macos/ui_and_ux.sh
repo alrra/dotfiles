@@ -40,7 +40,7 @@ execute "defaults write com.apple.screencapture type -string 'png'" \
 
 execute "defaults write com.apple.screensaver askForPassword -int 1 && \
          defaults write com.apple.screensaver askForPasswordDelay -int 0" \
-    "Require password immediately after into sleep or screen saver mode"
+    "Require password immediately after entering sleep or screen saver mode"
 
 execute "defaults write -g AppleFontSmoothing -int 2" \
     "Enable subpixel font rendering on non-Apple LCDs"
@@ -64,13 +64,13 @@ execute "defaults write -g NSUseAnimatedFocusRing -bool false" \
     "Disable the over-the-top focus ring animation"
 
 execute "defaults write -g NSWindowResizeTime -float 0.001" \
-    "Accelerated playback when adjusting the window size."
+    "Accelerate playback when adjusting the window size."
 
 execute "defaults write -g PMPrintingExpandedStateForPrint -bool true" \
     "Expand print panel by default"
 
 execute "defaults write -g QLPanelAnimationDuration -float 0" \
-    "Disable opening a Quick Look window animations."
+    "Disable Quick Look window opening animations."
 
 execute "defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false" \
     "Disable resume system-wide"

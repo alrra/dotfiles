@@ -33,7 +33,7 @@ delete-files() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Execute Vim macro
+# Execute Vim macro.
 
 evm() {
     local numberOfTimes="${*: -1}"
@@ -145,7 +145,7 @@ optimize-pdfs() (
 
 # Rename media files.
 #
-# Rename the specified files so the filename is the file created date
+# Rename the specified files so the filename is the file creation date
 # in the following format:
 #
 #    <year>-<month>-<day> <hour>.<minute>.<second>
@@ -182,7 +182,7 @@ rename-media-files() (
 
         # Other
         #
-        # Files that already contain the created date in the filename,
+        # Files that already contain the creation date in the filename,
         # but not in the intended format.
         #
         #   * 20200505_050505.dng => 2020-05-05 05.05.05.dng
