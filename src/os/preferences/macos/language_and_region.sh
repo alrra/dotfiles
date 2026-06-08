@@ -7,6 +7,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_in_purple "\n   Language & Region\n\n"
 
+execute "defaults write -g AppleICUForce24HourTime -bool true" \
+    "Use 24-hour time format"
+
 execute "defaults write -g AppleLanguages -array 'en'" \
     "Set language"
 
