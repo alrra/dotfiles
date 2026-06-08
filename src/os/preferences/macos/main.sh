@@ -7,7 +7,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 ./init.sh
 
 ./app_store.sh
-./chrome.sh
+./chromium.sh
 ./dock.sh
 ./finder.sh
 ./firefox.sh

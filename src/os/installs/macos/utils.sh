@@ -75,3 +75,16 @@ brew_upgrade() {
         "brew upgrade" \
         "Homebrew (upgrade)"
 }
+
+remove_quarantine_attribute() {
+    declare -r APP_PATH="$1"
+    declare -r APP_READABLE_NAME="$2"
+
+    # Remove the quarantine attribute set by macOS on downloaded
+    # apps to avoid the "is damaged and can't be opened" or
+    # gatekeeper warnings on first launch.
+
+    execute \
+        "sudo xattr -rd com.apple.quarantine '$APP_PATH'" \
+        "$APP_READABLE_NAME (remove quarantine attribute)"
+}
