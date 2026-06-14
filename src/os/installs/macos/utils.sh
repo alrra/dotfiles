@@ -13,6 +13,13 @@ brew_install() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # Require casks to have a checksum.
+    # https://brew.sh/2026/06/11/homebrew-6.0.0/#-other-security-improvements
+
+    export HOMEBREW_CASK_OPTS_REQUIRE_SHA=1
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Check if `Homebrew` is installed.
 
     if ! cmd_exists "brew"; then
