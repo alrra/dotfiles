@@ -10,8 +10,6 @@ set_homebrew() {
 
     if [ "$HARDWARE" = "arm64" ]; then
         prefix="/opt/homebrew"
-    elif [ "$HARDWARE" = "x86_64" ]; then
-        prefix="/usr/local"
     fi
 
     eval "$($prefix/bin/brew shellenv)"

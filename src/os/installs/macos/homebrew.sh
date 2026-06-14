@@ -22,10 +22,8 @@ add_to_path() {
 
     if [ "$HARDWARE" = "arm64" ]; then
         brewPrefix="/opt/homebrew"
-    elif [ "$HARDWARE" = "x86_64" ]; then
-        brewPrefix="/usr/local"
     else
-        print_error "Homebrew is only supported on Intel and ARM processors!"
+        print_error "Homebrew is only supported on ARM processors!"
     fi
 
     update_local_shell_configs "export PATH=\"$brewPrefix/bin:\$PATH\" # Homebrew"
