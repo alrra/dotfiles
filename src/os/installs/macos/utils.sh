@@ -61,7 +61,8 @@ brew_prefix() {
 }
 
 brew_tap() {
-    brew tap "$1" &> /dev/null
+    brew tap "$1" &> /dev/null \
+        && brew trust "$1" &> /dev/null
 }
 
 brew_update() {
