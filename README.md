@@ -1,4 +1,4 @@
-# [Cătălin][repo]’s dotfiles
+# [alrra][repo]’s dotfiles
 
 [![CI status for macOS][ci badge macos]][ci link macos]
 
@@ -31,7 +31,7 @@ To set up the dotfiles run the appropriate snippet in the terminal:
 
 | OS | Snippet |
 | :--- | :--- |
-| macOS | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/main/src/os/setup.sh)"` |
+| macOS | `bash -c "$(curl -LsS https://raw.githubusercontent.com/alrra/dotfiles/main/src/os/setup.sh)"` |
 
 That's it! ✨
 
@@ -118,17 +118,18 @@ such as the Git user credentials, e.g.:
 
 ```gitconfig
 [commit]
+    gpgsign = true
 
-    # Sign commits using GPG.
-    # https://help.github.com/articles/signing-commits-using-gpg/
+[gpg]
+    format = ssh
 
-    gpgSign = true
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers
 
 [user]
-
     name = Your Name
     email = account@example.com
-    signingKey = XXXXXXXX
+    signingkey = "..."
 ```
 
 #### `~/.vimrc.local`

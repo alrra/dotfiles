@@ -87,5 +87,5 @@ For answers to common questions about this code of conduct, see
 
 <!-- Link labels -->
 
-[email]: mailto:contact@catalinmaris.com
+[email]: mailto:alrraa@gmail.com
 [site]: https://www.contributor-covenant.org
