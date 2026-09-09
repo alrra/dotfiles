@@ -34,6 +34,21 @@ brew_install() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # If the specified formula/cask comes from a non-official tap,
+    # trust it by default so `Homebrew` may load it.
+
+    if [ -n "$TAP_VALUE" ] || [[ "$FORMULA" == */* ]]; then
+        local -r trustTarget="${TAP_VALUE:+$TAP_VALUE/}$FORMULA"
+        local -r trustType="$( [[ "$ARGUMENTS" == *--cask* ]] && printf "cask" || printf "formula" )"
+
+        if ! brew trust "--$trustType" "$trustTarget" &> /dev/null; then
+            print_error "$FORMULA_READABLE_NAME ('brew trust --$trustType $trustTarget' failed)"
+            return 1
+        fi
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Install the specified formula.
 
     # shellcheck disable=SC2086
