@@ -26,4 +26,4 @@ install_plugin "MarkdownLint" "DavidAnson.vscode-markdownlint"
 install_plugin "Vim" "vscodevim.vim"
 
 # Close VSCode
-osascript -e 'quit app "Visual Studio Code"'
+osascript -e 'quit app "VSCodium"'
