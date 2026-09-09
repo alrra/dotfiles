@@ -10,11 +10,11 @@ alias afk="osascript -e 'tell application \"System Events\" to sleep'"
 
 # Shorter commands for `Homebrew`.
 
-alias brewd="brew doctor"
-alias brewi="brew install"
-alias brewr="brew uninstall"
-alias brews="brew search"
-alias brewu="brew update --quiet \
+alias bd="brew doctor"
+alias bi="brew install"
+alias br="brew uninstall"
+alias bs="brew search"
+alias bu="brew update --quiet \
                 && brew upgrade --yes \
                 && brew cleanup"
 
