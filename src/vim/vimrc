@@ -486,7 +486,7 @@ endfunction
 function! PrettyPrint()
 
     if ( &filetype == 'json' && (has('python3') || has('python')) )
-        %!python -m json.tool
+        %!python3 -m json.tool
         norm! ggVG==
     elseif ( &filetype == 'svg' || &filetype == 'xml' )
         set formatexpr=xmlformat#Format()
