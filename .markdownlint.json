@@ -6,6 +6,9 @@
         "code_blocks": false,
         "tables": false
     },
+    "table-column-style": {
+        "style": "compact"
+    },
     "strong-style": {
         "style": "underscore"
     }

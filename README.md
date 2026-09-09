@@ -30,7 +30,7 @@ To set up the dotfiles run the appropriate snippet in the terminal:
 > [what it does][setup]. Seriously, __DON'T__!
 
 | OS | Snippet |
-|:---|:---|
+| :--- | :--- |
 | macOS | `bash -c "$(curl -LsS https://raw.github.com/alrra/dotfiles/main/src/os/setup.sh)"` |
 
 That's it! ✨
@@ -49,7 +49,7 @@ Setup process in action:
 
 <!-- markdownlint-disable MD033 -->
 | <video src="https://user-images.githubusercontent.com/1223565/236653425-5beae04a-39e3-4f29-8113-009e402818e6.mp4" title="Setup process on macOS"/> |
-|:---:|
+| :---: |
 <!-- markdownlint-enable MD033 -->
 
 ## Screenshots
@@ -59,19 +59,19 @@ Setup process in action:
 Output for `git status`:
 
 | ![Output for Git status on macOS][git output macos] |
-|:---:|
+| :---: |
 | macOS |
 
 Output for `git log`:
 
 | ![Output for Git log on macOS][git log macos] |
-|:---:|
+| :---: |
 | macOS |
 
 ### Vim
 
 | ![Vim on macOS][vim macos] |
-|:---:|
+| :---: |
 | macOS |
 
 ## Customize
