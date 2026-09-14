@@ -26,7 +26,7 @@ add_to_path() {
         print_error "Homebrew is only supported on ARM processors!"
     fi
 
-    update_local_shell_configs "export PATH=\"$brewPrefix/bin:\$PATH\" # Homebrew"
+    update_local_shell_configs "eval \"\$($brewPrefix/bin/brew shellenv)\" # Homebrew"
 }
 
 install() {
